@@ -5,13 +5,15 @@ import java.time.LocalDate;
 public class Administrador {
 
 	private String domicilio, userName, password;
-	private int nroIdentidad, tiempoDeAdm;
+	private int nroIdentidad;
 	private LocalDate fechaDeAltaSistema;
 
-	public int getTiempoDeAdm() {
-		return tiempoDeAdm;
-	}
-
+	
+	public Administrador() {
+		fechaDeAltaSistema = LocalDate.now();
+		}
+	
+	
 	public int cuantoTiempoSiendoAdm() {
 		return this.getTiempoDeAdm();
 	}
