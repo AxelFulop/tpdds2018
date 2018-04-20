@@ -1,4 +1,4 @@
-package sistemaDeGestionEnergetica;
+package modelo;
 
 import java.time.LocalDate;
 
