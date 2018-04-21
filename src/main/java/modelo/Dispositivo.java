@@ -10,42 +10,28 @@ public class Dispositivo {
 		kwh = consumo;
 		estado = false;
 	}
-	
-	
-	
+		
 	public String getNombre() {
 		return nombre;
 	}
-
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-
 	public int getKwh() {
 		return kwh;
 	}
-
-
 
 	public void setKwh(int kwh) {
 		this.kwh = kwh;
 	}
 
-
-
 	public boolean getEstado() {
 		return estado;
 	}
 
-
-
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-
-
 }

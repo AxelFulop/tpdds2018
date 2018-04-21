@@ -9,12 +9,13 @@ public class RepositorioClientes {
 	private static RepositorioClientes instancia;
 	public static List<Cliente> clientes;
 	
+	private RepositorioClientes() { }
+	
 	public static RepositorioClientes getInstancia() {
 		if (instancia == null) {
 			instancia = new RepositorioClientes();
 		}
-		return instancia;
-		
+		return instancia;		
 	}
 
 	public static List<Cliente> getClientes() {
@@ -23,9 +24,5 @@ public class RepositorioClientes {
 
 	public static void addCliente(Cliente cliente) {
 		RepositorioClientes.clientes.add(cliente);
-	}
-
-
-	
-	
+	}	
 }

@@ -34,14 +34,33 @@ public enum Categoria {
         	return 887.19;
         default:
             throw new AssertionError("Unknown operations " + this);
-    }
-		
+    	}		
 	}
     
-    double cargoVariable() //TODO:Hacer
+    double cargoVariable() 
 	{
-		return 0;
-    	
+		switch(this) {
+		case R1:
+            return 0.644;
+        case R2:
+        	return 0.644;
+        case R3:
+        	return 0.681;
+        case R4:
+        	return 0.738;
+        case R5:
+        	return 0.794;
+        case R6:
+        	return 0.832;
+        case R7:
+        	return 0.851;
+        case R8:
+        	return 0.851;
+        case R9:	
+        	return 0.851;
+        default:
+            throw new AssertionError("Unknown operations " + this);
+		}  	
 	}
 	
 }
