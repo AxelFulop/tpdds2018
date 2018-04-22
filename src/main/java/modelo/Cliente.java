@@ -29,8 +29,7 @@ public class Cliente {
 		this.contrasena=contrasena;
 		}
 
-	public void agregarClienteAlRepositorio()
-	{
+	public void agregarClienteAlRepositorio(){
 		RepositorioClientes.getInstancia().addCliente(this);
 	}
 	
@@ -58,7 +57,19 @@ public class Cliente {
 		this.dispositivos = dispositivos;
 	}
 	
+	public int consumoMensual() {
+		int consumoTotal = 0;
+		for(Dispositivo d : this.dispositivos){
+			if(d.getEstado()) {		
+			consumoTotal += d.getKwh();
+			}
+		}
+		return consumoTotal;
+	}
 	
+	public double facturaMensual() {
+		return categoria.cargoFijo() + this.consumoMensual()*categoria.cargoVariable();
+	}
 	
 	
 	
