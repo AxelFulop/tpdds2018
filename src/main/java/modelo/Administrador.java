@@ -22,7 +22,20 @@ public class Administrador {
 	}
 
 	
-	/*public int cantMesesComoAdmin() {
+	public int cantMesesComoAdmin() {
+		LocalDate fechaActual = LocalDate.now();
+		int anioAlta = fechaDeAlta.getYear();
+		int anioActual = fechaActual.getYear();
+		int cantMeses;
 		
-	}*/
+		if(anioAlta == anioActual) {
+			cantMeses = fechaActual.getMonthValue() - fechaDeAlta.getMonthValue();
+		}
+		else {
+			int difAniosEnteros = anioActual - anioAlta - 1;
+			cantMeses = difAniosEnteros * 12 + fechaActual.getMonthValue() + (12 - fechaDeAlta.getMonthValue()); 
+		}
+
+		return cantMeses;
+	}
 }
