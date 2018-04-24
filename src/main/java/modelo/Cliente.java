@@ -24,6 +24,15 @@ public class Cliente {
 	private String domicilio;
 	private LocalDate fechaAltaServicio;
 	private Categoria categoria;
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 	private String nombreUsuario;
 	private String contrasena;
 	private List<Dispositivo> dispositivos;
@@ -50,41 +59,21 @@ public class Cliente {
 	}
 	
 	
-		public boolean algunDispositivoEstaEncendido() {
-		return this.dispositivos.stream().anyMatch(
-				dispo -> dispo.getEstado());
-	}
-
-	public boolean algunDispositivoEstaApagado() {
-
-		return !this.algunDispositivoEstaEncendido();
-
-	}
-	
-	public int consumoDeLosEncendidos() {
+	/*public int consumoDeLosEncendidos() {
 		return this.cualesEncendidos().stream()
 				.mapToInt(dispo -> dispo.getKwh()).sum();
+	}*/
+
+	
+
+	public boolean estadoDispositivo(Dispositivo dispositivo) {
+		return dispositivo.getEstado();
+	}
+ 	
+	public int cantidadDeDispositivosEnEstado(Boolean estado) {
+		return (int) this.getDispositivos().stream().filter(dispositivo -> dispositivo.getEstado()==estado).count();
 	}
 
-	public int cantDeApagados() {
-		return this.cualesNoEncendidos().size();
-	}
-
-	public List<Dispositivo> cualesNoEncendidos() {
-		return this.dispositivos.stream()
-				.filter(dispo -> !dispo.getEstado())
-				.collect(Collectors.toList());
-	}
-
-	public List<Dispositivo> cualesEncendidos() {
-		return this.dispositivos.stream()
-				.filter(dispo -> dispo.getEstado())
-				.collect(Collectors.toList());
-	}
-
-	public int cantDeEncendidos() {
-		return this.cualesEncendidos().size();
-	}
 	public int cantidadDeDispositivos() {
 		return this.dispositivos.size();
 	}
@@ -97,19 +86,16 @@ public class Cliente {
 		this.dispositivos = dispositivos;
 	}
 	
-	public int consumoMensual() {
-		int consumoTotal = 0;
-		for(Dispositivo d : this.dispositivos){
-			if(d.getEstado()) {		
-				consumoTotal += d.getKwh();
-			}
-		}
-		return consumoTotal;
+	public float consumoMensual(Integer mes) {
+		
+		Float sumaConsumo=(float) 0;
+		this.getDispositivos().forEach(c->sumaConsumo=sumaConsumo+c.getConsumoEnHorasAlMes(mes));
+		
 	}
-	
+	/*
 	public double facturaMensual() {
 		return categoria.cargoFijo() + this.consumoMensual()*categoria.cargoVariable();
-	}
+	}*/
 	
 	
 	
