@@ -3,8 +3,8 @@ package modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import modelo.repositorios.RepositorioClientes;
 
 public class Cliente {
@@ -40,7 +40,7 @@ public class Cliente {
 	
 		public boolean algunDispositivoEstaEncendido() {
 		return this.dispositivos.stream().anyMatch(
-				dispo -> dispo.estaEncendido());
+				dispo -> dispo.getEstado());
 	}
 
 	public boolean algunDispositivoEstaApagado() {
@@ -48,14 +48,10 @@ public class Cliente {
 		return !this.algunDispositivoEstaEncendido();
 
 	}
-
-	//Solo me interesa el consumo de aquellos aparatos que consumieron energia
-	//para eso deben estar encendidos 
 	
 	public int consumoDeLosEncendidos() {
 		return this.cualesEncendidos().stream()
-				.mapToInt(dispo -> dispo.getTotalConsumido()).sum();
-
+				.mapToInt(dispo -> dispo.getKwh()).sum();
 	}
 
 	public int cantDeApagados() {
@@ -64,13 +60,13 @@ public class Cliente {
 
 	public List<Dispositivo> cualesNoEncendidos() {
 		return this.dispositivos.stream()
-				.filter(dispo -> dispo.noEstaEncendido())
+				.filter(dispo -> !dispo.getEstado())
 				.collect(Collectors.toList());
 	}
 
 	public List<Dispositivo> cualesEncendidos() {
 		return this.dispositivos.stream()
-				.filter(dispo -> dispo.estaEncendido())
+				.filter(dispo -> dispo.getEstado())
 				.collect(Collectors.toList());
 	}
 
@@ -89,9 +85,16 @@ public class Cliente {
 		this.dispositivos = dispositivos;
 	}
 	
+	public int consumoMensual() {
+		int consumoTotal = 0;
+		for(Dispositivo d : this.dispositivos){
+			if(d.getEstado()) {		
+				consumoTotal += d.getKwh();
+			}
+		}
+		return consumoTotal;
+	}
 	
-	//El cliente debe encargarse de saber como calcular la factura? o seria el categorizador?
-	// que calcula la factura segun la categoria del cliente? 
 	public double facturaMensual() {
 		return categoria.cargoFijo() + this.consumoMensual()*categoria.cargoVariable();
 	}

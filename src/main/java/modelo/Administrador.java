@@ -22,7 +22,7 @@ public class Administrador {
 	}
 
 	
-	public int cantMesesComoAdmin() {
-		return LocalDate.now().compareTo(fechaDeAlta); // MAL, falta implementar este metodo
-	}
+	/*public int cantMesesComoAdmin() {
+		
+	}*/
 }

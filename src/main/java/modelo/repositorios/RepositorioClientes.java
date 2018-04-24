@@ -22,7 +22,7 @@ public class RepositorioClientes {
 		return clientes;
 	}
 
-	public static void addCliente(Cliente cliente) {
+	public void addCliente(Cliente cliente) {
 		RepositorioClientes.clientes.add(cliente);
 	}	
 }
