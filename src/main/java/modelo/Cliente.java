@@ -9,6 +9,14 @@ import modelo.repositorios.RepositorioClientes;
 
 public class Cliente {
 	private String nombre;
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	private String apellido;
 	private TipoIdentificacion tipoIdentificacion;
 	private int numeroIdentificacion;
@@ -28,6 +36,10 @@ public class Cliente {
 		this.nombreUsuario=nombreUsuario;
 		this.contrasena=contrasena;
 		}
+
+	public Cliente() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public void agregarClienteAlRepositorio(){
 		RepositorioClientes.getInstancia().addCliente(this);

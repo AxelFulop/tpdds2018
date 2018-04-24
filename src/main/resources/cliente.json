@@ -1,0 +1,6 @@
+  {
+  "nombre":"Juan",
+  "apellido":"Perez",
+  "tipoIdentificacion":DNI,
+  "nombreUsuario":"juanATR",
+  "contrasena": "qwerty"}
