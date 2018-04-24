@@ -23,6 +23,13 @@ public class Administrador {
 
 	
 	public int cantMesesComoAdmin() {
-		return LocalDate.now().getMonthValue() - fechaDeAlta.getMonthValue() + (LocalDate.now().getYear()- fechaDeAlta.getYear())*12;
+		LocalDate actual= LocalDate.now();
+		int respuesta;
+		if(actual.getDayOfMonth()< fechaDeAlta.getDayOfMonth()){
+		respuesta = actual.getMonthValue() - fechaDeAlta.getMonthValue() + (actual.getYear()- fechaDeAlta.getYear())*12 - 1;}
+		else{
+		respuesta =actual.getMonthValue() - fechaDeAlta.getMonthValue() + (actual.getYear()- fechaDeAlta.getYear())*12;	
+		}
+		return respuesta;
 	}
 }
