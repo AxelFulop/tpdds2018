@@ -29,7 +29,7 @@ public class Administrador {
 	}
 	
 	public void agregarClienteAlRepoViaJson(String ruta) throws IOException {
-		Parser2 parser = new Parser2();
+		Parser parser = new Parser();
 		Cliente cliente = parser.parsearCliente(ruta);
 		RepositorioClientes.getInstance().addCliente(cliente);
 	}

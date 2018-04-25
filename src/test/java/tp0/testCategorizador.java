@@ -14,7 +14,6 @@ import modelo.Categorizador;
 import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.Parser;
-import modelo.Parser2;
 import modelo.TipoIdentificacion;
 
 public class testCategorizador {

@@ -10,14 +10,12 @@ import org.junit.Test;
 
 import modelo.Cliente;
 import modelo.Parser;
-import modelo.Parser2;
 import modelo.TipoIdentificacion;
 
 public class testParseo {
 	
 	
-	Parser parser = new Parser();
-	Parser2 parser2 = new Parser2();
+	Parser parser2 = new Parser();
 	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"JuanATR","qwerty");
 	
 	/*@Test
