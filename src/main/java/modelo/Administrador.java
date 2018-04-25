@@ -31,7 +31,7 @@ public class Administrador {
 	public void agregarClienteAlRepoViaJson(String ruta) throws IOException {
 		Parser parser = new Parser();
 		Cliente cliente = parser.parsearCliente(ruta);
-		RepositorioClientes.getInstance().addCliente(cliente);
+		agregarClienteAlRepo(cliente);
 	}
 	
 	public int cantMesesComoAdmin() {
