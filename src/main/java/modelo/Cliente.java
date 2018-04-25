@@ -75,7 +75,7 @@ public class Cliente {
 		return (int) this.getDispositivos().stream().filter(dispositivo -> dispositivo.getEstado()==estado).count();
 	}
 	
-	public boolean algunDispostivoEncendido(List<Dispositivo> dispositivos) {
+	public boolean algunDispostivoEncendido() {
 		Predicate<Dispositivo> p1 = d -> d.getEstado() == true;
 		return (boolean) this.getDispositivos().stream().anyMatch(p1);
 	}

@@ -14,8 +14,8 @@ public class Administrador {
 	private String nombreUsuario;
 	private String contraseña;
 	
-	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contraseña) {
-		fechaDeAlta = LocalDate.now();
+	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contraseña, String fechaAlta) {
+		this.fechaDeAlta = LocalDate.parse(fechaAlta);
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.numIdentificacion=numIdentificacion;
