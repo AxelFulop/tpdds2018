@@ -7,14 +7,14 @@ public class Dispositivo {
 	private String nombre;
 	private int kwh;
 	private boolean estado;
-	private Map<Integer,Float> consumoEnHorasAlMes = new LinkedHashMap<Integer,Float>();
+	private Map<Integer,Double> consumoEnHorasAlMes = new LinkedHashMap<Integer,Double>();
 	
-	public Float getConsumoEnHorasAlMes(Integer mes) {
+	public Double getConsumoEnHorasAlMes(int mes) {
 		return consumoEnHorasAlMes.get(mes);
 	}
 
-	public void setConsumoEnHorasAlMes(Integer mes,Float horasEncendido) {
-		consumoEnHorasAlMes.put(mes, horasEncendido);
+	public void setConsumoEnHorasAlMes(int mes,double d) {
+		consumoEnHorasAlMes.put(mes, d);
 	}
 
 	public Dispositivo(String nom, int consumo) {

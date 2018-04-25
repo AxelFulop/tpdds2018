@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +25,14 @@ public class Cliente {
 	private String domicilio;
 	private LocalDate fechaAltaServicio;
 	private Categoria categoria;
-	
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
 	private String nombreUsuario;
 	private String contrasena;
-	private List<Dispositivo> dispositivos;
+	private List<Dispositivo> dispositivos = new ArrayList<>();
+	private Double consumoTotal;
+	
+	
+
+	
 	
 	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId,String nombreUsuario,String contrasena) {
 		this.fechaAltaServicio = LocalDate.now();
@@ -44,6 +41,7 @@ public class Cliente {
 		this.tipoIdentificacion=tipoId;
 		this.nombreUsuario=nombreUsuario;
 		this.contrasena=contrasena;
+		
 		}
 
 	public Cliente() {
@@ -83,19 +81,34 @@ public class Cliente {
 	}
 
 	public void setDispositivos(List<Dispositivo> dispositivos) {
-		this.dispositivos = dispositivos;
+		dispositivos.forEach(d->this.dispositivos.add(d));;
 	}
 	
-	public float consumoMensual(Integer mes) {
+	public void setDispositivo(Dispositivo dispositivo) {
+		dispositivos.add(dispositivo);
+	}
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
+	public Double getConsumoMensual(Integer mes) {
 		
-		Float sumaConsumo=(float) 0;
-		this.getDispositivos().forEach(c->sumaConsumo=sumaConsumo+c.getConsumoEnHorasAlMes(mes));
+		consumoTotal= (double) 0;
+		this.dispositivos.forEach(c->consumoTotal=consumoTotal+c.getConsumoEnHorasAlMes(mes));
+		return consumoTotal;
 		
 	}
-	/*
-	public double facturaMensual() {
-		return categoria.cargoFijo() + this.consumoMensual()*categoria.cargoVariable();
-	}*/
+	
+	public void categorizarme()
+	{
+		new Categorizador().categorizar(this,LocalDate.now().getMonthValue());
+	}
+	
 	
 	
 	
