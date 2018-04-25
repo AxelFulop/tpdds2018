@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import modelo.repositorios.RepositorioClientes;
@@ -48,9 +49,11 @@ public class Cliente {
 		// TODO Auto-generated constructor stub
 	}
 
+	//No tendría que agregarlo el administrador??
+	/*
 	public void agregarClienteAlRepositorio(){
-		RepositorioClientes.getInstancia().addCliente(this);
-	}
+		RepositorioClientes.getInstance().addCliente(this);
+	}*/
 	
 	public void agregarDispositivo(Dispositivo disp) {
 		this.dispositivos.add(disp);
@@ -70,6 +73,11 @@ public class Cliente {
  	
 	public int cantidadDeDispositivosEnEstado(Boolean estado) {
 		return (int) this.getDispositivos().stream().filter(dispositivo -> dispositivo.getEstado()==estado).count();
+	}
+	
+	public boolean algunDispostivoEncendido(List<Dispositivo> dispositivos) {
+		Predicate<Dispositivo> p1 = d -> d.getEstado() == true;
+		return (boolean) this.getDispositivos().stream().anyMatch(p1);
 	}
 
 	public int cantidadDeDispositivos() {

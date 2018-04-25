@@ -7,6 +7,8 @@ import java.io.FileReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import modelo.repositorios.RepositorioClientes;
+
 
 public class Parser {
 	
@@ -30,6 +32,9 @@ public class Parser {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+			
+		RepositorioClientes.getInstance();
+		RepositorioClientes.addCliente(cliente);
 		
 		return cliente;
 

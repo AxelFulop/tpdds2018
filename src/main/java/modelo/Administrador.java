@@ -1,6 +1,9 @@
 package modelo;
 
+import java.io.IOException;
 import java.time.LocalDate;
+
+import modelo.repositorios.RepositorioClientes;
 
 public class Administrador {
 	private String nombre;
@@ -21,6 +24,15 @@ public class Administrador {
 		
 	}
 
+	public void agregarClienteAlRepo(Cliente cliente) {
+		RepositorioClientes.getInstance().addCliente(cliente);
+	}
+	
+	public void agregarClienteAlRepoViaJson(String ruta) throws IOException {
+		Parser2 parser = new Parser2();
+		Cliente cliente = parser.parsearCliente(ruta);
+		RepositorioClientes.getInstance().addCliente(cliente);
+	}
 	
 	public int cantMesesComoAdmin() {
 		LocalDate actual= LocalDate.now();
@@ -32,4 +44,6 @@ public class Administrador {
 		}
 		return respuesta;
 	}
+	
+	
 }

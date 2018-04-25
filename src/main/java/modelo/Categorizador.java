@@ -1,10 +1,5 @@
 package modelo;
 
-import java.security.cert.Certificate;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -12,6 +7,7 @@ public class Categorizador {
 	
 	public Map<Categoria,TupleDouble> categorias = new LinkedHashMap<Categoria ,TupleDouble>();
 	
+	//Al declarlo de esta manera, cuando se isntancia el categorizador se asignan los valores
 	public Categorizador()
 	{
 		this.categorias.put(Categoria.R1, new TupleDouble(0.0,150.0));

@@ -11,7 +11,7 @@ public class RepositorioClientes {
 	
 	private RepositorioClientes() { }
 	
-	public static RepositorioClientes getInstancia() {
+	public static RepositorioClientes getInstance() {
 		if (instancia == null) {
 			instancia = new RepositorioClientes();
 		}
