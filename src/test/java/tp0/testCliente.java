@@ -25,34 +25,29 @@ public class testCliente {
 	
 	@Test
 	 public void cantidadDeDispositivos(){
-		int cantidad;
-		cantidad = cliente.cantidadDeDispositivos();
+		int cantidad = cliente.cantidadDeDispositivos();
 		Assert.assertEquals(cantidad, 3);
 	};
 	@Test
 	 public void cantidadDispositivosApagados(){
-		int cantidadApagados;
-		cantidadApagados = cliente.cantidadDeDispositivosEnEstado(false);
+		int cantidadApagados = cliente.cantidadDeDispositivosEnEstado(false);
 		Assert.assertEquals(cantidadApagados, 3);
 	};
 	@Test
 	 public void cantidadDispositivosEncendidos(){
 		heladera.setEstado(true);
-		int cantidadP;
-		cantidadP = cliente.cantidadDeDispositivosEnEstado(true);
+		int cantidadP = cliente.cantidadDeDispositivosEnEstado(true);
 		Assert.assertEquals(cantidadP, 1);
 	};
 	@Test
 	 public void algunDispEncendido(){
 		heladera.setEstado(true);
-		boolean estado;
-		estado = cliente.algunDispostivoEncendido();
+		boolean estado = cliente.algunDispostivoEncendido();
 		Assert.assertTrue(estado);
 	};
 	@Test
 	 public void ningunDispEncendido(){
-		boolean estado;
-		estado = cliente.algunDispostivoEncendido();
+		boolean estado = cliente.algunDispostivoEncendido();
 		Assert.assertFalse(estado);
 	};
 }

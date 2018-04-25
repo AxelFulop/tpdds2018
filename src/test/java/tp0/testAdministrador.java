@@ -12,20 +12,17 @@ public class testAdministrador {
 	Administrador administrador3 =  new Administrador("Eduardo","Perez", 235256, "Eduardito","1111", "2016-04-25" );
 	@Test
 	public void siendoAdminDurante3meses() throws IOException {
-		int meses;
-		meses =administrador.cantMesesComoAdmin();
+		int	meses =administrador.cantMesesComoAdmin();
 		Assert.assertEquals(meses, 3);
 	};
 	@Test
 	public void siendoAdminDuranteElMismoMes() throws IOException {
-		int meses;
-		meses =administrador2.cantMesesComoAdmin();
+		int meses =administrador2.cantMesesComoAdmin();
 		Assert.assertEquals(meses, 0);
 	};
 	@Test
 	public void siendoAdminDuranteDosAños() throws IOException {
-	int meses;
-	meses =administrador3.cantMesesComoAdmin();
+	int meses =administrador3.cantMesesComoAdmin();
 	Assert.assertEquals(meses, 24);
 	}
 }
