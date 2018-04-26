@@ -32,6 +32,8 @@ public class testParseo {
 		{
 			Cliente cliente2 = parser2.parsearCliente("src/main/resources/cliente.json");
 			Assert.assertEquals(clienteHarcodeado.getNombre(),cliente2.getNombre());	
+		
+			Assert.assertEquals(clienteHarcodeado.getDispositivos().get(0).getNombre(),cliente2.getDispositivos().get(0).getNombre());	
 		}
 	@Test
 	public void parseoCorrectoVariosClientes() throws IOException
