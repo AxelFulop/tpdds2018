@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import modelo.repositorios.RepositorioClientes;
 
@@ -25,6 +26,7 @@ public class Administrador {
 	}
 
 	public void agregarClienteAlRepo(Cliente cliente) {
+		
 		RepositorioClientes.getInstance();
 		RepositorioClientes.addCliente(cliente);
 	}
@@ -34,7 +36,11 @@ public class Administrador {
 		Cliente cliente = parser.parsearCliente(ruta);
 		agregarClienteAlRepo(cliente);
 	}
-	
+	public void agregarClientesAlRepoViaJson(String ruta) throws IOException {
+		Parser parser = new Parser();
+		List<Cliente> clientes = parser.parsearClientes(ruta);
+		clientes.stream().forEach(c->agregarClienteAlRepo(c));
+	}
 	public int cantMesesComoAdmin() {
 		LocalDate actual= LocalDate.now();
 		int respuesta;

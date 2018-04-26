@@ -20,7 +20,8 @@ public class Cliente {
 	
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Double consumoTotal;
-	
+	public Cliente() {
+	}
 	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numeroIdentificacion, Integer telefono, String domicilio,String nombreUsuario,String contrasena) {
 			
 			this.nombre=nombre;
@@ -32,6 +33,9 @@ public class Cliente {
 			this.contrasena=contrasena;
 			
 			}
+	
+	
+	
 	
 	public String getNombre() {
 		return nombre;

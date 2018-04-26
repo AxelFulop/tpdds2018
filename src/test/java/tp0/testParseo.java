@@ -1,6 +1,8 @@
 package tp0;
 
 import java.io.IOException;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +10,7 @@ import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.Parser;
 import modelo.TipoIdentificacion;
+import modelo.repositorios.RepositorioClientes;
 
 public class testParseo {
 	
@@ -30,6 +33,12 @@ public class testParseo {
 			Cliente cliente2 = parser2.parsearCliente("src/main/resources/cliente.json");
 			Assert.assertEquals(clienteHarcodeado.getNombre(),cliente2.getNombre());	
 		}
+	@Test
+	public void parseoCorrectoVariosClientes() throws IOException
+	{
+		List<Cliente> clientes = parser2.parsearClientes("src/main/resources/clientes.json");
+		Assert.assertEquals(clienteHarcodeado.getNombre(),clientes.get(0).getNombre());	
+	}
 	
 	
 }

@@ -1,0 +1,40 @@
+
+			  [
+				  {
+				  "nombre":"Juan",
+				  "apellido":"Perez",
+				  "tipoIdentificacion":DNI,
+				  "numeroIdentificacion": 123,
+				  "telefono": 48262937,
+				  "nombreUsuario":"juanATR",
+				  "contrasena": "qwerty",
+				  "dispositivos":[
+								  {
+								  "nombre":"tele",
+								  "kwh":2
+								  },
+								  {"nombre":"ipod",
+								  "kwh":10
+								  }
+								 ]
+					},
+					{
+				  "nombre":"Juan",
+				  "apellido":"Perez",
+				  "tipoIdentificacion":DNI,
+				  "numeroIdentificacion": 123,
+				  "telefono": 48262937,
+				  "nombreUsuario":"juanATR",
+				  "contrasena": "qwerty",
+				  "dispositivos":[
+								  {
+								  "nombre":"tele",
+								  "kwh":2
+								  },
+								  {"nombre":"ipod",
+								  "kwh":10
+								  }
+								 ]
+					}
+				]
+
