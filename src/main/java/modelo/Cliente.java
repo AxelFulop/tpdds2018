@@ -18,8 +18,20 @@ public class Cliente {
 	private String nombreUsuario;
 	private String contrasena;
 	
-	private List<Dispositivo> dispositivos = new ArrayList<>();
+	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 	private Double consumoTotal;
+	
+	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numeroIdentificacion, Integer telefono, String domicilio,String nombreUsuario,String contrasena) {
+			
+			this.nombre=nombre;
+			this.apellido=apellido;
+			this.tipoIdentificacion=tipoId;
+			this.nombreUsuario=nombreUsuario;
+			this.fechaAltaServicio = LocalDate.now();
+			this.categoria = Categoria.R1;
+			this.contrasena=contrasena;
+			
+			}
 	
 	public String getNombre() {
 		return nombre;
@@ -29,18 +41,7 @@ public class Cliente {
 		this.nombre = nombre;
 	}	
 	
-	//El cliente se instancia con la categoría 1
-	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numeroIdentificacion, Integer telefono, String domicilio,String nombreUsuario,String contrasena) {
-		
-		this.nombre=nombre;
-		this.apellido=apellido;
-		this.tipoIdentificacion=tipoId;
-		this.nombreUsuario=nombreUsuario;
-		this.fechaAltaServicio = LocalDate.now();
-		this.categoria = Categoria.R1;
-		this.contrasena=contrasena;
-		
-		}
+	
 
 	
 	public void agregarDispositivo(Dispositivo disp) {

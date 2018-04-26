@@ -9,6 +9,12 @@ public class Dispositivo {
 	private boolean estado;
 	private Map<Integer,Double> consumoEnHorasAlMes = new LinkedHashMap<Integer,Double>();
 	
+	public Dispositivo(String nom, int consumo) {
+		nombre = nom;
+		kwh = consumo;
+		estado = false;
+	}
+	
 	public Double getConsumoEnHorasAlMes(int mes) {
 		return consumoEnHorasAlMes.get(mes);
 	}
@@ -17,11 +23,7 @@ public class Dispositivo {
 		consumoEnHorasAlMes.put(mes, d);
 	}
 
-	public Dispositivo(String nom, int consumo) {
-		nombre = nom;
-		kwh = consumo;
-		estado = false;
-	}
+	
 		
 	public String getNombre() {
 		return nombre;
