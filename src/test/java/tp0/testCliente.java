@@ -17,9 +17,9 @@ public class testCliente {
 	@Before
 	public void init(){
 		
-		cliente.setDispositivo(televisor);
-		cliente.setDispositivo(computadora);	
-		cliente.setDispositivo(heladera);
+		cliente.agregarDispositivo(televisor);
+		cliente.agregarDispositivo(computadora);	
+		cliente.agregarDispositivo(heladera);
 
 	}
 	
@@ -27,27 +27,28 @@ public class testCliente {
 	 public void cantidadDeDispositivos(){
 		int cantidad = cliente.cantidadDeDispositivos();
 		Assert.assertEquals(cantidad, 3);
-	};
+	}
 	@Test
 	 public void cantidadDispositivosApagados(){
-		int cantidadApagados = cliente.cantidadDeDispositivosEnEstado(false);
+		int cantidadApagados = cliente.cantidadDeDispositivosApagados();
 		Assert.assertEquals(cantidadApagados, 3);
-	};
+	}
 	@Test
 	 public void cantidadDispositivosEncendidos(){
-		heladera.setEstado(true);
-		int cantidadP = cliente.cantidadDeDispositivosEnEstado(true);
+		heladera.encender();
+		int cantidadP = cliente.cantidadDeDispositivosEncendidos();
 		Assert.assertEquals(cantidadP, 1);
-	};
+	}
 	@Test
-	 public void algunDispEncendido(){
-		heladera.setEstado(true);
+	 public void algunDispositivoEncendido(){
+		heladera.encender();
 		boolean estado = cliente.algunDispostivoEncendido();
 		Assert.assertTrue(estado);
-	};
+	}
 	@Test
-	 public void ningunDispEncendido(){
+	 public void ningunDispositivoEncendido(){
 		boolean estado = cliente.algunDispostivoEncendido();
 		Assert.assertFalse(estado);
-	};
+	}
+	
 }

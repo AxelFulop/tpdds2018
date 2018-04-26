@@ -15,8 +15,8 @@ public class Administrador {
 	private String nombreUsuario;
 	private String contraseña;
 	
-	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contraseña, String fechaAlta) {
-		this.fechaDeAlta = LocalDate.parse(fechaAlta);
+	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contraseña, LocalDate fechaAlta) {
+		this.fechaDeAlta = fechaAlta;
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.numIdentificacion=numIdentificacion;
@@ -24,23 +24,7 @@ public class Administrador {
 		this.contraseña=contraseña;
 		
 	}
-
-	public void agregarClienteAlRepo(Cliente cliente) {
-		
-		RepositorioClientes.getInstance();
-		RepositorioClientes.addCliente(cliente);
-	}
 	
-	public void agregarClienteAlRepoViaJson(String ruta) throws IOException {
-		Parser parser = new Parser();
-		Cliente cliente = parser.parsearCliente(ruta);
-		agregarClienteAlRepo(cliente);
-	}
-	public void agregarClientesAlRepoViaJson(String ruta) throws IOException {
-		Parser parser = new Parser();
-		List<Cliente> clientes = parser.parsearClientes(ruta);
-		clientes.stream().forEach(c->agregarClienteAlRepo(c));
-	}
 	public int cantMesesComoAdmin() {
 		LocalDate actual= LocalDate.now();
 		int respuesta;

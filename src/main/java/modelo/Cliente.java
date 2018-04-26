@@ -3,8 +3,6 @@ package modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-
 
 public class Cliente {
 	private String nombre;
@@ -14,7 +12,7 @@ public class Cliente {
 	private int telefono;
 	private String domicilio;
 	private LocalDate fechaAltaServicio;
-	private Categoria categoria;
+	private CategoriaResidencial categoria;
 	private String nombreUsuario;
 	private String contrasena;
 	
@@ -29,13 +27,10 @@ public class Cliente {
 			this.tipoIdentificacion=tipoId;
 			this.nombreUsuario=nombreUsuario;
 			this.fechaAltaServicio = LocalDate.now();
-			this.categoria = Categoria.R1;
+			this.categoria = new CategoriaResidencial(0.0, 150.0, 18.76, 0.644);
 			this.contrasena=contrasena;
 			
-			}
-	
-	
-	
+			}	
 	
 	public String getNombre() {
 		return nombre;
@@ -44,25 +39,25 @@ public class Cliente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}	
-	
-	
-
-	
+		
 	public void agregarDispositivo(Dispositivo disp) {
 		this.dispositivos.add(disp);
 	}
-	
-	public boolean estadoDispositivo(Dispositivo dispositivo) {
-		return dispositivo.getEstado();
-	}
  	
 	public int cantidadDeDispositivosEnEstado(Boolean estado) {
-		return (int) this.getDispositivos().stream().filter(dispositivo -> dispositivo.getEstado()==estado).count();
+		return (int) this.dispositivos.stream().filter(d -> d.estaEncendido() == estado).count();
+	}
+	
+	public int cantidadDeDispositivosEncendidos() {
+		return this.cantidadDeDispositivosEnEstado(true);
+	}
+	
+	public int cantidadDeDispositivosApagados() {
+		return this.cantidadDeDispositivosEnEstado(false);
 	}
 	
 	public boolean algunDispostivoEncendido() {
-		Predicate<Dispositivo> p1 = d -> d.getEstado() == true;
-		return (boolean) this.getDispositivos().stream().anyMatch(p1);
+		return this.dispositivos.stream().anyMatch(d -> d.estaEncendido());
 	}
 
 	public int cantidadDeDispositivos() {
@@ -73,36 +68,31 @@ public class Cliente {
 		return dispositivos;
 	}
 
-	public void setDispositivos(List<Dispositivo> dispositivos) {
-		dispositivos.forEach(d->this.dispositivos.add(d));;
+	public void agregarDispositivos(List<Dispositivo> dispositivos) {
+		dispositivos.forEach(d->this.agregarDispositivo(d));
 	}
 	
-	public void setDispositivo(Dispositivo dispositivo) {
-		dispositivos.add(dispositivo);
-	}
-	
-	public Categoria getCategoria() {
+	public CategoriaResidencial getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(CategoriaResidencial categoria) {
 		this.categoria = categoria;
 	}
 	
-	public Double getConsumoMensual(Integer mes) {
-		
-		consumoTotal= (double) 0;
+	public Double getConsumoMensual(Integer mes) {	
+		consumoTotal = (double) 0;
 		this.dispositivos.forEach(c->consumoTotal=consumoTotal+c.getConsumoEnHorasAlMes(mes));
 		return consumoTotal;
-		
 	}
 	
-	public void categorizarme()
+	public void reCategorizarme()
 	{
-		new Categorizador().categorizar(this,LocalDate.now().getMonthValue());
+		new Categorizador().reCategorizar(this);
 	}
 	
-	
-	
+	public Double getFacturaMensual(Integer mes) {
+		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(mes); 
+	}
 	
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import modelo.Categoria;
+import modelo.CategoriaResidencial;
 import modelo.Categorizador;
 import modelo.Cliente;
 import modelo.Dispositivo;
@@ -15,25 +15,19 @@ public class testCategorizador {
 	
 	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty");
 	Dispositivo televevisor = new Dispositivo("tv", 10);
-	Categorizador categorizador = new Categorizador();
-	
 	
 		@Before
-		public void init()
-		{
+		public void init(){
 			televevisor.setConsumoEnHorasAlMes(LocalDate.now().getMonthValue(), 456.45);
-			clienteHarcodeado.setDispositivo(televevisor);
+			clienteHarcodeado.agregarDispositivo(televevisor);
 		}	
 	
 		@Test
-		public void categorizaCorrectamente() 
-		{	
-		//categorizador.categorizar(clienteHarcodeado,2);
-			
-		clienteHarcodeado.categorizarme();	
-		Assert.assertEquals(Categoria.R5,clienteHarcodeado.getCategoria());
-		clienteHarcodeado.getCategoria();
-		}
-	
-	
+		public void categorizaCorrectamente(){	
+			CategoriaResidencial r5 = new CategoriaResidencial(450.0, 500.0, 110.38, 0.794);		
+			clienteHarcodeado.reCategorizarme();	
+		
+			Assert.assertTrue(clienteHarcodeado.getCategoria().esIgual(r5));
+		} HAY ERROR EN ESTE TEST
+		
 }

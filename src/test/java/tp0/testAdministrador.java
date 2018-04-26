@@ -2,15 +2,16 @@ package tp0;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import org.junit.Assert;
 import org.junit.Test;
 import modelo.Administrador;
-import modelo.repositorios.RepositorioClientes;
+
 public class testAdministrador {
-	Administrador administrador =  new Administrador("Juan","Pepito", 235545, "Juancito","soyelmejor", "2017-12-31" );
-	Administrador administrador2 =  new Administrador("Pedro","hwas", 235667, "Pedrito","01234", "2018-04-20" );
-	Administrador administrador3 =  new Administrador("Eduardo","Perez", 235256, "Eduardito","1111", "2016-04-25" );
+	Administrador administrador =  new Administrador("Juan","Pepito", 235545, "Juancito","soyelmejor", LocalDate.now().minusMonths(3) );
+	Administrador administrador2 =  new Administrador("Pedro","hwas", 235667, "Pedrito","01234", LocalDate.now().minusDays(3) );
+	Administrador administrador3 =  new Administrador("Eduardo","Perez", 235256, "Eduardito","1111", LocalDate.now().minusMonths(24) );
 	
 	@Test
 	public void siendoAdminDurante3meses() throws IOException {
