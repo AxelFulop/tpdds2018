@@ -9,7 +9,7 @@ import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.TipoIdentificacion;
 public class testCliente {
-	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"JuanATR","qwerty");
+	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty");
 	Dispositivo televisor = new Dispositivo("tv", 10);
 	Dispositivo computadora = new Dispositivo("compu", 15);
 	Dispositivo heladera = new Dispositivo("heladera", 20);

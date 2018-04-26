@@ -25,7 +25,8 @@ public class Administrador {
 	}
 
 	public void agregarClienteAlRepo(Cliente cliente) {
-		RepositorioClientes.getInstance().addCliente(cliente);
+		RepositorioClientes.getInstance();
+		RepositorioClientes.addCliente(cliente);
 	}
 	
 	public void agregarClienteAlRepoViaJson(String ruta) throws IOException {

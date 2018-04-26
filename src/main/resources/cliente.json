@@ -2,5 +2,7 @@
   "nombre":"Juan",
   "apellido":"Perez",
   "tipoIdentificacion":DNI,
+  "numeroIdentificacion": 123,
+  "telefono": 48262937,
   "nombreUsuario":"juanATR",
   "contrasena": "qwerty"}

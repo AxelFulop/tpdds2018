@@ -1,13 +1,8 @@
 package tp0;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
-
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-
 import modelo.Cliente;
 import modelo.Parser;
 import modelo.TipoIdentificacion;
@@ -16,7 +11,7 @@ public class testParseo {
 	
 	
 	Parser parser2 = new Parser();
-	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"JuanATR","qwerty");
+	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty");
 	
 	/*@Test
 	public void parseoCorrecto()
@@ -32,6 +27,7 @@ public class testParseo {
 		public void parseoCorrecto() throws IOException
 		{
 			Cliente cliente2 = parser2.parsearCliente("src/main/resources/cliente.json");
+			//En este caso debieramos chequear que los objetos sean iguales
 			Assert.assertEquals(clienteHarcodeado.getNombre(),cliente2.getNombre());	
 		}
 	

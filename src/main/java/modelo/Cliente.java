@@ -1,24 +1,13 @@
 package modelo;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import modelo.repositorios.RepositorioClientes;
+
 
 public class Cliente {
 	private String nombre;
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	private String apellido;
 	private TipoIdentificacion tipoIdentificacion;
 	private int numeroIdentificacion;
@@ -28,45 +17,36 @@ public class Cliente {
 	private Categoria categoria;
 	private String nombreUsuario;
 	private String contrasena;
+	
 	private List<Dispositivo> dispositivos = new ArrayList<>();
 	private Double consumoTotal;
 	
-	
+	public String getNombre() {
+		return nombre;
+	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}	
 	
-	
-	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId,String nombreUsuario,String contrasena) {
-		this.fechaAltaServicio = LocalDate.now();
+	//El cliente se instancia con la categoría 1
+	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numeroIdentificacion, Integer telefono, String domicilio,String nombreUsuario,String contrasena) {
+		
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.tipoIdentificacion=tipoId;
 		this.nombreUsuario=nombreUsuario;
+		this.fechaAltaServicio = LocalDate.now();
+		this.categoria = Categoria.R1;
 		this.contrasena=contrasena;
 		
 		}
 
-	public Cliente() {
-		// TODO Auto-generated constructor stub
-	}
-
-	//No tendría que agregarlo el administrador??
-	/*
-	public void agregarClienteAlRepositorio(){
-		RepositorioClientes.getInstance().addCliente(this);
-	}*/
 	
 	public void agregarDispositivo(Dispositivo disp) {
 		this.dispositivos.add(disp);
 	}
 	
-	
-	/*public int consumoDeLosEncendidos() {
-		return this.cualesEncendidos().stream()
-				.mapToInt(dispo -> dispo.getKwh()).sum();
-	}*/
-
-	
-
 	public boolean estadoDispositivo(Dispositivo dispositivo) {
 		return dispositivo.getEstado();
 	}
