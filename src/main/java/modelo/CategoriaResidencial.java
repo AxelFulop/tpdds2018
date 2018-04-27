@@ -41,10 +41,4 @@ public class CategoriaResidencial {
 			   unCliente.getConsumoMensual(LocalDate.now().getMonthValue()) <= limiteSuperior;
 	}
 	
-	public boolean esIgual(CategoriaResidencial otraCategoria) { // para los tests del categorizador
-		return this.limiteInferior == otraCategoria.getLimiteInferior() &&
-			   this.limiteSuperior == otraCategoria.getLimiteSuperior() &&
-			   this.cargoFijo == otraCategoria.getCargoFijo() &&
-			   this.cargoVariable == otraCategoria.getCargoVariable();
-	}
 }

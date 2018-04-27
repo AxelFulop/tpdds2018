@@ -6,6 +6,7 @@
 				  "tipoIdentificacion":DNI,
 				  "numeroIdentificacion": 123,
 				  "telefono": 48262937,
+				  "domicilio": "Medrano 951",
 				  "nombreUsuario":"juanATR",
 				  "contrasena": "qwerty",
 				  "dispositivos":[
@@ -19,13 +20,14 @@
 								 ]
 					},
 					{
-				  "nombre":"Juan",
-				  "apellido":"Perez",
+				  "nombre":"Antonio",
+				  "apellido":"Mascherano",
 				  "tipoIdentificacion":DNI,
-				  "numeroIdentificacion": 123,
-				  "telefono": 48262937,
-				  "nombreUsuario":"juanATR",
-				  "contrasena": "qwerty",
+				  "numeroIdentificacion": 40433999,
+				  "telefono": 45673908,
+				  "domicilio": "calleFalsa 123",
+				  "nombreUsuario":"hoyTeConvertisEnHeroe",
+				  "contrasena": "perro",
 				  "dispositivos":[
 								  {
 								  "nombre":"tele",

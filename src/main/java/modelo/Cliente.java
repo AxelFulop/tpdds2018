@@ -101,4 +101,20 @@ public class Cliente {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(mes); 
 	}
 	
+	//Para testear la funcionabilidad del parser (testParseo)
+	//Al momento no es funcional
+	/*public boolean mismosClientes(Cliente c) {
+		return this.nombre == c.nombre &&
+				this.apellido == c.apellido &&
+				this.tipoIdentificacion == c.tipoIdentificacion &&
+				this.numeroIdentificacion == c.numeroIdentificacion &&
+				this.telefono == c.telefono &&
+				this.domicilio == c.domicilio &&
+				this.fechaAltaServicio == c.fechaAltaServicio &&
+				this.categoria == c.categoria &&
+				this.nombreUsuario == c.nombreUsuario &&
+				this.contrasena == c.contrasena;
+			  
+	}*/
+	
 }
