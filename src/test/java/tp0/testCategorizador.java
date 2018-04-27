@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import modelo.CategoriaResidencial;
-import modelo.Categorizador;
 import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.TipoIdentificacion;
@@ -28,6 +27,6 @@ public class testCategorizador {
 			clienteHarcodeado.reCategorizarme();	
 		
 			Assert.assertTrue(clienteHarcodeado.getCategoria().esIgual(r5));
-		} HAY ERROR EN ESTE TEST
+		} //HAY ERROR EN ESTE TEST
 		
 }

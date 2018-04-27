@@ -1,10 +1,9 @@
 package modelo;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 
-import modelo.repositorios.RepositorioClientes;
+import java.time.LocalDate;
+import java.time.Period;
+
 
 public class Administrador {
 	private String nombre;
@@ -22,18 +21,11 @@ public class Administrador {
 		this.numIdentificacion=numIdentificacion;
 		this.nombreUsuario=nombreUsuario;
 		this.contraseña=contraseña;
-		
 	}
 	
 	public int cantMesesComoAdmin() {
-		LocalDate actual= LocalDate.now();
-		int respuesta;
-		if(actual.getDayOfMonth()< fechaDeAlta.getDayOfMonth()){
-		respuesta = actual.getMonthValue() - fechaDeAlta.getMonthValue() + (actual.getYear()- fechaDeAlta.getYear())*12 - 1;}
-		else{
-		respuesta =actual.getMonthValue() - fechaDeAlta.getMonthValue() + (actual.getYear()- fechaDeAlta.getYear())*12;	
-		}
-		return respuesta;
+		Period p = Period.between(fechaDeAlta,LocalDate.now());
+		return p.getYears() * 12 + p.getMonths();
 	}
 	
 	
