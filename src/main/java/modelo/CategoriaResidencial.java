@@ -1,6 +1,5 @@
 package modelo;
 
-import java.time.LocalDate;
 
 public class CategoriaResidencial {
 	private String nombre;
@@ -37,8 +36,8 @@ public class CategoriaResidencial {
 	}
 	
 	public boolean pertenece(Cliente unCliente) {
-		return unCliente.getConsumoMensual(LocalDate.now().getMonthValue()) > limiteInferior &&
-			   unCliente.getConsumoMensual(LocalDate.now().getMonthValue()) <= limiteSuperior;
+		return unCliente.getConsumoMensual() > limiteInferior &&
+			   unCliente.getConsumoMensual() <= limiteSuperior;
 	}
 	
 }

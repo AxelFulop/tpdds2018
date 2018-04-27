@@ -83,14 +83,14 @@ public class Cliente {
 		this.categoria = categoria;
 	}
 	
-	public Double getConsumoMensual(Integer mes) {	
+	public Double getConsumoMensual() {	
 		consumoTotal = (double) 0;
-		this.dispositivos.forEach(c -> consumoTotal=consumoTotal + c.getConsumoEnHorasAlMes(mes));
+		this.dispositivos.forEach(c -> consumoTotal=consumoTotal + c.getConsumoDeKwMensual());
 		return consumoTotal;
 	}
 	
 	// ¿Un metodo que llama a otro? ¿Por qué es necesario?
-	// Un cliente no necesita 
+	// Un cliente no necesita saber categorizarse dado que es una funcion del categorizador
 	/*public void reCategorizarme()
 	{
 		new Categorizador().recategorizar(this);
@@ -98,7 +98,7 @@ public class Cliente {
 	*/
 	
 	public Double getFacturaMensual(Integer mes) {
-		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(mes); 
+		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(); 
 	}
 	
 	//Para testear la funcionabilidad del parser (testParseo)

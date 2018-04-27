@@ -15,13 +15,14 @@ public class Dispositivo {
 		encendido = false;
 	}
 	
-	public Double getConsumoEnHorasAlMes(int mes) {
-		return consumoEnHorasAlMes.get(mes);
+	public Double getConsumoDeKwMensual() {
+		return (double) (kwh * 30 * 24);
 	}
 
-	public void setConsumoEnHorasAlMes(int mes,double d) {
+	//Segun la nueva lógica este método no tiene funcionalidad
+	/*public void setConsumoEnHorasAlMes(int mes,double d) {
 		consumoEnHorasAlMes.put(mes, d);
-	}
+	}*/
 		
 	public String getNombre() {
 		return nombre;

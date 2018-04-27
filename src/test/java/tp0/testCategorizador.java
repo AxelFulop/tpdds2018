@@ -1,6 +1,5 @@
 package tp0;
 
-import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +12,11 @@ public class testCategorizador {
 	
 	
 	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty");
-	Dispositivo televevisor = new Dispositivo("tv", 10);
+	Dispositivo televevisor = new Dispositivo("tv", 1);
+	//Consumo = 1 kwh * 24 hs * 30 dias = 720 (seria categoria 8 que va de 700 a 1400)
 	
 		@Before
 		public void init(){
-			televevisor.setConsumoEnHorasAlMes(LocalDate.now().getMonthValue(), 456.45);
 			clienteHarcodeado.agregarDispositivo(televevisor);
 		}	
 	
@@ -25,7 +24,7 @@ public class testCategorizador {
 		public void categorizaCorrectamente(){
 			Categorizador cat = new Categorizador();
 			cat.recategorizar(clienteHarcodeado);
-			Assert.assertEquals(clienteHarcodeado.getCategoria().getNombre(),"r5");
+			Assert.assertEquals(clienteHarcodeado.getCategoria().getNombre(),"r8");
 		} //HAY ERROR EN ESTE TEST
 		
 }
