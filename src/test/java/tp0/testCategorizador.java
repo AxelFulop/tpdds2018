@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import modelo.CategoriaResidencial;
+import modelo.Categorizador;
 import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.TipoIdentificacion;
@@ -22,11 +22,10 @@ public class testCategorizador {
 		}	
 	
 		@Test
-		public void categorizaCorrectamente(){	
-			CategoriaResidencial r5 = new CategoriaResidencial(450.0, 500.0, 110.38, 0.794);		
-			clienteHarcodeado.reCategorizarme();	
-		
-			Assert.assertTrue(clienteHarcodeado.getCategoria().esIgual(r5));
+		public void categorizaCorrectamente(){
+			Categorizador cat = new Categorizador();
+			cat.recategorizar(clienteHarcodeado);
+			Assert.assertEquals(clienteHarcodeado.getCategoria().getNombre(),"r5");
 		} //HAY ERROR EN ESTE TEST
 		
 }

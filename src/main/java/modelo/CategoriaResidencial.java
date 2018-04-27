@@ -3,18 +3,23 @@ package modelo;
 import java.time.LocalDate;
 
 public class CategoriaResidencial {
+	private String nombre;
 	private Double limiteInferior;
 	private Double limiteSuperior;
 	private Double cargoFijo;
 	private Double cargoVariable;
 	
-	public CategoriaResidencial(Double limInf, Double limSup, Double cFijo, Double cVariable) {
+	public CategoriaResidencial(String nom, Double limInf, Double limSup, Double cFijo, Double cVariable) {
+		nombre = nom;
 		limiteInferior = limInf;
 		limiteSuperior = limSup;
 		cargoFijo = cFijo;
 		cargoVariable = cVariable;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
 	public Double getLimiteSuperior() {
 		return limiteSuperior;
 	}

@@ -20,14 +20,17 @@ public class Cliente {
 	private Double consumoTotal;
 	public Cliente() {
 	}
-	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numeroIdentificacion, Integer telefono, String domicilio,String nombreUsuario,String contrasena) {
+	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numId, Integer tel, String dom,String nombreUsuario,String contrasena) {
 			
 			this.nombre=nombre;
 			this.apellido=apellido;
 			this.tipoIdentificacion=tipoId;
-			this.nombreUsuario=nombreUsuario;
+			this.numeroIdentificacion = numId;
+			this.telefono = tel;
+			this.domicilio = dom;
 			this.fechaAltaServicio = LocalDate.now();
-			this.categoria = new CategoriaResidencial(0.0, 150.0, 18.76, 0.644);
+			this.categoria = new CategoriaResidencial("r1",0.0, 150.0, 18.76, 0.644);
+			this.nombreUsuario=nombreUsuario;
 			this.contrasena=contrasena;
 			
 			}	
@@ -82,14 +85,17 @@ public class Cliente {
 	
 	public Double getConsumoMensual(Integer mes) {	
 		consumoTotal = (double) 0;
-		this.dispositivos.forEach(c->consumoTotal=consumoTotal+c.getConsumoEnHorasAlMes(mes));
+		this.dispositivos.forEach(c -> consumoTotal=consumoTotal + c.getConsumoEnHorasAlMes(mes));
 		return consumoTotal;
 	}
 	
-	public void reCategorizarme()
+	// ¿Un metodo que llama a otro? ¿Por qué es necesario?
+	// Un cliente no necesita 
+	/*public void reCategorizarme()
 	{
-		new Categorizador().reCategorizar(this);
+		new Categorizador().recategorizar(this);
 	}
+	*/
 	
 	public Double getFacturaMensual(Integer mes) {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(mes); 
