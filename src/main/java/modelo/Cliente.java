@@ -3,10 +3,8 @@ package modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-//import modelo.AdaptadorInteligente.Estado;
-//import modelo.AdaptadorInteligente;
-import modelo.Estado;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Cliente {
 	private String nombre;
@@ -19,10 +17,10 @@ public class Cliente {
 	private CategoriaResidencial categoria;
 	private String nombreUsuario;
 	private String contrasena;
-	
+	private int puntos;
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-	private List<Actuador> actuadores = new ArrayList<Actuador>();
 	private Double consumoTotal;
+	
 	public Cliente() {
 	}
 	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numId, Integer tel, String dom,String nombreUsuario,String contrasena) {
@@ -41,33 +39,51 @@ public class Cliente {
 			}	
 	
 		
-	public void agregarDispositivo(Dispositivo disp) {
+	public void agregarDispositivo(Dispositivo disp,int horas) {
 		this.dispositivos.add(disp);
+		if(disp.esInteligente()) {
+			this.sumarPuntos(15);
+		} 
+		disp.setHorasEnUso(horas);
+	}
+	
+	public void adaptarDispositivoEstandar(Dispositivo disp) {
+		if(!disp.esInteligente()) {
+			disp.convertirAInteligente();
+			this.sumarPuntos(10);
+		}
+	}
+	
+	public void sumarPuntos(int puntos) {
+		this.puntos += puntos;
 	}
  	
 	private int cantidadDeDispositivosEnEstado(Estado estado) {
-		return (int) this.dispositivos.stream().filter(d -> d.adaptadorInteligente!=null).filter(di -> di.adaptadorInteligente.estado() == estado.nombre()).count();
+		return (int) this.dispositivos.stream().filter(d-> d.esInteligente()).filter(di-> di.estado()==estado).count();
 	}
 	
 	public int cantidadDeDispositivosEncendidos() {
-		return this.cantidadDeDispositivosEnEstado(new prendido());
+		return this.cantidadDeDispositivosEnEstado(Estado.ENCENDIDO);
 	}
 	
 	public int cantidadDeDispositivosApagados() {
-		return this.cantidadDeDispositivosEnEstado(new apagado());
+		return this.cantidadDeDispositivosEnEstado(Estado.APAGADO);
 	}
 	
-	
+	public int cantidadDeDispositivosEnAhorroDeEnergia() {
+		return this.cantidadDeDispositivosEnEstado(Estado.AHORROENERGIA);
+	}
 
-	public String getNombre() {
-		return nombre;
-	}
 	public int cantidadDeDispositivos() {
 		return this.dispositivos.size();
 	}
 	
 	public List<Dispositivo> getDispositivos() {
 		return dispositivos;
+	}
+	
+	public List<Dispositivo> getDispositivosInteligentes(){
+		return this.dispositivos.stream().filter(d-> d.esInteligente()).collect(Collectors.toList());
 	}
 
 	public void agregarDispositivos(List<Dispositivo> dispositivos) {
@@ -88,26 +104,9 @@ public class Cliente {
 		return consumoTotal;
 	}
 	
-	
-	
 	public Double getFacturaMensual(Integer mes) {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(); 
 	}
-	
-	/*public void ejecutarActuadores() {
-		actuadores.forEach(a -> a.ejecutar());
-	}*/
-	public boolean algunDispostivoEncendido() {
-		// TODO Auto-generated method stub
-		return dispositivos.stream().anyMatch(d -> d.getAdaptadorInteligente().estado() == new prendido().nombre());
-	}
-	public List<Actuador> getActuadores() {
-		return actuadores;
-	}
-	public void setActuadores(List<Actuador> actuadores) {
-		this.actuadores = actuadores;
-	}
-	
 	
 	
 	

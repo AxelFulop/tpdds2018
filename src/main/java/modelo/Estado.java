@@ -1,8 +1,5 @@
 package modelo;
 
-public interface Estado {
-	
-	//public void cambiarEstado();
-	public String nombre();
-
+public enum Estado {
+	ENCENDIDO, APAGADO, AHORROENERGIA
 }

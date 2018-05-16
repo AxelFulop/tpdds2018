@@ -6,20 +6,39 @@ import java.util.Map;
 public class Dispositivo {
 	private String nombre;
 	private int kwh;
+	private int horasEnUso = 0;
+	private Inteligente adaptadorInteligente; //inteligente o null
 	
-	AdaptadorInteligente adaptadorInteligente;
-	
-	public Dispositivo(String nom, int consumo) {
-		nombre = nom;
-		kwh = consumo;
-		this.adaptadorInteligente = null;
-	}
-	
-	public Double getConsumoDeKwMensual() {
-		return (double) (kwh * 30 * 24);
+	public Inteligente getAdaptadorInteligente() {
+		return adaptadorInteligente;
 	}
 
+	public void setAdaptadorInteligente(Inteligente adaptadorInteligente) {
+		this.adaptadorInteligente = adaptadorInteligente;
+	}
+
+	public Dispositivo(String nom, int consumo,Inteligente inteligente) {
+		nombre = nom;
+		kwh = consumo;
+		this.adaptadorInteligente = inteligente;
+	}
 		
+	public Estado estado() {
+		return adaptadorInteligente.getEstado();	
+	}
+	
+	
+	public Double getConsumoDeKwMensual() {
+		return (double) (kwh * horasEnUso * 30);
+	}
+
+	public float getHorasEnUso() {
+		return this.horasEnUso;
+	}
+	public void setHorasEnUso(int horas) {
+		this.horasEnUso = horas;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -35,15 +54,28 @@ public class Dispositivo {
 	public void setKwh(int kwh) {
 		this.kwh = kwh;
 	}
-
+	
+	public boolean esInteligente() {
+		if (adaptadorInteligente != null) {
+			return adaptadorInteligente.esInteligente();
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public float energiaConsumidaEnUltimasHoras(int horas) throws Exception{
+		return adaptadorInteligente.energiaConsumidaEnUltimasHoras(horas,this);
+	} //supongo que el dispositivo no se apaga (MAL)
+	
+	public float consumoTotalEnPeriodo(int horasInicio, int horasFinal) {
+		return adaptadorInteligente.consumoTotalEnPeriodo(horasInicio, horasFinal, this);
+	}
 	
 	public void convertirAInteligente()
 	{
-		this.adaptadorInteligente = new AdaptadorInteligente();
+		this.adaptadorInteligente = new Inteligente();
 	}
-
-	public AdaptadorInteligente getAdaptadorInteligente() {
-		return adaptadorInteligente;
-	}
+	
 	
 }
