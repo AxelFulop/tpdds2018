@@ -2,22 +2,28 @@ package modelo;
 
 public class AdaptadorInteligente {
 
-	public static enum Estado{ENCENDIDO,APAGADO,AHORROENERGIA};
-	
+	//public static enum Estado{ENCENDIDO,APAGADO,AHORROENERGIA};
+	private Estado estado;
 	float horasEnUso;
 	
 	
-	Estado estado;
-	
 	public AdaptadorInteligente ()
 	{
-		this.estado = Estado.APAGADO;
+		apagar();
 	}
-	
+	/*
 	public Estado getEstado() {
 		return estado;
+	}*/
+	public void setEstado(Estado estado){
+		this.estado = estado;
 	}
 	
+	public String estado(){
+		return estado.nombre();
+		
+	};
+		
 	public float energiaConsumidaEnHoras(float horas)
 	{
 		return horas;
@@ -29,14 +35,14 @@ public class AdaptadorInteligente {
 		
 	}
 	public void apagar()
-	{
-		this.estado = Estado.APAGADO;
+	{	
+		this.setEstado(new apagado());
 	}
 	public void encender() {
-		this.estado = Estado.ENCENDIDO;
+		this.setEstado(new prendido());
 	}
-	public void establecerModoAhorro()
+	/*public void establecerModoAhorro()
 	{
 		this.estado = Estado.AHORROENERGIA;
-	}
+	}*/
 }

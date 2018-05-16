@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.AdaptadorInteligente.Estado;
+//import modelo.AdaptadorInteligente.Estado;
+//import modelo.AdaptadorInteligente;
+import modelo.Estado;
 
 public class Cliente {
 	private String nombre;
@@ -44,15 +46,15 @@ public class Cliente {
 	}
  	
 	private int cantidadDeDispositivosEnEstado(Estado estado) {
-		return (int) this.dispositivos.stream().filter(d -> d.adaptadorInteligente!=null).filter(di -> di.adaptadorInteligente.getEstado() == estado).count();
+		return (int) this.dispositivos.stream().filter(d -> d.adaptadorInteligente!=null).filter(di -> di.adaptadorInteligente.estado() == estado.nombre()).count();
 	}
 	
 	public int cantidadDeDispositivosEncendidos() {
-		return this.cantidadDeDispositivosEnEstado(Estado.ENCENDIDO);
+		return this.cantidadDeDispositivosEnEstado(new prendido());
 	}
 	
 	public int cantidadDeDispositivosApagados() {
-		return this.cantidadDeDispositivosEnEstado(Estado.APAGADO);
+		return this.cantidadDeDispositivosEnEstado(new apagado());
 	}
 	
 	
@@ -92,12 +94,12 @@ public class Cliente {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(); 
 	}
 	
-	public void ejecutarActuadores() {
+	/*public void ejecutarActuadores() {
 		actuadores.forEach(a -> a.ejecutar());
-	}
+	}*/
 	public boolean algunDispostivoEncendido() {
 		// TODO Auto-generated method stub
-		return dispositivos.stream().anyMatch(d -> d.getAdaptadorInteligente().estado == Estado.ENCENDIDO);
+		return dispositivos.stream().anyMatch(d -> d.getAdaptadorInteligente().estado() == new prendido().nombre());
 	}
 	public List<Actuador> getActuadores() {
 		return actuadores;
