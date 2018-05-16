@@ -9,18 +9,18 @@ public class Dispositivo {
 	private int horasEnUso = 0;
 	private Inteligente adaptadorInteligente; //inteligente o null
 	
+	public Dispositivo(String nom, int consumo,Inteligente inteligente) {
+		nombre = nom;
+		kwh = consumo;
+		this.adaptadorInteligente = inteligente;
+	}
+	
 	public Inteligente getAdaptadorInteligente() {
 		return adaptadorInteligente;
 	}
 
 	public void setAdaptadorInteligente(Inteligente adaptadorInteligente) {
 		this.adaptadorInteligente = adaptadorInteligente;
-	}
-
-	public Dispositivo(String nom, int consumo,Inteligente inteligente) {
-		nombre = nom;
-		kwh = consumo;
-		this.adaptadorInteligente = inteligente;
 	}
 		
 	public Estado estado() {

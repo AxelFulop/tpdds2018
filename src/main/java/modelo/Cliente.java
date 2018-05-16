@@ -39,12 +39,11 @@ public class Cliente {
 			}	
 	
 		
-	public void agregarDispositivo(Dispositivo disp,int horas) {
+	public void agregarDispositivo(Dispositivo disp) {
 		this.dispositivos.add(disp);
 		if(disp.esInteligente()) {
 			this.sumarPuntos(15);
 		} 
-		disp.setHorasEnUso(horas);
 	}
 	
 	public void adaptarDispositivoEstandar(Dispositivo disp) {
@@ -56,6 +55,14 @@ public class Cliente {
 	
 	public void sumarPuntos(int puntos) {
 		this.puntos += puntos;
+	}
+	
+	public int puntaje() {
+		return puntos;
+	}
+	
+	public void setHoras(Dispositivo dispositivo, int horas) {
+		dispositivo.setHorasEnUso(horas);
 	}
  	
 	private int cantidadDeDispositivosEnEstado(Estado estado) {
