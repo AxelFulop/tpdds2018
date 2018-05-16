@@ -7,7 +7,7 @@ public class Temperatura implements Sensor {
 	int nombreSensor;
 	
 	public float tomarMedicion() {
-		return 0;
+		return (float) 24.5;
 	}
 
 }

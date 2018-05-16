@@ -41,5 +41,9 @@ public class Dispositivo {
 	{
 		this.adaptadorInteligente = new AdaptadorInteligente();
 	}
+
+	public AdaptadorInteligente getAdaptadorInteligente() {
+		return adaptadorInteligente;
+	}
 	
 }

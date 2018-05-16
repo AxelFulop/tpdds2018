@@ -16,7 +16,9 @@ public class testCliente {
 	
 	@Before
 	public void init(){
-		
+		televisor.convertirAInteligente();
+		computadora.convertirAInteligente();
+		heladera.convertirAInteligente();
 		cliente.agregarDispositivo(televisor);
 		cliente.agregarDispositivo(computadora);	
 		cliente.agregarDispositivo(heladera);
@@ -35,13 +37,13 @@ public class testCliente {
 	}
 	@Test
 	 public void cantidadDispositivosEncendidos(){
-		heladera.encender();
+		heladera.getAdaptadorInteligente().encender();
 		int cantidadP = cliente.cantidadDeDispositivosEncendidos();
 		Assert.assertEquals(cantidadP, 1);
 	}
 	@Test
 	 public void algunDispositivoEncendido(){
-		heladera.encender();
+		heladera.getAdaptadorInteligente().encender();
 		boolean estado = cliente.algunDispostivoEncendido();
 		Assert.assertTrue(estado);
 	}

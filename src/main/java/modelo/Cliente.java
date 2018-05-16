@@ -19,6 +19,7 @@ public class Cliente {
 	private String contrasena;
 	
 	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+	private List<Actuador> actuadores = new ArrayList<Actuador>();
 	private Double consumoTotal;
 	public Cliente() {
 	}
@@ -56,6 +57,9 @@ public class Cliente {
 	
 	
 
+	public String getNombre() {
+		return nombre;
+	}
 	public int cantidadDeDispositivos() {
 		return this.dispositivos.size();
 	}
@@ -87,6 +91,21 @@ public class Cliente {
 	public Double getFacturaMensual(Integer mes) {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(); 
 	}
+	
+	public void ejecutarActuadores() {
+		actuadores.forEach(a -> a.ejecutar());
+	}
+	public boolean algunDispostivoEncendido() {
+		// TODO Auto-generated method stub
+		return dispositivos.stream().anyMatch(d -> d.getAdaptadorInteligente().estado == Estado.ENCENDIDO);
+	}
+	public List<Actuador> getActuadores() {
+		return actuadores;
+	}
+	public void setActuadores(List<Actuador> actuadores) {
+		this.actuadores = actuadores;
+	}
+	
 	
 	
 	
