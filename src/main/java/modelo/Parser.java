@@ -17,7 +17,8 @@ public class Parser {
 		try(Reader reader = new FileReader(ruta)) {
 	
 			return gson.fromJson(reader, new TypeToken<List<Cliente>>(){}.getType());
-	
+			
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

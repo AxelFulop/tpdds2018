@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelo.AdaptadorInteligente.Estado;
+
 public class Cliente {
 	private String nombre;
 	private String apellido;
@@ -35,33 +37,24 @@ public class Cliente {
 			
 			}	
 	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}	
 		
 	public void agregarDispositivo(Dispositivo disp) {
 		this.dispositivos.add(disp);
 	}
  	
-	public int cantidadDeDispositivosEnEstado(Boolean estado) {
-		return (int) this.dispositivos.stream().filter(d -> d.estaEncendido() == estado).count();
+	private int cantidadDeDispositivosEnEstado(Estado estado) {
+		return (int) this.dispositivos.stream().filter(d -> d.adaptadorInteligente!=null).filter(di -> di.adaptadorInteligente.getEstado() == estado).count();
 	}
 	
 	public int cantidadDeDispositivosEncendidos() {
-		return this.cantidadDeDispositivosEnEstado(true);
+		return this.cantidadDeDispositivosEnEstado(Estado.ENCENDIDO);
 	}
 	
 	public int cantidadDeDispositivosApagados() {
-		return this.cantidadDeDispositivosEnEstado(false);
+		return this.cantidadDeDispositivosEnEstado(Estado.APAGADO);
 	}
 	
-	public boolean algunDispostivoEncendido() {
-		return this.dispositivos.stream().anyMatch(d -> d.estaEncendido());
-	}
+	
 
 	public int cantidadDeDispositivos() {
 		return this.dispositivos.size();
@@ -89,32 +82,12 @@ public class Cliente {
 		return consumoTotal;
 	}
 	
-	// ¿Un metodo que llama a otro? ¿Por qué es necesario?
-	// Un cliente no necesita saber categorizarse dado que es una funcion del categorizador
-	/*public void reCategorizarme()
-	{
-		new Categorizador().recategorizar(this);
-	}
-	*/
+	
 	
 	public Double getFacturaMensual(Integer mes) {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(); 
 	}
 	
-	//Para testear la funcionabilidad del parser (testParseo)
-	//Al momento no es funcional
-	/*public boolean mismosClientes(Cliente c) {
-		return this.nombre == c.nombre &&
-				this.apellido == c.apellido &&
-				this.tipoIdentificacion == c.tipoIdentificacion &&
-				this.numeroIdentificacion == c.numeroIdentificacion &&
-				this.telefono == c.telefono &&
-				this.domicilio == c.domicilio &&
-				this.fechaAltaServicio == c.fechaAltaServicio &&
-				this.categoria == c.categoria &&
-				this.nombreUsuario == c.nombreUsuario &&
-				this.contrasena == c.contrasena;
-			  
-	}*/
+	
 	
 }
