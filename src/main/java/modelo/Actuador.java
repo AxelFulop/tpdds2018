@@ -9,6 +9,12 @@ public class Actuador {
 	Cliente cliente;
 	Sensor sensorTemperatura;
 	
+	public Actuador (List<Sensor> sensores,Cliente cliente, Sensor sensorTemperatura)
+	{
+		this.sensores = sensores;
+		this.cliente = cliente;
+		this.sensorTemperatura = sensorTemperatura;
+	}
 	//Ejemplo de regla
 public void encenderAireSiTemperaturaMayorA(float temperatura){
 	float tempSensor = sensorTemperatura.tomarMedicion();
