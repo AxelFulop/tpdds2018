@@ -23,7 +23,7 @@ public class Cliente {
 	
 	public Cliente() {
 	}
-	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numId, Integer tel, String dom,String nombreUsuario,String contrasena) {
+	public Cliente(String nombre,String apellido,TipoIdentificacion tipoId, Integer numId, Integer tel, String dom,String nombreUsuario,String contrasena, int puntaje) {
 			
 			this.nombre=nombre;
 			this.apellido=apellido;
@@ -35,7 +35,7 @@ public class Cliente {
 			this.categoria = new CategoriaResidencial("r1",0.0, 150.0, 18.76, 0.644);
 			this.nombreUsuario=nombreUsuario;
 			this.contrasena=contrasena;
-			
+			this.puntos = puntaje;
 			}	
 	
 		
@@ -61,8 +61,8 @@ public class Cliente {
 		return puntos;
 	}
 	
-	public void setHoras(Dispositivo dispositivo, int horas) {
-		dispositivo.setHorasEnUso(horas);
+	public void setHorasDeUsoDelDia(Dispositivo dispositivo, int horas) {
+		dispositivo.setHorasEnUsoDelDia(horas);
 	}
  	
 	private int cantidadDeDispositivosEnEstado(Estado estado) {
@@ -115,6 +115,8 @@ public class Cliente {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual(); 
 	}
 	
-	
+	public String getNombre() {
+		return this.nombre;
+	}
 	
 }

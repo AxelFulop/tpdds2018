@@ -6,7 +6,7 @@ import java.util.Map;
 public class Dispositivo {
 	private String nombre;
 	private int kwh;
-	private int horasEnUso = 0;
+	private int horasEnUsoDelDia = 0;
 	private Inteligente adaptadorInteligente; //inteligente o null
 	
 	public Dispositivo(String nom, int consumo,Inteligente inteligente) {
@@ -29,14 +29,14 @@ public class Dispositivo {
 	
 	
 	public Double getConsumoDeKwMensual() {
-		return (double) (kwh * horasEnUso * 30);
+		return (double) (kwh * horasEnUsoDelDia * 30);
 	}
 
-	public float getHorasEnUso() {
-		return this.horasEnUso;
+	public float getHorasEnUsoDelDia() {
+		return this.horasEnUsoDelDia;
 	}
-	public void setHorasEnUso(int horas) {
-		this.horasEnUso = horas;
+	public void setHorasEnUsoDelDia(int horas) {
+		this.horasEnUsoDelDia = horas;
 	}
 	
 	public String getNombre() {

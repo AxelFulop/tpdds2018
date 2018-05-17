@@ -1,4 +1,3 @@
-
 			  [
 				  {
 				  "nombre":"Juan",
@@ -9,15 +8,25 @@
 				  "domicilio": "Medrano 951",
 				  "nombreUsuario":"juanATR",
 				  "contrasena": "qwerty",
+				  "puntos": 10,
 				  "dispositivos":[
 								  {
 								  "nombre":"tele",
-								  "kwh":2
+								  "kwh":2,
+								  "horasEnUso": 10,
+								  "adaptadorInteligente": {
+								  						   "estado": APAGADO
+								  						   }
 								  },
 								  {"nombre":"ipod",
-								  "kwh":10
+								  "kwh":10,
+								  "horasEnUso": 5,
+								  "adaptadorInteligente": {
+								  					       "estado":ENCENDIDO
+								     					   }
 								  }
-								 ]
+								 ],
+				  "consumoTotal": 200
 					},
 					{
 				  "nombre":"Antonio",
@@ -28,15 +37,25 @@
 				  "domicilio": "calleFalsa 123",
 				  "nombreUsuario":"hoyTeConvertisEnHeroe",
 				  "contrasena": "perro",
+				  "puntos": 30,
 				  "dispositivos":[
 								  {
 								  "nombre":"tele",
-								  "kwh":2
+								  "kwh":2,
+								  "horasEnUso": 3,
+								  "adaptadorInteligente": {
+								  					       "estado":ENCENDIDO
+								     					   }
 								  },
 								  {"nombre":"ipod",
-								  "kwh":10
+								  "kwh":10,
+								  "horasEnUso": 6,
+								  "adaptadorInteligente": {
+								  					       "estado":AHORROENERGIA
+								     					   }
 								  }
-								 ]
+								 ],
+				  "consumoTotal": 100
 					}
 				]
 

@@ -29,11 +29,11 @@ public class Inteligente {
 		}*/
 		
 		public float energiaConsumidaEnUltimasHoras(int horas, Dispositivo disp) {
-			if(disp.getHorasEnUso() > horas) {
+			if(disp.getHorasEnUsoDelDia() > horas) {
 				return horas*disp.getKwh();
 			}
 			else {
-				return disp.getHorasEnUso()*disp.getKwh();
+				return disp.getHorasEnUsoDelDia()*disp.getKwh();
 			}
 		}
 		
