@@ -5,13 +5,11 @@ import java.util.List;
 
 
 public class Actuador {
-	List<Sensor> sensores = new ArrayList<Sensor>();
 	Cliente cliente;
 	Sensor sensorTemperatura;
 	
-	public Actuador (List<Sensor> sensores,Cliente cliente, Sensor sensorTemperatura)
+	public Actuador (Cliente cliente, Sensor sensorTemperatura)
 	{
-		this.sensores = sensores;
 		this.cliente = cliente;
 		this.sensorTemperatura = sensorTemperatura;
 	}
