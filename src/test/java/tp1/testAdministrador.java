@@ -13,17 +13,17 @@ public class testAdministrador {
 	
 	@Test
 	public void siendoAdminDurante3meses()  {
-		int	meses =administrador.cantMesesComoAdmin();
+		int	meses =administrador.cantidadDeMesesComoAdministrador();
 		Assert.assertEquals(meses, 3);
 	}
 	@Test
 	public void siendoAdminDuranteElMismoMes()  {
-		int meses =administrador2.cantMesesComoAdmin();
+		int meses =administrador2.cantidadDeMesesComoAdministrador();
 		Assert.assertEquals(meses, 0);
 	}
 	@Test
 	public void siendoAdminDuranteDosAños() {
-	int meses =administrador3.cantMesesComoAdmin();
+	int meses =administrador3.cantidadDeMesesComoAdministrador();
 	Assert.assertEquals(meses, 24);
 	}
 	

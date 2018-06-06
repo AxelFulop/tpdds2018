@@ -7,15 +7,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import modelo.Cliente;
-import modelo.Dispositivo;
+import modelo.DispositivoEstandar;
 import modelo.Inteligente;
 import modelo.TipoIdentificacion;
 
 public class testCliente {
 	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
-	Dispositivo televisor = new Dispositivo("tv", 10, null); //dispositivo estandar
-	Dispositivo computadora = new Dispositivo("compu", 15, new Inteligente()); //dispositivo inteligente
-	Dispositivo heladera = new Dispositivo("heladera", 20, new Inteligente()); //dispositivo inteligente
+	DispositivoEstandar televisor = new DispositivoEstandar("tv", 10, null); //dispositivo estandar
+	DispositivoEstandar computadora = new DispositivoEstandar("compu", 15, new Inteligente()); //dispositivo inteligente
+	DispositivoEstandar heladera = new DispositivoEstandar("heladera", 20, new Inteligente()); //dispositivo inteligente
 	
 	@Before
 	public void init(){

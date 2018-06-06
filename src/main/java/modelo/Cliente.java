@@ -18,7 +18,8 @@ public class Cliente {
 	private String nombreUsuario;
 	private String contrasena;
 	private int puntos;
-	private List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+	private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
+	private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
 	private Double consumoTotal;
 
 	public Cliente() {
@@ -40,35 +41,17 @@ public class Cliente {
 		this.puntos = puntaje;
 	}
 
-	public void agregarDispositivo(Dispositivo disp) {
-		this.dispositivos.add(disp);
-		if (disp.esInteligente()) {
-			this.sumarPuntos(15);
-		}
+	public void agregarDispositivoInteligente(DispositivoInteligente d) {
+		this.dispositivosInteligentes.add(d);
+		puntos += 15;
 	}
-
-	public void adaptarDispositivoEstandar(Dispositivo disp) {
-		if (!disp.esInteligente()) {
-			disp.convertirAInteligente();
-			this.sumarPuntos(10);
-		}
+	
+	public void agregarDispositivoEstandar(DispositivoEstandar d) {
+		this.dispositivosEstandares.add(d);
 	}
-
-	public void sumarPuntos(int puntos) {
-		this.puntos += puntos;
-	}
-
-	public int puntaje() {
-		return puntos;
-	}
-
-	public void setHorasDeUsoDelDia(Dispositivo dispositivo, int horas) {
-		dispositivo.setHorasEnUsoDelDia(horas);
-	}
-
+	
 	private int cantidadDeDispositivosEnEstado(Estado estado) {
-		return (int) this.dispositivos.stream().filter(d -> d.esInteligente()).filter(di -> di.estado() == estado)
-				.count();
+		return (int) this.dispositivosInteligentes.stream().filter(d -> d.getEstado() == estado).count();
 	}
 
 	public int cantidadDeDispositivosEncendidos() {
@@ -82,21 +65,83 @@ public class Cliente {
 	public int cantidadDeDispositivosEnAhorroDeEnergia() {
 		return this.cantidadDeDispositivosEnEstado(Estado.AHORROENERGIA);
 	}
+	
+	public boolean algunDispositivoEncendido() {
+		return this.cantidadDeDispositivosEncendidos() > 0;
+	}
 
 	public int cantidadDeDispositivos() {
-		return this.dispositivos.size();
+		return this.dispositivosEstandares.size() + this.dispositivosInteligentes.size();
 	}
 
-	public List<Dispositivo> getDispositivos() {
-		return dispositivos;
+	public Double getConsumoMensual() {
+		consumoTotal = (double) 0;
+		this.dispositivosEstandares.forEach(d -> consumoTotal += d.getConsumoMensual());
+		//this.dispositivosInteligentes.forEach(d -> consumoTotal += d.get);
+		return consumoTotal;
 	}
 
-	public List<Dispositivo> getDispositivosInteligentes() {
-		return this.dispositivos.stream().filter(d -> d.esInteligente()).collect(Collectors.toList());
+	public Double getFacturaMensual(Integer mes) {
+		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual();
 	}
 
-	public void agregarDispositivos(List<Dispositivo> dispositivos) {
-		dispositivos.forEach(d -> this.agregarDispositivo(d));
+	
+	//GETTERS AND SETTERS
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public TipoIdentificacion getTipoIdentificacion() {
+		return tipoIdentificacion;
+	}
+
+	public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
+		this.tipoIdentificacion = tipoIdentificacion;
+	}
+
+	public int getNumeroIdentificacion() {
+		return numeroIdentificacion;
+	}
+
+	public void setNumeroIdentificacion(int numeroIdentificacion) {
+		this.numeroIdentificacion = numeroIdentificacion;
+	}
+
+	public int getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public LocalDate getFechaAltaServicio() {
+		return fechaAltaServicio;
+	}
+
+	public void setFechaAltaServicio(LocalDate fechaAltaServicio) {
+		this.fechaAltaServicio = fechaAltaServicio;
 	}
 
 	public CategoriaResidencial getCategoria() {
@@ -107,61 +152,52 @@ public class Cliente {
 		this.categoria = categoria;
 	}
 
-	public Double getConsumoMensual() {
-		consumoTotal = (double) 0;
-		this.dispositivos.forEach(c -> consumoTotal = consumoTotal + c.getConsumoDeKwMensual());
-		return consumoTotal;
-	}
-
-	public Double getFacturaMensual(Integer mes) {
-		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual();
-	}
-
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public String getApellido() {
-		return this.apellido;
-	}
-
-	public TipoIdentificacion getTipoIdentificacion() {
-		return tipoIdentificacion;
-	}
-
-
-	public int getNumeroIdentificacion() {
-		return numeroIdentificacion;
-	}
-
-
-	public int getTelefono() {
-		return telefono;
-	}
-
-
-	public String getDomicilio() {
-		return domicilio;
-	}
-
-	public LocalDate getFechaAltaServicio() {
-		return fechaAltaServicio;
-	}
-
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
 
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
 
 	public String getContrasena() {
 		return contrasena;
 	}
 
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
 
 	public int getPuntos() {
 		return puntos;
 	}
 
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
+
+	public List<DispositivoEstandar> getDispositivosEstandares() {
+		return dispositivosEstandares;
+	}
+
+	public void setDispositivosEstandares(List<DispositivoEstandar> dispositivosEstandares) {
+		this.dispositivosEstandares = dispositivosEstandares;
+	}
+
+	public List<DispositivoInteligente> getDispositivosInteligentes() {
+		return dispositivosInteligentes;
+	}
+
+	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivosInteligentes) {
+		this.dispositivosInteligentes = dispositivosInteligentes;
+	}
+
+	public Double getConsumoTotal() {
+		return consumoTotal;
+	}
+
+	public void setConsumoTotal(Double consumoTotal) {
+		this.consumoTotal = consumoTotal;
+	}
 
 }

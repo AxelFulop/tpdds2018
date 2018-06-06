@@ -23,7 +23,7 @@ public class Administrador {
 		this.contraseña=contraseña;
 	}
 	
-	public int cantMesesComoAdmin() {
+	public int cantidadDeMesesComoAdministrador() {
 		Period p = Period.between(fechaDeAlta,LocalDate.now());
 		return p.getYears() * 12 + p.getMonths();
 	}
