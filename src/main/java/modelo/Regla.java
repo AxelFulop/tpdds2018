@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.List;
-
 public abstract class Regla {
 public DispositivoInteligente dispositivo;
 	

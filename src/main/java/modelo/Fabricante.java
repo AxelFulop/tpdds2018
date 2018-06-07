@@ -2,7 +2,7 @@ package modelo;
 
 public interface Fabricante {
 
-	public float obtenerConsumoUltimasHoras(Integer horas);
+	public float obtenerConsumoUltimasHoras(Integer h);
 	
 }
 
