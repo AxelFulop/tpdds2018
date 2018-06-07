@@ -1,5 +1,10 @@
 package modelo.sensores;
 
-public class AdapterFabricante1 {
-//Es 
+import modelo.Fabricante;
+
+public class AdapterFabricante1 implements Fabricante {
+
+	public float obtenerConsumoUltimasHoras(Integer horas) {
+		return (float) 15.5;
+	}
 }

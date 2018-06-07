@@ -7,20 +7,20 @@ import modelo.Categorizador;
 import modelo.Cliente;
 import modelo.DispositivoEstandar;
 import modelo.TipoIdentificacion;
-import modelo.Inteligente;
+
 
 public class testCategorizador {
 	
 	
 	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
-	DispositivoEstandar televisor = new DispositivoEstandar("tv", 1, new Inteligente());
+	DispositivoEstandar televisor = new DispositivoEstandar("tv", 1);
 	//Consumo = 1 kwh * 1 hsDeUsoPorDia * 30 dias = 30 (seria categoria 1 que va de 0 a 150)
 	
 		@Before
 		public void init(){
-			clienteHarcodeado.agregarDispositivo(televisor);
-			clienteHarcodeado.setHorasDeUsoDelDia(televisor, 1);
-		}	
+			televisor.setHorasDeUsoDiarias(1);
+			clienteHarcodeado.agregarDispositivoEstandar(televisor);
+		}
 	
 		@Test
 		public void categorizaCorrectamente(){

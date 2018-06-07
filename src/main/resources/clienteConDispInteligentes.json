@@ -9,15 +9,13 @@
 				  "nombreUsuario":"juanATR",
 				  "contrasena": "qwerty",
 				  "puntos": 10,
-				  "dispositivosEstandares":[
+				  "dispositivosInteligentes":[
 								  {
-								  "nombre":"tele",
-								  "kwh":2,
-								  "horasDeUsoDiarias": 10
+								  "nombre":"aire",
+								  "estado":ENCENDIDO								  
 								  },
-								  {"nombre":"ipod",
-								  "kwh":10,
-								  "horasDeUsoDiarias": 5								  
+								  {"nombre":"heladera",
+								  "estado":ENCENDIDO								  
 								  }
 								 ],
 				  "consumoTotal": 200
@@ -32,15 +30,13 @@
 				  "nombreUsuario":"hoyTeConvertisEnHeroe",
 				  "contrasena": "perro",
 				  "puntos": 30,
-				  "dispositivosEstandares":[
+				  "dispositivosInteligentes":[
 								  {
-								  "nombre":"tele",
-								  "kwh":2,
-								  "horasDeUsoDiarias": 3								
+								  "nombre":"aire",
+								  "estado":ENCENDIDO								  
 								  },
-								  {"nombre":"ipod",
-								  "kwh":10,
-								  "horasDeUsoDiarias": 6								  
+								  {"nombre":"heladera",
+								  "estado":ENCENDIDO								  
 								  }
 								 ],
 				  "consumoTotal": 100

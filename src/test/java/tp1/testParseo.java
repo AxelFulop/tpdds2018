@@ -8,9 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import modelo.Cliente;
 import modelo.DispositivoEstandar;
+import modelo.DispositivoInteligente;
 import modelo.Parser;
 import modelo.TipoIdentificacion;
-import modelo.Inteligente;
+
 
 public class testParseo {
 	
@@ -19,21 +20,25 @@ public class testParseo {
 	List<DispositivoEstandar> dispositivos = new ArrayList<DispositivoEstandar>();
 	Cliente cliente1JSON = new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","juanATR","qwerty",0);
 	Cliente cliente2JSON = new Cliente("Antonio", "Mascherano", TipoIdentificacion.DNI, 40433999, 45673908, "calleFalsa 123", "hoyTeConvertisEnHeroe", "perro",0);
-	DispositivoEstandar tele = new DispositivoEstandar("tele",2,new Inteligente());
- 	DispositivoEstandar ipod = new DispositivoEstandar("ipod",10,new Inteligente());
+	DispositivoEstandar tele = new DispositivoEstandar("tele",2);
+ 	DispositivoEstandar ipod = new DispositivoEstandar("ipod",10);
+ 	DispositivoInteligente aire = new DispositivoInteligente("aire");
+ 	DispositivoInteligente heladera = new DispositivoInteligente("heladera");
  	
 	@Before
 	public void init(){
 		
-		cliente1JSON.agregarDispositivo(tele);
-		cliente1JSON.agregarDispositivo(ipod);	
-		cliente2JSON.agregarDispositivo(tele);
-		cliente2JSON.agregarDispositivo(ipod);	
-
+		cliente1JSON.agregarDispositivoEstandar(tele);
+		cliente1JSON.agregarDispositivoEstandar(ipod);	
+		cliente2JSON.agregarDispositivoEstandar(tele);
+		cliente2JSON.agregarDispositivoEstandar(ipod);
+		cliente1JSON.agregarDispositivoInteligente(aire);
+		cliente1JSON.agregarDispositivoInteligente(heladera);
+		cliente2JSON.agregarDispositivoInteligente(aire);
+		cliente2JSON.agregarDispositivoInteligente(heladera);
 	}
  	
-
-	/*
+	
 	@Test
 	public void parseoCorrectoVariosClientes() throws IOException{
 		List<Cliente> clientes = parser.parsearClientes("src/main/resources/clientes.json");
@@ -53,14 +58,26 @@ public class testParseo {
 		Assert.assertEquals(cliente1JSON.getTelefono(),clientes.get(0).getTelefono());	
 		Assert.assertEquals(cliente2JSON.getTelefono(),clientes.get(1).getTelefono());
 		//comparo Direccion
-                Assert.assertEquals(cliente1JSON.getDomicilio(),clientes.get(0).getDomicilio());	
+        Assert.assertEquals(cliente1JSON.getDomicilio(),clientes.get(0).getDomicilio());	
 		Assert.assertEquals(cliente2JSON.getDomicilio(),clientes.get(1).getDomicilio());
 		//comparo User
-		 Assert.assertEquals(cliente1JSON.getNombreUsuario(),clientes.get(0).getNombreUsuario());	
+		Assert.assertEquals(cliente1JSON.getNombreUsuario(),clientes.get(0).getNombreUsuario());	
 		Assert.assertEquals(cliente2JSON.getNombreUsuario(),clientes.get(1).getNombreUsuario());
 		//comparo Contrasenia
-		 Assert.assertEquals(cliente1JSON.getContrasena(),clientes.get(0).getContrasena());	
+		Assert.assertEquals(cliente1JSON.getContrasena(),clientes.get(0).getContrasena());	
 		Assert.assertEquals(cliente2JSON.getContrasena(),clientes.get(1).getContrasena());
 	}
-	*/
+	
+	@Test
+	public void parseoCorrectoDeDispositivo() throws IOException {
+		List<Cliente> clientes = parser.parsearClientes("src/main/resources/clientes.json");
+		Assert.assertEquals(cliente1JSON.getDispositivosEstandares().get(0).getNombre(), clientes.get(0).getDispositivosEstandares().get(0).getNombre());
+	}
+	
+	
+	@Test
+	public void parseoCorrectoConDispositivosInteligentes() throws IOException {
+		List<Cliente> clientes = parser.parsearClientes("src/main/resources/clienteConDispInteligentes.json");
+		Assert.assertEquals(cliente1JSON.getDispositivosInteligentes().get(0).getNombre(), clientes.get(0).getDispositivosInteligentes().get(0).getNombre());
+	}
 }

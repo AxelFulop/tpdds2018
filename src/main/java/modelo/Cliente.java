@@ -3,14 +3,13 @@ package modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+
 
 public class Cliente {
+	private int numeroIdentificacion;
 	private String nombre;
 	private String apellido;
 	private TipoIdentificacion tipoIdentificacion;
-	private int numeroIdentificacion;
 	private int telefono;
 	private String domicilio;
 	private LocalDate fechaAltaServicio;
@@ -74,17 +73,26 @@ public class Cliente {
 		return this.dispositivosEstandares.size() + this.dispositivosInteligentes.size();
 	}
 
-	public Double getConsumoMensual() {
+	public double getConsumoMensual() {
+		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+		dispositivos.addAll(dispositivosEstandares);
+		dispositivos.addAll(dispositivosInteligentes);
 		consumoTotal = (double) 0;
-		this.dispositivosEstandares.forEach(d -> consumoTotal += d.getConsumoMensual());
-		//this.dispositivosInteligentes.forEach(d -> consumoTotal += d.get);
+		dispositivos.forEach(d -> consumoTotal += d.getConsumoMensual());
 		return consumoTotal;
 	}
 
-	public Double getFacturaMensual(Integer mes) {
+	public double getFacturaMensual(Integer mes) {
 		return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual();
 	}
 
+	public void ligarModuloAdaptador(DispositivoEstandar d) {
+		nombre = d.getNombre();
+		dispositivosEstandares.remove(d);
+		DispositivoInteligente d2 = new DispositivoInteligente(nombre);
+		dispositivosInteligentes.add(d2);
+		puntos += 10;
+	}
 	
 	//GETTERS AND SETTERS
 	

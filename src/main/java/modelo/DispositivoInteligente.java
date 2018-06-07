@@ -1,10 +1,9 @@
 package modelo;
 
-public class DispositivoInteligente implements Dispositivo{
+public class DispositivoInteligente implements Dispositivo {
 private String nombre;
 private Estado estado;
 private Fabricante fabricante;
-private Integer identificadorDeFabrica;
 
 	public DispositivoInteligente(String nom) {
 		setNombre(nom);
@@ -21,7 +20,7 @@ private Integer identificadorDeFabrica;
 	
 
 	public float energiaEnLasUltimasHoras(Integer horas) {
-		return fabricante.consultimoUltimasHoras(horas);
+		return fabricante.obtenerConsumoUltimasHoras(horas);
 	}
 
 	public void ponerseEnEstado(Estado e) {

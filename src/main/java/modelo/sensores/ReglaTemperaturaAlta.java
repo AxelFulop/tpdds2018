@@ -5,16 +5,19 @@ import modelo.DispositivoInteligente;
 import modelo.Regla;
 import modelo.Sensor;
 
-public class ReglaTemperaturaAlta implements Regla {
-private DispositivoInteligente d;
+public class ReglaTemperaturaAlta extends Regla {
+
+	public ReglaTemperaturaAlta(DispositivoInteligente d) {
+		super(d);
+	}
 
 	public void ejecutar() {
-		Sensor medidorTemperatura = new Temperatura();
+		Sensor medidorTemperatura = new SensorTemperatura();
 		Actuador prenderAire = new ActuadorEncenderAire();
 		
 		float temperaturaActual = medidorTemperatura.tomarMedicion();
 		if(temperaturaActual > 24.0) {
-			prenderAire.ejecutarAccion(d);
+			prenderAire.ejecutarAccion(dispositivo);
 		}
 		
 	}

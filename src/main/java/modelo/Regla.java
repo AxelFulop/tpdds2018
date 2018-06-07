@@ -1,9 +1,16 @@
 package modelo;
 
+import java.util.List;
 
-public interface Regla {
+public abstract class Regla {
+public DispositivoInteligente dispositivo;
 	
-public default void ejecutar() {
+	public Regla (DispositivoInteligente d) {
+		this.dispositivo = d;
+	}
+
+public void ejecutar() {
+	
 }
 	
 }
