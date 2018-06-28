@@ -1,8 +1,7 @@
 package modelo;
 
-public class DispositivoEstandar implements Dispositivo {
+public class DispositivoEstandar extends Dispositivo {
 	private String nombre;
-	private int kwh;
 	private int horasDeUsoDiarias; //Estimativo brindado por el usuario
 	
 	public DispositivoEstandar(String nom, int consumo) {
@@ -22,14 +21,6 @@ public class DispositivoEstandar implements Dispositivo {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public int getKwh() {
-		return kwh;
-	}
-
-	public void setKwh(int kwh) {
-		this.kwh = kwh;
 	}
 
 	public int getHorasDeUsoDiarias() {

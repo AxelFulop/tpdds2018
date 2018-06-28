@@ -1,6 +1,6 @@
 package modelo;
 
-public class DispositivoInteligente implements Dispositivo {
+public class DispositivoInteligente extends Dispositivo {
 private String nombre;
 private Estado estado;
 private Fabricante fabricante;
