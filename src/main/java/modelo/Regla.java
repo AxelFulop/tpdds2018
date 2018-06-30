@@ -7,8 +7,9 @@ public DispositivoInteligente dispositivo;
 		this.dispositivo = d;
 	}
 
-public void ejecutar() {
-	
+public void ejecutar(double medicion) {
+
 }
+
 	
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.math3.optim.linear.*;
 
-public class calculoOptimizacion {
+public class Optimizador {
 
 public void obtenerMaximizacion(int maximo) {
 	SimplexSolver solver = new SimplexSolver();

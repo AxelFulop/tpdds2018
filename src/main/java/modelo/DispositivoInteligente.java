@@ -5,8 +5,10 @@ private String nombre;
 private Estado estado;
 private Fabricante fabricante;
 
-	public DispositivoInteligente(String nom) {
+	public DispositivoInteligente(String nom, boolean bajoConsumo, double kwh) {
 		setNombre(nom);
+		setBajoConsumo(bajoConsumo);
+		setKwh(kwh);		
 		estado = Estado.ENCENDIDO;
 	}
 	

@@ -18,22 +18,23 @@ import modelo.sensores.SensorTemperatura;
 public class testRegla {
 
 	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","juanATR","qwerty",0);
-	DispositivoInteligente aire = new DispositivoInteligente ("aireAcondicionado");
-	Sensor temp = new SensorTemperatura();
+	DispositivoInteligente aire = new DispositivoInteligente ("aireAcondicionado",true,1);
+	Sensor sensorTemp = new SensorTemperatura();
 	Actuador prenderAire = new ActuadorEncenderAire();
+	Regla reglaTemperaturaAlta = new ReglaTemperaturaAlta(aire);
 	
 	@Before
 	public void init(){
 		cliente.agregarDispositivoInteligente(aire);
 		aire.apagar();
+		sensorTemp.addRegla(reglaTemperaturaAlta);
 	}
 	
 	
 	@Test
 	public void encendidoDeAireSiTemperaturaMayorA24 ()
 	{	
-		Regla regla = new ReglaTemperaturaAlta(aire);
-		regla.ejecutar();
+		sensorTemp.tomarMedicion();
 		Assert.assertTrue(aire.estaEncendido());
 		
 		

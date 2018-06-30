@@ -77,9 +77,7 @@ public class Cliente {
 		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 		dispositivos.addAll(dispositivosEstandares);
 		dispositivos.addAll(dispositivosInteligentes);
-		consumoTotal = (double) 0;
-		dispositivos.forEach(d -> consumoTotal += d.getConsumoMensual());
-		return consumoTotal;
+		return dispositivos.stream().mapToDouble(d->d.getConsumoMensual()).sum();
 	}
 
 	public double getFacturaMensual(Integer mes) {
@@ -87,10 +85,9 @@ public class Cliente {
 	}
 
 	public void ligarModuloAdaptador(DispositivoEstandar d) {
-		nombre = d.getNombre();
-		dispositivosEstandares.remove(d);
-		DispositivoInteligente d2 = new DispositivoInteligente(nombre);
+		DispositivoInteligente d2 = new DispositivoInteligente(d.getNombre(),d.getBajoConsumo(),d.getKwh());
 		dispositivosInteligentes.add(d2);
+		dispositivosEstandares.remove(d);
 		puntos += 10;
 	}
 	

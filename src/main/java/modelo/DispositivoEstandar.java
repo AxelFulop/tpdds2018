@@ -4,9 +4,10 @@ public class DispositivoEstandar extends Dispositivo {
 	private String nombre;
 	private int horasDeUsoDiarias; //Estimativo brindado por el usuario
 	
-	public DispositivoEstandar(String nom, int consumo) {
-		nombre = nom;
-		kwh = consumo;
+	public DispositivoEstandar(String nom, boolean bajoConsumo, double kwh) {
+		setNombre(nom);
+		setBajoConsumo(bajoConsumo);
+		setKwh(kwh);
 	}
 	
 	public double getConsumoMensual() {

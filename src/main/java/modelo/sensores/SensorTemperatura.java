@@ -2,11 +2,11 @@ package modelo.sensores;
 
 import modelo.Sensor;
 
-public class SensorTemperatura implements Sensor {
+public class SensorTemperatura extends Sensor {
 
-
-	public float tomarMedicion() {
-		return (float) 24.5;
+	@Override
+	public void tomarMedicion() {
+		reglas.stream().forEach(r->r.ejecutar(24.5));
 	}
 
 }
