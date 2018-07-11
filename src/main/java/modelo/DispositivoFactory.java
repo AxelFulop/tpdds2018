@@ -4,35 +4,51 @@ package modelo;
 public class DispositivoFactory {
 
 public static DispositivoInteligente getAireAcondicionadoDe3500Frigroias() {
-	return new DispositivoInteligente("Aire3500",false,1.613);
+	DispositivoInteligente d = new DispositivoInteligente("Aire3500",false,1.613);
+	d.restriccion.setCotasAireAcondicionado();
+	return d;
 }
 
 public static DispositivoInteligente getAireAcondicionadoDe2200Frigroias() {
-	return new DispositivoInteligente("Aire2200",true,1.013);
+	DispositivoInteligente d = new DispositivoInteligente("Aire2200",true,1.013);
+	d.restriccion.setCotasAireAcondicionado();
+	return d;
 }
 
 public static DispositivoEstandar getTelevisorTuboFluor21() {
-	return new DispositivoEstandar("TeveFluor21",false,0.075);
+	DispositivoEstandar d = new DispositivoEstandar("TeveFluor21",false,0.075);
+	d.restriccion.setCotasTelevisor();
+	return d;
 }
 
 public static DispositivoEstandar getTelevisorTuboFluor29a34() {
-	return new DispositivoEstandar("TeveFluor29a34",false,0.175);
+	DispositivoEstandar d = new DispositivoEstandar("TeveFluor29a34",false,0.175);
+	d.restriccion.setCotasTelevisor();
+	return d;
 }
 
 public static DispositivoEstandar getLCD40() {
-	return new DispositivoEstandar("LCD40",false,0.18);
+	DispositivoEstandar d = new DispositivoEstandar("LCD40",false,0.18);
+	d.restriccion.setCotasTelevisor();
+	return d;
 }
 
 public static DispositivoInteligente getLED24() {
-	return new DispositivoInteligente("LED24",true,0.04);
+	DispositivoInteligente d = new DispositivoInteligente("LED24",true,0.04);
+	d.restriccion.setCotasTelevisor();
+	return d;
 }
 
 public static DispositivoInteligente getLED32() {
-	return new DispositivoInteligente("LED32",true,0.055);
+	DispositivoInteligente d = new DispositivoInteligente("LED32",true,0.055);
+	d.restriccion.setCotasTelevisor();
+	return d;
 }
 
 public static DispositivoInteligente getLED40() {
-	return new DispositivoInteligente("LED40",true,0.08);
+	DispositivoInteligente d = new DispositivoInteligente("LED40",true,0.08);
+	d.restriccion.setCotasTelevisor();
+	return d;
 }
 
 public static DispositivoInteligente getHeladeraConFreezer() {
@@ -44,59 +60,87 @@ public static DispositivoInteligente getHeladeraSinFreezer() {
 }
 
 public static DispositivoEstandar getLavarropaAuto5KConCalentamiento() {
-	return new DispositivoEstandar("LavarropaAuto5KConCalentamiento",false,0.875);
+	DispositivoEstandar d = new DispositivoEstandar("LavarropaAuto5KConCalentamiento",false,0.875);
+	d.restriccion.setCotasLavarropa();
+	return d;
 }
 
 public static DispositivoInteligente getLavarropaAuto5K() {
-	return new DispositivoInteligente("LavarropaAuto5K",true,0.175);
+	DispositivoInteligente d = new DispositivoInteligente("LavarropaAuto5K",true,0.175);
+	d.restriccion.setCotasLavarropa();
+	return d;
 }
 
 public static DispositivoEstandar getLavarropaSemiAuto5K() {
-	return new DispositivoEstandar("LavarropaSemiAuto5K",true,0.1275);
+	DispositivoEstandar d = new DispositivoEstandar("LavarropaSemiAuto5K",true,0.1275);
+	d.restriccion.setCotasLavarropa();
+	return d;
 }
 
 public static DispositivoEstandar getVentiladorDePie() {
-	return new DispositivoEstandar("VentiladorDePie",true,0.09);
+	DispositivoEstandar d = new DispositivoEstandar("VentiladorDePie",true,0.09);
+	d.restriccion.setCotasVentilador();
+	return d;
 }
 
 public static DispositivoInteligente getVentiladorDeTecho() {
-	return new DispositivoInteligente("VentiladorDeTecho",true,0.06);
+	DispositivoInteligente d = new DispositivoInteligente("VentiladorDeTecho",true,0.06);
+	d.restriccion.setCotasVentilador();
+	return d;
 }
 
 public static DispositivoInteligente getLamparaHalogena40W() {
-	return new DispositivoInteligente("LamparaHalogena40W",false,0.04);
+	DispositivoInteligente d = new DispositivoInteligente("LamparaHalogena40W",false,0.04);
+	d.restriccion.setCotasLampara();
+	return d;
 }
 
 public static DispositivoInteligente getLamparaHalogena60W() {
-	return new DispositivoInteligente("LamparaHalogena60W",false,0.06);
+	DispositivoInteligente d = new DispositivoInteligente("LamparaHalogena60W",false,0.06);
+	d.restriccion.setCotasLampara();
+	return d;
 }
 
 public static DispositivoInteligente getLamparaHalogena100W() {
-	return new DispositivoInteligente("LamparaHalogena100W",false,0.015);
+	DispositivoInteligente d = new DispositivoInteligente("LamparaHalogena100W",false,0.015);
+	d.restriccion.setCotasLampara();
+	return d;
 }
 
 public static DispositivoInteligente getLampara11W() {
-	return new DispositivoInteligente("Lampara11W",true,0.011);
+	DispositivoInteligente d = new DispositivoInteligente("Lampara11W",true,0.011);
+	d.restriccion.setCotasLampara();
+	return d;
 }
 
 public static DispositivoInteligente getLampara15W() {
-	return new DispositivoInteligente("Lampara15W",true,0.015);
+	DispositivoInteligente d = new DispositivoInteligente("Lampara15W",true,0.015);
+	d.restriccion.setCotasLampara();
+	return d;
 }
 
 public static DispositivoInteligente getLampara20W() {
-	return new DispositivoInteligente("Lampara20W",true,0.02);
+	DispositivoInteligente d = new DispositivoInteligente("Lampara20W",true,0.02);
+	d.restriccion.setCotasLampara();
+	return d;
 }
 
 public static DispositivoInteligente getPCEscritorio() {
-	return new DispositivoInteligente("PCEscritorio",true,0.4);
+	DispositivoInteligente d = new DispositivoInteligente("PCEscritorio",true,0.4);
+	d.restriccion.setCotasComputadora();
+	return d;
 }
 
 public static DispositivoEstandar getMicroondasConvencional() {
-	return new DispositivoEstandar("MicroondasConvencional",true,0.64);
+	DispositivoEstandar d = new DispositivoEstandar("MicroondasConvencional",true,0.64);
+	d.restriccion.setCotasMicroondas();
+	return d;
 }
 
 public static DispositivoEstandar getPlanchaAVapor() {
-	return new DispositivoEstandar("PlanchaAVapor",true,0.75);
+	DispositivoEstandar d = new DispositivoEstandar("PlanchaAVapor",true,0.75);
+	d.restriccion.setCotasPlancha();
+	return d;
 }
 
 }

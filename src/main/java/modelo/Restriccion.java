@@ -4,11 +4,6 @@ public class Restriccion {
 public double cotaSuperior;
 public double cotaInferior;
 
-public Restriccion(double cotaSuperior, double cotaInferior) {
-	this.cotaInferior = cotaInferior;
-	this.cotaSuperior = cotaSuperior;
-}
-
 public double getCotaSuperior() {
 	return cotaSuperior;
 }
@@ -24,5 +19,45 @@ public double getCotaInferior() {
 public void setCotaInferior(double cotaInferior) {
 	this.cotaInferior = cotaInferior;
 }
+
+public void setCotasAireAcondicionado() {
+	cotaSuperior = 360;
+	cotaInferior = 90;
+}
 	
+public void setCotasLampara() {
+	cotaSuperior = 360;
+	cotaInferior = 90;
+}
+
+public void setCotasTelevisor() {
+	cotaSuperior = 360;
+	cotaInferior = 90;
+}
+
+public void setCotasLavarropa() {
+	cotaSuperior = 6;
+	cotaInferior = 30;
+}
+
+public void setCotasComputadora() {
+	cotaSuperior = 360;
+	cotaInferior = 60;
+}
+
+public void setCotasMicroondas() {
+	cotaSuperior = 15;
+	cotaInferior = 3;
+}
+
+public void setCotasPlancha() {
+	cotaSuperior = 30;
+	cotaInferior = 3;
+}
+
+public void setCotasVentilador() {
+	cotaSuperior = 360;
+	cotaInferior = 120;
+}
+
 }

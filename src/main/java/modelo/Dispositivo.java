@@ -6,6 +6,7 @@ public double kwh;
 public Restriccion restriccion;
 
 
+
 	public Restriccion getRestriccion() {
 		return restriccion;
 	}
