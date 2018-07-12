@@ -46,12 +46,13 @@ public class testOptimizador {
 
 	@Test
 	public void seteaDispositivosEnAhorroDeEnergiaSiEsQueSuperaLimiteDeConsumo() {
+		Assert.assertEquals(aa1.getEstado(),Estado.ENCENDIDO);
 		sensorOptimizador.addRegla(reglaApagadoOptimizaciontv1);
 		sensorOptimizador.addRegla(reglaApagadoOptimizacionpc1);
 		sensorOptimizador.addRegla(reglaApagadoOptimizacionaa1);
 		sensorOptimizador.tomarMedicion();
-
-		Assert.assertEquals(aa1.getNombre(),"Funciona");
+		Assert.assertEquals(aa1.getEstado(),Estado.AHORROENERGIA); //Dado los dispositivos que se cargaron en el usuario para este test, el aire es el unico dispositivo
+		//que supera el valor maximo de uso para este luego de resolver el Optimizador
 
 	}
 }

@@ -13,9 +13,9 @@ public class SensorOptimizador extends Sensor {
 	public void tomarMedicion() {
 		Optimizador optimizador = new Optimizador();
 		List<Dispositivo> dispositivosCliente = reglas.get(0).cliente.getDispositivos(); //cliente que conoce la regla
-		Dispositivo dispositivoAOptimizar = reglas.get(0).dispositivo; //dispositivo que conoce la regla
-		Map<Dispositivo,Double> mapa = optimizador.dispositivosYConsumoRecomendado(dispositivosCliente,130D); //mapa de dispositivos/consumoOptimo
-		reglas.stream().forEach(r->r.ejecutar(mapa.get(dispositivoAOptimizar))); //ejecuta sobre la medición optima de cada dispositivo
+		Map<Dispositivo,Double> mapa = optimizador.dispositivosYConsumoRecomendado(dispositivosCliente,200D); //mapa de dispositivos/consumoOptimo
+		int i=0;
+		reglas.stream().forEach(r->r.ejecutar(mapa.get(r.dispositivo))); //ejecuta sobre la mediciï¿½n optima de cada dispositivo
 	}
 
 }

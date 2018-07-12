@@ -9,7 +9,6 @@ public class ActuadorOprtimizadorAhorroEnergia implements Actuador {
 	@Override
 	public void ejecutarAccion(DispositivoInteligente d) {
 		d.setEstado(Estado.AHORROENERGIA);
-		d.setNombre("Funciona");
 	}
 
 }
