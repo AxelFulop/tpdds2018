@@ -1,5 +1,6 @@
 package tp2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -23,23 +24,28 @@ Cliente cliente4= new Cliente("Antonio","Perez",TipoIdentificacion.DNI,123,48262
 Cliente cliente5= new Cliente("Nicolas","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
 Cliente cliente6= new Cliente("Mica","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
 
-List<Cliente> listaClientes1;
-List<Cliente> listaClientes2;
-List<Cliente> listaClientes3;
+	List<Cliente> listaClientes1 = new ArrayList<Cliente>();
+	List<Cliente> listaClientes2 = new ArrayList<Cliente>();
+	List<Cliente> listaClientes3 = new ArrayList<Cliente>();
+
+
 	
 Transformador transformadorAlmagro = new Transformador();
 Transformador transformadorCaballito = new Transformador();
 Transformador transformadorColegiales = new Transformador();
 
-List<Transformador> listaTransformadores1;
-List<Transformador> listaTransformadores2;
+	List<Transformador> listaTransformadores1 = new ArrayList<Transformador>();
+	List<Transformador> listaTransformadores2 = new ArrayList<Transformador>();
 
 ZonaGeografica zona1 = new ZonaGeografica();
 ZonaGeografica zona2 = new ZonaGeografica();
 
 @Before
 public void init() {
-	
+	List<Cliente> listaClientes1 = new ArrayList<Cliente>();
+	List<Cliente> listaClientes2 = new ArrayList<Cliente>();
+	List<Cliente> listaClientes3 = new ArrayList<Cliente>();
+
 	DispositivoInteligente tv1 = DispositivoFactory.getLED40();
 	DispositivoInteligente aa1 = DispositivoFactory.getAireAcondicionadoDe3500Frigroias();
 	
@@ -82,8 +88,14 @@ public void init() {
 public void obtenerConsumoInstantaneo() {
 	double consumoZona1 = zona1.getConsumoTotal();
 	double consumoZona2 = zona2.getConsumoTotal();
-	Assert.assertEquals(consumoZona1, 4);
-	Assert.assertEquals(consumoZona1, 2);
+	Assert.assertEquals(consumoZona1, 8.0);
+	Assert.assertEquals(consumoZona2, 4.0);
 }
-	
+
+	@Test
+	public void suministroEnergiaInstantaneaEnUnTransformador() {
+		double consumoTransformador =transformadorAlmagro.energiaQueEstaConsumiendo();
+		Assert.assertEquals(consumoTransformador, 4.0);
+	}
+
 }
