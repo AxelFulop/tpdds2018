@@ -1,13 +1,14 @@
 package modelo.sensores;
 
 import modelo.Actuador;
+import modelo.Cliente;
 import modelo.DispositivoInteligente;
 import modelo.Regla;
 
 public class ReglaOptimizadorConsumoAlto extends Regla {
 
-	public ReglaOptimizadorConsumoAlto(DispositivoInteligente d) {
-		super(d);
+	public ReglaOptimizadorConsumoAlto(DispositivoInteligente d, Cliente c) {
+		super(c,d);
 	}
 	
 	@Override
@@ -17,6 +18,7 @@ public class ReglaOptimizadorConsumoAlto extends Regla {
 
 		if(dispositivo.getConsumoMensual()>=consumoDeseado) {
 			actuadorOptimizadorAhorroEnergia.ejecutarAccion(dispositivo);
+
 		}
 		
 	}

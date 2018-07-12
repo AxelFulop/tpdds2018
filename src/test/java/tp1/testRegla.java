@@ -21,7 +21,7 @@ public class testRegla {
 	DispositivoInteligente aire = new DispositivoInteligente ("aireAcondicionado",true,1);
 	Sensor sensorTemp = new SensorTemperatura();
 	Actuador prenderAire = new ActuadorEncenderAire();
-	Regla reglaTemperaturaAlta = new ReglaTemperaturaAlta(aire);
+	Regla reglaTemperaturaAlta = new ReglaTemperaturaAlta(aire,cliente);
 	
 	@Before
 	public void init(){

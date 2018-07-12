@@ -1,13 +1,14 @@
 package modelo.sensores;
 
 import modelo.Actuador;
+import modelo.Cliente;
 import modelo.DispositivoInteligente;
 import modelo.Regla;
 
 public class ReglaTemperaturaAlta extends Regla {
 
-	public ReglaTemperaturaAlta(DispositivoInteligente d) {
-		super(d);
+	public ReglaTemperaturaAlta(DispositivoInteligente d, Cliente c) {
+		super(c,d);
 	}
 	
 	@Override

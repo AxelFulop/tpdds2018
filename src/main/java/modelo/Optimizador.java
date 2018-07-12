@@ -103,7 +103,7 @@ public class Optimizador {
         return coeficientesPrimitivos;
     }
 
-	public void dispositivosYConsumoRecomendado(List<Dispositivo> dispositivos,Double limiteMensual) {
+	public Map<Dispositivo, Double> dispositivosYConsumoRecomendado(List<Dispositivo> dispositivos,Double limiteMensual) {
         List<Dispositivo> dispositivosOptimizables = dispositivos
                 .stream()
                 .filter(dispositivo -> {
@@ -116,11 +116,12 @@ public class Optimizador {
                 }).collect(Collectors.toList());
 
 
-        Map<Object, Double> mapa = new HashMap<Object, Double>();
+        Map<Dispositivo, Double> mapa = new HashMap<Dispositivo, Double>();
         List<Double> consumos = optimizar(dispositivos, limiteMensual);
         for (int i = 0; i < dispositivosOptimizables.size(); i++) {
             mapa.put(dispositivosOptimizables.get(i), consumos.get(i));
         }
+        return mapa;
     }
 }
 

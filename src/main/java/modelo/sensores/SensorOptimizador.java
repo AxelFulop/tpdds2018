@@ -13,9 +13,10 @@ public class SensorOptimizador extends Sensor {
 	@Override
 	public void tomarMedicion() {
 		Optimizador optimizador = new Optimizador();
-		Dispositivo d = reglas.get(0).;
-		Map<Dispositivo,Double> = optimizador.dispositivosYConsumoRecomendado();
-		reglas.stream().forEach(r->r.ejecutar(24.5));
+		List<Dispositivo> dispositivosCliente = reglas.get(0).cliente.getDispositivos();
+		Dispositivo dispositivoAOptimizar = reglas.get(0).dispositivo;
+		Map<Dispositivo,Double> mapa= optimizador.dispositivosYConsumoRecomendado(dispositivosCliente,130D);
+		reglas.stream().forEach(r->r.ejecutar(mapa.get(dispositivoAOptimizar)));
 	}
 
 }
