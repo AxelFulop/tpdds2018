@@ -20,7 +20,6 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
 	private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
 	private Double consumoTotal;
-	@SuppressWarnings("unused")
 	private ZonaGeografica zonaGeografica;
 
 	public Cliente() {
@@ -221,4 +220,5 @@ public class Cliente {
 		this.consumoTotal = consumoTotal;
 	}
 
+	
 }

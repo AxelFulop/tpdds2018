@@ -4,7 +4,7 @@ package modelo;
 import java.time.LocalDate;
 import java.time.Period;
 
-
+@SuppressWarnings("unused")
 public class Administrador {
 	private String nombre;
 	private String apellido;
