@@ -1,4 +1,4 @@
-package modelo.sensores;
+package modelo.adapters;
 
 import modelo.Fabricante;
 

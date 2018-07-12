@@ -5,12 +5,15 @@ package tp2;
 import java.util.List;
 
 import modelo.*;
+import modelo.factories.DispositivoFactory;
+import modelo.reglas.ReglaOptimizadorConsumoAlto;
 import modelo.sensores.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.Assert;
 
+@SuppressWarnings("deprecation")
 public class testOptimizador {
 	Optimizador optimizador = new Optimizador();
 	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
@@ -30,14 +33,12 @@ public class testOptimizador {
 		cliente.agregarDispositivoInteligente(pc1);//0.4
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void valoresNoNulosOptimizador() {
 		List<Double> valoresOptimizados = optimizador.optimizar(cliente.getDispositivos(),200D);
 		Assert.assertNotNull(valoresOptimizados);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void valoresCorrectosOptimizador() {
 		List<Double> valoresOptimizados = optimizador.optimizar(cliente.getDispositivos(),612D);

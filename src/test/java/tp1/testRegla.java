@@ -10,8 +10,8 @@ import modelo.DispositivoInteligente;
 import modelo.Regla;
 import modelo.Sensor;
 import modelo.TipoIdentificacion;
+import modelo.reglas.ReglaTemperaturaAlta;
 import modelo.sensores.ActuadorEncenderAire;
-import modelo.sensores.ReglaTemperaturaAlta;
 import modelo.sensores.SensorTemperatura;
 
 @SuppressWarnings("deprecation")

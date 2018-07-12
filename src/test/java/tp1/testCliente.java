@@ -6,7 +6,6 @@ import org.junit.Test;
 import modelo.Cliente;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
-
 import modelo.TipoIdentificacion;
 
 public class testCliente {

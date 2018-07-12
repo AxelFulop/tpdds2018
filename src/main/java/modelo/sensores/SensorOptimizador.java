@@ -14,7 +14,6 @@ public class SensorOptimizador extends Sensor {
 		Optimizador optimizador = new Optimizador();
 		List<Dispositivo> dispositivosCliente = reglas.get(0).cliente.getDispositivos(); //cliente que conoce la regla
 		Map<Dispositivo,Double> mapa = optimizador.dispositivosYConsumoRecomendado(dispositivosCliente,200D); //mapa de dispositivos/consumoOptimo
-		int i=0;
 		reglas.stream().forEach(r->r.ejecutar(mapa.get(r.dispositivo))); //ejecuta sobre la medici�n optima de cada dispositivo
 	}
 

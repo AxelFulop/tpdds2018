@@ -14,8 +14,6 @@ import org.apache.commons.math3.optim.linear.Relationship;
 import org.apache.commons.math3.optim.linear.SimplexSolver;
 import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
 
-import modelo.Dispositivo;
-
 public class Optimizador {
     
     public List<Double> optimizar(List<Dispositivo> dispositivos, Double limiteMensual) {

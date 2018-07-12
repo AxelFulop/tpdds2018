@@ -1,9 +1,10 @@
-package modelo.sensores;
+package modelo.reglas;
 
 import modelo.Actuador;
 import modelo.Cliente;
 import modelo.DispositivoInteligente;
 import modelo.Regla;
+import modelo.sensores.ActuadorEncenderAire;
 
 public class ReglaTemperaturaAlta extends Regla {
 

@@ -20,6 +20,8 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
 	private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
 	private Double consumoTotal;
+	@SuppressWarnings("unused")
+	private ZonaGeografica zonaGeografica;
 
 	public Cliente() {
 	}
@@ -39,6 +41,8 @@ public class Cliente {
 		this.contrasena = contrasena;
 		this.puntos = puntaje;
 	}
+	
+	
 
 	public void agregarDispositivoInteligente(DispositivoInteligente d) {
 		this.dispositivosInteligentes.add(d);
@@ -90,6 +94,11 @@ public class Cliente {
 		dispositivosEstandares.remove(d);
 		puntos += 10;
 	}
+	
+	public double getConsumoInstantaneo() {
+		return getDispositivos().stream().mapToDouble(d->d.getConsumoInstantaneo()).sum();
+	}
+	
 	
 	//GETTERS AND SETTERS
 	

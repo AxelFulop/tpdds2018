@@ -6,7 +6,10 @@ public double kwh;
 public Restriccion restriccion;
 
 
-
+	public double getConsumoInstantaneo() {
+		return 1;
+	}
+	
 	public Restriccion getRestriccion() {
 		return restriccion;
 	}

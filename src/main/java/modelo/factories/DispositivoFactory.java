@@ -1,5 +1,8 @@
-package modelo;
+package modelo.factories;
 
+import modelo.DispositivoEstandar;
+import modelo.DispositivoInteligente;
+import modelo.Restriccion;
 
 public class DispositivoFactory {
 
