@@ -1,6 +1,7 @@
 package modelo;
 
 public class Restriccion {
+	
 public double cotaSuperior;
 public double cotaInferior;
 

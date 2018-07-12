@@ -192,6 +192,13 @@ public class Cliente {
 	public List<DispositivoInteligente> getDispositivosInteligentes() {
 		return dispositivosInteligentes;
 	}
+	
+	public List<Dispositivo> getDispositivos(){
+		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+		dispositivos.addAll(dispositivosEstandares);
+		dispositivos.addAll(dispositivosInteligentes);
+		return dispositivos;
+	}
 
 	public void setDispositivosInteligentes(List<DispositivoInteligente> dispositivosInteligentes) {
 		this.dispositivosInteligentes = dispositivosInteligentes;

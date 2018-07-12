@@ -10,6 +10,10 @@ public Restriccion restriccion;
 	public Restriccion getRestriccion() {
 		return restriccion;
 	}
+	
+	public void setRestriccion(Restriccion restriccion) {
+		 this.restriccion = restriccion;
+	}
 
 	public double getConsumoMensual() {
 		return 0;
