@@ -1,8 +1,6 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -105,7 +103,24 @@ public class Optimizador {
         return coeficientesPrimitivos;
     }
 
-	
-	
+	public void dispositivosYConsumoRecomendado(List<Dispositivo> dispositivos,Double limiteMensual) {
+        List<Dispositivo> dispositivosOptimizables = dispositivos
+                .stream()
+                .filter(dispositivo -> {
+                    try {
+                        dispositivo.getRestriccion();
+                        return true;
+                    } catch (Exception e) {
+                        return false;
+                    }
+                }).collect(Collectors.toList());
+
+
+        Map<Object, Double> mapa = new HashMap<Object, Double>();
+        List<Double> consumos = optimizar(dispositivos, limiteMensual);
+        for (int i = 0; i < dispositivosOptimizables.size(); i++) {
+            mapa.put(dispositivosOptimizables.get(i), consumos.get(i));
+        }
+    }
 }
 

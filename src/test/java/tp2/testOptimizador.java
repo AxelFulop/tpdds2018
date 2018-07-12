@@ -4,16 +4,14 @@ package tp2;
 
 import java.util.List;
 
+import modelo.*;
+import modelo.sensores.ActuadorEncenderAire;
+import modelo.sensores.ReglaTemperaturaAlta;
+import modelo.sensores.SensorTemperatura;
 import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import modelo.Cliente;
-import modelo.DispositivoEstandar;
-import modelo.DispositivoFactory;
-import modelo.DispositivoInteligente;
-import modelo.Optimizador;
-import modelo.TipoIdentificacion;
 
 public class testOptimizador {
 Optimizador optimizador = new Optimizador();
@@ -22,6 +20,9 @@ DispositivoInteligente tv1 = DispositivoFactory.getLED40();
 DispositivoInteligente aa1 = DispositivoFactory.getAireAcondicionadoDe2200Frigroias();
 DispositivoInteligente pc1 = DispositivoFactory.getPCEscritorio();
 
+Sensor sensorOptimizador = new SensorTemperatura();
+Actuador prenderAire = new ActuadorEncenderAire();
+Regla reglaApagadoOptimizacion = new ReglaTemperaturaAlta(tv1);
 @Before
 public void init(){
 	cliente.agregarDispositivoInteligente(tv1);//00.8kwh
