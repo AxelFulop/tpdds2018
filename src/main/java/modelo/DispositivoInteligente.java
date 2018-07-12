@@ -44,7 +44,7 @@ private Fabricante fabricante;
 	@Override
 	public double getConsumoMensual() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 150;
 	}
 		
 	//Getters and setters

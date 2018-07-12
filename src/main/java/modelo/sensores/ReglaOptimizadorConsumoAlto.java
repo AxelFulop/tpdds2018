@@ -16,7 +16,7 @@ public class ReglaOptimizadorConsumoAlto extends Regla {
 
 		Actuador actuadorOptimizadorAhorroEnergia = new ActuadorOprtimizadorAhorroEnergia();
 
-		if(dispositivo.getConsumoMensual()>=consumoDeseado) {
+		if(dispositivo.getConsumoMensual() >= consumoDeseado) {
 			actuadorOptimizadorAhorroEnergia.ejecutarAccion(dispositivo);
 
 		}

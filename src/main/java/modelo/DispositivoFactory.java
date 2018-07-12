@@ -14,7 +14,7 @@ public static DispositivoInteligente getAireAcondicionadoDe3500Frigroias() {
 }
 
 public static DispositivoInteligente getAireAcondicionadoDe2200Frigroias() {
-	DispositivoInteligente d = new DispositivoInteligente("Aire2200",true,1.013);//1.013
+	DispositivoInteligente d = new DispositivoInteligente("Aire2200",true,1.013);
 	Restriccion restriccion = new Restriccion();
 	restriccion.setCotasAireAcondicionado();
 	d.setRestriccion(restriccion);

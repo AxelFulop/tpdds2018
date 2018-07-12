@@ -15,7 +15,7 @@ public class testOptimizador {
 	Optimizador optimizador = new Optimizador();
 	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
 	DispositivoInteligente tv1 = DispositivoFactory.getLED40();
-	DispositivoInteligente aa1 = DispositivoFactory.getAireAcondicionadoDe2200Frigroias();
+	DispositivoInteligente aa1 = DispositivoFactory.getAireAcondicionadoDe3500Frigroias();
 	DispositivoInteligente pc1 = DispositivoFactory.getPCEscritorio();
 
 	Sensor sensorOptimizador = new SensorOptimizador();
