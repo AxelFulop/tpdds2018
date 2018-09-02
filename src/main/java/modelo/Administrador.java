@@ -23,7 +23,7 @@ public class Administrador {
 		this.contrasenia=contrasenia;
 	}
 	
-	public int candidaDeMemesComoAdministrator() {
+	public int candidaDeMesesComoAdministrator() {
 		Period p = Period.between(fechaDeAlta,LocalDate.now());
 		return p.getYears() * 12 + p.getMonths();
 	}
