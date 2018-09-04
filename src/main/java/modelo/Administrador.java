@@ -4,7 +4,7 @@ package modelo;
 import java.time.LocalDate;
 import java.time.Period;
 
-
+@SuppressWarnings("unused")
 public class Administrador {
 	private String nombre;
 	private String apellido;
@@ -12,18 +12,18 @@ public class Administrador {
 	private LocalDate fechaDeAlta;
 	private int numIdentificacion;
 	private String nombreUsuario;
-	private String contraseña;
+	private String contrasenia;
 	
-	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contraseña, LocalDate fechaAlta) {
+	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contrasenia, LocalDate fechaAlta) {
 		this.fechaDeAlta = fechaAlta;
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.numIdentificacion=numIdentificacion;
 		this.nombreUsuario=nombreUsuario;
-		this.contraseña=contraseña;
+		this.contrasenia=contrasenia;
 	}
 	
-	public int cantMesesComoAdmin() {
+	public int candidaDeMesesComoAdministrator() {
 		Period p = Period.between(fechaDeAlta,LocalDate.now());
 		return p.getYears() * 12 + p.getMonths();
 	}

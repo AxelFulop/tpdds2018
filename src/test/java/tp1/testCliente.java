@@ -1,27 +1,24 @@
 package tp1;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import modelo.Cliente;
-import modelo.Dispositivo;
-import modelo.Inteligente;
+import modelo.DispositivoEstandar;
+import modelo.DispositivoInteligente;
 import modelo.TipoIdentificacion;
 
 public class testCliente {
 	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
-	Dispositivo televisor = new Dispositivo("tv", 10, null); //dispositivo estandar
-	Dispositivo computadora = new Dispositivo("compu", 15, new Inteligente()); //dispositivo inteligente
-	Dispositivo heladera = new Dispositivo("heladera", 20, new Inteligente()); //dispositivo inteligente
+	DispositivoEstandar televisor = new DispositivoEstandar("tv", false,10);
+	DispositivoInteligente computadora = new DispositivoInteligente("computadora",true,1);
+	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,1);
 	
 	@Before
 	public void init(){
-		cliente.agregarDispositivo(televisor);
-		cliente.agregarDispositivo(computadora);	
-		cliente.agregarDispositivo(heladera);
+		cliente.agregarDispositivoEstandar(televisor);
+		cliente.agregarDispositivoInteligente(computadora);	
+		cliente.agregarDispositivoInteligente(heladera);
 	}
 	
 	@Test
@@ -31,20 +28,20 @@ public class testCliente {
 	}
 	@Test
 	 public void cantidadDispositivosApagados(){
-		heladera.getAdaptadorInteligente().encender();
+		heladera.apagar();
 		int cantidadApagados = cliente.cantidadDeDispositivosApagados();
 		Assert.assertEquals(cantidadApagados, 1);
 	}
 	@Test
 	 public void cantidadDispositivosEncendidos(){
-		heladera.getAdaptadorInteligente().encender();
-		computadora.getAdaptadorInteligente().encender();
 		int cantidadP = cliente.cantidadDeDispositivosEncendidos();
 		Assert.assertEquals(cantidadP, 2);
 	}
+	
+	@Test
 	public void puntajeCliente(){
-		cliente.adaptarDispositivoEstandar(televisor);
-		int puntaje = cliente.puntaje();
-		Assert.assertEquals(puntaje, 40);
+		cliente.ligarModuloAdaptador(televisor); // 10 puntos
+		//Tiene 30 puntos por agregar 2 dispositivos en el Before
+		Assert.assertEquals(cliente.getPuntos(), 40);
 	}
 }

@@ -1,7 +1,5 @@
 package tp1;
 
-
-import java.io.IOException;
 import java.time.LocalDate;
 
 import org.junit.Assert;
@@ -14,18 +12,18 @@ public class testAdministrador {
 	Administrador administrador3 =  new Administrador("Eduardo","Perez", 235256, "Eduardito","1111", LocalDate.now().minusMonths(24) );
 	
 	@Test
-	public void siendoAdminDurante3meses() throws IOException {
-		int	meses =administrador.cantMesesComoAdmin();
+	public void siendoAdminDurante3meses()  {
+		int	meses =administrador.candidaDeMesesComoAdministrator();
 		Assert.assertEquals(meses, 3);
 	}
 	@Test
-	public void siendoAdminDuranteElMismoMes() throws IOException {
-		int meses =administrador2.cantMesesComoAdmin();
+	public void siendoAdminDuranteElMismoMes()  {
+		int meses =administrador2.candidaDeMesesComoAdministrator();
 		Assert.assertEquals(meses, 0);
 	}
 	@Test
-	public void siendoAdminDuranteDosAños() throws IOException {
-	int meses =administrador3.cantMesesComoAdmin();
+	public void siendoAdminDuranteDosAnios() {
+	int meses =administrador3.candidaDeMesesComoAdministrator();
 	Assert.assertEquals(meses, 24);
 	}
 	

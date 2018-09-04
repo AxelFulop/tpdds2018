@@ -1,81 +1,40 @@
 package modelo;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+public abstract class Dispositivo {
+public boolean bajoConsumo;
+public double kwh;
+public Restriccion restriccion;
 
-public class Dispositivo {
-	private String nombre;
-	private int kwh;
-	private int horasEnUsoDelDia = 0;
-	private Inteligente adaptadorInteligente; //inteligente o null
-	
-	public Dispositivo(String nom, int consumo,Inteligente inteligente) {
-		nombre = nom;
-		kwh = consumo;
-		this.adaptadorInteligente = inteligente;
+
+	public double getConsumoInstantaneo() {
+		return 1;
 	}
 	
-	public Inteligente getAdaptadorInteligente() {
-		return adaptadorInteligente;
-	}
-
-	public void setAdaptadorInteligente(Inteligente adaptadorInteligente) {
-		this.adaptadorInteligente = adaptadorInteligente;
-	}
-		
-	public Estado estado() {
-		return adaptadorInteligente.getEstado();	
+	public Restriccion getRestriccion() {
+		return restriccion;
 	}
 	
-	
-	public Double getConsumoDeKwMensual() {
-		return (double) (kwh * horasEnUsoDelDia * 30);
+	public void setRestriccion(Restriccion restriccion) {
+		 this.restriccion = restriccion;
 	}
 
-	public float getHorasEnUsoDelDia() {
-		return this.horasEnUsoDelDia;
-	}
-	public void setHorasEnUsoDelDia(int horas) {
-		this.horasEnUsoDelDia = horas;
+	public double getConsumoMensual() {
+		return 0;
 	}
 	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public int getKwh() {
+	public double getKwh() {
 		return kwh;
 	}
 
-	public void setKwh(int kwh) {
-		this.kwh = kwh;
+	public void setKwh(double d) {
+		this.kwh = d;
 	}
 	
-	public boolean esInteligente() {
-		if (adaptadorInteligente != null) {
-			return adaptadorInteligente.esInteligente();
-		}
-		else {
-			return false;
-		}
+	public boolean getBajoConsumo() {
+		return bajoConsumo;
 	}
 	
-	public float energiaConsumidaEnUltimasHoras(int horas) throws Exception{
-		return adaptadorInteligente.energiaConsumidaEnUltimasHoras(horas,this);
-	} //supongo que el dispositivo no se apaga (MAL)
-	
-	public float consumoTotalEnPeriodo(int horasInicio, int horasFinal) {
-		return adaptadorInteligente.consumoTotalEnPeriodo(horasInicio, horasFinal, this);
+	public void setBajoConsumo(boolean b) {
+		this.bajoConsumo = b;
 	}
-	
-	public void convertirAInteligente()
-	{
-		this.adaptadorInteligente = new Inteligente();
-	}
-	
-	
 }
