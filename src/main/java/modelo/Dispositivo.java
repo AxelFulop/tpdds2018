@@ -1,5 +1,8 @@
 package modelo;
 
+import javax.persistence.Entity;
+
+
 public abstract class Dispositivo {
 public boolean bajoConsumo;
 public double kwh;

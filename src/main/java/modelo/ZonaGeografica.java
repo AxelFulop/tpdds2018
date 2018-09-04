@@ -1,32 +1,54 @@
 package modelo;
 
+import org.uqbar.commons.utils.Observable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
+@Observable
+@Entity
 public class ZonaGeografica {
-public String nombre;
-public List<Transformador> transformadores = new ArrayList<Transformador>();
+    @Id
+    @GeneratedValue
+    public int id;
+    public String nombre;
 
-public double getConsumoTotal() {
-	return transformadores.stream().mapToDouble(t->t.energiaQueEstaConsumiendo()).sum();
-}
+    public int getId() {
+        return id;
+    }
 
-public String getNombre() {
-	return nombre;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
+    public ZonaGeografica(){
+        
+    }
 
-public List<Transformador> getTransformadores() {
-	return transformadores;
-}
+    public List<Transformador> transformadores = new ArrayList<Transformador>();
 
-public void setTransformadores(List<Transformador> transformadores) {
-	this.transformadores = transformadores;
-}
+    public double getConsumoTotal() {
+        return transformadores.stream().mapToDouble(t -> t.energiaQueEstaConsumiendo()).sum();
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Transformador> getTransformadores() {
+        return transformadores;
+    }
+
+    public void setTransformadores(List<Transformador> transformadores) {
+        this.transformadores = transformadores;
+    }
 
 
 }

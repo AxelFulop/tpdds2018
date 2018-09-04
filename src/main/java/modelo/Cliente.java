@@ -1,11 +1,20 @@
 package modelo;
 
+import org.uqbar.commons.utils.Observable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Observable
+@Entity
 public class Cliente {
+    @Id@GeneratedValue
+	public int id;
 	private int numeroIdentificacion;
 	private String nombre;
 	private String apellido;
@@ -20,6 +29,7 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
 	private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
 	private Double consumoTotal;
+	@OneToOne
 	private ZonaGeografica zonaGeografica;
 
 	public Cliente() {
