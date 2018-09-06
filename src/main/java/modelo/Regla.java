@@ -1,17 +1,21 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Regla {
-public Cliente cliente;
-public DispositivoInteligente dispositivo;
-	
-	public Regla (Cliente c,DispositivoInteligente d) {
-		this.dispositivo = d;
-		this.cliente = c;
-	}
+    public Cliente cliente;
 
-public void ejecutar(double medicion) {
+    public List<DispositivoInteligente> dispositivos = new ArrayList<DispositivoInteligente>();
 
-}
+    public Regla(Cliente c, List<DispositivoInteligente> d) {
+        this.dispositivos = d;
+        this.cliente = c;
+    }
 
-	
+    public void ejecutar(double medicion) {
+
+    }
+
+
 }
