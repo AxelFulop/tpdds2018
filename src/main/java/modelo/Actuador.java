@@ -11,7 +11,7 @@ public abstract class  Actuador {
 	{
 		this.dispositivos = dispositivos;
 	}
-	public void ejecutarAccion(){
+	public void ejecutarAccion(Dispositivo d){
 
 	}
 }

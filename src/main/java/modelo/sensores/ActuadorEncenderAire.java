@@ -3,9 +3,14 @@ package modelo.sensores;
 import modelo.Actuador;
 import modelo.DispositivoInteligente;
 
-public class ActuadorEncenderAire implements Actuador {
+import java.util.List;
 
-	@Override
+public class ActuadorEncenderAire extends Actuador {
+
+	public ActuadorEncenderAire(List<DispositivoInteligente> dispositivos)
+	{
+		super(dispositivos);
+	}
 	public void ejecutarAccion(DispositivoInteligente d) {
 		d.encender();
 	}

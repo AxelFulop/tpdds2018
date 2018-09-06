@@ -1,6 +1,7 @@
 package modelo.sensores;
 
 import modelo.Actuador;
+import modelo.Dispositivo;
 import modelo.DispositivoInteligente;
 import modelo.Estado;
 
@@ -14,8 +15,15 @@ public class ActuadorOprtimizadorAhorroEnergia extends Actuador {
 	}
 
 
-	public void ejecutarAccion() {
-		dispositivos.forEach(d -> d.setEstado(Estado.AHORROENERGIA));
+	@Override
+	public void ejecutarAccion(Dispositivo d) { //TODO: Cambiar por dispositivoInteligente;
+		dispositivos.forEach(dis ->
+		{
+			if (d.getName() == dis.getName())
+			{
+				dis.setEstado(Estado.AHORROENERGIA);
+			}
+		});
 	}
 
 }

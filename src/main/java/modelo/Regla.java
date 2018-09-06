@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Regla {
-    public Cliente cliente;
     public List<Actuador> actuadores;
 
-    public Regla(Cliente c,List<Actuador> actuadores) {
-        this.cliente = c;
+    public Regla(List<Actuador> actuadores) {
         this.actuadores = actuadores;
     }
-    public void llamarActuador(double medicion) {
+    public void llamarActuador(Dispositivo dispositivoAComparar,double medicion) {
 
     }
 
