@@ -23,9 +23,9 @@ public class testOptimizador {
 
 	Sensor sensorOptimizador = new SensorOptimizador();
 	Actuador actuadoOptimizador = new ActuadorOprtimizadorAhorroEnergia();
-	Regla reglaApagadoOptimizaciontv1 = new ReglaOptimizadorConsumoAlto(tv1,cliente);
-	Regla reglaApagadoOptimizacionaa1 = new ReglaOptimizadorConsumoAlto(aa1,cliente);
-	Regla reglaApagadoOptimizacionpc1 = new ReglaOptimizadorConsumoAlto(pc1,cliente);
+	Regla reglaApagadoOptimizaciontv1 = new ReglaOptimizadorConsumoAlto(cliente);
+	Regla reglaApagadoOptimizacionaa1 = new ReglaOptimizadorConsumoAlto(cliente);
+	Regla reglaApagadoOptimizacionpc1 = new ReglaOptimizadorConsumoAlto(cliente);
 	@Before
 	public void init(){
 		cliente.agregarDispositivoInteligente(tv1);//00.8kwh

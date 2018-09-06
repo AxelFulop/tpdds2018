@@ -5,15 +5,13 @@ import java.util.List;
 
 public abstract class Regla {
     public Cliente cliente;
+    public List<Actuador> actuadores;
 
-    public List<DispositivoInteligente> dispositivos = new ArrayList<DispositivoInteligente>();
-
-    public Regla(Cliente c, List<DispositivoInteligente> d) {
-        this.dispositivos = d;
+    public Regla(Cliente c,List<Actuador> actuadores) {
         this.cliente = c;
+        this.actuadores = actuadores;
     }
-
-    public void ejecutar(double medicion) {
+    public void llamarActuador(double medicion) {
 
     }
 

@@ -4,11 +4,18 @@ import modelo.Actuador;
 import modelo.DispositivoInteligente;
 import modelo.Estado;
 
-public class ActuadorOprtimizadorAhorroEnergia implements Actuador {
+import java.util.List;
 
-	@Override
-	public void ejecutarAccion(DispositivoInteligente d) {
-		d.setEstado(Estado.AHORROENERGIA);
+public class ActuadorOprtimizadorAhorroEnergia extends Actuador {
+
+	public ActuadorOprtimizadorAhorroEnergia (List<DispositivoInteligente> dispositivos)
+	{
+		super(dispositivos);
+	}
+
+
+	public void ejecutarAccion() {
+		dispositivos.forEach(d -> d.setEstado(Estado.AHORROENERGIA));
 	}
 
 }
