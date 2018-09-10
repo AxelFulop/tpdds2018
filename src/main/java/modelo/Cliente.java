@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.common.Tuple;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,8 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
 	private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
 	private Double consumoTotal;
-	private ZonaGeografica zonaGeografica;
+	private ZonaGeografica zonaGeografica;//TODO: Esto es voleta
+	public Tuple<Double,Double> ubicacion = new Tuple<Double, Double>();
 
 	public Cliente() {
 	}
@@ -220,5 +223,11 @@ public class Cliente {
 		this.consumoTotal = consumoTotal;
 	}
 
-	
+	public Tuple<Double, Double> getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Tuple<Double, Double> ubicacion) {
+		this.ubicacion = ubicacion;
+	}
 }
