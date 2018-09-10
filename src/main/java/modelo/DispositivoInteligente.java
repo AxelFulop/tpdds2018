@@ -5,6 +5,10 @@ private String nombre;
 private Estado estado;
 private Fabricante fabricante;
 
+
+
+	private Double consumoMensual;
+
 	public DispositivoInteligente(String nom, boolean bajoConsumo, double kwh) {
 		setNombre(nom);
 		setBajoConsumo(bajoConsumo);
@@ -43,12 +47,12 @@ private Fabricante fabricante;
 	
 	@Override
 	public double getConsumoMensual() {
-		// TODO Auto-generated method stub
-		return 150;
+		return consumoMensual;
 	}
-		
-	//Getters and setters
-	
+
+	public void setConsumoMensual(Double consumoMensual) {
+		this.consumoMensual = consumoMensual;
+	}
 	public Estado getEstado() {
 		return estado;
 	}

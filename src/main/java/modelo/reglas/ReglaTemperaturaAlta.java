@@ -1,25 +1,24 @@
 package modelo.reglas;
 
-import modelo.Actuador;
-import modelo.Cliente;
-import modelo.DispositivoInteligente;
-import modelo.Regla;
+import modelo.*;
 import modelo.sensores.ActuadorEncenderAire;
+
+import java.util.List;
 
 public class ReglaTemperaturaAlta extends Regla {
 
-	public ReglaTemperaturaAlta(DispositivoInteligente d, Cliente c) {
-		super(c,d);
+	public ReglaTemperaturaAlta(Actuador actuador) {
+		super(actuador);
 	}
 	
 	@Override
-	public void ejecutar(double temperaturaActual) {
+	public void llamarActuador(DispositivoInteligente d,double temperaturaActual) {
 
-		Actuador prenderAire = new ActuadorEncenderAire();
+			if(temperaturaActual > 24.0) {
+				actuador.ejecutarAccion(d);
+			}
 
-		if(temperaturaActual > 24.0) {
-			prenderAire.ejecutarAccion(dispositivo);
-		}
+
 		
 	}
 }

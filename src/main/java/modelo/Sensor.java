@@ -13,4 +13,8 @@ public List<Regla> reglas = new ArrayList<Regla>();
 	public void tomarMedicion() {
 		
 	}
+
+	public void EjecutarReglasAsociadas(){
+		this.tomarMedicion();
+	}
 }

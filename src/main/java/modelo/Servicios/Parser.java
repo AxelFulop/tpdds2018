@@ -1,4 +1,4 @@
-package modelo;
+package modelo.Servicios;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import modelo.Cliente;
 
 public class Parser {
 	

@@ -1,8 +1,12 @@
 package modelo;
 
-public interface Fabricante {
+public abstract class Fabricante {
 
-	public float obtenerConsumoUltimasHoras(Integer h);
+	public String name;
+
+	public float obtenerConsumoUltimasHoras(Integer h){
+		return 0;
+	};
 	
 }
 

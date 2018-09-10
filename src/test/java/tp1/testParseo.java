@@ -9,7 +9,7 @@ import org.junit.Test;
 import modelo.Cliente;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
-import modelo.Parser;
+import modelo.Servicios.Parser;
 import modelo.TipoIdentificacion;
 
 

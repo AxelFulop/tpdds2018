@@ -31,22 +31,22 @@ public void setCotasLampara() {
 	cotaInferior = 90;
 }
 
-public void setCotasTelevisor() {
+public void setCotasTelevisor(){
 	cotaSuperior = 360;
 	cotaInferior = 90;
 }
 
-public void setCotasLavarropa() {
+public void setCotasLavarropa(){
 	cotaSuperior = 6;
 	cotaInferior = 30;
 }
 
-public void setCotasComputadora() {
+public void setCotasComputadora(){
 	cotaSuperior = 360;
 	cotaInferior = 60;
 }
 
-public void setCotasMicroondas() {
+public void setCotasMicroondas()  {
 	cotaSuperior = 15;
 	cotaInferior = 3;
 }

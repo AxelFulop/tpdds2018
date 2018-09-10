@@ -1,34 +1,17 @@
 package modelo;
 
-import org.uqbar.commons.utils.Observable;
+import modelo.common.Tuple;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
 @Observable
 @Entity
 public class ZonaGeografica {
-    @Id
-    @GeneratedValue
-    public int id;
     public String nombre;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public ZonaGeografica(){
-        
-    }
-
     public List<Transformador> transformadores = new ArrayList<Transformador>();
+    public Double radioAbarcativo = 10D;
+
 
     public double getConsumoTotal() {
         return transformadores.stream().mapToDouble(t -> t.energiaQueEstaConsumiendo()).sum();
@@ -51,4 +34,8 @@ public class ZonaGeografica {
     }
 
 
+
+    public Double getRadioAbarcativo() {
+        return radioAbarcativo;
+    }
 }

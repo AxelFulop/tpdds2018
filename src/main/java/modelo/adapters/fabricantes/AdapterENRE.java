@@ -1,4 +1,4 @@
-package modelo.adapters;
+package modelo.adapters.fabricantes;
 
 public class AdapterENRE {
 
