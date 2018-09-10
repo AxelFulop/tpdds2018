@@ -1,6 +1,7 @@
 package modelo.sensores;
 
 import modelo.Actuador;
+import modelo.Dispositivo;
 import modelo.DispositivoInteligente;
 
 import java.util.List;

@@ -14,15 +14,13 @@ public class SensorOptimizador extends Sensor {
 	public void tomarMedicion() {
 		Optimizador optimizador = new Optimizador();
 		reglas.forEach(regla -> {
-			regla.actuadores.forEach(actuador -> {
 				List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-				dispositivos.addAll(actuador.dispositivos);
+				dispositivos.addAll(regla.actuador.dispositivos);
 				Map<Dispositivo,Double> mapaConsumo = optimizador.dispositivosYConsumoRecomendado(dispositivos,200D); //mapa de dispositivos/consumoOptimo
-				dispositivos.forEach(d -> {
+			regla.actuador.dispositivos.forEach(d -> {
 					regla.llamarActuador(d,mapaConsumo.get(d));
 				});
 			});
-		});
 	}
 
 

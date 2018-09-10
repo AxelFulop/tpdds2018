@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Regla {
-    public List<Actuador> actuadores;
+    public Actuador actuador;
 
-    public Regla(List<Actuador> actuadores) {
-        this.actuadores = actuadores;
+    public Actuador getActuador() {
+        return actuador;
     }
-    public void llamarActuador(Dispositivo dispositivoAComparar,double medicion) {
+
+    public void setActuador(Actuador actuador) {
+        this.actuador = actuador;
+    }
+
+    public Regla(Actuador actuador) {
+        this.actuador = actuador;
+    }
+    public void llamarActuador(DispositivoInteligente dispositivoAComparar,double medicion) {
 
     }
 

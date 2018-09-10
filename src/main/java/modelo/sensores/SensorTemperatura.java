@@ -1,12 +1,17 @@
 package modelo.sensores;
 
-import modelo.Dispositivo;
+import modelo.DispositivoInteligente;
 import modelo.Sensor;
 
 public class SensorTemperatura extends Sensor {
 
-	public void tomarMedicion(Dispositivo d) {
-		reglas.stream().forEach(r->r.llamarActuador(d,24.5));
+	@Override
+	public void tomarMedicion() {
+		reglas.forEach(regla -> {
+			regla.getActuador().getDispositivos().forEach(dispositivoInteligente -> {
+				regla.llamarActuador(dispositivoInteligente,24.5);
+			});
+		});
 	}
 
 }

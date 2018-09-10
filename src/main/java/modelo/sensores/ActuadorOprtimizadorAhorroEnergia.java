@@ -16,12 +16,12 @@ public class ActuadorOprtimizadorAhorroEnergia extends Actuador {
 
 
 	@Override
-	public void ejecutarAccion(Dispositivo d) { //TODO: Cambiar por dispositivoInteligente;
+	public void ejecutarAccion(DispositivoInteligente d) { //TODO: Cambiar por dispositivoInteligente;
 		dispositivos.forEach(dis ->
 		{
 			if (d.getName() == dis.getName())
 			{
-				dis.setEstado(Estado.AHORROENERGIA);
+				d.setEstado(Estado.AHORROENERGIA);
 			}
 		});
 	}

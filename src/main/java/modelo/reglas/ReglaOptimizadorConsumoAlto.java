@@ -7,23 +7,17 @@ import java.util.List;
 
 public class ReglaOptimizadorConsumoAlto extends Regla {
 
-    public ReglaOptimizadorConsumoAlto(List<Actuador> actuadores) {
-        super(actuadores);
+    public ReglaOptimizadorConsumoAlto(Actuador actuador) {
+        super(actuador);
     }
 
 
-    public void llamarActuador(Dispositivo d,double consumoDeseado) {
+    public void llamarActuador(DispositivoInteligente d,double consumoDeseado) {
 
-
-        actuadores.stream().forEach(ac -> {
                 if (d.getConsumoMensual() >= consumoDeseado) {
-                    ac.ejecutarAccion(d);
+                    actuador.ejecutarAccion(d);
                 }
-        });
 
-        /* if (dispositivo.getConsumoMensual() >= consumoDeseado) {
-                    ac.ejecutarAccion();
-                }*/
 
     }
 

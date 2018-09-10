@@ -7,18 +7,16 @@ import java.util.List;
 
 public class ReglaTemperaturaAlta extends Regla {
 
-	public ReglaTemperaturaAlta(List<Actuador> actuadores) {
-		super(actuadores);
+	public ReglaTemperaturaAlta(Actuador actuador) {
+		super(actuador);
 	}
 	
 	@Override
-	public void llamarActuador(Dispositivo d,double temperaturaActual) {
+	public void llamarActuador(DispositivoInteligente d,double temperaturaActual) {
 
-		actuadores.stream().forEach(ac -> {
 			if(temperaturaActual > 24.0) {
-				ac.ejecutarAccion(d);
+				actuador.ejecutarAccion(d);
 			}
-		});
 
 
 		
