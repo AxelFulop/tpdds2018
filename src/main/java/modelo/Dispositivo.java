@@ -4,16 +4,7 @@ public abstract class Dispositivo {
     public boolean bajoConsumo;
     public double kwh;
     public Restriccion restriccion;
-    public String name;
 
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public double getConsumoInstantaneo() {
         return 1;

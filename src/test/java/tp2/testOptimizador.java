@@ -32,12 +32,15 @@ public class testOptimizador {
 
 	@Before
 	public void init(){
+		aa1.setConsumoMensual(500D);
 		cliente.agregarDispositivoInteligente(aa1);//1.013
+		tv1.setConsumoMensual(110D);
 		cliente.agregarDispositivoInteligente(tv1);//00.8kwh
+		pc1.setConsumoMensual(50D);
 		cliente.agregarDispositivoInteligente(pc1);//0.4
 
-		dispositivosInteligentes.add(tv1);
 		dispositivosInteligentes.add(aa1);
+		dispositivosInteligentes.add(tv1);
 		dispositivosInteligentes.add(pc1);
 
 		actuadorOptimizador = new ActuadorOprtimizadorAhorroEnergia(dispositivosInteligentes);
@@ -67,10 +70,10 @@ public class testOptimizador {
 		Assert.assertEquals(pc1.getEstado(),Estado.ENCENDIDO);
 		sensorOptimizador.addRegla(reglaApagadoOptimizacion);
 		sensorOptimizador.tomarMedicion();
-		Assert.assertEquals(cliente.getDispositivosInteligentes().get(0).getEstado(),Estado.AHORROENERGIA); //Dado los dispositivos que se cargaron en el usuario para este test, el aire es el unico dispositivo
+		Assert.assertEquals(Estado.AHORROENERGIA,cliente.getDispositivosInteligentes().get(0).getEstado()); //Dado los dispositivos que se cargaron en el usuario para este test, el aire es el unico dispositivo
 		//que supera el valor maximo de uso para este luego de resolver el Optimizador
-		Assert.assertEquals(cliente.getDispositivosInteligentes().get(1).getEstado(),Estado.ENCENDIDO);
-		Assert.assertEquals(cliente.getDispositivosInteligentes().get(2).getEstado(),Estado.ENCENDIDO);
+		Assert.assertEquals(Estado.ENCENDIDO,cliente.getDispositivosInteligentes().get(1).getEstado());
+		Assert.assertEquals(Estado.ENCENDIDO,cliente.getDispositivosInteligentes().get(2).getEstado());
 
 	}
 }

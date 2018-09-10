@@ -14,7 +14,7 @@ public abstract class Regla {
         this.actuador = actuador;
     }
 
-    public Regla(Actuador actuador) {
+    public Regla(Actuador actuador ) {
         this.actuador = actuador;
     }
     public void llamarActuador(DispositivoInteligente dispositivoAComparar,double medicion) {
