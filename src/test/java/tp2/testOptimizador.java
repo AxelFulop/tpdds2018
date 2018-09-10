@@ -46,6 +46,8 @@ public class testOptimizador {
 		actuadorOptimizador = new ActuadorOprtimizadorAhorroEnergia(dispositivosInteligentes);
 
 		reglaApagadoOptimizacion = new ReglaOptimizadorConsumoAlto(actuadorOptimizador);
+
+		cliente.addSensor(sensorOptimizador);
 	}
 
 	@Test
@@ -68,8 +70,9 @@ public class testOptimizador {
 		Assert.assertEquals(tv1.getEstado(),Estado.ENCENDIDO);
 		cliente.getDispositivosInteligentes().get(2).setEstado(Estado.ENCENDIDO);
 		Assert.assertEquals(pc1.getEstado(),Estado.ENCENDIDO);
+
 		sensorOptimizador.addRegla(reglaApagadoOptimizacion);
-		sensorOptimizador.tomarMedicion();
+		cliente.getSensores().forEach(sensor -> sensor.tomarMedicion()); //sensorOptimizador.tomarMedicion();
 		Assert.assertEquals(Estado.AHORROENERGIA,cliente.getDispositivosInteligentes().get(0).getEstado()); //Dado los dispositivos que se cargaron en el usuario para este test, el aire es el unico dispositivo
 		//que supera el valor maximo de uso para este luego de resolver el Optimizador
 		Assert.assertEquals(Estado.ENCENDIDO,cliente.getDispositivosInteligentes().get(1).getEstado());

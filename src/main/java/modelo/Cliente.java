@@ -22,8 +22,8 @@ public class Cliente {
 	private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
 	private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
 	private Double consumoTotal;
-	private ZonaGeografica zonaGeografica;//TODO: Esto es voleta
 	public Tuple<Double,Double> ubicacion = new Tuple<Double, Double>();
+	public List<Sensor> sensor = new ArrayList<Sensor>();
 
 	public Cliente() {
 	}
@@ -229,5 +229,13 @@ public class Cliente {
 
 	public void setUbicacion(Tuple<Double, Double> ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+	public List<Sensor> getSensores() {
+		return sensor;
+	}
+
+	public void addSensor(Sensor sensor) {
+		this.sensor.add(sensor);
 	}
 }
