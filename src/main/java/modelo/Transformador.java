@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,10 +18,11 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "transformadores")
+@Table(name = "transformador")
 public class Transformador {
 	@Id @GeneratedValue
-	private int id;
+	@Column (name = "transformador_id")
+	private long id;
     public ZonaGeografica zonaGeografica;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = "transformador_id")
     public List<Cliente> clientes = new ArrayList<Cliente>();

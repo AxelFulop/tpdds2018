@@ -1,20 +1,25 @@
 package modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "categorias")
+@Table(name = "categoria")
 public class CategoriaResidencial {
 	@Id @GeneratedValue
+	@Column (name = "categoria_id")
 	private int id;
+	@Column(length = 20)
 	private String nombre;
 	private Double limiteInferior;
 	private Double limiteSuperior;
 	private Double cargoFijo;
 	private Double cargoVariable;
+	
+	CategoriaResidencial(){}
 	
 	public CategoriaResidencial(String nom, Double limInf, Double limSup, Double cFijo, Double cVariable) {
 		nombre = nom;

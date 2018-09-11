@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "zonas")
+@Table(name = "zona")
 public class ZonaGeografica {
 	@Id @GeneratedValue
+	@Column (name = "zona_id")
 	private int id;
     private String nombre;
     @OneToMany(fetch = FetchType.LAZY) @JoinColumn(name = "zona_id")

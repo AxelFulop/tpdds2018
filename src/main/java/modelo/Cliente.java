@@ -7,25 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "cliente")
 public class Cliente {
 	@Id @GeneratedValue
+	@Column (name = "cliente_id")
 	private int id;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToOne(fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST,CascadeType.REMOVE})                                  
 	private Identificacion identificacion;
+	@Column(length=15)
     private String nombre;
+	@Column(length=20)
     private String apellido;
     private int telefono;
+    @Column(length=30)
     private String domicilio;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CategoriaResidencial categoria;
@@ -33,16 +40,17 @@ public class Cliente {
     private Usuario usuario;
     private int puntos;
     @Transient //para pruebas
+    @OneToMany @JoinColumn(name = "cliente_id")
     private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
     @Transient //para pruebas
+    @OneToMany @JoinColumn(name = "cliente_id")
     private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
     private Double consumoTotal;
     @Transient
     public TuplaDouble ubicacion;
     public List<Sensor> sensores = new ArrayList<Sensor>();
 
-    public Cliente() {
-    }
+    public Cliente() {}
 
     public Cliente(String nombre, String apellido, TipoIdentificacion tipoId, Integer numId, Integer tel, String dom,
                    String nombreUsuario, String contrasena, int puntaje) {

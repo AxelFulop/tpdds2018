@@ -1,19 +1,25 @@
 package modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Convert;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "identificaciones")
+@Table(name = "identificacion")
 public class Identificacion {
 	@Id @GeneratedValue
+	@Column (name = "indentificacion_id")
 	private int id;
 	@Convert(converter = ConversorTipoId.class)
+	@Embedded
 	private TipoIdentificacion tipo;
 	private int numero;
+	
+	public Identificacion(){};
 	
 	public Identificacion(TipoIdentificacion tipo, int numero) {
 		super();
