@@ -5,8 +5,6 @@ private String nombre;
 private Estado estado;
 private Fabricante fabricante;
 
-
-
 	private Double consumoMensual;
 
 	public DispositivoInteligente(String nom, boolean bajoConsumo, double kwh) {

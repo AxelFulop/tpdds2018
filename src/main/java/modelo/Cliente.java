@@ -1,28 +1,44 @@
 package modelo;
 
-import modelo.common.Tuple;
+import modelo.TuplaDouble;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+@Entity
+@Table(name = "clientes")
 public class Cliente {
-    private int numeroIdentificacion;
+	@Id @GeneratedValue
+	private int id;
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	private Identificacion identificacion;
     private String nombre;
     private String apellido;
-    private TipoIdentificacion tipoIdentificacion;
     private int telefono;
     private String domicilio;
-    private LocalDate fechaAltaServicio;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private CategoriaResidencial categoria;
-    private String nombreUsuario;
-    private String contrasena;
+    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private Usuario usuario;
     private int puntos;
+    @Transient //para pruebas
     private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
+    @Transient //para pruebas
     private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
     private Double consumoTotal;
-    public Tuple<Double, Double> ubicacion = new Tuple<Double, Double>();
+    @Transient
+    public TuplaDouble ubicacion;
     public List<Sensor> sensores = new ArrayList<Sensor>();
 
     public Cliente() {
@@ -33,14 +49,11 @@ public class Cliente {
 
         this.nombre = nombre;
         this.apellido = apellido;
-        this.tipoIdentificacion = tipoId;
-        this.numeroIdentificacion = numId;
+        this.identificacion = new Identificacion(tipoId, numId);
         this.telefono = tel;
         this.domicilio = dom;
-        this.fechaAltaServicio = LocalDate.now();
+        this.usuario = new Usuario(nombreUsuario, contrasena,LocalDate.now());
         this.categoria = new CategoriaResidencial("r1", 0.0, 150.0, 18.76, 0.644);
-        this.nombreUsuario = nombreUsuario;
-        this.contrasena = contrasena;
         this.puntos = puntaje;
     }
 
@@ -120,19 +133,19 @@ public class Cliente {
     }
 
     public TipoIdentificacion getTipoIdentificacion() {
-        return tipoIdentificacion;
+        return this.identificacion.getTipo();
     }
 
     public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
-        this.tipoIdentificacion = tipoIdentificacion;
+        this.identificacion.setTipo(tipoIdentificacion);
     }
 
     public int getNumeroIdentificacion() {
-        return numeroIdentificacion;
+        return this.identificacion.getNumero();
     }
 
     public void setNumeroIdentificacion(int numeroIdentificacion) {
-        this.numeroIdentificacion = numeroIdentificacion;
+        this.identificacion.setNumero(numeroIdentificacion);
     }
 
     public int getTelefono() {
@@ -152,11 +165,11 @@ public class Cliente {
     }
 
     public LocalDate getFechaAltaServicio() {
-        return fechaAltaServicio;
+        return this.usuario.getFechaAltaServicio();
     }
 
     public void setFechaAltaServicio(LocalDate fechaAltaServicio) {
-        this.fechaAltaServicio = fechaAltaServicio;
+        this.usuario.setFechaAltaServicio(fechaAltaServicio);
     }
 
     public CategoriaResidencial getCategoria() {
@@ -168,19 +181,19 @@ public class Cliente {
     }
 
     public String getNombreUsuario() {
-        return nombreUsuario;
+        return this.usuario.getNombre();
     }
 
     public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+        this.usuario.setNombre(nombreUsuario);
     }
 
     public String getContrasena() {
-        return contrasena;
+        return this.usuario.getContrasenia();
     }
 
     public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+        this.usuario.setContrasenia(contrasena);
     }
 
     public int getPuntos() {
@@ -222,11 +235,11 @@ public class Cliente {
         this.consumoTotal = consumoTotal;
     }
 
-    public Tuple<Double, Double> getUbicacion() {
+    public TuplaDouble getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Tuple<Double, Double> ubicacion) {
+    public void setUbicacion(TuplaDouble ubicacion) {
         this.ubicacion = ubicacion;
     }
 

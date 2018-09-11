@@ -15,6 +15,7 @@ import modelo.TipoIdentificacion;
 import modelo.Transformador;
 import modelo.ZonaGeografica;
 import modelo.factories.DispositivoFactory;
+import modelo.TuplaDouble;
 
 public class testGeoposicionamiento {
 
@@ -44,24 +45,19 @@ public class testGeoposicionamiento {
     @Before
     public void init() {
 
-        transformadorAlmagro.setUbicacion(new Tuple<Double, Double>(0D, 0D));
+        transformadorAlmagro.setUbicacion(new TuplaDouble(0D, 0D));
         transformadorAlmagro.setZonaGeografica(zona1);
-        transformadorCaballito.setUbicacion(new Tuple<Double, Double>(5D, 5D));
+        transformadorCaballito.setUbicacion(new TuplaDouble(5D, 5D));
         transformadorCaballito.setZonaGeografica(zona1);
-        transformadorColegiales.setUbicacion(new Tuple<Double, Double>(15D, 15D));
+        transformadorColegiales.setUbicacion(new TuplaDouble(15D, 15D));
         transformadorColegiales.setZonaGeografica(zona2);
 
-        cliente1.setUbicacion(new Tuple<Double, Double>(0D, 1D));
-        cliente2.setUbicacion(new Tuple<Double, Double>(1D, 0D));
-        cliente3.setUbicacion(new Tuple<Double, Double>(1D, 0D));
-        cliente4.setUbicacion(new Tuple<Double, Double>(6D, 5D));
-        cliente5.setUbicacion(new Tuple<Double, Double>(5D, 6D));
-        cliente6.setUbicacion(new Tuple<Double, Double>(16D, 15D));
-
-
-        List<Cliente> listaClientes1 = new ArrayList<Cliente>();
-        List<Cliente> listaClientes2 = new ArrayList<Cliente>();
-        List<Cliente> listaClientes3 = new ArrayList<Cliente>();
+        cliente1.setUbicacion(new TuplaDouble(0D, 1D));
+        cliente2.setUbicacion(new TuplaDouble(1D, 0D));
+        cliente3.setUbicacion(new TuplaDouble(1D, 0D));
+        cliente4.setUbicacion(new TuplaDouble(6D, 5D));
+        cliente5.setUbicacion(new TuplaDouble(5D, 6D));
+        cliente6.setUbicacion(new TuplaDouble(16D, 15D));
 
         DispositivoInteligente tv1 = DispositivoFactory.getLED40();
         DispositivoInteligente aa1 = DispositivoFactory.getAireAcondicionadoDe3500Frigroias();

@@ -1,16 +1,26 @@
 package modelo;
 
-import modelo.common.Tuple;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Observable
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 @Entity
+@Table(name = "zonas")
 public class ZonaGeografica {
-    public String nombre;
-    public List<Transformador> transformadores = new ArrayList<Transformador>();
-    public Double radioAbarcativo = 10D;
+	@Id @GeneratedValue
+	private int id;
+    private String nombre;
+    @OneToMany(fetch = FetchType.LAZY) @JoinColumn(name = "zona_id")
+    private List<Transformador> transformadores = new ArrayList<Transformador>();
+    private Double radioAbarcativo = 10D;
 
 
     public double getConsumoTotal() {
@@ -32,8 +42,6 @@ public class ZonaGeografica {
     public void setTransformadores(List<Transformador> transformadores) {
         this.transformadores = transformadores;
     }
-
-
 
     public Double getRadioAbarcativo() {
         return radioAbarcativo;
