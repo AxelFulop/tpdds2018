@@ -108,6 +108,7 @@ public class MainPrueba {
 			transaccion.commit();
 		}
 		catch(Exception e) {
+		    e.printStackTrace();
 			transaccion.rollback();
 		}
 		

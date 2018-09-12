@@ -7,9 +7,10 @@ import javax.persistence.*;
 //@Observable
 @Entity
 @Table(name = "dispositivo")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Dispositivo {
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
     public boolean bajoConsumo;
     public double kwh;

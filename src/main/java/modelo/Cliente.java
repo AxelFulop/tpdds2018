@@ -17,10 +17,10 @@ public class Cliente extends Usuario {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CategoriaResidencial categoria;
     private int puntos;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
     private Double consumoTotal;
