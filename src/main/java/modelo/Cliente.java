@@ -35,8 +35,6 @@ public class Cliente extends Usuario {
     @OneToMany
     public List<Sensor> sensores = new ArrayList<Sensor>();
 
-    @Embedded
-    private Identificacion identificacion;
 
     @Transient
     Date today = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
@@ -44,10 +42,9 @@ public class Cliente extends Usuario {
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, TipoIdentificacion tipoId, String numId, Integer tel, String dom,
+    public Cliente(String nombre, String apellido, TipoIdentificacion tipoIdentificacion, String numId, Integer tel, String dom,
                    String nombreUsuario, String contrasenia, int puntaje) {
-        super(nombreUsuario, contrasenia, nombre, apellido);
-        this.identificacion = new Identificacion(tipoId, numId);
+        super(nombreUsuario, contrasenia, nombre, apellido,tipoIdentificacion,numId);
         this.telefono = tel;
         this.domicilio = dom;
         this.categoria = new CategoriaResidencial("r1", 0.0, 150.0, 18.76, 0.644);

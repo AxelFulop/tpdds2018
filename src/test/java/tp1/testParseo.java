@@ -12,7 +12,7 @@ import modelo.DispositivoInteligente;
 import modelo.Servicios.Parser;
 import modelo.TipoIdentificacion;
 
-
+//TODO: Aca cambio todo el cliente a como se habia hecho antes, hay que arreglar el json al nuevo tipo de cliente.
 public class testParseo {
 	
 	

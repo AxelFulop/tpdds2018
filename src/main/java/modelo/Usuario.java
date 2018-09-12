@@ -2,10 +2,7 @@ package modelo;
 
 import org.apache.commons.lang.time.DateUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -21,17 +18,19 @@ public abstract class Usuario {
     protected String nombreUsuario;
     protected String contrasenia;
     protected Date fechaAltaServicio;
-
+    @Embedded
+    protected Identificacion identificacion;
 
     public Usuario() {
     }
 
-    public Usuario(String nombreUsuario, String contrasenia, String nombre, String apellido) {
+    public Usuario(String nombreUsuario, String contrasenia, String nombre, String apellido,TipoIdentificacion tipoIdentificacion,String numeroIdentificacion) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.fechaAltaServicio = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
+        this.fechaAltaServicio = new Date();
+        this.identificacion = new Identificacion(tipoIdentificacion,numeroIdentificacion);
 
     }
 

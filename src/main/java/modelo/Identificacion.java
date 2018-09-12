@@ -16,7 +16,6 @@ public class Identificacion {
 	public Identificacion(){};
 	
 	public Identificacion(TipoIdentificacion tipo, String numero) {
-		super();
 		this.tipo = tipo;
 		this.numero = numero;
 	}
