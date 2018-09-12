@@ -1,28 +1,16 @@
 package modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "dispInteligente" )
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class DispositivoInteligente extends Dispositivo {
 @Id @GeneratedValue
-@Column (name = "dispIntel_id")
 private long id;
 @Column(length = 20)
 private String nombre;
 @Embedded
 private Estado estado;
-@OneToMany @JoinColumn(name = "dispIntel_id")
+@ManyToOne
 private Fabricante fabricante;
 private Double consumoMensual;
 

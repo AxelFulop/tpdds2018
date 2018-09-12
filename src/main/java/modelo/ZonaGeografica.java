@@ -14,15 +14,14 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "zona")
+@Table(name = "zonaGeografica")
 public class ZonaGeografica {
 	@Id @GeneratedValue
-	@Column (name = "zona_id")
-	private int id;
-    private String nombre;
-    @OneToMany(fetch = FetchType.LAZY) @JoinColumn(name = "zona_id")
-    private List<Transformador> transformadores = new ArrayList<Transformador>();
-    private Double radioAbarcativo = 10D;
+	public int id;
+    public String nombre;
+    @OneToMany(fetch = FetchType.LAZY) @JoinColumn(name = "zonaGeografica_id")
+    public List<Transformador> transformadores = new ArrayList<Transformador>();
+    public Double radioAbarcativo = 10D;
 
 
     public double getConsumoTotal() {

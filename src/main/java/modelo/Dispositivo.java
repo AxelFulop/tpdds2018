@@ -1,13 +1,23 @@
 package modelo;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-
+@Entity
+@Table(name = "dispositivo")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dispositivo {
     public boolean bajoConsumo;
     public double kwh;
+    @ManyToOne(cascade = CascadeType.ALL)
     public Restriccion restriccion;
 
+    @Id
+    @GeneratedValue
+    private long id;
+
+    public Dispositivo() {
+
+    }
 
     public double getConsumoInstantaneo() {
         return 1;

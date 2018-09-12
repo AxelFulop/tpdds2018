@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name = "categoria")
 public class CategoriaResidencial {
 	@Id @GeneratedValue
-	@Column (name = "categoria_id")
 	private int id;
 	@Column(length = 20)
 	private String nombre;

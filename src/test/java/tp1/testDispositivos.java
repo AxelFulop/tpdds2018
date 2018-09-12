@@ -11,7 +11,7 @@ import modelo.Estado;
 import modelo.TipoIdentificacion;
 
 public class testDispositivos {
-	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
+	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","JuanATR","qwerty",0);
 	DispositivoEstandar tv = new DispositivoEstandar("tv", false,10);
 	DispositivoInteligente aire = new DispositivoInteligente("aire",true,1); 
 	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,1); 

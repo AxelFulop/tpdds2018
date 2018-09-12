@@ -1,9 +1,19 @@
 package modelo;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Fabricante {
 
+	@Id
+	@GeneratedValue
+	protected int id;
 	public String name;
 
+	public Fabricante(){
+
+	}
 	public float obtenerConsumoUltimasHoras(Integer h){
 		return 0;
 	};

@@ -1,27 +1,21 @@
 package modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
+@Embeddable
 @Table(name = "identificacion")
 public class Identificacion {
 	@Id @GeneratedValue
-	@Column (name = "indentificacion_id")
-	private int id;
-	@Convert(converter = ConversorTipoId.class)
+	public int id;
+	@Enumerated(EnumType.STRING)// @Convert(converter = ConversorTipoId.class): Para el que hizo esto, son la anottation Enumerated, hace lo mismo y definis el ttipo de dato que queres que persista en la BD
 	@Embedded
-	private TipoIdentificacion tipo;
-	private int numero;
+	public TipoIdentificacion tipo;
+	public String numero;
 	
 	public Identificacion(){};
 	
-	public Identificacion(TipoIdentificacion tipo, int numero) {
+	public Identificacion(TipoIdentificacion tipo, String numero) {
 		super();
 		this.tipo = tipo;
 		this.numero = numero;
@@ -39,10 +33,10 @@ public class Identificacion {
 	public void setTipo(TipoIdentificacion tipo) {
 		this.tipo = tipo;
 	}
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 	

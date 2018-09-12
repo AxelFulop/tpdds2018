@@ -1,20 +1,39 @@
 package modelo;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class  Sensor {
-public List<Regla> reglas = new ArrayList<Regla>();
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Sensor {
+    @Id
+    @GeneratedValue
+    private int id;
+    @OneToMany
+    @JoinColumn(name = "sensor_id")
+    public List<Regla> reglas = new ArrayList<Regla>();
 
-	public void addRegla(Regla r) {
-		reglas.add(r);
-	}
+    public Sensor(){
 
-	public void tomarMedicion() {
-		
-	}
+    }
+    public List<Regla> getReglas() {
+        return reglas;
+    }
 
-	public void EjecutarReglasAsociadas(){
-		this.tomarMedicion();
-	}
+    public void setReglas(List<Regla> reglas) {
+        this.reglas = reglas;
+    }
+
+    public void addRegla(Regla r) {
+        reglas.add(r);
+    }
+
+    public void tomarMedicion() {
+
+    }
+
+    public void EjecutarReglasAsociadas() {
+        this.tomarMedicion();
+    }
 }

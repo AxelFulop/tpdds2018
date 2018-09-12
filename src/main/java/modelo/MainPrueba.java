@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import modelo.common.TuplaDouble;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import modelo.factories.DispositivoFactory;
 import modelo.repositorios.RepositorioClientes;
@@ -19,12 +19,12 @@ public class MainPrueba {
 		EntityManager em = PerThreadEntityManagers.getEntityManager();
 		EntityTransaction transaccion = em.getTransaction();
 		
-		Cliente cliente1 = new Cliente("Rodrigo", "Lopez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-	    Cliente cliente2 = new Cliente("Nicolas", "Merlis", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-	    Cliente cliente3 = new Cliente("Axel", "Fulop", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-	    Cliente cliente4 = new Cliente("Antonio", "Perez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-	    Cliente cliente5 = new Cliente("Nicolas", "Perez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-	    Cliente cliente6 = new Cliente("Mica", "Perez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+		Cliente cliente1 = new Cliente("Rodrigo", "Lopez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+	    Cliente cliente2 = new Cliente("Nicolas", "Merlis", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+	    Cliente cliente3 = new Cliente("Axel", "Fulop", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+	    Cliente cliente4 = new Cliente("Antonio", "Perez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+	    Cliente cliente5 = new Cliente("Nicolas", "Perez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+	    Cliente cliente6 = new Cliente("Mica", "Perez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
 
 
 	    Transformador transformadorAlmagro = new Transformador();

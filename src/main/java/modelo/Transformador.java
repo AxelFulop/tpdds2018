@@ -1,32 +1,23 @@
 package modelo;
 
-import modelo.TuplaDouble;
+import modelo.common.TuplaDouble;
 import modelo.repositorios.RepositorioClientes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "transformador")
 public class Transformador {
 	@Id @GeneratedValue
-	@Column (name = "transformador_id")
 	private long id;
+	@OneToOne
     public ZonaGeografica zonaGeografica;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = "transformador_id")
     public List<Cliente> clientes = new ArrayList<Cliente>();
-    @Transient
+    @Embedded
     public TuplaDouble ubicacion;
 
     public double energiaQueEstaConsumiendo() {

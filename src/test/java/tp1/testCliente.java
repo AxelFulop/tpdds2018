@@ -9,7 +9,7 @@ import modelo.DispositivoInteligente;
 import modelo.TipoIdentificacion;
 
 public class testCliente {
-	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
+	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","JuanATR","qwerty",0);
 	DispositivoEstandar televisor = new DispositivoEstandar("tv", false,10);
 	DispositivoInteligente computadora = new DispositivoInteligente("computadora",true,1);
 	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,1);

@@ -1,66 +1,55 @@
 package modelo;
 
-import modelo.TuplaDouble;
+import modelo.common.TuplaDouble;
+import org.apache.commons.lang.time.DateUtils;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
-	@Id @GeneratedValue
-	@Column (name = "cliente_id")
-	private int id;
-	@OneToOne(fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST,CascadeType.REMOVE})                                  
-	private Identificacion identificacion;
-	@Column(length=15)
-    private String nombre;
-	@Column(length=20)
-    private String apellido;
-    private int telefono;
-    @Column(length=30)
-    private String domicilio;
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Cliente extends Usuario {
+    @Id
+    @GeneratedValue
+    private int id;
+    int telefono;
+    String domicilio;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CategoriaResidencial categoria;
-    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Usuario usuario;
     private int puntos;
     @Transient //para pruebas
-    @OneToMany @JoinColumn(name = "cliente_id")
+    @OneToMany
+    @JoinColumn(name = "cliente_id")
     private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
     @Transient //para pruebas
-    @OneToMany @JoinColumn(name = "cliente_id")
+    @OneToMany
+    @JoinColumn(name = "cliente_id")
     private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
     private Double consumoTotal;
-    @Transient
+    @Embedded
     public TuplaDouble ubicacion;
+    @OneToMany
     public List<Sensor> sensores = new ArrayList<Sensor>();
 
-    public Cliente() {}
+    @Embedded
+    private Identificacion identificacion;
 
-    public Cliente(String nombre, String apellido, TipoIdentificacion tipoId, Integer numId, Integer tel, String dom,
-                   String nombreUsuario, String contrasena, int puntaje) {
+    @Transient
+    Date today = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
 
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Cliente() {
+    }
+
+    public Cliente(String nombre, String apellido, TipoIdentificacion tipoId, String numId, Integer tel, String dom,
+                   String nombreUsuario, String contrasenia, int puntaje) {
+        super(nombreUsuario, contrasenia, nombre, apellido);
         this.identificacion = new Identificacion(tipoId, numId);
         this.telefono = tel;
         this.domicilio = dom;
-        this.usuario = new Usuario(nombreUsuario, contrasena,LocalDate.now());
         this.categoria = new CategoriaResidencial("r1", 0.0, 150.0, 18.76, 0.644);
         this.puntos = puntaje;
     }
@@ -148,11 +137,11 @@ public class Cliente {
         this.identificacion.setTipo(tipoIdentificacion);
     }
 
-    public int getNumeroIdentificacion() {
+    public String getNumeroIdentificacion() {
         return this.identificacion.getNumero();
     }
 
-    public void setNumeroIdentificacion(int numeroIdentificacion) {
+    public void setNumeroIdentificacion(String numeroIdentificacion) {
         this.identificacion.setNumero(numeroIdentificacion);
     }
 
@@ -172,12 +161,12 @@ public class Cliente {
         this.domicilio = domicilio;
     }
 
-    public LocalDate getFechaAltaServicio() {
-        return this.usuario.getFechaAltaServicio();
+    public Date getFechaAltaServicio() {
+        return this.getFechaAltaServicio();
     }
 
-    public void setFechaAltaServicio(LocalDate fechaAltaServicio) {
-        this.usuario.setFechaAltaServicio(fechaAltaServicio);
+    public void setFechaAltaServicio(Date fechaAltaServicio) {
+        this.setFechaAltaServicio(fechaAltaServicio);
     }
 
     public CategoriaResidencial getCategoria() {
@@ -189,19 +178,19 @@ public class Cliente {
     }
 
     public String getNombreUsuario() {
-        return this.usuario.getNombre();
+        return this.getNombre();
     }
 
     public void setNombreUsuario(String nombreUsuario) {
-        this.usuario.setNombre(nombreUsuario);
+        this.setNombre(nombreUsuario);
     }
 
     public String getContrasena() {
-        return this.usuario.getContrasenia();
+        return this.getContrasenia();
     }
 
     public void setContrasena(String contrasena) {
-        this.usuario.setContrasenia(contrasena);
+        this.setContrasenia(contrasena);
     }
 
     public int getPuntos() {

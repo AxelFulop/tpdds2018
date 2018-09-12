@@ -9,13 +9,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dispEstandar" )
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class DispositivoEstandar extends Dispositivo {
 	@Id @GeneratedValue
-	@Column (name = "dispEst_id")
-	private long id; 
-	@Column(length = 20)
+	private long id;
 	private String nombre;
 	private int horasDeUsoDiarias; //Estimativo brindado por el usuario
 	

@@ -1,9 +1,14 @@
 package modelo;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public abstract class Regla {
+    @Id
+    @GeneratedValue
+    private int id;
+    @OneToOne @JoinColumn(name = "regla_id")
     public Actuador actuador;
 
     public Actuador getActuador() {

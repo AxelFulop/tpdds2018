@@ -3,7 +3,6 @@ package tp2;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.common.Tuple;
 import modelo.repositorios.RepositorioClientes;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,17 +14,17 @@ import modelo.TipoIdentificacion;
 import modelo.Transformador;
 import modelo.ZonaGeografica;
 import modelo.factories.DispositivoFactory;
-import modelo.TuplaDouble;
+import modelo.common.TuplaDouble;
 
 public class testGeoposicionamiento {
 
 
-    Cliente cliente1 = new Cliente("Rodrigo", "Lopez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-    Cliente cliente2 = new Cliente("Nicolas", "Merlis", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-    Cliente cliente3 = new Cliente("Axel", "Fulop", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-    Cliente cliente4 = new Cliente("Antonio", "Perez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-    Cliente cliente5 = new Cliente("Nicolas", "Perez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
-    Cliente cliente6 = new Cliente("Mica", "Perez", TipoIdentificacion.DNI, 123, 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+    Cliente cliente1 = new Cliente("Rodrigo", "Lopez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+    Cliente cliente2 = new Cliente("Nicolas", "Merlis", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+    Cliente cliente3 = new Cliente("Axel", "Fulop", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+    Cliente cliente4 = new Cliente("Antonio", "Perez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+    Cliente cliente5 = new Cliente("Nicolas", "Perez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
+    Cliente cliente6 = new Cliente("Mica", "Perez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);
 
     List<Cliente> listaClientes1 = new ArrayList<Cliente>();
     List<Cliente> listaClientes2 = new ArrayList<Cliente>();

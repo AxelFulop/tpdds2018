@@ -1,31 +1,24 @@
 package modelo;
 
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Date;
+@Entity
+public class Administrador extends Usuario {
 
-@SuppressWarnings("unused")
-public class Administrador {
-	private String nombre;
-	private String apellido;
-	private String domicilio;
-	private LocalDate fechaDeAlta;
-	private int numIdentificacion;
-	private String nombreUsuario;
-	private String contrasenia;
-	
-	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contrasenia, LocalDate fechaAlta) {
-		this.fechaDeAlta = fechaAlta;
-		this.nombre=nombre;
-		this.apellido=apellido;
-		this.numIdentificacion=numIdentificacion;
-		this.nombreUsuario=nombreUsuario;
-		this.contrasenia=contrasenia;
+	public Administrador(){
+
+	}
+
+	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contrasenia) {
+		super(nombreUsuario,contrasenia,nombre,apellido);
 	}
 	
 	public int candidaDeMesesComoAdministrator() {
-		Period p = Period.between(fechaDeAlta,LocalDate.now());
-		return p.getYears() * 12 + p.getMonths();
+		Date todayDate = new Date();
+		return (todayDate.getYear() - fechaAltaServicio.getYear()) *12 + todayDate.getMonth();
 	}
 	
 	

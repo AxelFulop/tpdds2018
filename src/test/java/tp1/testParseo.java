@@ -18,8 +18,8 @@ public class testParseo {
 	
 	Parser parser = new Parser();
 	List<DispositivoEstandar> dispositivos = new ArrayList<DispositivoEstandar>();
-	Cliente cliente1JSON = new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","juanATR","qwerty",0);
-	Cliente cliente2JSON = new Cliente("Antonio", "Mascherano", TipoIdentificacion.DNI, 40433999, 45673908, "calleFalsa 123", "hoyTeConvertisEnHeroe", "perro",0);
+	Cliente cliente1JSON = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","juanATR","qwerty",0);
+	Cliente cliente2JSON = new Cliente("Antonio", "Mascherano", TipoIdentificacion.DNI, "123", 45673908, "calleFalsa 123", "hoyTeConvertisEnHeroe", "perro",0);
 	DispositivoEstandar tele = new DispositivoEstandar("tele",false,2);
  	DispositivoEstandar ipod = new DispositivoEstandar("ipod",false,10);
  	DispositivoInteligente aire = new DispositivoInteligente("aire",true,5);
@@ -49,7 +49,7 @@ public class testParseo {
 		Assert.assertEquals(cliente1JSON.getApellido(),clientes.get(0).getApellido());	
 		Assert.assertEquals(cliente2JSON.getApellido(),clientes.get(1).getApellido());
 		//comparo tipo identificacion
-		Assert.assertEquals(cliente1JSON.getTipoIdentificacion(),clientes.get(0).getTipoIdentificacion());	
+ 		Assert.assertEquals(cliente1JSON.getTipoIdentificacion(),clientes.get(0).getTipoIdentificacion());
 		Assert.assertEquals(cliente2JSON.getTipoIdentificacion(),clientes.get(1).getTipoIdentificacion());
 		//comparo numero identificacion 
 		Assert.assertEquals(cliente1JSON.getNumeroIdentificacion(),clientes.get(0).getNumeroIdentificacion());	
