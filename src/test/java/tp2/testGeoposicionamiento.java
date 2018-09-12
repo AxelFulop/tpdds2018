@@ -3,7 +3,7 @@ package tp2;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.repositorios.RepositorioClientes;
+import repositorios.RepositorioClientes;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ import modelo.TipoIdentificacion;
 import modelo.Transformador;
 import modelo.ZonaGeografica;
 import modelo.factories.DispositivoFactory;
-import modelo.common.TuplaDouble;
+import common.TuplaDouble;
 
 public class testGeoposicionamiento {
 

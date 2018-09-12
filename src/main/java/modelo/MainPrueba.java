@@ -4,19 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
-import modelo.common.TuplaDouble;
+import common.TuplaDouble;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import modelo.factories.DispositivoFactory;
-import modelo.repositorios.RepositorioClientes;
+import repositorios.RepositorioClientes;
 
 //CLASE PARA PROBAR SI PERSISTE RAPIDO
 public class MainPrueba {
 
 	public static void main(String[] args) {
-		EntityManager em = PerThreadEntityManagers.getEntityManager();
+
+        EntityManager em = PerThreadEntityManagers.getEntityManager();
+        //EntityManagerFactory d = Persistence.createEntityManagerFactory("tpdds2018");
+
 		EntityTransaction transaccion = em.getTransaction();
 		
 		Cliente cliente1 = new Cliente("Rodrigo", "Lopez", TipoIdentificacion.DNI, "123", 48262937, "Medrano 951", "JuanATR", "qwerty", 0);

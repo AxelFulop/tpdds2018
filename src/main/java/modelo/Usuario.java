@@ -1,11 +1,13 @@
 package modelo;
 
-import org.apache.commons.lang.time.DateUtils;
+
+//import org.uqbar.commons.utils.Observable;
 
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 
+//@Observable
 @Entity
 
 @Table(name = "usuario")

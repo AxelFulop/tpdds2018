@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.*;
+import modelo.Actuadores.ActuadorOprtimizadorAhorroEnergia;
 import modelo.factories.DispositivoFactory;
 import modelo.reglas.ReglaOptimizadorConsumoAlto;
 import modelo.sensores.*;

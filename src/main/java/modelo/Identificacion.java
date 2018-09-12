@@ -1,7 +1,10 @@
 package modelo;
 
+//import org.uqbar.commons.utils.Observable;
+
 import javax.persistence.*;
 
+//@Observable
 @Entity
 @Embeddable
 @Table(name = "identificacion")
@@ -38,6 +41,6 @@ public class Identificacion {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	
-	
+
+
 }

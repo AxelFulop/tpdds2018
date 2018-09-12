@@ -1,4 +1,4 @@
-package modelo.common;
+package common;
 
     public class Tuple<X, Y> {
         public X x;

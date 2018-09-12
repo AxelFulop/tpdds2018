@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 import modelo.reglas.ReglaTemperaturaAlta;
-import modelo.sensores.ActuadorEncenderAire;
+import modelo.Actuadores.ActuadorEncenderAire;
 import modelo.sensores.SensorTemperatura;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package modelo.Servicios;
+package Servicios;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

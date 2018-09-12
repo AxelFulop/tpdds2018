@@ -1,7 +1,10 @@
 package modelo;
 
+//import org.uqbar.commons.utils.Observable;
+
 import javax.persistence.*;
 
+//@Observable
 @Entity
 public class DispositivoInteligente extends Dispositivo {
 @Id @GeneratedValue

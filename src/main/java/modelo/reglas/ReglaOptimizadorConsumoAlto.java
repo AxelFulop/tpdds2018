@@ -1,12 +1,17 @@
 package modelo.reglas;
 
 import modelo.*;
-import modelo.sensores.ActuadorOprtimizadorAhorroEnergia;
+//import org.uqbar.commons.utils.Observable;
 
-import java.util.List;
+import javax.persistence.Entity;
 
+//@Observable
+@Entity
 public class ReglaOptimizadorConsumoAlto extends Regla {
 
+    public ReglaOptimizadorConsumoAlto(){
+
+    }
     public ReglaOptimizadorConsumoAlto(Actuador actuador) {
         super(actuador);
     }

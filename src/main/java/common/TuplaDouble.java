@@ -1,4 +1,4 @@
-package modelo.common;
+package common;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

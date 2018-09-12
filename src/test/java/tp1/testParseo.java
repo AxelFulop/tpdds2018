@@ -9,7 +9,7 @@ import org.junit.Test;
 import modelo.Cliente;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
-import modelo.Servicios.Parser;
+import Servicios.Parser;
 import modelo.TipoIdentificacion;
 
 //TODO: Aca cambio todo el cliente a como se habia hecho antes, hay que arreglar el json al nuevo tipo de cliente.

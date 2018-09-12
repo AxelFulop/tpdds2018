@@ -1,7 +1,7 @@
 package modelo;
 
-import modelo.common.TuplaDouble;
-import org.apache.commons.lang.time.DateUtils;
+import common.TuplaDouble;
+//import org.uqbar.commons.utils.Observable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+//@Observable
 @Entity
 @Table(name = "cliente")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -37,7 +38,7 @@ public class Cliente extends Usuario {
 
 
     @Transient
-    Date today = DateUtils.truncate(new Date(), Calendar.DAY_OF_MONTH);
+    Date today = new Date();
 
     public Cliente() {
     }

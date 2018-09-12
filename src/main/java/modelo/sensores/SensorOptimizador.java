@@ -3,11 +3,14 @@ package modelo.sensores;
 import modelo.Dispositivo;
 import modelo.Optimizador;
 import modelo.Sensor;
+//import org.uqbar.commons.utils.Observable;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+//@Observable
+@Entity
 public class SensorOptimizador extends Sensor {
 
 	@Override

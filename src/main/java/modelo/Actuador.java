@@ -1,9 +1,13 @@
 package modelo;
 
+//import org.uqbar.commons.utils.Observable;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+//@Observable
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Actuador {
 	@Id
 	@GeneratedValue

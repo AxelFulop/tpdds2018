@@ -1,9 +1,12 @@
 package modelo;
 
+//import org.uqbar.commons.utils.Observable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+//@Observable
 @Entity
 public class Restriccion {
     @Id

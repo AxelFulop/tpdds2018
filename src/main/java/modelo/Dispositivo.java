@@ -1,7 +1,10 @@
 package modelo;
 
+//import org.uqbar.commons.utils.Observable;
+
 import javax.persistence.*;
 
+//@Observable
 @Entity
 @Table(name = "dispositivo")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

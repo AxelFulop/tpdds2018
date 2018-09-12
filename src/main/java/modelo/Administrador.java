@@ -1,6 +1,8 @@
 package modelo;
 
 
+//import org.uqbar.commons.utils.Observable;
+
 import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.Period;
@@ -8,6 +10,7 @@ import java.util.Date;
 
 import static java.lang.Math.abs;
 
+//@Observable
 @Entity
 public class Administrador extends Usuario {
 

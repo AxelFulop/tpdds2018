@@ -1,5 +1,7 @@
 package modelo;
 
+//import org.uqbar.commons.utils.Observable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+//@Observable
 @Entity
 @Table(name = "zonaGeografica")
 public class ZonaGeografica {

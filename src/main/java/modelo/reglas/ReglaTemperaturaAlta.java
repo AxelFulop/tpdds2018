@@ -1,12 +1,17 @@
 package modelo.reglas;
 
 import modelo.*;
-import modelo.sensores.ActuadorEncenderAire;
+//import org.uqbar.commons.utils.Observable;
 
-import java.util.List;
+import javax.persistence.Entity;
 
+//@Observable
+@Entity
 public class ReglaTemperaturaAlta extends Regla {
 
+	public ReglaTemperaturaAlta(){
+
+	}
 	public ReglaTemperaturaAlta(Actuador actuador) {
 		super(actuador);
 	}

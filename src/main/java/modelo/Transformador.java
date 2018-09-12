@@ -1,13 +1,15 @@
 package modelo;
 
-import modelo.common.TuplaDouble;
-import modelo.repositorios.RepositorioClientes;
+import common.TuplaDouble;
+//import org.uqbar.commons.utils.Observable;
+import repositorios.RepositorioClientes;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
+//@Observable
 @Entity
 @Table(name = "transformador")
 public class Transformador {
