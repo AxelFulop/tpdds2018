@@ -22,11 +22,9 @@ public class Cliente extends Usuario {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CategoriaResidencial categoria;
     private int puntos;
-    @Transient //para pruebas
     @OneToMany
     @JoinColumn(name = "cliente_id")
     private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
-    @Transient //para pruebas
     @OneToMany
     @JoinColumn(name = "cliente_id")
     private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
