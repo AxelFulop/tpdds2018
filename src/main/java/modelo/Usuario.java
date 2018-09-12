@@ -11,6 +11,7 @@ import java.util.Date;
 @Entity
 
 @Table(name = "usuario")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Usuario {
     @Id
     @GeneratedValue

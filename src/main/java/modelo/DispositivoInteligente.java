@@ -7,11 +7,10 @@ import javax.persistence.*;
 //@Observable
 @Entity
 public class DispositivoInteligente extends Dispositivo {
-@Id @GeneratedValue
-private long id;
+
 @Column(length = 20)
 private String nombre;
-@Embedded
+@Enumerated(EnumType.STRING)
 private Estado estado;
 @ManyToOne
 private Fabricante fabricante;

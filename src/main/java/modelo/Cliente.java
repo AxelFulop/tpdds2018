@@ -11,12 +11,7 @@ import java.util.List;
 
 //@Observable
 @Entity
-@Table(name = "cliente")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Cliente extends Usuario {
-    @Id
-    @GeneratedValue
-    private int id;
     int telefono;
     String domicilio;
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -32,6 +27,7 @@ public class Cliente extends Usuario {
     @Embedded
     public TuplaDouble ubicacion;
     @OneToMany
+    @JoinColumn(name = "cliente_id")
     public List<Sensor> sensores = new ArrayList<Sensor>();
 
 

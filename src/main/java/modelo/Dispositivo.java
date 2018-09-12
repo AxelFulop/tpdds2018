@@ -9,14 +9,13 @@ import javax.persistence.*;
 @Table(name = "dispositivo")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dispositivo {
+    @Id@GeneratedValue
+    private int id;
     public boolean bajoConsumo;
     public double kwh;
     @ManyToOne(cascade = CascadeType.ALL)
     public Restriccion restriccion;
 
-    @Id
-    @GeneratedValue
-    private long id;
 
     public Dispositivo() {
 

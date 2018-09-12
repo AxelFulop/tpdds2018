@@ -21,7 +21,7 @@ public class CategoriaResidencial {
 	private Double cargoFijo;
 	private Double cargoVariable;
 	
-	CategoriaResidencial(){}
+	public CategoriaResidencial(){}
 	
 	public CategoriaResidencial(String nom, Double limInf, Double limSup, Double cFijo, Double cVariable) {
 		nombre = nom;

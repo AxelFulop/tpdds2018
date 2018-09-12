@@ -13,8 +13,7 @@ import javax.persistence.Table;
 //@Observable
 @Entity
 public class DispositivoEstandar extends Dispositivo {
-	@Id @GeneratedValue
-	private long id;
+
 	private String nombre;
 	private int horasDeUsoDiarias; //Estimativo brindado por el usuario
 	

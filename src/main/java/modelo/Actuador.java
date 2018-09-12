@@ -14,7 +14,7 @@ public abstract class Actuador {
 	private int id;
 
 	@ManyToMany
-	@JoinTable(name = "actuador_id",
+	@JoinTable(name = "actuadorPorDispositivoInteligente",
 			joinColumns = @JoinColumn(name = "dispositivoInteligente_id"),
 			inverseJoinColumns = @JoinColumn(name = "actuador_id")
 	)

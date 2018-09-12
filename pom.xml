@@ -80,8 +80,8 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.0.7.Final</version>
-        </dependency>-->
-
+        </dependency>
+        -->
 
     </dependencies>
 </project>

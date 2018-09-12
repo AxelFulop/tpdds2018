@@ -19,8 +19,8 @@ public class MainPrueba {
 
 	public static void main(String[] args) {
 
-        EntityManager em = PerThreadEntityManagers.getEntityManager();
-        //EntityManagerFactory d = Persistence.createEntityManagerFactory("tpdds2018");
+        EntityManagerFactory d = Persistence.createEntityManagerFactory("db");
+        EntityManager em = d.createEntityManager();
 
 		EntityTransaction transaccion = em.getTransaction();
 		
@@ -89,9 +89,7 @@ public class MainPrueba {
         zona1.setTransformadores(listaTransformadores1);
         zona2.setTransformadores(listaTransformadores2);
 
-        transformadorAlmagro.obtenerClientes();
-        transformadorCaballito.obtenerClientes();
-        transformadorColegiales.obtenerClientes();
+
         
 		try {
 			transaccion.begin();
@@ -100,7 +98,12 @@ public class MainPrueba {
 			em.persist(transformadorAlmagro);
 			em.persist(transformadorCaballito);
 			em.persist(transformadorColegiales);
-			em.persist(cliente1.getCategoria());
+			em.persist(cliente1);
+            em.persist(cliente2);
+            em.persist(cliente3);
+            em.persist(cliente4);
+            em.persist(cliente5);
+            em.persist(cliente6);
 		
 			transaccion.commit();
 		}
