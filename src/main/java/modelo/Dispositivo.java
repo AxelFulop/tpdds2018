@@ -7,11 +7,17 @@ import javax.persistence.*;
 //@Observable
 @Entity
 @Table(name = "dispositivo")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dispositivo {
     @Id
-    @GeneratedValue
-    private int id;
+    @TableGenerator(
+            name = "tipoDispositivoIdGenerator",
+            table = "tipoDispositivoIdGenerator",
+            pkColumnName = "name",
+            valueColumnName = "sequence",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "tipoDispositivoIdGenerator")
+    public int id;
     public boolean bajoConsumo;
     public double kwh;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -53,4 +59,6 @@ public abstract class Dispositivo {
     public void setBajoConsumo(boolean b) {
         this.bajoConsumo = b;
     }
+
+
 }
