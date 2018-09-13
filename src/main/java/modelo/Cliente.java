@@ -1,5 +1,6 @@
 package modelo;
 
+import Servicios.Session;
 import common.TuplaDouble;
 //import org.uqbar.commons.utils.Observable;
 
@@ -242,5 +243,13 @@ public class Cliente extends Usuario {
 
     public void ejecutarReglasDeSensores() {
         sensores.forEach(sensor -> sensor.EjecutarReglasAsociadas());
+    }
+
+    public static Cliente buscarPorId(int id)
+    {
+        return Session.getSession().find(Cliente.class,id);
+    }
+    public static List<Cliente> obtenerTodos() {
+        return Session.getSession().createQuery("SELECT e FROM Cliente e").getResultList();
     }
 }

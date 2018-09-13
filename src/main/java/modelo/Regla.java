@@ -2,17 +2,19 @@ package modelo;
 
 //import org.uqbar.commons.utils.Observable;
 
+import Servicios.Controller;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 //@Observable
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Regla {
+public abstract class Regla extends Controller {
     @Id
     @GeneratedValue
     private int id;
-    @OneToOne @JoinColumn(name = "regla_id")
+    @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "regla_id")
     public Actuador actuador;
 
     public Regla(){

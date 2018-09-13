@@ -1,3 +1,5 @@
+package Servicios;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -17,8 +19,8 @@ public class Session {
     public static void rollbackTransaction(){
         transaction.rollback();
     }
-    public static void closeTransaction(){
-        transaction.close();
+    public static void commitTransaction(){
+        transaction.commit();
     }
 
 }

@@ -3,16 +3,21 @@ package modelo;
 
 //import org.uqbar.commons.utils.Observable;
 
+import Servicios.Controller;
+import modelo.Identificacion;
+import modelo.TipoIdentificacion;
+
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
+import Servicios.Session;
 
 //@Observable
 @Entity
 
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Usuario {
+public abstract class Usuario extends Controller {
     @Id
     @GeneratedValue
     private int id;
@@ -27,7 +32,7 @@ public abstract class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombreUsuario, String contrasenia, String nombre, String apellido,TipoIdentificacion tipoIdentificacion,String numeroIdentificacion) {
+    public Usuario(String nombreUsuario, String contrasenia, String nombre, String apellido, TipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.nombre = nombre;
@@ -84,4 +89,5 @@ public abstract class Usuario {
     public void setFechaAltaServicio(Date fechaAltaServicio) {
         this.fechaAltaServicio = fechaAltaServicio;
     }
+
 }

@@ -2,13 +2,17 @@ package modelo;
 
 //import org.uqbar.commons.utils.Observable;
 
+import Servicios.Controller;
+import Servicios.Session;
+
 import javax.persistence.*;
+import java.util.List;
 
 //@Observable
 @Entity
 @Table(name = "dispositivo")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Dispositivo {
+public abstract class Dispositivo extends Controller {
     @Id
     @TableGenerator(
             name = "tipoDispositivoIdGenerator",
@@ -68,11 +72,13 @@ public abstract class Dispositivo {
         this.bajoConsumo = b;
     }
 
-    public int getId() {
-        return id;
+
+    public static Dispositivo buscarPorId(int id)
+    {
+        return Session.getSession().find(Dispositivo.class,id);
+    }
+    public static List<Dispositivo> obtenerTodos() {
+        return Session.getSession().createQuery("SELECT e FROM Dispositivo e").getResultList();
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }
