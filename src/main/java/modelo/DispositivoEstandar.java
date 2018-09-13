@@ -2,7 +2,7 @@ package modelo;
 
 public class DispositivoEstandar extends Dispositivo {
 	private String nombre;
-	private int horasDeUsoDiarias; //Estimativo brindado por el usuario
+	private int horasDeUsoDiarias; //Estimativo brindado por el usuario (horas de uso por dia)
 	
 	public DispositivoEstandar(String nom, boolean bajoConsumo, double kwh) {
 		setNombre(nom);

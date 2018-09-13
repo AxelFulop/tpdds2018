@@ -1,6 +1,6 @@
 package modelo;
 
-import modelo.common.Tuple;
+import common.Tuple;
 
 import java.util.ArrayList;
 import java.util.List;

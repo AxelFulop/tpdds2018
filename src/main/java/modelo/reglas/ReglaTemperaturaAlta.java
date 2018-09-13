@@ -1,7 +1,6 @@
 package modelo.reglas;
 
 import modelo.*;
-import modelo.sensores.ActuadorEncenderAire;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package modelo;
 
-import modelo.common.Tuple;
-import modelo.repositorios.RepositorioClientes;
+import common.Tuple;
+import repositorios.RepositorioClientes;
 
 import java.util.ArrayList;
 import java.util.List;

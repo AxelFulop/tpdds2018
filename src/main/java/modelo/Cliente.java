@@ -1,6 +1,6 @@
 package modelo;
 
-import modelo.common.Tuple;
+import common.Tuple;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
