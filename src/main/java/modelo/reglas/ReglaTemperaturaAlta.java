@@ -1,11 +1,8 @@
 package modelo.reglas;
 
 import modelo.*;
-//import org.uqbar.commons.utils.Observable;
-
 import javax.persistence.Entity;
 
-//@Observable
 @Entity
 public class ReglaTemperaturaAlta extends Regla {
 

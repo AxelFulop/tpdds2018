@@ -1,16 +1,13 @@
 package modelo;
 
 import Servicios.Session;
-import common.TuplaDouble;
-//import org.uqbar.commons.utils.Observable;
+import common.Coordenada;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-//@Observable
 @Entity
 public class Cliente extends Usuario {
     int telefono;
@@ -26,7 +23,7 @@ public class Cliente extends Usuario {
     private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
     private Double consumoTotal;
     @Embedded
-    public TuplaDouble ubicacion;
+    public Coordenada ubicacion;
     @OneToMany
     @JoinColumn(name = "cliente_id")
     public List<Sensor> sensores = new ArrayList<Sensor>();
@@ -79,14 +76,14 @@ public class Cliente extends Usuario {
         return this.dispositivosEstandares.size() + this.dispositivosInteligentes.size();
     }
 
-    public double getConsumoMensual() {
+    public Double getConsumoMensual() {
         List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
         dispositivos.addAll(dispositivosEstandares);
         dispositivos.addAll(dispositivosInteligentes);
         return dispositivos.stream().mapToDouble(d -> d.getConsumoMensual()).sum();
     }
 
-    public double getFacturaMensual(Integer mes) {
+    public Double getFacturaMensual(Integer mes) {
         return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual();
     }
 
@@ -97,7 +94,7 @@ public class Cliente extends Usuario {
         puntos += 10;
     }
 
-    public double getConsumoInstantaneo() {
+    public Double getConsumoInstantaneo() {
         return getDispositivos().stream().mapToDouble(d -> d.getConsumoInstantaneo()).sum();
     }
 
@@ -223,11 +220,11 @@ public class Cliente extends Usuario {
         this.consumoTotal = consumoTotal;
     }
 
-    public TuplaDouble getUbicacion() {
+    public Coordenada getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(TuplaDouble ubicacion) {
+    public void setUbicacion(Coordenada ubicacion) {
         this.ubicacion = ubicacion;
     }
 
@@ -248,6 +245,6 @@ public class Cliente extends Usuario {
         return Session.getSession().find(Cliente.class,id);
     }
     public static List<Cliente> obtenerTodos() {
-        return Session.getSession().createQuery("SELECT e FROM Cliente e").getResultList();
+        return (List<Cliente>) Session.getSession().createQuery("SELECT e FROM Cliente e").getResultList();
     }
 }

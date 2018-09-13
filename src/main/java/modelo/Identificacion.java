@@ -1,10 +1,7 @@
 package modelo;
 
-//import org.uqbar.commons.utils.Observable;
-
 import javax.persistence.*;
 
-//@Observable
 @Embeddable
 public class Identificacion {
 	@Enumerated(EnumType.STRING)// @Convert(converter = ConversorTipoId.class): Para el que hizo esto, son la anottation Enumerated, hace lo mismo y definis el ttipo de dato que queres que persista en la BD

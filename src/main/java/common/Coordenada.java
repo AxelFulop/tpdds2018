@@ -4,17 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class TuplaDouble {
+public class Coordenada {
 	@Column(name = "coordenadaX")
 	private Double x;
 	@Column(name = "coordenadaY")
 	private Double y;
 
-	public TuplaDouble(){
+	public Coordenada(){
 
 	}
 
-	public TuplaDouble(Double a, Double b){
+	public Coordenada(Double a, Double b){
 		this.x = a;
 		this.y = b;
 	}

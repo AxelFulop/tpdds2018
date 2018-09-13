@@ -1,18 +1,12 @@
 package modelo;
 
-
-//import org.uqbar.commons.utils.Observable;
-
 import Servicios.Controller;
 import modelo.Identificacion;
 import modelo.TipoIdentificacion;
 
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
-import Servicios.Session;
 
-//@Observable
 @Entity
 
 @Table(name = "usuario")

@@ -1,78 +1,75 @@
 package modelo;
 
-//import org.uqbar.commons.utils.Observable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Observable
 @Entity
 public class Restriccion {
     @Id
     @GeneratedValue
     private int id;
-    public double cotaSuperior;
-    public double cotaInferior;
+    public Double cotaSuperior;
+    public Double cotaInferior;
 
     public Restriccion() {
 
     }
 
-    public double getCotaSuperior() {
+    public Double getCotaSuperior() {
         return cotaSuperior;
     }
 
-    public void setCotaSuperior(double cotaSuperior) {
+    public void setCotaSuperior(Double cotaSuperior) {
         this.cotaSuperior = cotaSuperior;
     }
 
-    public double getCotaInferior() {
+    public Double getCotaInferior() {
         return cotaInferior;
     }
 
-    public void setCotaInferior(double cotaInferior) {
+    public void setCotaInferior(Double cotaInferior) {
         this.cotaInferior = cotaInferior;
     }
 
     public void setCotasAireAcondicionado() {
-        cotaSuperior = 360;
-        cotaInferior = 90;
+        cotaSuperior = 360d;
+        cotaInferior = 90d;
     }
 
     public void setCotasLampara() {
-        cotaSuperior = 360;
-        cotaInferior = 90;
+        cotaSuperior = 360d;
+        cotaInferior = 90d;
     }
 
     public void setCotasTelevisor() {
-        cotaSuperior = 360;
-        cotaInferior = 90;
+        cotaSuperior = 360d;
+        cotaInferior = 90d;
     }
 
     public void setCotasLavarropa() {
-        cotaSuperior = 6;
-        cotaInferior = 30;
+        cotaSuperior = 6d;
+        cotaInferior = 30d;
     }
 
     public void setCotasComputadora() {
-        cotaSuperior = 360;
-        cotaInferior = 60;
+        cotaSuperior = 360d;
+        cotaInferior = 60d;
     }
 
     public void setCotasMicroondas() {
-        cotaSuperior = 15;
-        cotaInferior = 3;
+        cotaSuperior = 15d;
+        cotaInferior = 3d;
     }
 
     public void setCotasPlancha() {
-        cotaSuperior = 30;
-        cotaInferior = 3;
+        cotaSuperior = 30d;
+        cotaInferior = 3d;
     }
 
     public void setCotasVentilador() {
-        cotaSuperior = 360;
-        cotaInferior = 120;
+        cotaSuperior = 360d;
+        cotaInferior = 120d;
     }
 
 }

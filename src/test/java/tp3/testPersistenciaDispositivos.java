@@ -1,9 +1,7 @@
 package tp3;
 
 
-import common.TuplaDouble;
 import modelo.*;
-import org.junit.Before;
 import org.junit.Test;
 
 public class testPersistenciaDispositivos {
@@ -12,9 +10,9 @@ public class testPersistenciaDispositivos {
 	@Test
 	public void creoDispositivoYloPersistoYLoElimino() {
 		int cantidadDispositivos = Dispositivo.obtenerTodos().size();
-		DispositivoEstandar tv = new DispositivoEstandar("tv", false,10);
+		DispositivoEstandar tv = new DispositivoEstandar("tv", false,10d);
 		tv.persistir();
-		DispositivoInteligente aire = new DispositivoInteligente("aire",true,1);
+		DispositivoInteligente aire = new DispositivoInteligente("aire",true,1d);
 		aire.persistir();
 		org.junit.Assert.assertEquals(cantidadDispositivos+2,Dispositivo.obtenerTodos().size());
 		aire.eliminar();
@@ -24,7 +22,7 @@ public class testPersistenciaDispositivos {
 
 	@Test
 	public void obtengoUltimoDipositivoYLoModifico() {
-		DispositivoInteligente aire = new DispositivoInteligente("aire",true,1);
+		DispositivoInteligente aire = new DispositivoInteligente("aire",true,1d);
 		aire.persistir();
 		int cantidadDispositivos = Dispositivo.obtenerTodos().size();
 		Dispositivo dispositivo = Dispositivo.obtenerTodos().get(cantidadDispositivos-1);

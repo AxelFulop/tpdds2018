@@ -1,16 +1,7 @@
 package modelo;
 
-//import org.uqbar.commons.utils.Observable;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
-//@Observable
 @Entity
 public class DispositivoEstandar extends Dispositivo {
 
@@ -20,14 +11,14 @@ public class DispositivoEstandar extends Dispositivo {
 	
 	public DispositivoEstandar(){}
 	
-	public DispositivoEstandar(String nom, boolean bajoConsumo, double kwh) {
+	public DispositivoEstandar(String nom, boolean bajoConsumo, Double kwh) {
 		setNombre(nom);
 		setBajoConsumo(bajoConsumo);
 		setKwh(kwh);
 	}
 	
-	public double getConsumoMensual() {
-		return (double) (kwh * horasDeUsoDiarias * 30);
+	public Double getConsumoMensual() {	
+		return Double.valueOf(kwh * horasDeUsoDiarias * 30); 
 	}
 	
 	//GETTERS Y SETTERS

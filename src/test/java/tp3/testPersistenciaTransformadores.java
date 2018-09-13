@@ -2,7 +2,7 @@ package tp3;
 
 
 import Servicios.Parser;
-import common.TuplaDouble;
+import common.Coordenada;
 import modelo.Cliente;
 import modelo.TipoIdentificacion;
 import modelo.Transformador;
@@ -30,14 +30,15 @@ public class testPersistenciaTransformadores {
 	@Before
 	public void init() {
 
-		transformadorAlmagro.setUbicacion(new TuplaDouble(0D, 0D));
-		transformadorAlmagro.setZonaGeografica(zona1);
+		transformadorAlmagro.setUbicacion(new Coordenada(0D, 0D));
 
-		transformadorCaballito.setUbicacion(new TuplaDouble(5D, 5D));
-		transformadorCaballito.setZonaGeografica(zona1);
+		transformadorCaballito.setUbicacion(new Coordenada(5D, 5D));
 
-		transformadorColegiales.setUbicacion(new TuplaDouble(15D, 15D));
-		transformadorColegiales.setZonaGeografica(zona2);
+		transformadorColegiales.setUbicacion(new Coordenada(15D, 15D));
+		
+		zona1.addTransformador(transformadorAlmagro);
+		zona1.addTransformador(transformadorCaballito);
+		zona2.addTransformador(transformadorColegiales);
 
 	}
 

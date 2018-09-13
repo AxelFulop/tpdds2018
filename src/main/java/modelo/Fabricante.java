@@ -1,10 +1,7 @@
 package modelo;
 
-//import org.uqbar.commons.utils.Observable;
-
 import javax.persistence.*;
 
-//@Observable
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Fabricante {

@@ -1,13 +1,7 @@
 package modelo;
 
-//import org.uqbar.commons.utils.Observable;
-
-import Servicios.Session;
-
 import javax.persistence.*;
-import java.util.List;
 
-//@Observable
 @Entity
 public class DispositivoInteligente extends Dispositivo {
 
@@ -22,7 +16,7 @@ private Double consumoMensual;
 
     public DispositivoInteligente(){}
 
-	public DispositivoInteligente(String nom, boolean bajoConsumo, double kwh) {
+	public DispositivoInteligente(String nom, boolean bajoConsumo, Double kwh) {
 		setNombre(nom);
 		setBajoConsumo(bajoConsumo);
 		setKwh(kwh);		
@@ -59,7 +53,7 @@ private Double consumoMensual;
 	}
 	
 	@Override
-	public double getConsumoMensual() {
+	public Double getConsumoMensual() {
 		return consumoMensual;
 	}
 

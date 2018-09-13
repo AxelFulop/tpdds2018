@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import repositorios.RepositorioClientes;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import junit.framework.Assert;
 import modelo.Cliente;
 import modelo.DispositivoInteligente;
 import modelo.TipoIdentificacion;
 import modelo.Transformador;
 import modelo.ZonaGeografica;
 import modelo.factories.DispositivoFactory;
-import common.TuplaDouble;
+import common.Coordenada;
+
 
 public class testGeoposicionamiento {
 
@@ -35,8 +35,9 @@ public class testGeoposicionamiento {
     Transformador transformadorCaballito = new Transformador();
     Transformador transformadorColegiales = new Transformador();
 
+    /*
     List<Transformador> listaTransformadores1 = new ArrayList<Transformador>();
-    List<Transformador> listaTransformadores2 = new ArrayList<Transformador>();
+    List<Transformador> listaTransformadores2 = new ArrayList<Transformador>(); */
 
     ZonaGeografica zona1 = new ZonaGeografica();
     ZonaGeografica zona2 = new ZonaGeografica();
@@ -44,19 +45,19 @@ public class testGeoposicionamiento {
     @Before
     public void init() {
 
-        transformadorAlmagro.setUbicacion(new TuplaDouble(0D, 0D));
-        transformadorAlmagro.setZonaGeografica(zona1);
-        transformadorCaballito.setUbicacion(new TuplaDouble(5D, 5D));
-        transformadorCaballito.setZonaGeografica(zona1);
-        transformadorColegiales.setUbicacion(new TuplaDouble(15D, 15D));
-        transformadorColegiales.setZonaGeografica(zona2);
+        transformadorAlmagro.setUbicacion(new Coordenada(0D, 0D));
+        zona1.addTransformador(transformadorAlmagro);
+        transformadorCaballito.setUbicacion(new Coordenada(5D, 5D));
+        zona2.addTransformador(transformadorCaballito);
+        transformadorColegiales.setUbicacion(new Coordenada(15D, 15D));
+        zona1.addTransformador(transformadorColegiales);
 
-        cliente1.setUbicacion(new TuplaDouble(0D, 1D));
-        cliente2.setUbicacion(new TuplaDouble(1D, 0D));
-        cliente3.setUbicacion(new TuplaDouble(1D, 0D));
-        cliente4.setUbicacion(new TuplaDouble(6D, 5D));
-        cliente5.setUbicacion(new TuplaDouble(5D, 6D));
-        cliente6.setUbicacion(new TuplaDouble(16D, 15D));
+        cliente1.setUbicacion(new Coordenada(0D, 1D));
+        cliente2.setUbicacion(new Coordenada(1D, 0D));
+        cliente3.setUbicacion(new Coordenada(1D, 0D));
+        cliente4.setUbicacion(new Coordenada(6D, 5D));
+        cliente5.setUbicacion(new Coordenada(5D, 6D));
+        cliente6.setUbicacion(new Coordenada(16D, 15D));
 
         DispositivoInteligente tv1 = DispositivoFactory.getLED40();
         DispositivoInteligente aa1 = DispositivoFactory.getAireAcondicionadoDe3500Frigroias();
@@ -83,17 +84,16 @@ public class testGeoposicionamiento {
 
 
 
-
+/*
         listaTransformadores1.add(transformadorColegiales);
         listaTransformadores1.add(transformadorAlmagro);
         listaTransformadores2.add(transformadorCaballito);
 
         zona1.setTransformadores(listaTransformadores1);
-        zona2.setTransformadores(listaTransformadores2);
+        zona2.setTransformadores(listaTransformadores2); */
 
-        transformadorAlmagro.obtenerClientes();
-        transformadorCaballito.obtenerClientes();
-        transformadorColegiales.obtenerClientes();
+        zona1.obtenerClientes();
+        zona2.obtenerClientes();
     }
 
     @Test

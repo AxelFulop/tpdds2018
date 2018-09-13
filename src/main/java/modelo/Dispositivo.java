@@ -1,14 +1,11 @@
 package modelo;
 
-//import org.uqbar.commons.utils.Observable;
-
 import Servicios.Controller;
 import Servicios.Session;
 
 import javax.persistence.*;
 import java.util.List;
 
-//@Observable
 @Entity
 @Table(name = "dispositivo")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -23,7 +20,7 @@ public abstract class Dispositivo extends Controller {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "tipoDispositivoIdGenerator")
     public int id;
     public boolean bajoConsumo;
-    public double kwh;
+    public Double kwh;
     public int getId() {
 		return id;
 	}
@@ -40,8 +37,8 @@ public abstract class Dispositivo extends Controller {
 
     }
 
-    public double getConsumoInstantaneo() {
-        return 1;
+    public Double getConsumoInstantaneo() {
+        return 1d;
     }
 
     public Restriccion getRestriccion() {
@@ -52,11 +49,11 @@ public abstract class Dispositivo extends Controller {
         this.restriccion = restriccion;
     }
 
-    public double getConsumoMensual() {
-        return 0;
+    public Double getConsumoMensual() {
+        return 0d;
     }
 
-    public double getKwh() {
+    public Double getKwh() {
         return kwh;
     }
 

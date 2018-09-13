@@ -1,7 +1,5 @@
 package tp1;
 
-import java.time.LocalDate;
-
 import modelo.TipoIdentificacion;
 import org.junit.Assert;
 import org.junit.Test;

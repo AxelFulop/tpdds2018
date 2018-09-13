@@ -1,12 +1,9 @@
 package modelo.sensores;
 
-import modelo.DispositivoInteligente;
 import modelo.Sensor;
-//import org.uqbar.commons.utils.Observable;
-
 import javax.persistence.Entity;
 
-//@Observable
+
 @Entity
 public class SensorTemperatura extends Sensor {
 

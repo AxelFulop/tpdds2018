@@ -20,10 +20,10 @@ public class testParseo {
 	List<DispositivoEstandar> dispositivos = new ArrayList<DispositivoEstandar>();
 	Cliente cliente1JSON = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","juanATR","qwerty",30);
 	Cliente cliente2JSON = new Cliente("Antonio", "Mascherano", TipoIdentificacion.DNI, "40433999", 45673908, "calleFalsa 123", "hoyTeConvertisEnHeroe", "perro",30);
-	DispositivoEstandar tele = new DispositivoEstandar("tele",false,2);
- 	DispositivoEstandar ipod = new DispositivoEstandar("ipod",false,10);
- 	DispositivoInteligente aire = new DispositivoInteligente("aire",true,5);
- 	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,5);
+	DispositivoEstandar tele = new DispositivoEstandar("tele",false,2d);
+ 	DispositivoEstandar ipod = new DispositivoEstandar("ipod",false,10d);
+ 	DispositivoInteligente aire = new DispositivoInteligente("aire",true,5d);
+ 	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,5d);
  	
 	@Before
 	public void init(){}
