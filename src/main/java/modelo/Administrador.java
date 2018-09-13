@@ -6,7 +6,10 @@ package modelo;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import repositorios.RepositorioClientes;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -35,35 +38,56 @@ public class Administrador extends Usuario {
 	{
 		EntityManagerFactory d = Persistence.createEntityManagerFactory("db");
         EntityManager em = d.createEntityManager();
-        disp = em.find(DispositivoInteligente.class,disp.getId());
-        em.remove(disp);
-	
+        EntityTransaction transaction = em.getTransaction();
+        try {
+        	transaction.begin();
+        	disp = em.find(DispositivoInteligente.class,disp.getId());
+            em.remove(disp);
+            transaction.commit();
+            RepositorioClientes.eliminarDispositivoDeClientes(disp);
+        }catch(Exception e) {
+        	e.printStackTrace();
+        	transaction.rollback();
+        }       
+        em.close();
 	}
 	
 	public void CrearDispositivoInteligente (DispositivoInteligente disp)
-	{
-		
+	{		
 		EntityManagerFactory d = Persistence.createEntityManagerFactory("db");
         EntityManager em = d.createEntityManager();
-        disp = em.find(DispositivoInteligente.class,disp.getId());
-        em.persist(disp);
-	
+        EntityTransaction transaction = em.getTransaction();
+        try {
+        	transaction.begin();
+        	disp = em.find(DispositivoInteligente.class,disp.getId());
+        	em.persist(disp);
+        	transaction.commit();
+        }catch(Exception e) {
+        	e.printStackTrace();
+        	transaction.rollback();
+        }
+        em.close();
 	}
 	
 	public void modificarDispositivo (DispositivoInteligente disp,String valor, String valorMod)
 	{
 		EntityManagerFactory d = Persistence.createEntityManagerFactory("db");
         EntityManager em = d.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         int id = disp.getId();
-        disp = em.find(DispositivoInteligente.class,id);
-        em.createQuery( "update  DispositivoInteligente d set d  :valo = :valoMod  where d.id = :idd" )
-        .setParameter("valo",valor).setParameter("valoMod", valorMod).setParameter("idd", id)
-        .setMaxResults(10)
-        .getResultList();
-	
+        try {
+        	transaction.begin();
+        	disp = em.find(DispositivoInteligente.class,id);
+        	em.createQuery( "update  DispositivoInteligente d set d  :valo = :valoMod  where d.id = :idd" )
+        	.setParameter("valo",valor).setParameter("valoMod", valorMod).setParameter("idd", id)
+        	.setMaxResults(10)
+        	.getResultList();
+        	transaction.commit();
+        }catch(Exception e) {
+        	e.printStackTrace();
+        	transaction.rollback();
+        }
+        em.close();
 	}
-	
-	
-	
 	
 }

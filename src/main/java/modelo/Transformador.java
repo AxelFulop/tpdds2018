@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "transformador")
 public class Transformador {
 	@Id @GeneratedValue
-	private long id;
+	private int id;
 	@OneToOne
     public ZonaGeografica zonaGeografica;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = "transformador_id")

@@ -20,7 +20,15 @@ public abstract class Dispositivo {
     public int id;
     public boolean bajoConsumo;
     public double kwh;
-    @ManyToOne(cascade = CascadeType.ALL)
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
     public Restriccion restriccion;
 
 
