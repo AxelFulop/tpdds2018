@@ -26,7 +26,7 @@ public class Controller {
     public void actualizar() {
         try {
             Session.beginTransaction();
-            Session.getSession().merge(this);
+            Session.getSession().merge(this); //TODO: Quitar esto
             Session.commitTransaction();
         } catch (Exception e) {
             e.printStackTrace();

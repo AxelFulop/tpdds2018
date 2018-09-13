@@ -32,8 +32,6 @@ public class Cliente extends Usuario {
     public List<Sensor> sensores = new ArrayList<Sensor>();
 
 
-    @Transient
-    Date today = new Date();
 
     public Cliente() {
     }

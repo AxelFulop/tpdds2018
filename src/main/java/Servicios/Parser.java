@@ -38,7 +38,7 @@ public class Parser {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
+//TODO: HAcer adaoterTRansformador poara que segun el json nos devuelva un transformador de nuestro modelo
 		return null;
 	}
 	

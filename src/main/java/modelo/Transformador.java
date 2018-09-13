@@ -51,7 +51,7 @@ public class Transformador extends Controller {
             if (obtenerDistancia(cliente.getUbicacion(), this.ubicacion) <= zonaGeografica.getRadioAbarcativo()) {
                 clientes.add(cliente);
             }
-        });
+        });//TODO: MAndar a la zona, y esta decide a quien le manda los clientes.
     }
 
     private double obtenerDistancia(TuplaDouble t1, TuplaDouble t2) {
