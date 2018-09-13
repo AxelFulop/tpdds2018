@@ -1,7 +1,8 @@
 package modelo;
 
+import Servicios.Controller;
+import Servicios.Session;
 import common.TuplaDouble;
-//import org.uqbar.commons.utils.Observable;
 import repositorios.RepositorioClientes;
 
 import java.util.ArrayList;
@@ -9,19 +10,21 @@ import java.util.List;
 
 import javax.persistence.*;
 
-//@Observable
 @Entity
 @Table(name = "transformador")
-public class Transformador {
+public class Transformador extends Controller {
 	@Id @GeneratedValue
-	private int id;
-	@OneToOne
+	public int id;
+	@OneToOne(cascade = CascadeType.ALL)
     public ZonaGeografica zonaGeografica;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) @JoinColumn(name = "transformador_id")
+    @OneToMany(fetch = FetchType.LAZY) @JoinColumn(name = "transformador_id")
     public List<Cliente> clientes = new ArrayList<Cliente>();
     @Embedded
     public TuplaDouble ubicacion;
 
+    public Transformador(){
+
+    }
     public double energiaQueEstaConsumiendo() {
         return clientes.stream().mapToDouble(c -> c.getConsumoInstantaneo()).sum();
     }
@@ -61,6 +64,14 @@ public class Transformador {
 
     public void setUbicacion(TuplaDouble ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public static Transformador buscarPorId(int id)
+    {
+        return Session.getSession().find(Transformador.class,id);
+    }
+    public static List<Transformador> obtenerTodos() {
+        return Session.getSession().createQuery("SELECT e FROM Transformador e").getResultList();
     }
 }
 

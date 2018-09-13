@@ -1,0 +1,12 @@
+[
+  {
+    "zonaGeografica": {
+      "nombre": "prueba",
+      "radioAbarcativo": 1000
+    },
+    "ubicacion": {
+      "x": 2,
+      "y": 2
+    }
+  }
+]

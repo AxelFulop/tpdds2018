@@ -2,6 +2,8 @@ package modelo;
 
 //import org.uqbar.commons.utils.Observable;
 
+import Servicios.Controller;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ import javax.persistence.Transient;
 //@Observable
 @Entity
 @Table(name = "zonaGeografica")
-public class ZonaGeografica {
+public class ZonaGeografica extends Controller {
 	@Id @GeneratedValue
 	public int id;
     public String nombre;
@@ -26,6 +28,9 @@ public class ZonaGeografica {
     public List<Transformador> transformadores = new ArrayList<Transformador>();
     public Double radioAbarcativo = 10D;
 
+    public ZonaGeografica(){
+
+    }
 
     public double getConsumoTotal() {
         return transformadores.stream().mapToDouble(t -> t.energiaQueEstaConsumiendo()).sum();

@@ -9,10 +9,11 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import modelo.Cliente;
+import modelo.Transformador;
 
 public class Parser {
 	
-	public List<Cliente> parsearClientes(String ruta) throws IOException{
+	public static List<Cliente> parsearClientes(String ruta) throws IOException{
 		Gson gson = new Gson(); 
 
 		try(Reader reader = new FileReader(ruta)) {
@@ -25,6 +26,20 @@ public class Parser {
 		}
 	
 			return null; 
+	}
+
+	public static List<Transformador> parsearTransformadores(String ruta) throws IOException{
+		Gson gson = new Gson();
+
+		try(Reader reader = new FileReader(ruta)) {
+
+			return gson.fromJson(reader, new TypeToken<List<Transformador>>(){}.getType());
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 	
 }
