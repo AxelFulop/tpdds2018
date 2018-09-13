@@ -6,8 +6,6 @@ import modelo.Restriccion;
 
 public class DispositivoFactory {
 
-	
-	
 public static DispositivoInteligente getAireAcondicionadoDe3500Frigroias() {
 	DispositivoInteligente d = new DispositivoInteligente("Aire3500",false,1.613);
 	Restriccion restriccion = new Restriccion();

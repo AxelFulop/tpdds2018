@@ -31,6 +31,34 @@ public class Administrador extends Usuario {
         return (todayDate.getYear() - fechaAltaServicio.getYear()) * 12 + abs(todayDate.getMonth() - fechaAltaServicio.getMonth());
     }
 
+    public void agregarNuevoDispositoAlSistema(DispositivoInteligente dispositivo)
+    {
+        try {
+            dispositivo.persistir();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void eliminarDispositoDelSistema(DispositivoInteligente dispositivo)
+    {
+        try {
+            dispositivo.eliminar();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void modificarDispositoDelSistema(DispositivoInteligente dispositivo)
+    {
+        try {
+            dispositivo.actualizar();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public static Administrador buscarPorId(int id)
     {
         return Session.getSession().find(Administrador.class,id);
