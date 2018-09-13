@@ -65,13 +65,13 @@ public class Reporte {
         return consumo;
 	}
 	
-	public static double getReportePorTransformador(int id_transformador, LocalDate inicio, LocalDate fin) {
+	public static double getReportePorTransformador(int id_cliente, LocalDate inicio, LocalDate fin) {
 		double consumo = 0;
 		EntityManagerFactory f = Persistence.createEntityManagerFactory("db");
         EntityManager em = f.createEntityManager();
         Transformador transformador = (Transformador) em.createQuery(
-        		"from Transformador tr where tr.id = ?")
-        		.setParameter(0, id_transformador).getResultList().get(0);
+        		"from Transformador tr where tr.id = :id")
+        		.setParameter("id",id_cliente).getResultList().get(0);
         for(Cliente c:transformador.getClientes()) {
         	consumo += getReportePorHogar(c.getId(), inicio, fin);
         }
