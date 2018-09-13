@@ -10,6 +10,7 @@ import Servicios.Session;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 import static java.lang.Math.abs;
 
@@ -30,5 +31,12 @@ public class Administrador extends Usuario {
         return (todayDate.getYear() - fechaAltaServicio.getYear()) * 12 + abs(todayDate.getMonth() - fechaAltaServicio.getMonth());
     }
 
+    public static Administrador buscarPorId(int id)
+    {
+        return Session.getSession().find(Administrador.class,id);
+    }
+    public static List<Administrador> obtenerTodos() {
+        return Session.getSession().createQuery("SELECT e FROM Administrador e").getResultList();
+    }
 
 }
