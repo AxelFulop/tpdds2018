@@ -45,6 +45,7 @@ public class testPersistenciaReglasActuadoresYSensores {
 		sensorRecuperado.EjecutarReglasAsociadas();
 		Assert.assertEquals(aire.getEstado(),Estado.ENCENDIDO);
 		sensorTemp.eliminar();
+		aire.eliminar();
 	}
 	@Test
 	public void buscoActuadorYleAgregoUnNuevoDispositivoParaEncender() {
@@ -65,6 +66,8 @@ public class testPersistenciaReglasActuadoresYSensores {
 		Assert.assertEquals(nuevoDispositivo.getEstado(),Estado.ENCENDIDO);
 
 		sensorTemp.eliminar();
+		aire.eliminar();
+		nuevoDispositivo.eliminar();
 	}
 
 	
