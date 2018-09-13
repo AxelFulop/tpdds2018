@@ -2,7 +2,10 @@ package modelo;
 
 //import org.uqbar.commons.utils.Observable;
 
+import Servicios.Session;
+
 import javax.persistence.*;
+import java.util.List;
 
 //@Observable
 @Entity

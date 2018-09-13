@@ -8,10 +8,6 @@ import org.junit.Test;
 
 public class testPersistenciaDispositivos {
 
-	@Before
-	public void init(){
-
-	}
 
 	@Test
 	public void creoDispositivoYloPersistoYLoElimino() {
@@ -28,12 +24,15 @@ public class testPersistenciaDispositivos {
 
 	@Test
 	public void obtengoUltimoDipositivoYLoModifico() {
+		DispositivoInteligente aire = new DispositivoInteligente("aire",true,1);
+		aire.persistir();
 		int cantidadDispositivos = Dispositivo.obtenerTodos().size();
-		Dispositivo dispositivo = Dispositivo.buscarPorId(cantidadDispositivos);
+		Dispositivo dispositivo = Dispositivo.obtenerTodos().get(cantidadDispositivos-1);
 		Double kwhAnterior = dispositivo.kwh;
 		dispositivo.setKwh(10D);
 		dispositivo.actualizar();
 		org.junit.Assert.assertNotEquals(kwhAnterior,Dispositivo.obtenerTodos().get(cantidadDispositivos-1));
+		dispositivo.eliminar();
 	}
 
 }
