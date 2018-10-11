@@ -101,14 +101,14 @@ public class testGeoposicionamiento {
 
         double consumoZona1 = zona1.getConsumoTotal();
         double consumoZona2 = zona2.getConsumoTotal();
-        Assert.assertEquals(consumoZona1, 12.0);
-        Assert.assertEquals(consumoZona2, 10.0);
+        Assert.assertEquals(consumoZona1, 12.0,0);
+        Assert.assertEquals(consumoZona2, 10.0,0);
     }
 
     @Test
     public void suministroEnergiaInstantaneaEnUnTransformador() {
         double consumoTransformador = transformadorAlmagro.energiaQueEstaConsumiendo();
-        Assert.assertEquals(consumoTransformador, 10.0);
+        Assert.assertEquals(consumoTransformador, 10.0,0);
     }
 
 }
