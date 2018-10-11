@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.*;
+import modelo.Actuadores.ActuadorOprtimizadorAhorroEnergia;
 import modelo.factories.DispositivoFactory;
 import modelo.reglas.ReglaOptimizadorConsumoAlto;
 import modelo.sensores.*;
@@ -18,7 +19,7 @@ import junit.framework.Assert;
 public class testOptimizador {
 	Optimizador optimizador = new Optimizador();
 
-	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
+	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","JuanATR","qwerty",0);
 
 	List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
 

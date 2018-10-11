@@ -3,11 +3,12 @@ package modelo.sensores;
 import modelo.Dispositivo;
 import modelo.Optimizador;
 import modelo.Sensor;
-
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Entity
 public class SensorOptimizador extends Sensor {
 
 	@Override

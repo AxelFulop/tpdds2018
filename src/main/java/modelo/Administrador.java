@@ -1,32 +1,60 @@
 package modelo;
 
+import Servicios.Session;
 
-import java.time.LocalDate;
-import java.time.Period;
+import javax.persistence.Entity;
+import java.util.Date;
+import java.util.List;
 
-@SuppressWarnings("unused")
-public class Administrador {
-	private String nombre;
-	private String apellido;
-	private String domicilio;
-	private LocalDate fechaDeAlta;
-	private int numIdentificacion;
-	private String nombreUsuario;
-	private String contrasenia;
-	
-	public Administrador(String nombre,String apellido,int numIdentificacion,String nombreUsuario,String contrasenia, LocalDate fechaAlta) {
-		this.fechaDeAlta = fechaAlta;
-		this.nombre=nombre;
-		this.apellido=apellido;
-		this.numIdentificacion=numIdentificacion;
-		this.nombreUsuario=nombreUsuario;
-		this.contrasenia=contrasenia;
-	}
-	
-	public int candidaDeMesesComoAdministrator() {
-		Period p = Period.between(fechaDeAlta,LocalDate.now());
-		return p.getYears() * 12 + p.getMonths();
-	}
-	
-	
+import static java.lang.Math.abs;
+
+@Entity
+public class Administrador extends Usuario {
+
+    public Administrador() {
+
+    }
+
+    public Administrador(String nombre, String apellido, String nombreUsuario, String contrasenia, TipoIdentificacion tipoIdentificacion, String numeroIdentificacion) {
+        super(nombreUsuario, contrasenia, nombre, apellido, tipoIdentificacion, numeroIdentificacion);
+    }
+
+    public int candidaDeMesesComoAdministrator() {
+        Date todayDate = new Date();
+        return (todayDate.getYear() - fechaAltaServicio.getYear()) * 12 + abs(todayDate.getMonth() - fechaAltaServicio.getMonth());
+    }
+
+    public void agregarNuevoDispositoAlSistema(DispositivoInteligente dispositivo) {
+        try {
+            dispositivo.persistir();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarDispositoDelSistema(DispositivoInteligente dispositivo) {
+        try {
+            dispositivo.eliminar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void modificarDispositoDelSistema(DispositivoInteligente dispositivo) {
+        try {
+            dispositivo.actualizar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Administrador buscarPorId(int id) {
+        return Session.getSession().find(Administrador.class, id);
+    }
+
+    public static List<Administrador> obtenerTodos() {
+        return Session.getSession().createQuery("SELECT e FROM Administrador e").getResultList();
+    }
+
+
 }

@@ -1,15 +1,22 @@
 package modelo;
 
+import javax.persistence.*;
+
+@Entity
 public class DispositivoInteligente extends Dispositivo {
+
+@Column(length = 20)
 private String nombre;
+@Enumerated(EnumType.STRING)
 private Estado estado;
+@ManyToOne
 private Fabricante fabricante;
+private Double consumoMensual;
 
 
+    public DispositivoInteligente(){}
 
-	private Double consumoMensual;
-
-	public DispositivoInteligente(String nom, boolean bajoConsumo, double kwh) {
+	public DispositivoInteligente(String nom, boolean bajoConsumo, Double kwh) {
 		setNombre(nom);
 		setBajoConsumo(bajoConsumo);
 		setKwh(kwh);		
@@ -46,7 +53,7 @@ private Fabricante fabricante;
 	}
 	
 	@Override
-	public double getConsumoMensual() {
+	public Double getConsumoMensual() {
 		return consumoMensual;
 	}
 
@@ -76,6 +83,7 @@ private Fabricante fabricante;
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 
 
 }

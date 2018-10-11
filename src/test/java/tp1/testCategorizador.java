@@ -12,8 +12,8 @@ import modelo.TipoIdentificacion;
 public class testCategorizador {
 	
 	
-	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
-	DispositivoEstandar televisor = new DispositivoEstandar("tv", false,1);
+	Cliente clienteHarcodeado = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","JuanATR","qwerty",0);
+	DispositivoEstandar televisor = new DispositivoEstandar("tv", false,1d);
 	//Consumo = 1 kwh * 1 hsDeUsoPorDia * 30 dias = 30 (seria categoria 1 que va de 0 a 150)
 	
 		@Before

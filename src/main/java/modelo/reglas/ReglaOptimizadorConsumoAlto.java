@@ -1,12 +1,14 @@
 package modelo.reglas;
 
 import modelo.*;
-import modelo.sensores.ActuadorOprtimizadorAhorroEnergia;
+import javax.persistence.Entity;
 
-import java.util.List;
-
+@Entity
 public class ReglaOptimizadorConsumoAlto extends Regla {
 
+    public ReglaOptimizadorConsumoAlto(){
+
+    }
     public ReglaOptimizadorConsumoAlto(Actuador actuador) {
         super(actuador);
     }

@@ -1,8 +1,10 @@
 package modelo.sensores;
 
-import modelo.DispositivoInteligente;
 import modelo.Sensor;
+import javax.persistence.Entity;
 
+
+@Entity
 public class SensorTemperatura extends Sensor {
 
 	@Override

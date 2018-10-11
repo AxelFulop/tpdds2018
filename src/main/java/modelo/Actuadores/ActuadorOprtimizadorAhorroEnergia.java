@@ -1,14 +1,15 @@
-package modelo.sensores;
+package modelo.Actuadores;
 
 import modelo.Actuador;
-import modelo.Dispositivo;
 import modelo.DispositivoInteligente;
 import modelo.Estado;
-
+import javax.persistence.Entity;
 import java.util.List;
 
+@Entity
 public class ActuadorOprtimizadorAhorroEnergia extends Actuador {
 
+	public ActuadorOprtimizadorAhorroEnergia(){}
 	public ActuadorOprtimizadorAhorroEnergia (List<DispositivoInteligente> dispositivos)
 	{
 		super(dispositivos);

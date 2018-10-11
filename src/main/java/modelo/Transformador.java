@@ -1,26 +1,30 @@
 package modelo;
 
-import modelo.common.Tuple;
-import modelo.repositorios.RepositorioClientes;
-
+import Servicios.Controller;
+import Servicios.Session;
+import common.Coordenada;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Transformador {
-    public ZonaGeografica zonaGeografica;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "transformador")
+public class Transformador extends Controller {
+	@Id @GeneratedValue
+	public int id;
+	//@OneToOne(cascade = CascadeType.ALL)
+    //public ZonaGeografica zonaGeografica;
+    @OneToMany(fetch = FetchType.LAZY) @JoinColumn(name = "transformador_id")
     public List<Cliente> clientes = new ArrayList<Cliente>();
-    public Tuple<Double, Double> ubicacion = new Tuple<Double, Double>();
+    @Embedded
+    public Coordenada ubicacion;
 
-    public double energiaQueEstaConsumiendo() {
+    public Transformador(){
+
+    }
+    public Double energiaQueEstaConsumiendo() {
         return clientes.stream().mapToDouble(c -> c.getConsumoInstantaneo()).sum();
-    }
-
-    public ZonaGeografica getZonaGeografica() {
-        return zonaGeografica;
-    }
-
-    public void setZonaGeografica(ZonaGeografica zonaGeografica) {
-        this.zonaGeografica = zonaGeografica;
     }
 
     public List<Cliente> getClientes() {
@@ -30,26 +34,25 @@ public class Transformador {
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
-
-    public void obtenerClientes() {
-
-        RepositorioClientes.getClientes().forEach(cliente -> {
-            if (obtenerDistancia(cliente.getUbicacion().getX(), ubicacion.getX(), cliente.getUbicacion().getY(), ubicacion.getY()) <= zonaGeografica.getRadioAbarcativo()) {
-                clientes.add(cliente);
-            }
-        });
+    
+    public void addCliente(Cliente c) {
+    	this.clientes.add(c);
     }
 
-    private double obtenerDistancia(Double x2, Double x1, Double y2, Double y1) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
-
-    public Tuple<Double, Double> getUbicacion() {
+    public Coordenada getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Tuple<Double, Double> ubicacion) {
+    public void setUbicacion(Coordenada ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public static Transformador buscarPorId(int id)
+    {
+        return Session.getSession().find(Transformador.class,id);
+    }
+    public static List<Transformador> obtenerTodos() {
+        return (List<Transformador>) Session.getSession().createQuery("SELECT e FROM Transformador e").getResultList();
     }
 }
 

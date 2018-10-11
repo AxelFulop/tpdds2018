@@ -1,46 +1,44 @@
 package modelo;
 
-import modelo.common.Tuple;
+import Servicios.Session;
+import common.Coordenada;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-
-public class Cliente {
-    private int numeroIdentificacion;
-    private String nombre;
-    private String apellido;
-    private TipoIdentificacion tipoIdentificacion;
-    private int telefono;
-    private String domicilio;
-    private LocalDate fechaAltaServicio;
+@Entity
+public class Cliente extends Usuario {
+    int telefono;
+    String domicilio;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private CategoriaResidencial categoria;
-    private String nombreUsuario;
-    private String contrasena;
     private int puntos;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
     private List<DispositivoEstandar> dispositivosEstandares = new ArrayList<DispositivoEstandar>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
     private List<DispositivoInteligente> dispositivosInteligentes = new ArrayList<DispositivoInteligente>();
     private Double consumoTotal;
-    public Tuple<Double, Double> ubicacion = new Tuple<Double, Double>();
+    @Embedded
+    public Coordenada ubicacion;
+    @OneToMany
+    @JoinColumn(name = "cliente_id")
     public List<Sensor> sensores = new ArrayList<Sensor>();
+
+
 
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, TipoIdentificacion tipoId, Integer numId, Integer tel, String dom,
-                   String nombreUsuario, String contrasena, int puntaje) {
-
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.tipoIdentificacion = tipoId;
-        this.numeroIdentificacion = numId;
+    public Cliente(String nombre, String apellido, TipoIdentificacion tipoIdentificacion, String numId, Integer tel, String dom,
+                   String nombreUsuario, String contrasenia, int puntaje) {
+        super(nombreUsuario, contrasenia, nombre, apellido,tipoIdentificacion,numId);
         this.telefono = tel;
         this.domicilio = dom;
-        this.fechaAltaServicio = LocalDate.now();
         this.categoria = new CategoriaResidencial("r1", 0.0, 150.0, 18.76, 0.644);
-        this.nombreUsuario = nombreUsuario;
-        this.contrasena = contrasena;
         this.puntos = puntaje;
     }
 
@@ -78,14 +76,14 @@ public class Cliente {
         return this.dispositivosEstandares.size() + this.dispositivosInteligentes.size();
     }
 
-    public double getConsumoMensual() {
+    public Double getConsumoMensual() {
         List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
         dispositivos.addAll(dispositivosEstandares);
         dispositivos.addAll(dispositivosInteligentes);
         return dispositivos.stream().mapToDouble(d -> d.getConsumoMensual()).sum();
     }
 
-    public double getFacturaMensual(Integer mes) {
+    public Double getFacturaMensual(Integer mes) {
         return categoria.getCargoFijo() + categoria.getCargoVariable() * this.getConsumoMensual();
     }
 
@@ -96,7 +94,7 @@ public class Cliente {
         puntos += 10;
     }
 
-    public double getConsumoInstantaneo() {
+    public Double getConsumoInstantaneo() {
         return getDispositivos().stream().mapToDouble(d -> d.getConsumoInstantaneo()).sum();
     }
 
@@ -120,19 +118,19 @@ public class Cliente {
     }
 
     public TipoIdentificacion getTipoIdentificacion() {
-        return tipoIdentificacion;
+        return this.identificacion.getTipo();
     }
 
     public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
-        this.tipoIdentificacion = tipoIdentificacion;
+        this.identificacion.setTipo(tipoIdentificacion);
     }
 
-    public int getNumeroIdentificacion() {
-        return numeroIdentificacion;
+    public String getNumeroIdentificacion() {
+        return this.identificacion.getNumero();
     }
 
-    public void setNumeroIdentificacion(int numeroIdentificacion) {
-        this.numeroIdentificacion = numeroIdentificacion;
+    public void setNumeroIdentificacion(String numeroIdentificacion) {
+        this.identificacion.setNumero(numeroIdentificacion);
     }
 
     public int getTelefono() {
@@ -151,12 +149,12 @@ public class Cliente {
         this.domicilio = domicilio;
     }
 
-    public LocalDate getFechaAltaServicio() {
-        return fechaAltaServicio;
+    public Date getFechaAltaServicio() {
+        return this.getFechaAltaServicio();
     }
 
-    public void setFechaAltaServicio(LocalDate fechaAltaServicio) {
-        this.fechaAltaServicio = fechaAltaServicio;
+    public void setFechaAltaServicio(Date fechaAltaServicio) {
+        this.setFechaAltaServicio(fechaAltaServicio);
     }
 
     public CategoriaResidencial getCategoria() {
@@ -168,19 +166,19 @@ public class Cliente {
     }
 
     public String getNombreUsuario() {
-        return nombreUsuario;
+        return this.getNombre();
     }
 
     public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+        this.setNombre(nombreUsuario);
     }
 
     public String getContrasena() {
-        return contrasena;
+        return this.getContrasenia();
     }
 
     public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+        this.setContrasenia(contrasena);
     }
 
     public int getPuntos() {
@@ -222,11 +220,11 @@ public class Cliente {
         this.consumoTotal = consumoTotal;
     }
 
-    public Tuple<Double, Double> getUbicacion() {
+    public Coordenada getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Tuple<Double, Double> ubicacion) {
+    public void setUbicacion(Coordenada ubicacion) {
         this.ubicacion = ubicacion;
     }
 
@@ -240,5 +238,13 @@ public class Cliente {
 
     public void ejecutarReglasDeSensores() {
         sensores.forEach(sensor -> sensor.EjecutarReglasAsociadas());
+    }
+
+    public static Cliente buscarPorId(int id)
+    {
+        return Session.getSession().find(Cliente.class,id);
+    }
+    public static List<Cliente> obtenerTodos() {
+        return (List<Cliente>) Session.getSession().createQuery("SELECT e FROM Cliente e").getResultList();
     }
 }

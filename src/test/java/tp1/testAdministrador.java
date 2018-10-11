@@ -1,30 +1,18 @@
 package tp1;
 
-import java.time.LocalDate;
-
+import modelo.TipoIdentificacion;
 import org.junit.Assert;
 import org.junit.Test;
 import modelo.Administrador;
 
 public class testAdministrador {
-	Administrador administrador =  new Administrador("Juan","Pepito", 235545, "Juancito","soyelmejor", LocalDate.now().minusMonths(3) );
-	Administrador administrador2 =  new Administrador("Pedro","hwas", 235667, "Pedrito","01234", LocalDate.now().minusDays(3) );
-	Administrador administrador3 =  new Administrador("Eduardo","Perez", 235256, "Eduardito","1111", LocalDate.now().minusMonths(24) );
-	
-	@Test
-	public void siendoAdminDurante3meses()  {
-		int	meses =administrador.candidaDeMesesComoAdministrator();
-		Assert.assertEquals(meses, 3);
-	}
+	Administrador administrador =  new Administrador("Juan","Pepito", "Juancito","soyelmejor",TipoIdentificacion.CI,"2223dsf");
+
 	@Test
 	public void siendoAdminDuranteElMismoMes()  {
-		int meses =administrador2.candidaDeMesesComoAdministrator();
+		int meses =administrador.candidaDeMesesComoAdministrator();
 		Assert.assertEquals(meses, 0);
 	}
-	@Test
-	public void siendoAdminDuranteDosAnios() {
-	int meses =administrador3.candidaDeMesesComoAdministrator();
-	Assert.assertEquals(meses, 24);
-	}
+
 	
 }

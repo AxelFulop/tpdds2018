@@ -1,12 +1,14 @@
 package modelo.reglas;
 
 import modelo.*;
-import modelo.sensores.ActuadorEncenderAire;
+import javax.persistence.Entity;
 
-import java.util.List;
-
+@Entity
 public class ReglaTemperaturaAlta extends Regla {
 
+	public ReglaTemperaturaAlta(){
+
+	}
 	public ReglaTemperaturaAlta(Actuador actuador) {
 		super(actuador);
 	}

@@ -11,10 +11,10 @@ import modelo.Estado;
 import modelo.TipoIdentificacion;
 
 public class testDispositivos {
-	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,123,48262937,"Medrano 951","JuanATR","qwerty",0);
-	DispositivoEstandar tv = new DispositivoEstandar("tv", false,10);
-	DispositivoInteligente aire = new DispositivoInteligente("aire",true,1); 
-	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,1); 
+	Cliente cliente= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","JuanATR","qwerty",0);
+	DispositivoEstandar tv = new DispositivoEstandar("tv", false,10d);
+	DispositivoInteligente aire = new DispositivoInteligente("aire",true,1d); 
+	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,1d); 
 	
 	@Before
 	public void init(){
@@ -45,9 +45,9 @@ public class testDispositivos {
 	
 	@Test
 	public void cambioDeEstandarAInteligente(){
-		Assert.assertSame(tv.getClass(), (new DispositivoEstandar("tv",false,1)).getClass());
+		Assert.assertSame(tv.getClass(), (new DispositivoEstandar("tv",false,1d)).getClass());
 		Assert.assertEquals(cliente.getDispositivosInteligentes().size(), 2);
 		cliente.ligarModuloAdaptador(tv);
-		Assert.assertSame((new DispositivoInteligente("a",false,1).getClass()),cliente.getDispositivosInteligentes().get(2).getClass());
+		Assert.assertSame((new DispositivoInteligente("a",false,1d).getClass()),cliente.getDispositivosInteligentes().get(2).getClass());
 	}
 }

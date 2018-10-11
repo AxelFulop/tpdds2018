@@ -1,17 +1,24 @@
 package modelo;
 
+import javax.persistence.Entity;
+
+@Entity
 public class DispositivoEstandar extends Dispositivo {
+
 	private String nombre;
 	private int horasDeUsoDiarias; //Estimativo brindado por el usuario
 	
-	public DispositivoEstandar(String nom, boolean bajoConsumo, double kwh) {
+	
+	public DispositivoEstandar(){}
+	
+	public DispositivoEstandar(String nom, boolean bajoConsumo, Double kwh) {
 		setNombre(nom);
 		setBajoConsumo(bajoConsumo);
 		setKwh(kwh);
 	}
 	
-	public double getConsumoMensual() {
-		return (double) (kwh * horasDeUsoDiarias * 30);
+	public Double getConsumoMensual() {	
+		return Double.valueOf(kwh * horasDeUsoDiarias * 30); 
 	}
 	
 	//GETTERS Y SETTERS

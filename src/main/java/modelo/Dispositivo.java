@@ -1,13 +1,44 @@
 package modelo;
 
-public abstract class Dispositivo {
+import Servicios.Controller;
+import Servicios.Session;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "dispositivo")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Dispositivo extends Controller {
+    @Id
+    @TableGenerator(
+            name = "tipoDispositivoIdGenerator",
+            table = "tipoDispositivoIdGenerator",
+            pkColumnName = "name",
+            valueColumnName = "sequence",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "tipoDispositivoIdGenerator")
+    public int id;
     public boolean bajoConsumo;
-    public double kwh;
+    public Double kwh;
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
     public Restriccion restriccion;
 
 
-    public double getConsumoInstantaneo() {
-        return 1;
+    public Dispositivo() {
+
+    }
+
+    public Double getConsumoInstantaneo() {
+        return 1d;
     }
 
     public Restriccion getRestriccion() {
@@ -18,11 +49,11 @@ public abstract class Dispositivo {
         this.restriccion = restriccion;
     }
 
-    public double getConsumoMensual() {
-        return 0;
+    public Double getConsumoMensual() {
+        return 0d;
     }
 
-    public double getKwh() {
+    public Double getKwh() {
         return kwh;
     }
 
@@ -37,4 +68,14 @@ public abstract class Dispositivo {
     public void setBajoConsumo(boolean b) {
         this.bajoConsumo = b;
     }
+
+
+    public static Dispositivo buscarPorId(int id)
+    {
+        return Session.getSession().find(Dispositivo.class,id);
+    }
+    public static List<Dispositivo> obtenerTodos() {
+        return Session.getSession().createQuery("SELECT e FROM Dispositivo e").getResultList();
+    }
+
 }
