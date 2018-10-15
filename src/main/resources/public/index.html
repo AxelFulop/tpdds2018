@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html ng-app="todoapp">
+<html ng-app="energiaap">
 <head>
     <title>Enegiaap</title>
-    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" media="screen" href='/plugins/font-awesome/css/font-awesome.min.css'>
+    <link rel="stylesheet" media="screen" href='/plugins/bootstrap/css/bootstrap.min.css'>
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-cookies.js"></script>
+    <script src="js/angular-sanitize.js"></script>
+    <script src="js/angular-resource.js"></script>
+
+    <script src="js/controllers/app.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/services/requestService.js"></script>
+    <script src="js/services/modalService.js"></script>
+
+    <!-- toastr -->
+    <link rel="stylesheet" href="plugins/toastr/angular-toastr.min.css">
+    <script src="plugins/toastr/angular-toastr.tpls.js"></script>
+
+    <script type="text/javascript" src="plugins/ui-bootstrap/ui-bootstrap.js")></script>
 </head>
 <body>
 <div class="navbar navbar-inverse">
@@ -25,13 +44,5 @@
 
 </div>
 
-<script src="/js/jquery.js"></script>
-<script src="/js/angular.js"></script>
-<script src="/js/angular-route.js"></script>
-<script src="/js/angular-cookies.js"></script>
-<script src="/js/angular-sanitize.js"></script>
-<script src="/js/angular-resource.js"></script>
-
-<script src="/scripts/app.js"></script>
 </body>
 </html>
