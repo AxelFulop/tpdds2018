@@ -5,13 +5,14 @@ app.controller('LoginCtrl', function (requestService,$scope, $http,toastr, $wind
     $scope.authenticate = function (loginUser) {
         requestService.post("/api/authenticate", loginUser)
             .success(function (data) {
-                toastr.success("login correcto")
+                toastr.success("Login correcto. ")
                 /*$rootScope.menu = data;
                 $scope.content = "/login";*/
                 //$window.localStorage.clear();
             }).error(function (err) {
             //$scope.content = "/login";
-            toastr.error(err.message);
+            toastr.error("Login incorrecto. ");
         });
+        $scope.args = {};
     };
 });
