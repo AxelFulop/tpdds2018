@@ -1,29 +1,24 @@
 import Servicios.JsonTransformer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import modelo.Usuario;
 
-import java.io.File;
-import java.text.Normalizer;
-import java.util.HashMap;
 
 import static spark.Spark.*;
 
-public class Routes {
+public class Controller {
 	private static final String API_CONTEXT = "/api";
 
 
-	public Routes() {
+	public Controller() {
 		setupEndpoints();
 	}
 
 	private void setupEndpoints() {
         post(API_CONTEXT + "/authenticate" , "application/json", (request, response)
                 -> {
-
 			JsonElement root = new JsonParser().parse(request.body());
 			String user = root.getAsJsonObject().get("nombreUsuario").getAsString();
-			String password = root.getAsJsonObject().get("contrasenia").getAsString();
+			String password = root.getAsJsonObject().get("contrsenia").getAsString();
 
 			if (user!="" && password!="") {
 

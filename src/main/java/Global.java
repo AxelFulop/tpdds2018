@@ -1,6 +1,3 @@
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-
 import static spark.Spark.setIpAddress;
 import static spark.Spark.setPort;
 import static spark.Spark.staticFileLocation;
@@ -13,7 +10,7 @@ public class Global {
 		setIpAddress(IP_ADDRESS);
 		setPort(PORT);
 		staticFileLocation("/public");
-		new Routes();
+		new Controller();
 		//Aca le pego a las rutas que voy a usar y en las rutas le pego a los servicios para
 		//interactuar con la bd..... Jamas accedo directamente a la bd
 	}
