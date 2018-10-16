@@ -12,13 +12,24 @@ var app = angular.module('energiapp', [
 
 
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider,toastrConfig) {
     $routeProvider.when('/', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
     }).otherwise({
         redirectTo: '/'
     })
+    angular.extend(toastrConfig, {
+        autoDismiss: false,
+        containerId: 'toast-container',
+        maxOpened: 0,
+        newestOnTop: true,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: false,
+        preventOpenDuplicates: false,
+        target: 'body'
+    });
+
 });
 
 

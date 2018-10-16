@@ -15,7 +15,7 @@ public class Routes {
 	private void setupEndpoints() {
         post(API_CONTEXT + "/authenticate" , "application/json", (request, response)
                 -> {
-			//request.body();
+			String a = request.body();
 			response.status(200);
 			return response;
 		}, new JsonTransformer());

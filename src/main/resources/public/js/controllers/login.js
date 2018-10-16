@@ -1,10 +1,9 @@
 app.controller('LoginCtrl', function (requestService,$scope, $http,toastr, $window) {
 
-    var mail = "";
-    var password="";
+    $scope.args = {};
 
-    $scope.authenticate = function () {
-        requestService.post("/api/authenticate", { 'email': mail, 'password': password })
+    $scope.authenticate = function (loginUser) {
+        requestService.post("/api/authenticate", loginUser)
             .success(function (data) {
                 toastr.success("login correcto")
                 /*$rootScope.menu = data;

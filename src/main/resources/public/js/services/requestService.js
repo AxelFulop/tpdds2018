@@ -1,4 +1,4 @@
-app.service('requestService', function ($http) {
+app.service( 'requestService', function ($http) {
 
     this.get = function (url) {
         return $http.get(url);
