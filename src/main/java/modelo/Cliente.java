@@ -166,11 +166,11 @@ public class Cliente extends Usuario {
     }
 
     public String getNombreUsuario() {
-        return this.getNombre();
+        return this.nombreUsuario;
     }
 
     public void setNombreUsuario(String nombreUsuario) {
-        this.setNombre(nombreUsuario);
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getContrasena() {
