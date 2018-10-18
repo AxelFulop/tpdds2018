@@ -1,10 +1,12 @@
 package Servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import modelo.Cliente;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
 import modelo.Usuario;
@@ -12,13 +14,13 @@ import modelo.Usuario;
 	public class UsuarioService {
 		
 		
-		public Usuario obtenerUsuarioPorId(int id)
+		public static Usuario obtenerUsuarioPorId(int id)
 		{
 		return Session.getSession().find(Usuario.class,id);
 		}
 		
 
-	    public Usuario obtenerUsuario(String username,String password)
+	    public static Usuario obtenerUsuario(String username,String password)
 	    {
 	    Usuario user = null; 
 	    try{
@@ -34,7 +36,7 @@ import modelo.Usuario;
 	    return user;
 	    }
 		
-		public List<DispositivoInteligente> obtenerDispositivosInteligentes(String username,String password)
+		public static List<DispositivoInteligente> obtenerDispositivosInteligentes(String username,String password)
 		{
 			Query query = Session.getSession().createQuery("SELECT c.dispositivosInteligentes FROM Cliente c WHERE c.nombreUsuario = :nomUsuario and c.contrasenia = :pass");
 		    query.setParameter("nomUsuario", username);
@@ -45,7 +47,7 @@ import modelo.Usuario;
 		}
 		
 		
-		public List<DispositivoEstandar> obtenerDispositivosEstandar(String username,String password)
+		public static List<DispositivoEstandar> obtenerDispositivosEstandar(String username,String password)
 		{
 			Query query = Session.getSession().createQuery("SELECT c.dispositivosEstandares FROM Cliente c WHERE c.nombreUsuario = :nomUsuario and c.contrasenia = :pass");
 		    query.setParameter("nomUsuario", username);
@@ -54,9 +56,15 @@ import modelo.Usuario;
 		    return dispEstandar;
 			
 		}
-	    
+	
+		//hogar = cliente
+		public static List<Cliente> obtenerHogares() {
+			List<Cliente> listaHogares = new ArrayList<Cliente>();
+			listaHogares = (List<Cliente>) Session.getSession().createQuery("from Cliente").getResultList();		
+			return listaHogares;
+		}
 	     
-	}
+}
 	
 
 	
