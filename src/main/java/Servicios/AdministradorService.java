@@ -2,8 +2,14 @@ package Servicios;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
+
 import modelo.Cliente;
 import modelo.Dispositivo;
+import modelo.DispositivoEstandar;
+import modelo.DispositivoInteligente;
+import modelo.Usuario;
 
 public class AdministradorService {
 	
@@ -24,4 +30,6 @@ public class AdministradorService {
 		}
 		
 	}
+	
+
 }

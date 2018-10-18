@@ -174,11 +174,11 @@ public class Cliente extends Usuario {
     }
 
     public String getContrasena() {
-        return this.getContrasenia();
+        return this.contrasenia;
     }
 
     public void setContrasena(String contrasena) {
-        this.setContrasenia(contrasena);
+        this.contrasenia = contrasena;
     }
 
     public int getPuntos() {
