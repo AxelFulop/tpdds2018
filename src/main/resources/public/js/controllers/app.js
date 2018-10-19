@@ -29,7 +29,6 @@ app.config(function ($routeProvider,toastrConfig) {
         preventOpenDuplicates: false,
         target: 'body'
     });
-
 });
 
 

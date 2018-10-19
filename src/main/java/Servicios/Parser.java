@@ -17,14 +17,10 @@ public class Parser {
 		Gson gson = new Gson(); 
 
 		try(Reader reader = new FileReader(ruta)) {
-	
 			return gson.fromJson(reader, new TypeToken<List<Cliente>>(){}.getType());
-			
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	
 			return null; 
 	}
 

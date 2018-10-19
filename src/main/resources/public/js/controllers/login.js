@@ -6,9 +6,8 @@ app.controller('LoginCtrl', function (requestService,$scope, $http,toastr, $wind
         requestService.post("/api/authenticate", loginUser)
             .success(function (data) {
 
-                toastr.success("Hola "+data.nombreUsuario);
-                /*$rootScope.menu = data;
-                $scope.content = "/login";*/
+                toastr.success("Login correcto");
+
                 //$window.localStorage.clear();
             }).error(function (err) {
             //$scope.content = "/login";
