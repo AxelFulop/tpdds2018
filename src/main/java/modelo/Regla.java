@@ -1,12 +1,12 @@
 package modelo;
 
-import Servicios.Controller;
+import Servicios.Model;
 
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Regla extends Controller {
+public abstract class Regla extends Model {
     @Id
     @GeneratedValue
     private int id;

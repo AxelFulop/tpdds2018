@@ -1,6 +1,6 @@
 package modelo;
 
-import Servicios.Controller;
+import Servicios.Model;
 import common.Coordenada;
 import repositorios.RepositorioClientes;
 
@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "zonaGeografica")
-public class ZonaGeografica extends Controller {
+public class ZonaGeografica extends Model {
 	@Id @GeneratedValue
 	public int id;
     public String nombre;

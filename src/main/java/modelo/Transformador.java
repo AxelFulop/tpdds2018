@@ -1,6 +1,6 @@
 package modelo;
 
-import Servicios.Controller;
+import Servicios.Model;
 import Servicios.Session;
 import common.Coordenada;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "transformador")
-public class Transformador extends Controller {
+public class Transformador extends Model {
 	@Id @GeneratedValue
 	public int id;
 	//@OneToOne(cascade = CascadeType.ALL)

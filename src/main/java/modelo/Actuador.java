@@ -1,13 +1,13 @@
 package modelo;
 
-import Servicios.Controller;
+import Servicios.Model;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Actuador extends Controller {
+public abstract class Actuador extends Model {
 	@Id
 	@GeneratedValue
 	private int id;

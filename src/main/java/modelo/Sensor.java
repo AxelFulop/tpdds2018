@@ -1,6 +1,6 @@
 package modelo;
 
-import Servicios.Controller;
+import Servicios.Model;
 import Servicios.Session;
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Sensor extends Controller {
+public abstract class Sensor extends Model {
     @Id
     @GeneratedValue
     private int id;

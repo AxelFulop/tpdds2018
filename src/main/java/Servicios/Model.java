@@ -1,6 +1,6 @@
 package Servicios;
 
-public class Controller {
+public class Model {
     public void eliminar() {
         try {
             Session.beginTransaction();

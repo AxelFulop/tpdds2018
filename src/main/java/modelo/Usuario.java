@@ -1,8 +1,6 @@
 package modelo;
 
-import Servicios.Controller;
-import modelo.Identificacion;
-import modelo.TipoIdentificacion;
+import Servicios.Model;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,7 +9,7 @@ import java.util.Date;
 
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Usuario extends Controller {
+public class Usuario extends Model {
     @Id
     @GeneratedValue
     private int id;

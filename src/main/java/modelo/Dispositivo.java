@@ -1,6 +1,6 @@
 package modelo;
 
-import Servicios.Controller;
+import Servicios.Model;
 import Servicios.Session;
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "dispositivo")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Dispositivo extends Controller {
+public abstract class Dispositivo extends Model {
     @Id
     @TableGenerator(
             name = "tipoDispositivoIdGenerator",
