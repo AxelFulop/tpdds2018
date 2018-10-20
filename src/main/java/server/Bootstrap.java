@@ -2,8 +2,9 @@ package server;
 
 
 
-import java.math.BigDecimal;
 
+import modelo.Administrador;
+import modelo.TipoIdentificacion;
 import modelo.Usuario;
 
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
@@ -20,8 +21,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	
 	public void init(){
 	withTransaction(() ->{
-			Usuario user = new Usuario();
-			persist(user);	
+		Administrador admin = new Administrador();
+		if(admin.equals(null)){
+		 admin = new Administrador("root","root","Pedro","Fuentes",TipoIdentificacion.DNI,"123");
+		admin.persistir();
+		}	
 		});
 	}
 	

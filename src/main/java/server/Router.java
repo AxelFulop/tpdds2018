@@ -1,5 +1,8 @@
 package server;
 
+import modelo.TipoIdentificacion;
+import modelo.Usuario;
+import controllers.AdministradorController;
 import controllers.ClientesController;
 //import controllers.HomeController;
 //import controllers.ProyectosController;
@@ -19,15 +22,15 @@ public class Router {
 				.build();
 		
 		Spark.staticFileLocation("/public");
+		Spark.staticFiles.expireTime(600L);
 		
+	
 		
-		Spark.get("/",LoginController::login,engine);
+		Spark.get("/",LoginController::show,engine);
+		Spark.post("/", LoginController::login,engine);
 		Spark.get("/Clientes/:id", ClientesController::home, engine);
-		//Spark.post("/login", LoginController::login, engine);
-		//Spark.get("/proyectos", proyectosController::listar, engine);
-		//Spark.get("/proyectos/new", proyectosController::nuevo, engine);
-		//Spark.get("/proyectos/:id", proyectosController::mostrar, engine);
-		//Spark.post("/proyectos", proyectosController::crear);
+		Spark.get("/Administradores/:id",AdministradorController::home, engine);
+		
 	}
 
 }

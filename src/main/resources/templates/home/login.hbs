@@ -1,6 +1,6 @@
 {{#partial "contenido"}}
 
-<form method="POST" action="/login">
+<form method="POST" action="/">
 
     <div class="container-fluid login-view">
   
@@ -16,18 +16,19 @@
                     
                     <p class="">Inicie sesion para comenzar</p>
                     <div class="form-group has-feedback">
-                        <input class="form-control" placeholder="Usuario">
+                        <input class="form-control" placeholder="Usuario" name="nombreUsuario">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Contraseña">
+                    
+                        <input type="password" class="form-control" placeholder="Contraseña" name="contrasenia">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-8">
                         </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-success btn-block btn-flat">Ingresar</button>
+                            <button class="btn btn-success btn-block btn-flat" v-if="form.successful">Ingresar</button>
                         </div>
                     </div>
                 </form>
