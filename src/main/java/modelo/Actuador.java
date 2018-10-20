@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Actuador extends Model {
 	@Id
 	@GeneratedValue
-	private int id;
+	private Long id;
 
 	@ManyToMany
 	@JoinTable(name = "actuadorPorDispositivoInteligente",

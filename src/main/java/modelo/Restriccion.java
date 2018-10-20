@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Restriccion {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     public Double cotaSuperior;
     public Double cotaInferior;
 

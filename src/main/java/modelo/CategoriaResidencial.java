@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "categoria")
 public class CategoriaResidencial {
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	@Column(length = 20)
 	private String nombre;
 	private Double limiteInferior;

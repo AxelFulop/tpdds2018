@@ -1,5 +1,6 @@
 package server;
 
+import controllers.ClientesController;
 //import controllers.HomeController;
 //import controllers.ProyectosController;
 import controllers.LoginController;
@@ -21,7 +22,7 @@ public class Router {
 		
 		
 		Spark.get("/",LoginController::login,engine);
-		
+		Spark.get("/Clientes/:id", ClientesController::home, engine);
 		//Spark.post("/login", LoginController::login, engine);
 		//Spark.get("/proyectos", proyectosController::listar, engine);
 		//Spark.get("/proyectos/new", proyectosController::nuevo, engine);

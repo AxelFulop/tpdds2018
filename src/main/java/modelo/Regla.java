@@ -9,7 +9,7 @@ import javax.persistence.*;
 public abstract class Regla extends Model {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     @OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "regla_id")
     public Actuador actuador;
 

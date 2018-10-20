@@ -8,7 +8,7 @@ public abstract class Fabricante {
 
 	@Id
 	@GeneratedValue
-	protected int id;
+	protected Long id;
 	public String name;
 
 	public Fabricante(){

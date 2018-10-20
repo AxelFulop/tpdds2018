@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class Sensor extends Model {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "sensor_id")
     public List<Regla> reglas = new ArrayList<Regla>();

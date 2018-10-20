@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "zonaGeografica")
 public class ZonaGeografica extends Model {
 	@Id @GeneratedValue
-	public int id;
+	public Long id;
     public String nombre;
     @OneToMany(fetch = FetchType.LAZY) @JoinColumn(name = "zonaGeografica_id")
     public List<Transformador> transformadores = new ArrayList<Transformador>();

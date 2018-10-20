@@ -45,7 +45,7 @@ import modelo.Usuario;
 				Session.rollbackTransaction();
 			}
 		}
-		public static Usuario obtenerUsuarioPorId(int id)
+		public static Usuario obtenerUsuarioPorId(Long id)
 		{
 		return Session.getSession().find(Usuario.class,id);
 		}
