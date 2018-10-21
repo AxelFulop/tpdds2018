@@ -4,6 +4,7 @@ import modelo.TipoIdentificacion;
 import modelo.Usuario;
 import controllers.AdministradorController;
 import controllers.ClientesController;
+import controllers.HomeController;
 //import controllers.HomeController;
 //import controllers.ProyectosController;
 import controllers.LoginController;
@@ -24,10 +25,10 @@ public class Router {
 		Spark.staticFileLocation("/public");
 		Spark.staticFiles.expireTime(600L);
 		
-	
-		
-		Spark.get("/",LoginController::show,engine);
-		Spark.post("/", LoginController::login,engine);
+	     
+		Spark.get("/",HomeController::home,engine);
+		Spark.get("/Login",LoginController::show,engine);
+		Spark.post("/Login", LoginController::login,engine);
 		Spark.get("/Clientes/:id", ClientesController::home, engine);
 		Spark.get("/Administradores/:id",AdministradorController::home, engine);
 		
