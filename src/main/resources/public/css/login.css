@@ -2,6 +2,7 @@ html{
 margin: 0px;
 padding: 0px;
 }
+
 .loginBox{
 border-radius: 4px;
 margin: 50px auto;
@@ -34,4 +35,10 @@ font-weight: bold;
 
 body{
 background-image: url("http://www.fondos.gratis.es/fondos_webs/agua/agua08.jpg");
+}
+
+.card-img-top {
+	width: 50%;
+	height: 50%;
+	border-radius: 50%;
 }

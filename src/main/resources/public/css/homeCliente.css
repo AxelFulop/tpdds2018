@@ -4,14 +4,13 @@
 	border-radius: 50%;
 }
 
-.card {
+.card text-center{
 	position: relative;
 	border: 2px;
-    border-radius: 5px;
-    width: 50%;
-	height: 50%;
+    	border-radius: 5px;
 	left: 50;
 	right: 50;
+	
 }
 
 body{

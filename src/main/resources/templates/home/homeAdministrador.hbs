@@ -2,17 +2,42 @@
 <head>
     <title>Home</title>
 	<link rel="stylesheet" href="css/homeCliente.css"> 
-    <link rel="stylesheet" href="../public/css/main.css">
-    <link rel="stylesheet" href="../public/plugins/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" media="../screen" href='../public/plugins/font-awesome/css/font-awesome.min.css'>
-    <link rel="stylesheet" media="../screen" href='../public/plugins/bootstrap/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" media="../screen" href='bootstrap/css/bootstrap.min.css'>
     
 </head>
 
 <body>
 
-	<h1>Bienvenido Administrador {{nombre}} {{apellido}}</h1>
+	<div class="fixed-top">
+		<h4>Bienvenido administrador {{nombre}} {{apellido}}</h4>
+	</div>
 
+
+<div class="card-deck">
+  <div class="card text-center">
+    <img class="card-img-top" src="../imagenes/hogar.jpg" alt="Card image cap">
+    <div class="card-body">
+      <button type="button" class="btn btn-light">Visualizar hogares</button>
+    </div>
+  </div>
+  
+  <div class="card text-center">
+  	<img class="card-img-top" src="../imagenes/ahorro-led.jpg" alt="Card image cap">
+  	<div class="card-body">
+      <button type="button" class="btn btn-light">Obtener reporte</button>
+    </div>
+  </div>
+  
+  <div class="card text-center">
+  	<img class="card-img-top" src="../imagenes/bajoConsumo.jpg" alt="Card image cap">
+  	<div class="card-body">
+      <button type="button" class="btn btn-light">Dar alta de dispositivo</button>
+    </div>
+  </div>
+	
+</div>
 </body>
 {{/partial}}
 {{>layout.hbs}}

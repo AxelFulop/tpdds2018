@@ -47,4 +47,10 @@ public class testUsuarioService {
 	    Assert.assertTrue(clientes.contains(cliente));
 	}
 	
+	@Test
+	public void testObtenerClientePorID() {
+		Usuario cliente = UsuarioService.obtenerUsuarioPorId(Long.valueOf("1"));
+	    Assert.assertEquals(cliente.getId(), Long.valueOf("1"));
+	}
+	
 }
