@@ -6,7 +6,7 @@
 
 .card {
 	position: relative;
-	border: 2px solid red;
+	border: 2px;
     border-radius: 5px;
     width: 50%;
 	height: 50%;
