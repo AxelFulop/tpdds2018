@@ -33,6 +33,8 @@ public class Router {
 		
 		Spark.get("/Clientes/:id", ClientesController::home, engine);
 		Spark.get("/Clientes/:id/Hogar", ClientesController::mostrarEstadoHogar, engine);
+		Spark.get("/Clientes/:id/Optimizador", ClientesController::mostrarSimplex, engine);
+		Spark.get("/Clientes/:id/Consumo", ClientesController::mostrarConsumo, engine);
 		
 		Spark.get("/Administradores/:id",AdministradorController::home, engine);
 		
