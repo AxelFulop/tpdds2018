@@ -21,25 +21,27 @@ public class LoginController {
         String password = request.queryParams("contrasenia");
         Usuario user = UsuarioService.obtenerUsuario(name, password);
         //login succes
+        try{
         if (!user.equals(null) && !name.equals("root") && !password.equals("root")) {
             request.session().attribute("username", name);
             request.session().attribute("password",password);
             response.status(200);
-            response.redirect("/Clientes/"+user.getId());
+            response.redirect("/clientes/"+user.getId());
         }
-        else if(!user.equals(null) && name.equals("root") && password.equals( "root"))
+       if(!user.equals(null) && name.equals("root") && password.equals( "root"))
         {
        	request.session().attribute("username", name);
         request.session().attribute("password",password);
         response.status(200);
-       	response.redirect("/Administradores/"+ user.getId());
+       	response.redirect("/administradores/"+ user.getId());
         }
-        else
-        {
-        //aca habria que decirle que fallo el login
-       	response.status(401);
         } 
-       
+        catch (Exception e) {
+            response.status(500);
+            response.body(e.toString());
+        }
+      
+ 
         
         return null;
 }
