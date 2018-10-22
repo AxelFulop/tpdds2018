@@ -11,40 +11,53 @@ import spark.Response;
 
 public class LoginController {
 	
+	
+	private static Request request;
+    private static Response response;
+
+   
+
+    public LoginController(Request req, Response res) {
+        request = req;
+        response = res;
+    }
 	public static ModelAndView show(Request req, Response res){
 		return new ModelAndView(null,"home/login.hbs");
 	}
 	
-	public static ModelAndView login(Request request, Response response) throws Exception{
+	public ModelAndView login() throws Exception{
 		
-        String name = request.queryParams("nombreUsuario");
+        String username = request.queryParams("nombreUsuario");
         String password = request.queryParams("contrasenia");
-        Usuario user = UsuarioService.obtenerUsuario(name, password);
+        Usuario user = UsuarioService.obtenerUsuario(username, password);
         //login succes
         try{
-        if (!user.equals(null) && !name.equals("root") && !password.equals("root")) {
-            request.session().attribute("username", name);
-            request.session().attribute("password",password);
-            response.status(200);
-            response.redirect("/clientes/"+user.getId());
+       if (username.isEmpty() || password.isEmpty() || user == null) {
+    	   response.redirect("/login");
+			  
         }
-       if(!user.equals(null) && name.equals("root") && password.equals( "root"))
+       if(username.equals("root") && password.equals("root"))
         {
-       	request.session().attribute("username", name);
-        request.session().attribute("password",password);
         response.status(200);
        	response.redirect("/administradores/"+ user.getId());
         }
+       if(username.equals(user.getNombreUsuario()) && password.equals(user.getContrasenia()))
+       {
+       response.status(200);
+       response.redirect("/clientes/"+ user.getId());
+       }
         } 
         catch (Exception e) {
             response.status(500);
             response.body(e.toString());
         }
-      
- 
-        
         return null;
 }
+
+
+	
+	public static ModelAndView loginfailed(Request req, Response res){
+		return new ModelAndView(null,"home/logginFailed.hbs");
+	}
+
 }
-
-

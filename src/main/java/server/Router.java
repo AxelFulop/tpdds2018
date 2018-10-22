@@ -1,6 +1,13 @@
 package server;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+
+
+import modelo.Usuario;
+import Servicios.UsuarioService;
 import controllers.AdministradorController;
 import controllers.ClientesController;
 import controllers.HomeController;
@@ -12,7 +19,8 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Router {
 
-	public static void configure() {
+	@SuppressWarnings("unchecked")
+public static void configure() {
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
 				.create()
 				.withDefaultHelpers()
@@ -25,8 +33,12 @@ public class Router {
 	     
 		Spark.get("/",HomeController::home,engine);
 		
+		Spark.get("/logginFailed",LoginController::loginfailed,engine);
 		Spark.get("/login",LoginController::show,engine);
-		Spark.post("/login", LoginController::login,engine);
+		//Spark.post("/login", LoginController::login,engine);
+		Spark.post("/login", (req, res) -> new LoginController(req, res).login());
+					
+
 		
 		Spark.get("/clientes/:id", ClientesController::home, engine);
 		Spark.get("/clientes/:id/hogar", ClientesController::mostrarEstadoHogar, engine);
