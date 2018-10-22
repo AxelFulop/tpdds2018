@@ -1,0 +1,32 @@
+table{
+border-radius: 5px;
+width: 50%;
+float: none;
+margin-top:60px;
+}
+
+
+
+.form-control-clear {
+  z-index: 10;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+input {
+  float: right;
+  clear: both;
+}
+
+#exampleButton1{
+margin-top:60px;
+}
+
+#exampleInput1{
+margin-top:60px;
+}
+
+
+#exampleContainer {
+  padding: 50px;
+}

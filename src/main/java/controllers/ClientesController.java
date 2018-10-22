@@ -56,7 +56,6 @@ public class ClientesController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente", cliente.getId());
 		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
 	}
 }

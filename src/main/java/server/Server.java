@@ -19,7 +19,6 @@ import spark.debug.DebugScreen;
 
 			Spark.port(8080);
 			DebugScreen.enableDebugScreen();
-			
 			Router.configure();
 		}
 
