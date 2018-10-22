@@ -33,7 +33,7 @@ public static void configure() {
 	     
 		Spark.get("/",HomeController::home,engine);
 		
-		Spark.get("/logginFailed",LoginController::loginfailed,engine);
+		Spark.get("/loginFailed",LoginController::loginfailed,engine);
 		Spark.get("/login",LoginController::show,engine);
 		//Spark.post("/login", LoginController::login,engine);
 		Spark.post("/login", (req, res) -> new LoginController(req, res).login());

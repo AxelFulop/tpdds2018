@@ -37,7 +37,7 @@ public class ClientesController {
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 		viewModel.put("idCliente", cliente.getId());
-		return new ModelAndView(viewModel,"home/estadoHogarCliente.hbs");
+		return new ModelAndView(viewModel,"views/estadoHogarCliente.hbs");
 	}
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
@@ -47,7 +47,7 @@ public class ClientesController {
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 		viewModel.put("idCliente", cliente.getId());
-		return new ModelAndView(viewModel,"home/EjecucionSimplexCliente.hbs");
+		return new ModelAndView(viewModel,"views/EjecucionSimplexCliente.hbs");
 	}
 	
 	public static ModelAndView  mostrarConsumo(Request req, Response res){
@@ -57,6 +57,6 @@ public class ClientesController {
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 		viewModel.put("idCliente", cliente.getId());
-		return new ModelAndView(viewModel,"home/consultaConsumoCliente.hbs");
+		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
 	}
 }
