@@ -44,7 +44,9 @@ public class LoginController {
        if(username.equals("root") && password.equals("root"))
         {
         response.status(200);
+        response.cookie("userId",user.getId().toString());
        	response.redirect("/administrador/"+ user.getId());
+
         }
        if(username.equals(user.getNombreUsuario()) && password.equals(user.getContrasenia()))
        {
@@ -56,8 +58,15 @@ public class LoginController {
             response.status(500);
             response.body(e.toString());
         }
-        return null;
+       return null;
 }
+
+    public String logout() throws Exception{
+                response.status(200);
+                response.removeCookie("userId");
+                response.redirect("/login");
+                return null;
+    }
 
 
 	public static ModelAndView loginfailed(Request req, Response res){

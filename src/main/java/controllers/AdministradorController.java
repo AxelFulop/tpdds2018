@@ -13,27 +13,29 @@ import spark.Response;
 public class AdministradorController {
 
 	public static ModelAndView home(Request req, Response res){
-		Long idAdministrador= Long.parseLong(req.params("id"));	
-		Usuario admin = UsuarioService.obtenerUsuarioPorId(idAdministrador);
-		//Administrador admin = new Administrador("root","root","Pedro","Fuentes",TipoIdentificacion.DNI,"123");
-		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("name", admin.getNombre());
-		viewModel.put("id",admin.getId());
-		return new ModelAndView(viewModel,"adminDash.hbs");
+		try {
+
+			HashMap<String, Object> viewModel = new HashMap<>();
+			Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
+			if(admin!=null) {
+				viewModel.put("name", admin.getNombre());
+				viewModel.put("id", admin.getId());
+			}
+			return new ModelAndView(viewModel, "adminDash.hbs");
+		}catch (Exception e)
+		{
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
 	}
 	public static ModelAndView dispositivo(Request req, Response res){
-		Long idAdministrador= Long.parseLong(req.params("id"));
-		Usuario admin = UsuarioService.obtenerUsuarioPorId(idAdministrador);
-
-		if(admin!=null)
-		{
+		Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
 			HashMap<String, Object> viewModel = new HashMap<>();
 			viewModel.put("name",admin.getNombre());
 			viewModel.put("id",admin.getId());
 			return new ModelAndView(viewModel,"admin/crearDispositivo.hbs");
-		}
-		return null;
 	}
+
+
 }
 
 
