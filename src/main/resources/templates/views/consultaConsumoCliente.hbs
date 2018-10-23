@@ -16,7 +16,10 @@
 <div class="row top top-buffer">
     <div class="col-md-8 col-md-offset-2">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Periodo" name="periodoInput">
+      	<h3>Inicio</h3>
+        <input type="text" class="form-control" placeholder="yyyy-MMM-dd" name="inicioPeriodo">
+        <h3>Fin</h3>
+        <input type="text" class="form-control" placeholder="yyyy-MMM-dd" name="finPeriodo">
           <span class="input-group-btn">
             <button class="btn btn-primary">
               <span class="glyphicon glyphicon-search">
@@ -32,7 +35,8 @@
       <th scope="col"class="align-top">#</th>
       <th scope="col" class="align-top">Nombre</th>
       <th scope="col" class="align-top">Apellido</th>
-      <th scope="col"class="align-top">Periodo</th>
+      <th scope="col"class="align-top">Inicio</th>
+      <th scope="col"class="align-top">Fin</th>
       <th scope="col" class="align-top">Consumo</th>
     </tr>
      </thead>
@@ -41,7 +45,8 @@
       <th scope="row">1</th>
       <td>{{nombre}}</td>
       <td>{{apellido}}</td>
-      <td>{{periodo}}</td>
+      <td>{{inicio}}</td>
+      <td>{{fin}}</td>
       <td>{{consumo}}</td>
     </tr>
   </tbody>

@@ -1,5 +1,7 @@
 package controllers;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import Servicios.UsuarioService;
@@ -69,13 +71,17 @@ public class ClientesController {
 	
 	public static ModelAndView  postConsumo(Request req, Response res){
 		Cliente cliente = obtenerCliente(req,res);
-		double consumo = GeneradorReportes.getReportePromedioPorDispositivo(cliente);
+		
+		LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
+		LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));
+		Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio, fin);
 		HashMap<String, Object> viewModel = new HashMap<>();
-		String periodo = req.queryParams("periodoInput");
+		
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("periodo",periodo);
-		viewModel.put("consumo", consumo);
+		viewModel.put("inicio", req.queryParams("inicioPeriodo"));
+		viewModel.put("fin", req.queryParams("finPeriodo"));
+		viewModel.put("consumo", consumo.toString());
 		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
 	}
 	
