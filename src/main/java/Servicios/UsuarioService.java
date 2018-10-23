@@ -27,6 +27,9 @@ import modelo.Usuario;
 		public static void persistir(Usuario usuario) {
 			try {
 				Session.beginTransaction();
+				String userPass = usuario.getContrasenia();
+				String passHasheada = SHA256Builder.generarHash256(userPass);
+				usuario.setContrasenia(passHasheada);
 				Session.getSession().persist(usuario);
 				Session.commitTransaction();
 			} catch (Exception e) {
@@ -34,7 +37,8 @@ import modelo.Usuario;
 				Session.rollbackTransaction();
 			}
 		}
-
+		
+		
 		public static void actualizar(Usuario usuario) {
 			try {
 				Session.beginTransaction();

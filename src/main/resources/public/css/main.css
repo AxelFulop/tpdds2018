@@ -8,17 +8,19 @@ ul {
 
 li {
     float: left;
-    display: block;
-}
-
-#menu{
-visibility: hidden;
-display: hidden;
 }
 
 .menu{
-visibility: hidden;
-display: hidden;
+display: none;
+}
+s
+.login{
+visibility: block;
+display: block;
+}
+
+.logout{
+display: none;
 }
 
 
@@ -36,7 +38,5 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-    background-color: #111;
+background-color: #111;
 }
-
-

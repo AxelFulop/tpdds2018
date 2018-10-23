@@ -7,76 +7,81 @@ import modelo.Cliente;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
 import reportes.GeneradorReportes;
+import scala.Console;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+
 public class ClientesController {
 	private static Usuario obtenerUsuario(Request req, Response res) {
-		Long idCliente = Long.parseLong(req.params("id"));	
+		Long idCliente = Long.parseLong(req.cookie("userId"));	
 		Usuario cliente = UsuarioService.obtenerUsuarioPorId(idCliente);
 		return cliente;
 	}
 	
 	private static Cliente obtenerCliente(Request req, Response res) {
-		Long idCliente = Long.parseLong(req.params("id"));	
+		Long idCliente = Long.parseLong(req.cookie("userId"));	
 		Cliente cliente = UsuarioService.obtenerClientePorId(idCliente);
 		return cliente;
 	}
-	
+
 	public static ModelAndView home(Request req, Response res){	
-		Usuario cliente = obtenerUsuario(req, res);
-		
-		//cliente de prueba (ANDA)
-		//Cliente cliente = new Cliente("lucas","rosol",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
+		try{
 		HashMap<String, Object> viewModel = new HashMap<>();
+		Usuario cliente = obtenerUsuario(req, res);
+		if (!cliente.equals(null)){
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente",cliente.getId());
+		viewModel.put("id", cliente.getId());
+		}
 		return new ModelAndView(viewModel,"home/homeCliente.hbs");
+		}
+		catch (Exception e)
+		{
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
 	}
 
 	
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
 		Usuario cliente = obtenerUsuario(req, res);
-		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente", cliente.getId());
-		return new ModelAndView(viewModel,"views/estadoHogarCliente.hbs");
+		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
 		Usuario cliente = obtenerUsuario(req, res);
-		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente", cliente.getId());
-		return new ModelAndView(viewModel,"views/EjecucionSimplexCliente.hbs");
+		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 	}
 	
 	public static ModelAndView  getConsumo(Request req, Response res){
 		Usuario cliente = obtenerUsuario(req, res);
-		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 		
-		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
+		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
 	}
 	
-	public static ModelAndView  postConsumo(Request req, Response res){
+	public static String  postConsumo(Request req, Response res){
 		Cliente cliente = obtenerCliente(req,res);
-		double consumo = GeneradorReportes.getReportePromedioPorDispositivo(cliente);
+
+		double cons = GeneradorReportes.getReportePromedioPorDispositivo(cliente);
+		int per = Integer.parseInt(req.queryParams("periodo"));
 		HashMap<String, Object> viewModel = new HashMap<>();
-		String periodo = req.queryParams("periodoInput");
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("periodo",periodo);
-		viewModel.put("consumo", consumo);
-		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
-	}
+		viewModel.put("id",cliente.getId());
+		viewModel.put("periodo",per);
+		viewModel.put("consumo", cons);
+		return null;
+	
+}
 	
 }

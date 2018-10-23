@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Consumo Cliente</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/consumoCliente.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script>
+        function doTheInsert(a,b,c,d) {
+            var table = document.getElementById('table');
+            var newRow = table.insertRow(-1);
+            var newCell1 = newRow.insertCell(0);
+            var newCell2 = newRow.insertCell(1);
+            var newCell3 = newRow.insertCell(2);
+            var newCell4 = newRow.insertCell(3);
+
+            newCell1.innerHTML = arguments[0];
+            newCell2.innerHTML = arguments[1];
+            newCell3.innerHTML = arguments[2];
+            newCell4.innerHTML = arguments[3];
+            
+        }
+</script>
+</head>
+<body>
+ <form method="post">
+<div class="row top top-buffer">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="input-group">
+        <input  id ="button" type="text" class="form-control" name="periodo"  placeholder="Periodo" >
+          <span id ="button"  class="input-group-btn">
+            <button id ="button" " onclick="doTheInsert('{{nombre}}','{{apellido}}',{{periodo}},{{consumo}})" class="btn btn-primary">
+              <span class="glyphicon glyphicon-search">
+              </span> Buscar
+            </button>
+          </span>
+      </div>
+    </div>
+    </div>
+ <table id= "table" class="table table-dark">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Periodo</th>
+      <th scope="col" >Consumo</th>
+    </tr>
+     </thead>
+     <br>
+</body>
+</html>
+{{>layout.hbs}}

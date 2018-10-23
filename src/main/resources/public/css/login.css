@@ -11,17 +11,15 @@ background-color: transparent;
 }
 
 h1{ 
-
 text-shadow: 0 0 20px #fefcc9, 2px -2px 3px #feec85, -4px -4px 5px #ffae34, 5px -10px 6px #ec760c, -5px -12px 8px #cd4606, 0 -15px 20px #973716, 2px -15px 20px #451b0e;
-   color: #666;
+color: #666;
 }
-
 
 p
 {
 font-family: Arial Black; 
 font-weight: bold; font-size: 30px; 
-background: #202020; 
+background: #202020;
 -webkit-background-clip: text; 
 -moz-background-clip: text; 
 background-clip: text; 
@@ -34,11 +32,7 @@ font-weight: bold;
 }
 
 body{
-background-image: url("http://www.fondos.gratis.es/fondos_webs/agua/agua08.jpg");
+background-image: url("../imagenes/agua08.jpg");
 }
 
-.card-img-top {
-	width: 50%;
-	height: 50%;
-	border-radius: 50%;
-}
+

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.github.jknack.handlebars.Handlebars;
 
+import Servicios.SHA256Builder;
 import Servicios.UsuarioService;
 import modelo.Usuario;
 import setup.ResponseError;
@@ -33,7 +34,9 @@ public class LoginController {
 	public String login() throws Exception{
 		
         String username = request.queryParams("nombreUsuario");
-        String password = request.queryParams("contrasenia");
+        String pass = request.queryParams("contrasenia");
+        String password = SHA256Builder.generarHash256(pass);
+        String passRoot = SHA256Builder.generarHash256("root");
         Usuario user = UsuarioService.obtenerUsuario(username, password);
         //login succes
         try{
@@ -41,7 +44,7 @@ public class LoginController {
     	   response.redirect("/loginFailed");
 			  
         }
-       if(username.equals("root") && password.equals("root"))
+       if(username.equals("root") && password.equals(passRoot))
         {
         response.status(200);
         response.cookie("userId",user.getId().toString());
@@ -51,6 +54,7 @@ public class LoginController {
        if(username.equals(user.getNombreUsuario()) && password.equals(user.getContrasenia()))
        {
        response.status(200);
+       response.cookie("userId",user.getId().toString());
        response.redirect("/clientes/"+ user.getId());
        }
         } 
@@ -70,7 +74,7 @@ public class LoginController {
 
 
 	public static ModelAndView loginfailed(Request req, Response res){
-		return new ModelAndView(null,"views/logginFailed.hbs");
+		return new ModelAndView(null,"statusCodePages/loginFailed.hbs");
 	}
 
 }

@@ -3,8 +3,9 @@
 
 
   
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+ <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+ <link rel="stylesheet" href="/css/toaster.css">
  <head>
  <meta http-equiv="refresh" content="2; URL=/login">
 <meta name="keywords" content="automatic redirection">
@@ -34,9 +35,15 @@
                         <div class="col-xs-4">
                         
                         <button class="btn btn-success btn-block btn-flat" name="button">Ingresar</button>
-                           
-                         <p style="color:red"> Login Failed</p>
-                           
+                         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+  });
+toastr.options.positionClass = 'toast-top-center'
+toastr.error("Login incorrecto,vuelva a intentarlo");
+                            </script>
                           </div>
                         </div>
                     </div>

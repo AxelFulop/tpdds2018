@@ -10,7 +10,7 @@
 <body>
 
 <div class="fixed-left">
-	<h4>Bienvenido {{nombre}} {{apellido}}</h4>
+	<h1 class = "welcome">Bienvenido {{nombre}} {{apellido}}</h>
 	</div>
 	
 
@@ -20,7 +20,7 @@
   <div class="card text-center">
     <img class="card-img-top" src="../imagenes/hogar.jpg" alt="Card image cap">
     <div class="card-body">
-      <button formaction="/clientes/{{idCliente}}/hogar" type="submit" class="btn btn-light">Ver mi hogar</button>
+      <button formaction="/clientes/{{id}}/hogar" type="submit" class="btn btn-light">Ver mi hogar</button>
     </div>
   </div>
 </form>
@@ -29,7 +29,7 @@
   <div class="card text-center">
   	<img class="card-img-top" src="../imagenes/ahorro-led.jpg" alt="Card image cap">
   	<div class="card-body">
-      <button formaction="/clientes/{{idCliente}}/consumo" type="submit" class="btn btn-light">Consultar consumo</button>
+      <button formaction="/clientes/{{id}}/consumo" type="submit" class="btn btn-light">Consultar consumo</button>
     </div>
   </div>
 </form>
@@ -38,7 +38,7 @@
   <div class="card text-center">
   	<img class="card-img-top" src="../imagenes/bajoConsumo.jpg" alt="Card image cap">
   	<div class="card-body">
-      <button formaction="/clientes/{{idCliente}}/optimizador" type="submit" class="btn btn-light">Ejecutar optimizador</button>
+      <button formaction="/clientes/{{id}}/optimizador" type="submit" class="btn btn-light">Ejecutar optimizador</button>
     </div>
   </div>
 </form>
