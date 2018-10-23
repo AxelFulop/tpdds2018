@@ -1,14 +1,26 @@
 package reportes;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.Transformador;
 
 public class GeneradorReportes {
+	public static float diferenciaEnHoras(LocalDate inicio, LocalDate fin) {
+		ZoneId defaultZoneId = ZoneId.systemDefault();		
+		Date dateInicio = Date.from(inicio.atStartOfDay(defaultZoneId).toInstant());
+		Date dateFin = Date.from(fin.atStartOfDay(defaultZoneId).toInstant());
+		
+		long diff = dateFin.getTime() - dateInicio.getTime();
+		float days = (diff / (1000*60*60*24));
+	    return days*24;
+	}
 
 	public static Double getReportePorHogar(Cliente cliente, LocalDate inicio, LocalDate fin) { // hogar = cliente
-		int cantHoras = fin.compareTo(inicio)*24; //fin.compareTo(inicio) -> supongo que me da la cant de dias entre cada fecha
+		float cantHoras = GeneradorReportes.diferenciaEnHoras(inicio, fin); 
 		Double consumo = 0d;   
         
         for(Dispositivo d:cliente.getDispositivos()) {
@@ -17,7 +29,6 @@ public class GeneradorReportes {
         return consumo;
 	}
 	
-	//no entendi muy bien este reporte a que se referia
 	public static Double getReportePromedioPorDispositivo(Cliente c) {
 		Double consumoTotal = 0d;
 		for(Dispositivo d:c.getDispositivos()) {
