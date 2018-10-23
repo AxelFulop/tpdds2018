@@ -21,7 +21,7 @@ public class AdministradorController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", admin.getNombre());
 		viewModel.put("apellido",admin.getApellido());
-		return new ModelAndView(viewModel,"home/homeAdministrador.hbs");
+		return new ModelAndView(viewModel,"admin/adminDash.hbs");
 	}
 }
 
