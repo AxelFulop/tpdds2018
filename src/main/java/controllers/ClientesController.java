@@ -6,6 +6,7 @@ import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
+import reportes.GeneradorReportes;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -14,6 +15,12 @@ public class ClientesController {
 	private static Usuario obtenerUsuario(Request req, Response res) {
 		Long idCliente = Long.parseLong(req.params("id"));	
 		Usuario cliente = UsuarioService.obtenerUsuarioPorId(idCliente);
+		return cliente;
+	}
+	
+	private static Cliente obtenerCliente(Request req, Response res) {
+		Long idCliente = Long.parseLong(req.params("id"));	
+		Cliente cliente = UsuarioService.obtenerClientePorId(idCliente);
 		return cliente;
 	}
 	
@@ -50,12 +57,26 @@ public class ClientesController {
 		return new ModelAndView(viewModel,"views/EjecucionSimplexCliente.hbs");
 	}
 	
-	public static ModelAndView  mostrarConsumo(Request req, Response res){
+	public static ModelAndView  getConsumo(Request req, Response res){
 		Usuario cliente = obtenerUsuario(req, res);
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
+		
 		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
 	}
+	
+	public static ModelAndView  postConsumo(Request req, Response res){
+		Cliente cliente = obtenerCliente(req,res);
+		double consumo = GeneradorReportes.getReportePromedioPorDispositivo(cliente);
+		HashMap<String, Object> viewModel = new HashMap<>();
+		String periodo = req.queryParams("periodoInput");
+		viewModel.put("nombre", cliente.getNombre());
+		viewModel.put("apellido",cliente.getApellido());
+		viewModel.put("periodo",periodo);
+		viewModel.put("consumo", consumo);
+		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
+	}
+	
 }

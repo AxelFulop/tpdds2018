@@ -60,7 +60,6 @@ public class LoginController {
 }
 
 
-	
 	public static ModelAndView loginfailed(Request req, Response res){
 		return new ModelAndView(null,"views/logginFailed.hbs");
 	}

@@ -11,6 +11,8 @@ import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import Servicios.UsuarioService;
+
 
 
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
@@ -21,11 +23,14 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	
 	public void init(){
 	withTransaction(() ->{
-		Administrador admin = new Administrador();
-		if(admin.equals(null)){
-		 admin = new Administrador("root","root","Pedro","Fuentes",TipoIdentificacion.DNI,"123");
-		admin.persistir();
-		}	
+		if(UsuarioService.obtenerUsuario("root","root")==null)
+		{
+			Usuario root = new Usuario();
+			root.setContrasenia("root");
+			root.setNombreUsuario("root");
+			UsuarioService.persistir(root);
+		}
+
 		});
 	}
 	

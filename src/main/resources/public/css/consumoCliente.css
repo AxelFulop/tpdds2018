@@ -4,6 +4,37 @@ width: 50%;
 float: none;
 margin-top:60px;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    display: block;
+}
+
+
+.active {
+background-color: #4CAF50;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
 
 
 
@@ -13,20 +44,23 @@ margin-top:60px;
   cursor: pointer;
 }
 
-input {
-  float: right;
-  clear: both;
-}
-
-#exampleButton1{
-margin-top:60px;
-}
-
-#exampleInput1{
-margin-top:60px;
-}
+.top-buffer { margin-top: 60px;}
 
 
 #exampleContainer {
-  padding: 50px;
+  padding: 20px;
+}sasa
+
+body{
+background-image: url("http://www.fondos.gratis.es/fondos_webs/agua/agua08.jpg");
+}
+
+#menu{
+visibility:block;
+display:block;
+}
+
+.menu{
+visibility:block;
+display:block;
 }

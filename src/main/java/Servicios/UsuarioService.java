@@ -50,7 +50,12 @@ import modelo.Usuario;
 		return Session.getSession().find(Usuario.class,id);
 		}
 
+		public static Cliente obtenerClientePorId(Long id)
+		{
+		return Session.getSession().find(Cliente.class,id);
+		}
 
+	
 
 	    public static Usuario obtenerUsuario(String username,String password)
 	    {

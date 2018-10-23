@@ -8,12 +8,22 @@ ul {
 
 li {
     float: left;
+    display: block;
+}
+
+#menu{
+visibility: hidden;
+display: hidden;
+}
+
+.menu{
+visibility: hidden;
+display: hidden;
 }
 
 
-
 .active {
-    background-color: #4CAF50;
+background-color: #4CAF50;
 }
 
 li a {
