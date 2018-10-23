@@ -44,7 +44,7 @@ public class LoginController {
        if(username.equals("root") && password.equals("root"))
         {
         response.status(200);
-       	response.redirect("/administradores/"+ user.getId());
+       	response.redirect("/administrador/"+ user.getId());
         }
        if(username.equals(user.getNombreUsuario()) && password.equals(user.getContrasenia()))
        {

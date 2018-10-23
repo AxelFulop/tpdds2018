@@ -21,7 +21,18 @@ public class AdministradorController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", admin.getNombre());
 		viewModel.put("apellido",admin.getApellido());
-		return new ModelAndView(viewModel,"admin/adminDash.hbs");
+		return new ModelAndView(viewModel,"adminDash.hbs");
+	}
+	public static ModelAndView dispositivo(Request req, Response res){
+		Long idAdministrador= Long.parseLong(req.params("id"));
+		Usuario admin = UsuarioService.obtenerUsuarioPorId(idAdministrador);
+
+		if(admin!=null)
+		{
+			HashMap<String, Object> viewModel = new HashMap<>();
+			return new ModelAndView(viewModel,"admin/crearDispositivo.hbs");
+		}
+		return null;
 	}
 }
 

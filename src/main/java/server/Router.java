@@ -43,7 +43,8 @@ public static void configure() {
 		Spark.get("/clientes/:id/consumo", ClientesController::getConsumo, engine);
 		Spark.post("/clientes/:id/consumo", ClientesController::postConsumo, engine);
 		
-		Spark.get("/administradores/:id",AdministradorController::home, engine);
+		Spark.get("/administrador/:id",AdministradorController::home, engine);
+		Spark.get("/administrador/:id/dispositivo",AdministradorController::dispositivo, engine);
 		
 	}
 
