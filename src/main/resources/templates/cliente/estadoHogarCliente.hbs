@@ -13,6 +13,8 @@
     		border-collapse: collapse;
     		width: 50%;
     		background-color: Azure ;
+    		margin-left:20px;
+    		margin-top:30px;
     		right: 50%;
 		}
 
@@ -31,24 +33,31 @@
 </head>
 
 <body>
-	<h3><span style="color:OldLace" class="border">Consumo del ultimo mes:  {{consumoUltimoMes}}</span></h3>
+	<h3 style = "margin-top:50px"><span style="color:OldLace" class="border">Consumo del ultimo mes:  {{consumoUltimoMes}}</span></h3>
 		
-<table>
-  <thead class="thead-light">
+<table class="table table-dark">
+<thead>
+    <tr>
     <tr>
       <th scope="col" class="colIzquierda">Nombre del dispositivo</th>
       <th scope="col">Estado</th>
     </tr>
   </thead>
   <tbody>
-  		{{#each dispositivosInteligentes}}
+  		{{#each dispositivosE}}
+			<tr class="dispIntelig">
+      			<th scope="row">{{nombre}}</th>
+      			<td>{{estado}}</td>
+    		</tr>
+		{{/each}}		
+			{{#each dispositivosI}}
 			<tr class="dispIntelig">
       			<th scope="row" class="colIzquierda">{{nombre}}</th>
       			<td>{{estado}}</td>
     		</tr>
-		{{/each}}		
+		{{/each}}
   </tbody>
 </table>
-
 </body>
 </html>
+{{>layout.hbs}}
