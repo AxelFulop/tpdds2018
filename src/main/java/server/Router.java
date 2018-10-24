@@ -10,6 +10,7 @@ import controllers.AdministradorController;
 import controllers.ClientesController;
 import controllers.HomeController;
 import controllers.LoginController;
+import controllers.MapaController;
 import setup.BooleanHelper;
 import setup.HandlebarsTemplateEngineBuilder;
 import spark.Spark;

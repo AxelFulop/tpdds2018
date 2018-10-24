@@ -4,9 +4,11 @@ package controllers;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 
 import Servicios.UsuarioService;
 import modelo.Cliente;
+import modelo.Dispositivo;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
 import reportes.GeneradorReportes;
@@ -40,12 +42,14 @@ public class ClientesController {
 
 	
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
-		Usuario cliente = obtenerUsuario(req, res);
+		Cliente cliente = (Cliente) obtenerUsuario(req, res);
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
+		List<Dispositivo> dispositivos = cliente.getDispositivos();
+		
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("id", cliente.getId());
+		viewModel.put("dispositivos", dispositivos);
 		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
 	
