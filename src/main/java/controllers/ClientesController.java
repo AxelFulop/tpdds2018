@@ -30,12 +30,11 @@ public class ClientesController {
 	public static ModelAndView home(Request req, Response res){	
 		Usuario cliente = obtenerUsuario(req, res);
 		
-		//cliente de prueba (ANDA)
-		//Cliente cliente = new Cliente("lucas","rosol",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
+	
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente",cliente.getId());
+		viewModel.put("id",cliente.getId());
 		return new ModelAndView(viewModel,"home/homeCliente.hbs");
 	}
 
@@ -46,8 +45,8 @@ public class ClientesController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente", cliente.getId());
-		return new ModelAndView(viewModel,"views/estadoHogarCliente.hbs");
+		viewModel.put("id", cliente.getId());
+		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
@@ -56,8 +55,8 @@ public class ClientesController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente", cliente.getId());
-		return new ModelAndView(viewModel,"views/EjecucionSimplexCliente.hbs");
+		viewModel.put("id", cliente.getId());
+		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 	}
 	
 	public static ModelAndView  getConsumo(Request req, Response res){
@@ -66,8 +65,8 @@ public class ClientesController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		
-		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
+		viewModel.put("idCliente", cliente.getId());
+		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
 	}
 	
 	public static ModelAndView  postConsumo(Request req, Response res){
@@ -83,7 +82,7 @@ public class ClientesController {
 		viewModel.put("inicio", req.queryParams("inicioPeriodo"));
 		viewModel.put("fin", req.queryParams("finPeriodo"));
 		viewModel.put("consumo", consumo.toString());
-		return new ModelAndView(viewModel,"views/consultaConsumoCliente.hbs");
+		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
 	}
 	
 }
