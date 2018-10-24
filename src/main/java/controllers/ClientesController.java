@@ -3,6 +3,7 @@ package controllers;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
+import modelo.Optimizador;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
 import reportes.GeneradorReportes;
@@ -60,12 +62,21 @@ public class ClientesController {
 	}
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
-		Usuario cliente = obtenerUsuario(req, res);
+		Cliente cliente = (Cliente) obtenerUsuario(req, res);
+		List<Dispositivo> dispositivos = cliente.getDispositivos();
+		Double limiteMensual = Double.valueOf( req.queryParams("limiteMensual") );
+		Optimizador optimizador = new Optimizador();
+		List<Double> valoresOptimizados = optimizador.optimizar(dispositivos, limiteMensual);
+		
+		List<DuplaDispositivoValorOptimizado> listaDuplas = new ArrayList<DuplaDispositivoValorOptimizado>();
+		
+		for(int i = 0; i < dispositivos.size(); i++) {
+			DuplaDispositivoValorOptimizado dupla = new DuplaDispositivoValorOptimizado(dispositivos.get(i), valoresOptimizados.get(i));
+			listaDuplas.add(dupla);
+		}
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("nombre", cliente.getNombre());
-		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("id", cliente.getId());
+		viewModel.put("valoresOptimizados", listaDuplas);
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 	}
 	
