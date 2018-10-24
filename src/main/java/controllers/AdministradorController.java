@@ -43,6 +43,8 @@ public class AdministradorController {
 			Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
 			List<Cliente> clientes = UsuarioService.obtenerHogares();
 			viewModel.put("cliente",clientes);
+			viewModel.put("name",admin.getNombre());
+			viewModel.put("id",admin.getId());
 			return new ModelAndView(viewModel,"admin/hogares.hbs");
 		}catch (Exception e)
 		{

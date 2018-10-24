@@ -14,14 +14,16 @@
             <th>Id</th>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Consumo total</th>
         </tr>
         </thead>
         <tbody>
         {{#each cliente}}
         <tr>
             <td>{{id}}</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
+            <td>{{nombre}}</td>
+            <td>{{apellido}}</td>
+            <td>{{consumoTotal}}</td>
         </tr>
         {{/each}}
         </tbody>
