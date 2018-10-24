@@ -22,7 +22,6 @@
 
 </head>
 
-<!-- FALTA COMPLETAR ESTA PANTALLA-->
 <body>
 		<h4>Ingrese el limite mensual </h4>
         <input type="number" placeholder="Limite" name="limiteMensual">
@@ -41,11 +40,13 @@
     </tr>
      </thead>
   		<tbody>
-    <tr>
-      <td>{{nombre}}</td>
-      <td>{{apellido}}</td>
-    </tr>
-  </tbody>
+  	{{#each valoresOptimizados}}
+    	<tr>
+      		<td>{{disp}}</td>
+      		<td>{{valorOptimizado}}</td>
+    	</tr>
+    {{/each}}
+  	</tbody>
 </table>
 
 </body>

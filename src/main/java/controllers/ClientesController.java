@@ -63,6 +63,7 @@ public class ClientesController {
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
 		Cliente cliente = (Cliente) obtenerUsuario(req, res);
+		//obtener todos los dispositivos del cliente de la BD
 		List<Dispositivo> dispositivos = cliente.getDispositivos();
 		Double limiteMensual = Double.valueOf( req.queryParams("limiteMensual") );
 		Optimizador optimizador = new Optimizador();
