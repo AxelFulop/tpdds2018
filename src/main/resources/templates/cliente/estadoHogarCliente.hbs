@@ -4,27 +4,49 @@
 	<link rel="stylesheet" href="/css/homeCliente.css"> 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <style>
+		table, td, th {
+    		border: 1px solid black;
+		}
+
+		table {
+    		border-collapse: collapse;
+    		width: 50%;
+    		background-color: Azure ;
+    		right: 50%;
+		}
+
+		th {
+    		height: 40px;
+		}
+		
+		.colIzquierda{
+			width:50%;
+		}
+		
+		.dispIntelig{
+			background-color: Bisque;
+		}
+		</style>
 </head>
 
-<!-- FALTA COMPLETAR ESTA PANTALLA-->
 <body>
-	<h3>Consumo del ultimo mes</h3>
-	<h3>{{consumoUltimoMes}}</h3>
+	<h3><span style="color:OldLace" class="border">Consumo del ultimo mes:  {{consumoUltimoMes}}</span></h3>
 		
-<table class="table table-striped table-dark">
-  <thead>
+<table>
+  <thead class="thead-light">
     <tr>
-      <th scope="col">Nombre del dispositivo</th>
+      <th scope="col" class="colIzquierda">Nombre del dispositivo</th>
       <th scope="col">Estado</th>
     </tr>
   </thead>
   <tbody>
-  		{{#each dispositivos}}
-			<tr>
-      			<th scope="row">{{nombre}}</th>
+  		{{#each dispositivosInteligentes}}
+			<tr class="dispIntelig">
+      			<th scope="row" class="colIzquierda">{{nombre}}</th>
       			<td>{{estado}}</td>
     		</tr>
-		{{/each}}
+		{{/each}}		
   </tbody>
 </table>
 

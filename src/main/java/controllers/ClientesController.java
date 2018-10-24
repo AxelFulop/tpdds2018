@@ -9,6 +9,8 @@ import java.util.List;
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
+import modelo.DispositivoEstandar;
+import modelo.DispositivoInteligente;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
 import reportes.GeneradorReportes;
@@ -45,11 +47,15 @@ public class ClientesController {
 		Cliente cliente = (Cliente) obtenerUsuario(req, res);
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
-		List<Dispositivo> dispositivos = cliente.getDispositivos();
+		List<DispositivoEstandar> dispEstandar = UsuarioService.obtenerDispositivosEstandar(cliente.getNombreUsuario(), cliente.getContrasena());
+		List<DispositivoInteligente> dispInteligentes = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
+		
+		
 		
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("dispositivos", dispositivos);
+		viewModel.put("consumoUltimoMes",GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) );
+		viewModel.put("dispositivosInteligentes", dispInteligentes);
 		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
 	

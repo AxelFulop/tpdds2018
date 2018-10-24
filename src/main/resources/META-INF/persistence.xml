@@ -39,7 +39,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost/tpdds2018?serverTimezone=UTC"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="qmsroot"/> <!-- qmsroot -->
+            <property name="hibernate.connection.password" value="champions1234"/> <!-- qmsroot -->
 
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
