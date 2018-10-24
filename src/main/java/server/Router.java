@@ -44,6 +44,7 @@ public class Router {
         Spark.get("/administrador/:id", AdministradorController::home, engine);
         Spark.get("/administrador/:id/dispositivo", AdministradorController::dispositivo, engine);
 
+        Spark.get("/mapa",MapaController::home,engine);
     }
 
 }
