@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import Servicios.DispositivoService;
 import Servicios.Session;
 import Servicios.UsuarioService;
 import modelo.Cliente;
+import modelo.Dispositivo;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
 import modelo.TipoIdentificacion;
@@ -37,6 +40,44 @@ public class testUsuarioService {
 		List<DispositivoEstandar> dispositivosEstandar = UsuarioService.obtenerDispositivosEstandar("JuanATR","qwerty");
 		org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(0).getNombre(),dispositivosEstandar.get(0).getNombre());
 		org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(1).getNombre(),dispositivosEstandar.get(1).getNombre());	
+	}
+	
+	@Test
+	public void testPersistoDispositivos() {
+		DispositivoEstandar tv = new DispositivoEstandar("tv", false,10d);
+		DispositivoInteligente aire = new DispositivoInteligente("aire", false,15d);
+		Cliente cliente = new Cliente("Antonio","Fondevila",TipoIdentificacion.DNI,"321",40539761,"Medrano 951","Perruna","loco",0);
+	    cliente.agregarDispositivoEstandar(tv);
+	    cliente.agregarDispositivoInteligente(aire);
+		cliente.persistir();
+		
+		Cliente c = (Cliente)UsuarioService.obtenerUsuario(cliente.getNombreUsuario(), cliente.getContrasena());
+		List<DispositivoInteligente> disp = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
+	    Assert.assertEquals(disp.size(), 1);
+	    
+	    UsuarioService.eliminar(c);
+	    for(DispositivoInteligente d:disp) {
+	    	DispositivoService.eliminar(d);
+	    }
+	}
+	
+	@Test
+	public void testObtengoDispositivos() {
+		DispositivoEstandar tv = new DispositivoEstandar("tv", false,10d);
+		DispositivoInteligente aire = new DispositivoInteligente("aire", false,15d);
+		Cliente cliente = new Cliente("Antonio","Fondevila",TipoIdentificacion.DNI,"321",40539761,"Medrano 951","Perruna","loco",0);
+	    cliente.agregarDispositivoEstandar(tv);
+	    cliente.agregarDispositivoInteligente(aire);
+		cliente.persistir();
+		
+		Cliente c = (Cliente)UsuarioService.obtenerUsuario(cliente.getNombreUsuario(), cliente.getContrasena());
+		List<Dispositivo> disp = UsuarioService.obtenerDispositivos(cliente.getNombreUsuario(), cliente.getContrasena());
+	    Assert.assertEquals(disp.size(), 2);
+	    
+	    UsuarioService.eliminar(c);
+	    for(Dispositivo d:disp) {
+	    	DispositivoService.eliminar(d);
+	    }
 	}
 	
 	@Test

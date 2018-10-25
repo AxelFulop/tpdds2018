@@ -34,7 +34,7 @@ public class ClientesController {
 	}
 	
 	public static ModelAndView home(Request req, Response res){	
-		Usuario cliente = obtenerUsuario(req, res);
+		Cliente cliente = obtenerCliente(req, res);
 		
 	
 		HashMap<String, Object> viewModel = new HashMap<>();
@@ -46,31 +46,27 @@ public class ClientesController {
 
 	
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
-		Cliente cliente = (Cliente) obtenerUsuario(req, res);
+		Cliente cliente = obtenerCliente(req, res);
+		List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
-		List<DispositivoInteligente> dispInteligentes = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 		viewModel.put("consumoUltimoMes",GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) );
-		viewModel.put("dispositivosI",dispInteligentes);
+		viewModel.put("dispositivosI", dispI);
 		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
-		Cliente cliente = (Cliente) obtenerUsuario(req, res);	
+		Cliente cliente = obtenerCliente(req, res);	
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("id", cliente.getId());
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 	}
 	
 	public static ModelAndView postSimplex(Request req, Response res) {
-		Cliente cliente = (Cliente) obtenerUsuario(req, res);		
-		List<DispositivoEstandar> dispositivosEstandares = UsuarioService.obtenerDispositivosEstandar(cliente.getNombreUsuario(), cliente.getContrasena());
-		List<DispositivoInteligente> dispositivosInteligentes = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
-		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
-        dispositivos.addAll(dispositivosEstandares);
-        dispositivos.addAll(dispositivosInteligentes);
+		Cliente cliente = obtenerCliente(req, res);		
+		List<Dispositivo> dispositivos = UsuarioService.obtenerDispositivos(cliente.getNombreUsuario(), cliente.getContrasena());
         
 		Double limiteMensual = Double.valueOf( req.queryParams("limiteMensual") );
 		Optimizador optimizador = new Optimizador();
@@ -88,7 +84,7 @@ public class ClientesController {
 	}
 	
 	public static ModelAndView  getConsumo(Request req, Response res){
-		Usuario cliente = obtenerUsuario(req, res);
+		Cliente cliente = obtenerCliente(req, res);
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
@@ -98,7 +94,7 @@ public class ClientesController {
 	}
 	
 	public static ModelAndView  postConsumo(Request req, Response res){
-		Cliente cliente = obtenerCliente(req,res);
+		Cliente cliente = obtenerCliente(req, res);
 		
 		LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
 		LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));

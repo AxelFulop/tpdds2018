@@ -5,6 +5,7 @@ package server;
 
 import java.util.List;
 
+import Servicios.DispositivoService;
 import Servicios.Parser;
 import Servicios.SHA256Builder;
 import modelo.Actuador;
@@ -15,6 +16,7 @@ import modelo.DispositivoInteligente;
 import modelo.Estado;
 import modelo.Optimizador;
 import modelo.Regla;
+import modelo.Restriccion;
 import modelo.Sensor;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
@@ -44,34 +46,27 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	
 	public void init(){
 	withTransaction(() ->{
-		/*try {
-			Sensor sensorOptimizador = new SensorOptimizador();
-			Actuador actuadorOptimizador ;
-			Regla reglaApagadoOptimizacion;
-			Optimizador optimizador = new Optimizador();
-			
-			Cliente cliente1= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","lucas","asd",0);
-			Cliente cliente2= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","pedro","asd",0);
-			Cliente cliente3= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","tito","asd",0);
+		try {			
+			Cliente cliente = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","pechoFrio","asd",0);
 		
-			DispositivoInteligente aire = new DispositivoInteligente("aire",true,1d); 
-			DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,1d); 
-			cliente1.agregarDispositivoInteligente(aire);
-			cliente1.agregarDispositivoInteligente(heladera);
-			cliente2.agregarDispositivoInteligente(aire);
-			cliente2.agregarDispositivoInteligente(heladera);
-			cliente3.agregarDispositivoInteligente(aire);
-			cliente3.agregarDispositivoInteligente(heladera);
-			aire.persistir();
-			heladera.persistir();
-			UsuarioService.persistir(cliente1);
-			UsuarioService.persistir(cliente2);
-			UsuarioService.persistir(cliente3);
+			DispositivoInteligente aire = new DispositivoInteligente("dispReCheto",true,1d); 
+			DispositivoInteligente heladera = new DispositivoInteligente("heladeraTurra",true,1d);
+			/*Restriccion restrAire = new Restriccion();
+			restrAire.setCotasAireAcondicionado();
+			Restriccion restrHeladera = new Restriccion();
+			restrHeladera.setCotasComputadora();
+			restrAire.persistir();
+			restrHeladera.persistir();*/
+			//cliente.agregarDispositivoInteligente(aire);
+			//cliente.agregarDispositivoInteligente(heladera);
+			//DispositivoService.persistir(aire);
+			//DispositivoService.persistir(heladera);
+			UsuarioService.persistir(cliente);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		if((UsuarioService.obtenerUsuario("root",SHA256Builder.generarHash256("root"))) == null){
 			Usuario root = new Usuario();
 			root.setContrasenia(SHA256Builder.generarHash256("root"));

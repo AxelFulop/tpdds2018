@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import Servicios.Model;
+
 @Entity
-public class Restriccion {
+public class Restriccion extends Model{
     @Id
     @GeneratedValue
     private Long id;

@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import modelo.Cliente;
+import modelo.Dispositivo;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
 import modelo.Usuario;
@@ -98,6 +99,15 @@ import modelo.Usuario;
 			
 		}
 	
+		public static List<Dispositivo> obtenerDispositivos(String username,String password){
+			List<Dispositivo> disp = new ArrayList<Dispositivo>();
+			List<DispositivoEstandar> dispE = UsuarioService.obtenerDispositivosEstandar(username, password);
+			List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentes(username, password);
+			
+			disp.addAll(dispE);
+			disp.addAll(dispI);
+			return disp;
+		}
 		//hogar = cliente
 		public static List<Cliente> obtenerHogares() {
 			List<Cliente> listaHogares = new ArrayList<Cliente>();
