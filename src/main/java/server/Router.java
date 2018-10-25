@@ -49,6 +49,12 @@ public class Router {
         Spark.get("/mapa",MapaController::home,engine);
         Spark.get("/hogares",AdministradorController::obtenerHogares,engine);
         Spark.get("/dispositivos", AdministradorController::obtenerDispositivos,engine);
+
+        Spark.post("/dispositivos/dispositivoInteligente", (req, res) -> new AdministradorController(req,res).crearDispositivoInteligente());
+        Spark.post("/dispositivos/dispositivoEstandar", (req, res) -> new AdministradorController(req,res).crearDispositivoEstandar());
+
+        Spark.get("/hogares/hogar/:id/reporte", AdministradorController::generarReporteHogar,engine);
+
     }
 
 }
