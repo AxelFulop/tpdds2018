@@ -10,7 +10,13 @@ import java.util.List;
 @Table(name = "dispositivo")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Dispositivo extends Model {
-    @Id
+    @Override
+	public String toString() {
+		return "Dispositivo [id=" + id + ", bajoConsumo=" + bajoConsumo + ", kwh=" + kwh + ", restriccion="
+				+ restriccion + "]";
+	}
+
+	@Id
     @TableGenerator(
             name = "tipoDispositivoIdGenerator",
             table = "tipoDispositivoIdGenerator",

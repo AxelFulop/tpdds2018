@@ -46,22 +46,29 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	
 	public void init(){
 	withTransaction(() ->{
-		try {			
-			Cliente cliente = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","pechoFrio","asd",0);
+		try {
+			Sensor sensorOptimizador = new SensorOptimizador();
+			Actuador actuadorOptimizador ;
+			Regla reglaApagadoOptimizacion;
+			Optimizador optimizador = new Optimizador();
+			
+			Cliente cliente1= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
+			Cliente cliente2= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","pedro","asd",0);
+			Cliente cliente3= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","tito","asd",0);
 		
-			DispositivoInteligente aire = new DispositivoInteligente("dispReCheto",true,1d); 
-			DispositivoInteligente heladera = new DispositivoInteligente("heladeraTurra",true,1d);
-			/*Restriccion restrAire = new Restriccion();
-			restrAire.setCotasAireAcondicionado();
-			Restriccion restrHeladera = new Restriccion();
-			restrHeladera.setCotasComputadora();
-			restrAire.persistir();
-			restrHeladera.persistir();*/
-			//cliente.agregarDispositivoInteligente(aire);
-			//cliente.agregarDispositivoInteligente(heladera);
-			//DispositivoService.persistir(aire);
-			//DispositivoService.persistir(heladera);
-			UsuarioService.persistir(cliente);
+			DispositivoInteligente aire = new DispositivoInteligente("airePiola",true,1d); 
+			DispositivoInteligente heladera = new DispositivoInteligente("heladeraPiola",true,1d); 
+			cliente1.agregarDispositivoInteligente(aire);
+			cliente1.agregarDispositivoInteligente(heladera);
+			cliente2.agregarDispositivoInteligente(aire);
+			cliente2.agregarDispositivoInteligente(heladera);
+			cliente3.agregarDispositivoInteligente(aire);
+			cliente3.agregarDispositivoInteligente(heladera);
+			aire.persistir();
+			heladera.persistir();
+			UsuarioService.persistir(cliente1);
+			UsuarioService.persistir(cliente2);
+			UsuarioService.persistir(cliente3);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

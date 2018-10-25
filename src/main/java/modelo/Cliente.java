@@ -10,7 +10,14 @@ import java.util.List;
 
 @Entity
 public class Cliente extends Usuario {
-    int telefono;
+    @Override
+	public String toString() {
+		return "Cliente [telefono=" + telefono + ", domicilio=" + domicilio + ", categoria=" + categoria + ", puntos="
+				+ puntos + ", dispositivosEstandares=" + dispositivosEstandares + ", dispositivosInteligentes="
+				+ dispositivosInteligentes + ", consumoTotal=" + consumoTotal + ", ubicacion=" + ubicacion
+				+ ", sensores=" + sensores + "]";
+	}
+	int telefono;
     String domicilio;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CategoriaResidencial categoria;
