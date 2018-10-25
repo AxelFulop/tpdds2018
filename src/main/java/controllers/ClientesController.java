@@ -49,12 +49,10 @@ public class ClientesController {
 		Cliente cliente = (Cliente) obtenerUsuario(req, res);
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
-		List<DispositivoEstandar> dispEstandars = UsuarioService.obtenerDispositivosEstandar(cliente.getNombreUsuario(), cliente.getContrasena());
 		List<DispositivoInteligente> dispInteligentes = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 		viewModel.put("consumoUltimoMes",GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) );
-		viewModel.put("dispositivosE", dispEstandars);
 		viewModel.put("dispositivosI",dispInteligentes);
 		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
