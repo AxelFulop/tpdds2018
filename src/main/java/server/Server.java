@@ -13,7 +13,7 @@ import spark.debug.DebugScreen;
 		
 		public static void main(String[] args) {
 			Bootstrap.main(null);
-			Spark.port(9000);
+			Spark.port(8080);
 			DebugScreen.enableDebugScreen();
 			Router.configure(); 	
 		}

@@ -47,10 +47,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	public void init(){
 	withTransaction(() ->{
 		try {
-			Sensor sensorOptimizador = new SensorOptimizador();
-			Actuador actuadorOptimizador ;
-			Regla reglaApagadoOptimizacion;
-			Optimizador optimizador = new Optimizador();
 			
 			Cliente cliente1= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
 			Cliente cliente2= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","pedro","asd",0);
@@ -64,8 +60,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			cliente2.agregarDispositivoInteligente(heladera);
 			cliente3.agregarDispositivoInteligente(aire);
 			cliente3.agregarDispositivoInteligente(heladera);
-			aire.persistir();
-			heladera.persistir();
+			//aire.persistir();
+			//heladera.persistir();
 			UsuarioService.persistir(cliente1);
 			UsuarioService.persistir(cliente2);
 			UsuarioService.persistir(cliente3);
