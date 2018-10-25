@@ -48,20 +48,20 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	withTransaction(() ->{
 		try {
 			
-			Cliente cliente1= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
-			Cliente cliente2= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","pedro","asd",0);
-			Cliente cliente3= new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","tito","asd",0);
+			Cliente cliente1= new Cliente("lucas","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","lucas","asd",0);
+			Cliente cliente2= new Cliente("pepe","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","pepe","asd",0);
+			Cliente cliente3= new Cliente("luis","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luis","asd",0);
 		
 			DispositivoInteligente aire = new DispositivoInteligente("airePiola",true,1d); 
 			DispositivoInteligente heladera = new DispositivoInteligente("heladeraPiola",true,1d); 
+			aire.persistir();
+			heladera.persistir();
 			cliente1.agregarDispositivoInteligente(aire);
 			cliente1.agregarDispositivoInteligente(heladera);
 			cliente2.agregarDispositivoInteligente(aire);
 			cliente2.agregarDispositivoInteligente(heladera);
 			cliente3.agregarDispositivoInteligente(aire);
 			cliente3.agregarDispositivoInteligente(heladera);
-			//aire.persistir();
-			//heladera.persistir();
 			UsuarioService.persistir(cliente1);
 			UsuarioService.persistir(cliente2);
 			UsuarioService.persistir(cliente3);
