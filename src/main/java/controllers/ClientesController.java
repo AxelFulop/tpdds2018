@@ -58,15 +58,25 @@ public class ClientesController {
 	}
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
-		Cliente cliente = (Cliente) obtenerUsuario(req, res);
-		//obtener todos los dispositivos del cliente de la BD
-		List<Dispositivo> dispositivos = cliente.getDispositivos();
+		Cliente cliente = (Cliente) obtenerUsuario(req, res);	
+		HashMap<String, Object> viewModel = new HashMap<>();
+		viewModel.put("id", cliente.getId());
+		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
+	}
+	
+	public static ModelAndView postSimplex(Request req, Response res) {
+		Cliente cliente = (Cliente) obtenerUsuario(req, res);		
+		List<DispositivoEstandar> dispositivosEstandares = UsuarioService.obtenerDispositivosEstandar(cliente.getNombreUsuario(), cliente.getContrasena());
+		List<DispositivoInteligente> dispositivosInteligentes = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
+		List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
+        dispositivos.addAll(dispositivosEstandares);
+        dispositivos.addAll(dispositivosInteligentes);
+        
 		Double limiteMensual = Double.valueOf( req.queryParams("limiteMensual") );
 		Optimizador optimizador = new Optimizador();
 		List<Double> valoresOptimizados = optimizador.optimizar(dispositivos, limiteMensual);
 		
 		List<DuplaDispositivoValorOptimizado> listaDuplas = new ArrayList<DuplaDispositivoValorOptimizado>();
-		
 		for(int i = 0; i < dispositivos.size(); i++) {
 			DuplaDispositivoValorOptimizado dupla = new DuplaDispositivoValorOptimizado(dispositivos.get(i), valoresOptimizados.get(i));
 			listaDuplas.add(dupla);

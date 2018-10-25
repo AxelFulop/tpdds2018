@@ -72,11 +72,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if((UsuarioService.obtenerUsuario("root",SHA256Builder.generarHash256("root"))).equals(null)){
-		Usuario root = new Usuario();
-		root.setContrasenia(SHA256Builder.generarHash256("root"));
-		root.setNombreUsuario("root");
-		UsuarioService.persistir(root);
+		if((UsuarioService.obtenerUsuario("root",SHA256Builder.generarHash256("root"))) == null){
+			Usuario root = new Usuario();
+			root.setContrasenia(SHA256Builder.generarHash256("root"));
+			root.setNombreUsuario("root");
+			UsuarioService.persistir(root);
 		
 		}
 		});

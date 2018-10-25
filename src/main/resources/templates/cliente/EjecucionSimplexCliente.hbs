@@ -1,5 +1,6 @@
 <html>
 <head>
+<form method="POST">
 	<title>Optimizador</title>
 	<link rel="stylesheet" type="text/css" href="/css/login.css">
     <link rel="stylesheet" type="text/css" href="/css/consumoCliente.css">
@@ -18,13 +19,17 @@
 	#consRec{
 		width: 60%;
 	}
+	
+	input{
+		width: 50%;
+	}
 	</style>
 
 </head>
 
 <body>
 		<h4>Ingrese el limite mensual </h4>
-        <input type="number" placeholder="Limite" name="limiteMensual">
+        <input type="number" placeholder="Limite" class="form-control" name="limiteMensual">
           <span class="input-group-btn">
             <button class="btn btn-primary">
               <span class="glyphicon glyphicon-search">
