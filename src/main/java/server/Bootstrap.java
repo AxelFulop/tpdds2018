@@ -44,7 +44,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	
 	public void init(){
 	withTransaction(() ->{
-		try {
+		/*try {
 			Sensor sensorOptimizador = new SensorOptimizador();
 			Actuador actuadorOptimizador ;
 			Regla reglaApagadoOptimizacion;
@@ -71,7 +71,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		if((UsuarioService.obtenerUsuario("root",SHA256Builder.generarHash256("root"))) == null){
 			Usuario root = new Usuario();
 			root.setContrasenia(SHA256Builder.generarHash256("root"));

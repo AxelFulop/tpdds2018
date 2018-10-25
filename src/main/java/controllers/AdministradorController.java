@@ -29,13 +29,6 @@ public class AdministradorController {
 			return new ModelAndView(null, "statusCodePages/404.hbs");
 		}
 	}
-	public static ModelAndView dispositivo(Request req, Response res){
-		Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
-			HashMap<String, Object> viewModel = new HashMap<>();
-			viewModel.put("name",admin.getNombre());
-			viewModel.put("id",admin.getId());
-			return new ModelAndView(viewModel,"admin/crearDispositivo.hbs");
-	}
 
 	public static ModelAndView obtenerHogares(Request req, Response res){
 		try {
