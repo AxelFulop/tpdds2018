@@ -4,6 +4,7 @@ package server;
 import java.util.Map;
 
 
+import Servicios.DispositivoService;
 import modelo.Usuario;
 import Servicios.UsuarioService;
 import controllers.AdministradorController;
@@ -47,7 +48,8 @@ public class Router {
         Spark.get("/administrador/:id/dispositivo", AdministradorController::dispositivo, engine);
 
         Spark.get("/mapa",MapaController::home,engine);
-        Spark.get("/hogar",AdministradorController::obtenerHogares,engine);
+        Spark.get("/hogares",AdministradorController::obtenerHogares,engine);
+        Spark.get("/dispositivos", AdministradorController::obtenerDispositivos,engine);
     }
 
 }

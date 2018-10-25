@@ -3,9 +3,9 @@ package controllers;
 import java.util.HashMap;
 import java.util.List;
 
+import Servicios.DispositivoService;
 import Servicios.UsuarioService;
-import modelo.Cliente;
-import modelo.Usuario;
+import modelo.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -46,6 +46,23 @@ public class AdministradorController {
 			viewModel.put("name",admin.getNombre());
 			viewModel.put("id",admin.getId());
 			return new ModelAndView(viewModel,"admin/hogares.hbs");
+		}catch (Exception e)
+		{
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
+	}
+
+	public static ModelAndView obtenerDispositivos(Request req, Response res){
+		try {
+			HashMap<String, Object> viewModel = new HashMap<>();
+			Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
+			List<DispositivoInteligente> dispositivosInteligentes = DispositivoService.obtenerTodosDispositivosInteligentes();
+			List<DispositivoEstandar> dispositivosEstandars = DispositivoService.obtenerTodosDispositivosEstandars();
+			viewModel.put("dispositivosInteligentes",dispositivosInteligentes);
+			viewModel.put("dispositivosEstandars",dispositivosEstandars);
+			viewModel.put("name",admin.getNombre());
+			viewModel.put("id",admin.getId());
+			return new ModelAndView(viewModel,"admin/dispositivos.hbs");
 		}catch (Exception e)
 		{
 			return new ModelAndView(null, "statusCodePages/404.hbs");

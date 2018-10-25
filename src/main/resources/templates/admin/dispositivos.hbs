@@ -1,0 +1,54 @@
+{{#partial "adminBody"}}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<table class="table table-striped">
+    <button type="button" class="btn btn-primary">Nuevo dispositivo inteligente</button>
+    <button type="button" class="btn btn-primary">Nuevo dispositivo estandar</button>
+    
+    <p>Disposistivos inteligentes</p>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Fabricante</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each dispositivosInteligentes}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{nombre}}</td>
+        <td>{{fabricante.name}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <p>Disposistivos Estandar</p>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Hora de uso diarias</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each dispositivosEstandars}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{nombre}}</td>
+        <td>{{horasDeUsoDiarias}}</td>
+
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
+{{/partial}}
+{{>adminDash.hbs}}
