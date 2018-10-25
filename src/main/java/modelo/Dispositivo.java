@@ -56,7 +56,7 @@ public abstract class Dispositivo extends Model {
     }
 
     public Double getConsumoMensual() {
-        return 0d;
+        return 10d;
     }
 
     public Double getKwh() {

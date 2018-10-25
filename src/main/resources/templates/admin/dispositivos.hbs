@@ -7,20 +7,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
+
 <table class="table table-striped">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDispositivoInteligente">Nuevo
+
+
+    <h4 class="modal-title">Disposistivos inteligentes</h4>
+
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalDispositivoInteligente">Nuevo
         dispositivo inteligente
     </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalDispositivoEstandar">Nuevo
-        dispositivo estandar
-    </button>
 
-    <p>Disposistivos inteligentes</p>
     <thead>
     <tr>
         <th>Id</th>
         <th>Nombre</th>
-        <th>Fabricante</th>
+        <th>Consumo</th>
     </tr>
     </thead>
     <tbody>
@@ -28,14 +29,17 @@
     <tr>
         <td>{{id}}</td>
         <td>{{nombre}}</td>
-        <td>{{fabricante.name}}</td>
+        <td>{{consumoMensual}}</td>
     </tr>
     {{/each}}
     </tbody>
 </table>
 
 <table class="table table-striped">
-    <p>Disposistivos Estandar</p>
+    <h4 class="modal-title">Disposistivos Estandar</h4>
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalDispositivoEstandar">Nuevo
+        dispositivo estandar
+    </button>
     <thead>
     <tr>
         <th>Id</th>
@@ -70,6 +74,10 @@
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Consumo mensual:</label>
+                        <input type="text" class="form-control" name="consumoMensual">
                     </div>
                     <button type="submit" class="btn btn-default">Crear</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

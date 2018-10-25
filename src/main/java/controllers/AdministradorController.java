@@ -71,8 +71,10 @@ public class AdministradorController {
 
     public String crearDispositivoInteligente() {
         String nombre = request.queryParams("nombre");
+        Double consumo = Double.parseDouble(request.queryParams("consumoMensual"));
         DispositivoInteligente dispositivo = new DispositivoInteligente();
         dispositivo.setNombre(nombre);
+        dispositivo.setConsumoMensual(consumo);
         DispositivoService.persistir(dispositivo);
         response.status(200);
         response.redirect("/dispositivos");
@@ -97,11 +99,18 @@ public class AdministradorController {
             LocalDate inicio = LocalDate.now().minusDays(Long.parseLong(dias));
             Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio,fin );
             viewModel.put("consumo",consumo);
-            return new ModelAndView(viewModel, null);
+            Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
+            List<Cliente> clientes = UsuarioService.obtenerHogares();
+            viewModel.put("cliente", clientes);
+            viewModel.put("name", admin.getNombre());
+            viewModel.put("id", admin.getId());
+            return new ModelAndView(viewModel, "admin/hogares.hbs");
         } catch (Exception e) {
             return new ModelAndView(null, "statusCodePages/404.hbs");
         }
     }
+    
+
 }
 
 
