@@ -24,10 +24,8 @@ public class GeneradorReportes {
 
 	public static Double getReportePorHogar(Cliente cliente, LocalDate inicio, LocalDate fin) { // hogar = cliente
 		float cantHoras = GeneradorReportes.diferenciaEnHoras(inicio, fin); 
-		Double consumo = 0d;   
-		List<Dispositivo> disp = UsuarioService.obtenerDispositivos(cliente.getNombreUsuario(), cliente.getContrasena());
-        
-        for(Dispositivo d:disp) {
+		Double consumo = 0d;  
+        for(Dispositivo d:cliente.getDispositivos()) {
         		consumo += d.getConsumoMensual()*cantHoras / 720; // 720 hs tiene un mes
         }
         return consumo;
