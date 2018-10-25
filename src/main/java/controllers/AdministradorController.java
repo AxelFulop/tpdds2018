@@ -32,6 +32,7 @@ public class AdministradorController {
             if (admin != null) {
                 viewModel.put("name", admin.getNombre());
                 viewModel.put("id", admin.getId());
+                viewModel.put("saludo", "hola");
             }
             return new ModelAndView(viewModel, "adminDash.hbs");
         } catch (Exception e) {
@@ -92,11 +93,13 @@ public class AdministradorController {
 
     public static ModelAndView generarReporteHogar(Request req, Response res) {
         try {
-            String dias = req.queryParams("dias");
+            LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
+            LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));
+//            String dias = req.queryParams("dias");
             Cliente cliente = UsuarioService.obtenerClientePorId(Long.parseLong(req.params("id")));
             HashMap<String, Object> viewModel = new HashMap<>();
-            LocalDate fin = LocalDate.now();;
-            LocalDate inicio = LocalDate.now().minusDays(Long.parseLong(dias));
+//            LocalDate fin = LocalDate.now();;
+//            LocalDate inicio = LocalDate.now().minusDays(Long.parseLong(dias));
             Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio,fin );
             viewModel.put("consumo",consumo);
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
