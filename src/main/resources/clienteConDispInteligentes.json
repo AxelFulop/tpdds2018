@@ -3,9 +3,9 @@
 				  "nombre":"Juan",
 				  "apellido":"Perez",
 				  "identificacion":{
-				  	"tipoIdentificacion":DNI,
-				  	"numeroIdentificacion": 123, 
-				  }
+				  	"tipoIdentificacion": DNI,
+				  	"numeroIdentificacion": 123 
+				  },
 				  "telefono": 48262937,
 				  "domicilio": "Medrano 951",
 				  "nombreUsuario":"juanATR",
@@ -21,7 +21,7 @@
 				  "dispositivosInteligentes":[
 								  {
 								  "nombre":"aire",
-								  "estado":ENCENDIDO,
+								  "estado": ENCENDIDO,
 								  "restriccion":{
 								  	"cotaInferior":90,
 								  	"cotaSuperior":360
@@ -30,7 +30,7 @@
 								  },
 								  {
 								  "nombre":"heladera",
-								  "estado":ENCENDIDO,
+								  "estado": ENCENDIDO,
 								  "kwh":0.09								  
 								  }
 								 ],
@@ -45,9 +45,9 @@
 				  "nombre":"Antonio",
 				  "apellido":"Mascherano",
 				  "identificacion":{
-				  	"tipoIdentificacion":DNI,
-				  	"numeroIdentificacion": 40433999, 
-				  }
+				  	"tipoIdentificacion": DNI,
+				  	"numeroIdentificacion": 40433999
+				  },
 				  "telefono": 45673908,
 				  "domicilio": "calleFalsa 123",
 				  "nombreUsuario":"hoyTeConvertisEnHeroe",
@@ -63,7 +63,7 @@
 				  "dispositivosInteligentes":[
 								  {
 								  "nombre":"aire",
-								  "estado":ENCENDIDO,
+								  "estado": ENCENDIDO,
 								  "restriccion":{
 								  	"cotaInferior":90,
 								  	"cotaSuperior":360
@@ -71,7 +71,7 @@
 								  "kwh":1.013								  
 								  },
 								  {"nombre":"heladera",
-								  "estado":ENCENDIDO,
+								  "estado": ENCENDIDO,
 								  "kwh":0.075								  
 								  }
 								 ],
