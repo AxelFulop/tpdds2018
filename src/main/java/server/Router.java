@@ -35,7 +35,6 @@ public class Router {
         Spark.get("/login", LoginController::show, engine);
         Spark.post("/login", (req, res) -> new LoginController(req, res).login());
         Spark.get("/logout", (req, res) -> new LoginController(req, res).logout());
-        Spark.get("/contacto", HomeController::contacto, engine);
 
         Spark.get("/clientes/:id", ClientesController::home, engine);
         Spark.get("/clientes/:id/hogar", ClientesController::mostrarEstadoHogar, engine);

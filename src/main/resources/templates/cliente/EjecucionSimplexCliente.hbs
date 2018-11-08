@@ -2,7 +2,6 @@
 <head>
 <form method="POST">
 	<title>Optimizador</title>
-	<link rel="stylesheet" type="text/css" href="/css/login.css">
     <link rel="stylesheet" type="text/css" href="/css/consumoCliente.css">
     	<link rel="stylesheet" type="text/css" href="/css/main.css">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -13,9 +12,7 @@
 		}
 		
 	table{
-		border-collapse: collapse;
     	width: 50%;
-    	background-color: Chartreuse  ;
 	}
 	
 	#consRec{
@@ -30,8 +27,8 @@
 	display:block
 	}
 	
-	input{
-		width: 50%;
+	h4{
+		padding-top: 50px;
 	}
 	</style>
 
@@ -39,7 +36,7 @@
 
 <body>
 		<h4>Ingrese el limite mensual </h4>
-        <input type="number" style="margin-top:40px;" placeholder="Limite" class="form-control" name="limiteMensual">
+        <input type="number" style="width:25%;" placeholder="Limite" class="form-control" name="limiteMensual">
           <span class="input-group-btn">
             <button class="btn btn-primary">
               <span class="glyphicon glyphicon-search">
@@ -48,7 +45,7 @@
           </span>
 
       
-	<table>
+	<table class="table table-dark">
     <tr>
       <th scope="col" class="align-top">Dispositivo</th>
       <th id="consRec"scope="col" class="align-top">Consumo recomendado</th>

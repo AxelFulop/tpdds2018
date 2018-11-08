@@ -28,5 +28,5 @@ font-weight: bold;
 }
 
 body{
-background-image: url("../imagenes/agua08.jpg");
+background-image: linear-gradient(to bottom right, white, GreenYellow);
 }

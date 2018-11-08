@@ -19,7 +19,7 @@ color: #666;
 }
 
 body{
-	background-image: url("http://www.fondos.gratis.es/fondos_webs/agua/agua08.jpg");
+background-image: linear-gradient(to bottom right, white, GreenYellow);
 }
 
 .welcome{
@@ -31,6 +31,9 @@ visibility:block; !important;
 display:block; !important;
 }
 
+.active{
+	display: none;
+}
 .login
 {
 display:none;

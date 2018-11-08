@@ -17,7 +17,7 @@ margin-left:20px
 
 
 body{
-background-image: url("../imagenes/agua08.jpg");
+background-image: linear-gradient(to bottom right, white, GreenYellow);
 }
 
 td{
@@ -49,6 +49,9 @@ visibility:hidden;
 display:none;
 }
 
+.active{
+	display: none;
+}
 
 ul {
     list-style-type: none;
@@ -61,12 +64,6 @@ ul {
 li {
     float: left;
     display: block;
-}
-
-
-
-.active {
-background-color: #4CAF50;
 }
 
 li a {
