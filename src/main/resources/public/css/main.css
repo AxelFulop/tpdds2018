@@ -40,3 +40,7 @@ li a {
 li a:hover {
 background-image: linear-gradient(to bottom right, white, GreenYellow);
 }
+
+.footer{
+	padding-top: 20px;
+}
