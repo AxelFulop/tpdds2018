@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
+
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
@@ -21,11 +23,6 @@ import spark.Request;
 import spark.Response;
 
 public class ClientesController {
-	private static Usuario obtenerUsuario(Request req, Response res) {
-		Long idCliente = Long.parseLong(req.params("id"));	
-		Usuario cliente = UsuarioService.obtenerUsuarioPorId(idCliente);
-		return cliente;
-	}
 	
 	private static Cliente obtenerCliente(Request req, Response res) {
 		Long idCliente = Long.parseLong(req.params("id"));	
@@ -34,8 +31,7 @@ public class ClientesController {
 	}
 	
 	public static ModelAndView home(Request req, Response res){	
-		Cliente cliente = obtenerCliente(req, res);
-		
+		Cliente cliente = UsuarioService.obtenerClientePorId( Long.valueOf(req.cookie("userId")) );
 	
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
@@ -47,7 +43,7 @@ public class ClientesController {
 	
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
 		Cliente cliente = obtenerCliente(req, res);
-		List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
+		List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(cliente.getId());
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
@@ -64,23 +60,36 @@ public class ClientesController {
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 	}
 	
+	public static ModelAndView  mostrarSimplexFailed(Request req, Response res){
+		Cliente cliente = obtenerCliente(req, res);	
+		HashMap<String, Object> viewModel = new HashMap<>();
+		viewModel.put("id", cliente.getId());
+		return new ModelAndView(viewModel,"cliente/EjecucionSimplexClienteFailed.hbs");
+	}
+	
 	public static ModelAndView postSimplex(Request req, Response res) {
-		Cliente cliente = obtenerCliente(req, res);		
-		List<Dispositivo> dispositivos = UsuarioService.obtenerDispositivos(cliente.getNombreUsuario(), cliente.getContrasena());
+		Cliente cliente = obtenerCliente(req, res);	
+		List<Dispositivo> dispositivos = UsuarioService.obtenerDispositivosPorId(cliente.getId());
         
 		Double limiteMensual = Double.valueOf( req.queryParams("limiteMensual") );
 		Optimizador optimizador = new Optimizador();
-		List<Double> valoresOptimizados = optimizador.optimizar(dispositivos, limiteMensual);
+		List<Dispositivo> dispositivosOptimizables = optimizador.obtenerDispositivosOptimizables(dispositivos);
+		try {
+			List<Double> valoresOptimizados = optimizador.optimizar(dispositivos, limiteMensual);
 		
-		List<DuplaDispositivoValorOptimizado> listaDuplas = new ArrayList<DuplaDispositivoValorOptimizado>();
-		for(int i = 0; i < dispositivos.size(); i++) {
-			DuplaDispositivoValorOptimizado dupla = new DuplaDispositivoValorOptimizado(dispositivos.get(i), valoresOptimizados.get(i));
-			listaDuplas.add(dupla);
+			List<DuplaDispositivoValorOptimizado> listaDuplas = new ArrayList<DuplaDispositivoValorOptimizado>();
+			for(int i = 0; i < dispositivosOptimizables.size(); i++) {
+				DuplaDispositivoValorOptimizado dupla = new DuplaDispositivoValorOptimizado(dispositivosOptimizables.get(i), valoresOptimizados.get(i));
+				listaDuplas.add(dupla);
+			}	
+		
+			HashMap<String, Object> viewModel = new HashMap<>();
+			viewModel.put("valoresOptimizados", listaDuplas);
+			return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
+		}catch(NoFeasibleSolutionException e) {
+			res.redirect("/clientes/"+ cliente.getId() +"/optimizadorFailed");
+			return null;
 		}
-		
-		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("valoresOptimizados", listaDuplas);
-		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 	}
 	
 	public static ModelAndView  getConsumo(Request req, Response res){

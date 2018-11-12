@@ -38,5 +38,13 @@ public class DispositivoEstandar extends Dispositivo {
 	public void setHorasDeUsoDiarias(int horasDeUsoDiarias) {
 		this.horasDeUsoDiarias = horasDeUsoDiarias;
 	}
+
+	@Override
+	public String toString() {
+		return "DispositivoEstandar [nombre=" + nombre + ", horasDeUsoDiarias=" + horasDeUsoDiarias +
+				", id=" + id + ", bajoConsumo=" + bajoConsumo +
+				", kwh=" + kwh + "]";
+	}
+	
 	
 }

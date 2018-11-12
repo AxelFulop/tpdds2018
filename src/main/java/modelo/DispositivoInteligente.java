@@ -84,6 +84,13 @@ private Double consumoMensual;
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "DispositivoInteligente [id=" + id + ", bajoConsumo=" + bajoConsumo + ", kwh=" + kwh + ", restriccion=" 
+				+ restriccion + ", nombre=" + nombre + ", estado=" + estado + ", fabricante=" + fabricante
+				+ ", consumoMensual=" + consumoMensual + "]";
+	}
 
+	
 
 }

@@ -19,16 +19,7 @@ public class Optimizador {
     public List<Double> optimizar(List<Dispositivo> dispositivos, Double limiteMensual) {
     	
         // Filtrar dispositivos sin restricciones
-        List<Dispositivo> dispositivosOptimizables = dispositivos
-                                                 .stream()
-                                                 .filter(dispositivo -> {
-                                                     try {
-                                                         dispositivo.getRestriccion();
-                                                         return true;
-                                                     }catch(Exception e){
-                                                         return false;
-                                                     }
-                                                 }).collect(Collectors.toList());
+        List<Dispositivo> dispositivosOptimizables = obtenerDispositivosOptimizables(dispositivos);
         
         // Funcion economica-objetivo
         double[] arrayObjetivo = new double[dispositivosOptimizables.size()];
@@ -63,6 +54,20 @@ public class Optimizador {
         
         List<Double> solucionFinal = listFromDoubleArray(solucion.getPoint());
         return solucionFinal;
+    }
+    
+    public List<Dispositivo> obtenerDispositivosOptimizables(List<Dispositivo> dispositivos){
+    	List<Dispositivo> dispositivosOptimizables = dispositivos
+                .stream()
+                .filter(disp -> {
+                    try {
+                        disp.getRestriccion();
+                        return true;
+                    }catch(Exception e){
+                        return false;
+                    }
+                }).collect(Collectors.toList());
+    	return dispositivosOptimizables;
     }
     
     private List<Double> listFromDoubleArray(double[] array) {

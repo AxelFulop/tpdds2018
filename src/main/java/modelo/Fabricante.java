@@ -14,6 +14,15 @@ public abstract class Fabricante {
 	public Fabricante(){
 
 	}
+	
+	public void setNombre(String nom) {
+		this.name = nom;
+	}
+	
+	public String getNombre() {
+		return this.name;
+	}
+	
 	public float obtenerConsumoUltimasHoras(Integer h){
 		return 0;
 	};

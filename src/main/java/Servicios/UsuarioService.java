@@ -78,6 +78,7 @@ import modelo.Usuario;
 	    return user;
 	    }
 		
+	    //por username y por password te trae muchos dispos (varios registros con mismos campos en la tabla)
 		public static List<DispositivoInteligente> obtenerDispositivosInteligentes(String username,String password)
 		{
 			Query query = Session.getSession().createQuery("SELECT c.dispositivosInteligentes FROM Cliente c WHERE c.nombreUsuario = :nomUsuario and c.contrasenia = :pass");
@@ -99,6 +100,36 @@ import modelo.Usuario;
 			
 		}
 	
+		//ANDA
+		public static List<DispositivoInteligente> obtenerDispositivosInteligentesPorId(Long id)
+		{
+			Query query = Session.getSession().createNativeQuery("select * from dispositivointeligente d where d.cliente_id = ?", DispositivoInteligente.class);
+		    query.setParameter(1, id);
+		    List<DispositivoInteligente> dispInteligente =  query.getResultList();
+		    return dispInteligente;
+			
+		}
+		
+		//ANDA
+		public static List<DispositivoEstandar> obtenerDispositivosEstandarPorId(Long id)
+		{
+			Query query = Session.getSession().createNativeQuery("select * from dispositivoestandar d where d.cliente_id = ?", DispositivoEstandar.class);
+			query.setParameter(1, id);
+			List<DispositivoEstandar> dispEst =  query.getResultList();
+			return dispEst;
+					
+		}
+		
+		public static List<Dispositivo> obtenerDispositivosPorId(Long id){
+			List<Dispositivo> disp = new ArrayList<Dispositivo>();
+			List<DispositivoEstandar> dispE = UsuarioService.obtenerDispositivosEstandarPorId(id);
+			List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(id);
+			
+			disp.addAll(dispE);
+			disp.addAll(dispI);
+			return disp;
+		}
+		
 		public static List<Dispositivo> obtenerDispositivos(String username,String password){
 			List<Dispositivo> disp = new ArrayList<Dispositivo>();
 			List<DispositivoEstandar> dispE = UsuarioService.obtenerDispositivosEstandar(username, password);

@@ -10,13 +10,6 @@ import java.util.List;
 
 @Entity
 public class Cliente extends Usuario {
-    @Override
-	public String toString() {
-		return "Cliente [telefono=" + telefono + ", domicilio=" + domicilio + ", categoria=" + categoria + ", puntos="
-				+ puntos + ", dispositivosEstandares=" + dispositivosEstandares + ", dispositivosInteligentes="
-				+ dispositivosInteligentes + ", consumoTotal=" + consumoTotal + ", ubicacion=" + ubicacion
-				+ ", sensores=" + sensores + "]";
-	}
 	int telefono;
     String domicilio;
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -49,6 +42,13 @@ public class Cliente extends Usuario {
         this.puntos = puntaje;
     }
 
+    @Override
+	public String toString() {
+		return "Cliente [id=" + this.getId() + ", nombreUsuario=" + this.nombreUsuario + ", contrasenia=" + this.contrasenia + ", telefono=" + telefono + ", domicilio=" + domicilio + ", categoria=" + categoria + ", puntos="
+				+ puntos + ", dispositivosEstandares=" + dispositivosEstandares + ", dispositivosInteligentes="
+				+ dispositivosInteligentes + ", consumoTotal=" + consumoTotal + ", ubicacion=" + ubicacion
+				+ ", sensores=" + sensores + "]";
+	}
 
     public void agregarDispositivoInteligente(DispositivoInteligente d) {
         this.dispositivosInteligentes.add(d);
@@ -253,5 +253,13 @@ public class Cliente extends Usuario {
     }
     public static List<Cliente> obtenerTodos() {
         return (List<Cliente>) Session.getSession().createQuery("SELECT e FROM Cliente e").getResultList();
+    }
+    
+    public boolean tieneDispositivo(Dispositivo d) {
+    	boolean retorno = this.dispositivosEstandares.contains(d);
+    	if(!retorno) {
+    		retorno = this.dispositivosInteligentes.contains(d);
+    	}
+    	return retorno;
     }
 }

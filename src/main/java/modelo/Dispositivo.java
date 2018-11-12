@@ -21,6 +21,9 @@ public abstract class Dispositivo extends Model {
     public Long id;
     public boolean bajoConsumo;
     public Double kwh;
+    @ManyToOne(cascade = CascadeType.ALL)
+    public Restriccion restriccion;
+    
     public Long getId() {
 		return id;
 	}
@@ -28,10 +31,6 @@ public abstract class Dispositivo extends Model {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	@ManyToOne(cascade = CascadeType.ALL)
-    public Restriccion restriccion;
-
 
     public Dispositivo() {
 
@@ -78,4 +77,14 @@ public abstract class Dispositivo extends Model {
         return Session.getSession().createQuery("SELECT e FROM Dispositivo e").getResultList();
     }
 
+    public boolean perteneceA(Cliente c) {
+    	return c.tieneDispositivo(this);
+    }
+
+	@Override
+	public String toString() {
+		return "";
+	}
+    
+    
 }

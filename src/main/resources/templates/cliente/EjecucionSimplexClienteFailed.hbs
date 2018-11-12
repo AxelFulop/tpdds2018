@@ -11,10 +11,6 @@
     		border: 1px solid black;
 		}
 		
-	td{
-		background-color: red;
-	}
-	
 	table{
     	width: 50%;
 	}
@@ -34,15 +30,20 @@
 	h4{
 		padding-top: 50px;
 	}
+	
+	h2{
+		padding-top: 50px;
+	}
 	</style>
 
 </head>
 
 <body>
+		<h2>No hay una solucion factible</h2>
 		<h4>Ingrese el limite mensual </h4>
         <input type="number" style="width:25%;" placeholder="Limite" class="form-control" name="limiteMensual">
           <span class="input-group-btn">
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" formaction="/clientes/{{id}}/optimizador">
               <span class="glyphicon glyphicon-search">
               </span> Aceptar
             </button>

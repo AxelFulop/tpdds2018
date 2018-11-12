@@ -1,12 +1,5 @@
 package server;
 
-
-import java.util.Map;
-
-
-import Servicios.DispositivoService;
-import modelo.Usuario;
-import Servicios.UsuarioService;
 import controllers.AdministradorController;
 import controllers.ClientesController;
 import controllers.HomeController;
@@ -39,6 +32,7 @@ public class Router {
         Spark.get("/clientes/:id", ClientesController::home, engine);
         Spark.get("/clientes/:id/hogar", ClientesController::mostrarEstadoHogar, engine);
         Spark.get("/clientes/:id/optimizador", ClientesController::mostrarSimplex, engine);
+        Spark.get("/clientes/:id/optimizadorFailed", ClientesController::mostrarSimplexFailed, engine);
         Spark.post("/clientes/:id/optimizador", ClientesController::postSimplex, engine);
         Spark.get("/clientes/:id/consumo", ClientesController::getConsumo, engine);
         Spark.post("/clientes/:id/consumo", ClientesController::postConsumo, engine);
