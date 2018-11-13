@@ -29,7 +29,7 @@ public class testPersistenciaReglasActuadoresYSensores {
 			dispositivos.add(aire);
 
 			actuadorPrenderAire = new ActuadorEncenderAire(dispositivos);
-			reglaTemperaturaAlta =  new ReglaTemperaturaAlta(actuadorPrenderAire);
+			reglaTemperaturaAlta =  new ReglaTemperaturaAlta(actuadorPrenderAire, "unNombre");
 			sensorTemp.addRegla(reglaTemperaturaAlta);
 
 

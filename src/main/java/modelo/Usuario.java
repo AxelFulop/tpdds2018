@@ -82,4 +82,12 @@ public class Usuario extends Model {
         this.fechaAltaServicio = fechaAltaServicio;
     }
 
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nombreUsuario="
+				+ nombreUsuario + ", contrasenia=" + contrasenia + ", fechaAltaServicio=" + fechaAltaServicio
+				+ ", identificacion=" + identificacion + "]";
+	}
+
+    
 }

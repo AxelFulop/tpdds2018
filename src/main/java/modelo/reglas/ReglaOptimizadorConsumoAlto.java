@@ -9,8 +9,8 @@ public class ReglaOptimizadorConsumoAlto extends Regla {
     public ReglaOptimizadorConsumoAlto(){
 
     }
-    public ReglaOptimizadorConsumoAlto(Actuador actuador) {
-        super(actuador);
+    public ReglaOptimizadorConsumoAlto(Actuador actuador, String nom) {
+        super(actuador, nom);
     }
 
 

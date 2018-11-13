@@ -10,6 +10,7 @@ import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
+import modelo.Sensor;
 import modelo.Usuario;
 
 	public class UsuarioService extends Model {
@@ -101,29 +102,29 @@ import modelo.Usuario;
 		}
 	
 		//ANDA
-		public static List<DispositivoInteligente> obtenerDispositivosInteligentesPorId(Long id)
+		public static List<DispositivoInteligente> obtenerDispositivosInteligentesPorId(Long idCliente)
 		{
 			Query query = Session.getSession().createNativeQuery("select * from dispositivointeligente d where d.cliente_id = ?", DispositivoInteligente.class);
-		    query.setParameter(1, id);
+		    query.setParameter(1, idCliente);
 		    List<DispositivoInteligente> dispInteligente =  query.getResultList();
 		    return dispInteligente;
 			
 		}
 		
 		//ANDA
-		public static List<DispositivoEstandar> obtenerDispositivosEstandarPorId(Long id)
+		public static List<DispositivoEstandar> obtenerDispositivosEstandarPorId(Long idCliente)
 		{
 			Query query = Session.getSession().createNativeQuery("select * from dispositivoestandar d where d.cliente_id = ?", DispositivoEstandar.class);
-			query.setParameter(1, id);
+			query.setParameter(1, idCliente);
 			List<DispositivoEstandar> dispEst =  query.getResultList();
 			return dispEst;
 					
 		}
 		
-		public static List<Dispositivo> obtenerDispositivosPorId(Long id){
+		public static List<Dispositivo> obtenerDispositivosPorId(Long idCliente){
 			List<Dispositivo> disp = new ArrayList<Dispositivo>();
-			List<DispositivoEstandar> dispE = UsuarioService.obtenerDispositivosEstandarPorId(id);
-			List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(id);
+			List<DispositivoEstandar> dispE = UsuarioService.obtenerDispositivosEstandarPorId(idCliente);
+			List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(idCliente);
 			
 			disp.addAll(dispE);
 			disp.addAll(dispI);
@@ -146,6 +147,11 @@ import modelo.Usuario;
 			return listaHogares;
 		}
 	     
+		public static List<Sensor> obtenerSensoresPorId(Long idCliente) {
+			Query query = Session.getSession().createNativeQuery("select * from sensor s where s.cliente_id = ?", Sensor.class);
+			query.setParameter(1, idCliente);
+			return (List<Sensor>) query.getResultList();
+		}
 }
 	
 

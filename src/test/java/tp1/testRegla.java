@@ -31,7 +31,7 @@ public class testRegla {
 		cliente.agregarDispositivoInteligente(aire);
 		actuadorPrenderAire = new ActuadorEncenderAire(dispositivos);
 
-		reglaTemperaturaAlta =  new ReglaTemperaturaAlta(actuadorPrenderAire);
+		reglaTemperaturaAlta =  new ReglaTemperaturaAlta(actuadorPrenderAire,"unNombre");
 
 		sensorTemp.addRegla(reglaTemperaturaAlta);
 	}

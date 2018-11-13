@@ -15,6 +15,7 @@ import modelo.Dispositivo;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
 import modelo.Optimizador;
+import modelo.Sensor;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
 import reportes.GeneradorReportes;
@@ -44,12 +45,14 @@ public class ClientesController {
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
 		Cliente cliente = obtenerCliente(req, res);
 		List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(cliente.getId());
+		List<Sensor> sensores = UsuarioService.obtenerSensoresPorId(cliente.getId());
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 	    viewModel.put("consumoUltimoMes",GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) );
 		viewModel.put("dispositivosI", dispI);
+		viewModel.put("ultimaMedicion", sensores.get(sensores.size()-1).getMedicion() );
 		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
 	

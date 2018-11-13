@@ -46,7 +46,7 @@ public class testOptimizador {
 
 		actuadorOptimizador = new ActuadorOprtimizadorAhorroEnergia(dispositivosInteligentes);
 
-		reglaApagadoOptimizacion = new ReglaOptimizadorConsumoAlto(actuadorOptimizador);
+		reglaApagadoOptimizacion = new ReglaOptimizadorConsumoAlto(actuadorOptimizador, "unNombre");
 
 		cliente.addSensor(sensorOptimizador);
 	}

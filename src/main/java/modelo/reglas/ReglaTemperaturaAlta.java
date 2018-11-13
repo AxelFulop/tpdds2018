@@ -9,8 +9,8 @@ public class ReglaTemperaturaAlta extends Regla {
 	public ReglaTemperaturaAlta(){
 
 	}
-	public ReglaTemperaturaAlta(Actuador actuador) {
-		super(actuador);
+	public ReglaTemperaturaAlta(Actuador actuador, String nom) {
+		super(actuador, nom);
 	}
 	
 	@Override

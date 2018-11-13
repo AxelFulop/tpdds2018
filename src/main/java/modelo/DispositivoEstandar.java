@@ -20,7 +20,6 @@ public class DispositivoEstandar extends Dispositivo {
 	}
 	
 	//GETTERS Y SETTERS
-
 	public int getHorasDeUsoDiarias() {
 		return horasDeUsoDiarias;
 	}

@@ -4,11 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import modelo.Administrador;
 import modelo.Cliente;
 import modelo.Dispositivo;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
+import modelo.Sensor;
 import modelo.TipoIdentificacion;
+import modelo.Usuario;
+import modelo.sensores.SensorTemperatura;
 
 public class MainPrueba {
 
@@ -32,8 +36,8 @@ public class MainPrueba {
 		UsuarioService.persistir(cliente2);
 		UsuarioService.persistir(cliente3); */
 		
-		Cliente c1 = (Cliente) UsuarioService.obtenerClientePorId(Long.valueOf("91"));
-		System.out.println(c1.toString());
+		List<Sensor> s = UsuarioService.obtenerSensoresPorId(Long.valueOf("408"));
+			
 		//List<DispositivoInteligente> disp = UsuarioService.obtenerDispositivosInteligentes(c1.getNombreUsuario(), c1.getContrasena());
 		//List<Dispositivo> disp = UsuarioService.obtenerDispositivosPorId(c1.getId());
 		//if(disp.isEmpty()) {
@@ -41,9 +45,7 @@ public class MainPrueba {
 		//}
 		//else {
 		//	System.out.println("Cant de dispos = " + disp.size());
-			for(Dispositivo d:c1.getDispositivos()) {
-				System.out.println(d.toString());
-			}
+			
 		//}
 	}
 }
