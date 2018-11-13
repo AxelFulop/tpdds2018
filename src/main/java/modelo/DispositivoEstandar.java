@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 
 @Entity
 public class DispositivoEstandar extends Dispositivo {
-
-	private String nombre;
 	private int horasDeUsoDiarias; //Estimativo brindado por el usuario
 	
 	
@@ -22,14 +20,6 @@ public class DispositivoEstandar extends Dispositivo {
 	}
 	
 	//GETTERS Y SETTERS
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public int getHorasDeUsoDiarias() {
 		return horasDeUsoDiarias;

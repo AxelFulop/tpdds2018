@@ -19,6 +19,8 @@ public abstract class Dispositivo extends Model {
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "tipoDispositivoIdGenerator")
     public Long id;
+	@Column(length = 20)
+	public String nombre;
     public boolean bajoConsumo;
     public Double kwh;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -36,6 +38,14 @@ public abstract class Dispositivo extends Model {
 
     }
 
+    public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
     public Double getConsumoInstantaneo() {
         return 1d;
     }

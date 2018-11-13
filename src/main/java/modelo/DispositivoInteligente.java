@@ -5,8 +5,6 @@ import javax.persistence.*;
 @Entity
 public class DispositivoInteligente extends Dispositivo {
 
-@Column(length = 20)
-private String nombre;
 @Enumerated(EnumType.STRING)
 private Estado estado;
 @ManyToOne

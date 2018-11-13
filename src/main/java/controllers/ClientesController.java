@@ -79,7 +79,7 @@ public class ClientesController {
 		
 			List<DuplaDispositivoValorOptimizado> listaDuplas = new ArrayList<DuplaDispositivoValorOptimizado>();
 			for(int i = 0; i < dispositivosOptimizables.size(); i++) {
-				DuplaDispositivoValorOptimizado dupla = new DuplaDispositivoValorOptimizado(dispositivosOptimizables.get(i), valoresOptimizados.get(i));
+				DuplaDispositivoValorOptimizado dupla = new DuplaDispositivoValorOptimizado(dispositivosOptimizables.get(i).getNombre(), valoresOptimizados.get(i));
 				listaDuplas.add(dupla);
 			}	
 		

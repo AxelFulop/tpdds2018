@@ -12,12 +12,10 @@
 		}
 		
 	table{
-    	width: 50%;
+    	margin-right: 20px;
 	}
 	
-	#consRec{
-		width: 60%;
-	}
+	
 	
 	.menu.menu{
 	display:block
@@ -28,11 +26,12 @@
 	}
 	
 	h4{
-		padding-top: 50px;
+		padding-top: 20px;
 	}
 	
 	h2{
-		padding-top: 50px;
+		padding-top: 25px;
+		text-shadow: 3px 2px red;
 	}
 	</style>
 
@@ -59,7 +58,7 @@
   		<tbody>
   	{{#each valoresOptimizados}}
     	<tr>
-      		<td>{{disp.nombre}}</td>
+      		<td>{{nombreDispositivo}}</td>
       		<td>{{valorOptimizado}}</td>
     	</tr>
     {{/each}}
