@@ -15,15 +15,13 @@ import modelo.TipoIdentificacion;
 //TODO: Aca cambio todo el cliente a como se habia hecho antes, hay que arreglar el json al nuevo tipo de cliente.
 public class testParseo {
 	
-	
-	Parser parser = new Parser();
 	List<DispositivoEstandar> dispositivos = new ArrayList<DispositivoEstandar>();
 	Cliente cliente1JSON = new Cliente("Juan","Perez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","juanATR","qwerty",30);
 	Cliente cliente2JSON = new Cliente("Antonio", "Mascherano", TipoIdentificacion.DNI, "40433999", 45673908, "calleFalsa 123", "hoyTeConvertisEnHeroe", "perro",30);
 	DispositivoEstandar tele = new DispositivoEstandar("tele",false,2d);
  	DispositivoEstandar ipod = new DispositivoEstandar("ipod",false,10d);
- 	DispositivoInteligente aire = new DispositivoInteligente("aire",true,5d);
- 	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,5d);
+ 	DispositivoInteligente aire = new DispositivoInteligente("aire",true,1.613d);
+ 	DispositivoInteligente heladera = new DispositivoInteligente("heladera",true,0.09d);
  	
 	@Before
 	public void init(){}
@@ -31,7 +29,7 @@ public class testParseo {
 	
 	@Test
 	public void parseoCorrectoVariosClientes() throws IOException{
-		List<Cliente> clientes = parser.parsearClientes("src/main/resources/clientes.json");
+		List<Cliente> clientes = Parser.parsearClientes("src/main/resources/clientes.json");
 		// comparo nombres
 		Assert.assertEquals(cliente1JSON.getNombre(),clientes.get(0).getNombre());	
 		Assert.assertEquals(cliente2JSON.getNombre(),clientes.get(1).getNombre());
@@ -64,7 +62,7 @@ public class testParseo {
 		cliente1JSON.agregarDispositivoEstandar(ipod);	
 		cliente2JSON.agregarDispositivoEstandar(tele);
 		cliente2JSON.agregarDispositivoEstandar(ipod);
-		List<Cliente> clientes = parser.parsearClientes("src/main/resources/clientes.json");
+		List<Cliente> clientes = Parser.parsearClientes("src/main/resources/clientes.json");
 		Assert.assertEquals(cliente1JSON.getDispositivosEstandares().get(0).getNombre(), clientes.get(0).getDispositivosEstandares().get(0).getNombre());
 	}
 	
@@ -75,7 +73,7 @@ public class testParseo {
 		cliente1JSON.agregarDispositivoInteligente(heladera);
 		cliente2JSON.agregarDispositivoInteligente(aire);
 		cliente2JSON.agregarDispositivoInteligente(heladera);
-		List<Cliente> clientes = parser.parsearClientes("src/main/resources/clienteConDispInteligentes.json");
+		List<Cliente> clientes = Parser.parsearClientes("src/main/resources/clienteConDispInteligentes.json");
 		Assert.assertEquals(cliente1JSON.getDispositivosInteligentes().get(0).getNombre(), clientes.get(0).getDispositivosInteligentes().get(0).getNombre());
 	}
 }

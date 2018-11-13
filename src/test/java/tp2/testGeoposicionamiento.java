@@ -108,7 +108,7 @@ public class testGeoposicionamiento {
     @Test
     public void suministroEnergiaInstantaneaEnUnTransformador() {
         double consumoTransformador = transformadorAlmagro.energiaQueEstaConsumiendo();
-        Assert.assertEquals(consumoTransformador, 10.0,0);
+        Assert.assertEquals(consumoTransformador, 20.0,0);
     }
 
 }

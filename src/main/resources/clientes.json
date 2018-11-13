@@ -1,13 +1,13 @@
-			  [
-				  {
+		 [
+			   {
 				  "nombre":"Juan",
 				  "apellido":"Perez",
 				  "nombreUsuario":"juanATR",
 				  "contrasenia": "qwerty",
 				  "identificacion":{
-				  	"tipoIdentificacion":DNI,
-				  	"numeroIdentificacion": 123, 
-				  }
+				  	"tipo":DNI,
+				  	"numero": 123
+				  },
 				  "telefono": 48262937,
 				  "domicilio": "Medrano 951",
 				  "puntos": 30,
@@ -34,19 +34,19 @@
 				  	"x":10,
 				  	"y":7
 				  }
-					},
+				},
 					
-					{
+				{
 				  "nombre":"Antonio",
 				  "apellido":"Mascherano",
 				  "identificacion":{
-				  	"tipoIdentificacion":DNI,
-				  	"numeroIdentificacion": 40433999, 
-				  }
+				  	"tipo":DNI,
+				  	"numero": 40433999 
+				  },
 				  "telefono": 45673908,
 				  "domicilio": "calleFalsa 123",
 				  "nombreUsuario":"hoyTeConvertisEnHeroe",
-				  "contrasena": "perro",
+				  "contrasenia": "perro",
 				  "puntos": 30,
 				  "categoria":{
 				  	"nombre":"r2",
@@ -71,5 +71,5 @@
 				  	"x":5,
 				  	"y":8
 				  }
-					}
-				]
+				}
+			]
