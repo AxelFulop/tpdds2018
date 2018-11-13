@@ -50,9 +50,14 @@ public class ClientesController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-	    viewModel.put("consumoUltimoMes",GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) );
+	    viewModel.put("consumoUltimoMes",String.format("%.2f", GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) ));
 		viewModel.put("dispositivosI", dispI);
-		viewModel.put("ultimaMedicion", sensores.get(sensores.size()-1).getMedicion() );
+		if(sensores.size() == 0) {
+			viewModel.put("ultimaMedicion", "No tiene sensores" );
+		}else {
+			viewModel.put("ultimaMedicion", sensores.get(sensores.size()-1).getMedicion() );
+		}
+
 		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
 	}
 	
@@ -117,7 +122,7 @@ public class ClientesController {
 		viewModel.put("apellido",cliente.getApellido());
 		viewModel.put("inicio", req.queryParams("inicioPeriodo"));
 		viewModel.put("fin", req.queryParams("finPeriodo"));
-		viewModel.put("consumo", consumo.toString());
+		viewModel.put("consumo", String.format("%.2f", consumo));
 		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
 	}
 	
