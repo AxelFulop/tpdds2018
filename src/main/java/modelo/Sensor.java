@@ -48,7 +48,7 @@ public abstract class Sensor extends Model {
         return (List<Sensor>) Session.getSession().createQuery("SELECT e FROM Sensor e").getResultList();
     }
     
-    public abstract double getMedicion();
-    public abstract void setMedicion(double m);
+    public abstract Double getMedicion();
+    public abstract void setMedicion(Double m);
     	
 }

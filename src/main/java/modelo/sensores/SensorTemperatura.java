@@ -17,11 +17,11 @@ public class SensorTemperatura extends Sensor {
 		});
 	}
 
-	public double getMedicion() {
+	public Double getMedicion() {
 		return medicion;
 	}
 
-	public void setMedicion(double medicion) {
+	public void setMedicion(Double medicion) {
 		this.medicion = medicion;
 	}	
 

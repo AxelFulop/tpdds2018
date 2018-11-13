@@ -24,10 +24,10 @@ public class SensorOptimizador extends Sensor {
 			});
 	}
 	
-	public void setMedicion(double m) {}
+	public void setMedicion(Double m) {}
 	
-	public double getMedicion() {
-		return 0d;
+	public Double getMedicion() {
+		return null;
 	}
 
 

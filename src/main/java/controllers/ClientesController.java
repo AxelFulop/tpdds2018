@@ -53,7 +53,7 @@ public class ClientesController {
 	    viewModel.put("consumoUltimoMes",String.format("%.2f", GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) ));
 		viewModel.put("dispositivosI", dispI);
 		if(sensores.size() == 0) {
-			viewModel.put("ultimaMedicion", "No tiene sensores" );
+			viewModel.put("ultimaMedicion", null );
 		}else {
 			viewModel.put("ultimaMedicion", sensores.get(sensores.size()-1).getMedicion() );
 		}
