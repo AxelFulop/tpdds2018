@@ -82,16 +82,6 @@ public class testGeoposicionamiento {
         RepositorioClientes.addCliente(cliente5);
         RepositorioClientes.addCliente(cliente6);
 
-
-
-/*
-        listaTransformadores1.add(transformadorColegiales);
-        listaTransformadores1.add(transformadorAlmagro);
-        listaTransformadores2.add(transformadorCaballito);
-
-        zona1.setTransformadores(listaTransformadores1);
-        zona2.setTransformadores(listaTransformadores2); */
-
         zona1.obtenerClientes();
         zona2.obtenerClientes();
     }
