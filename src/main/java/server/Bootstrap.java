@@ -1,25 +1,16 @@
 package server;
 
-import Servicios.SHA256Builder;
 import modelo.Cliente;
 import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
 import modelo.Restriccion;
 import modelo.TipoIdentificacion;
 import modelo.Usuario;
-import modelo.Actuadores.ActuadorEncenderAire;
-import modelo.Actuadores.ActuadorOprtimizadorAhorroEnergia;
-import modelo.reglas.ReglaOptimizadorConsumoAlto;
-import modelo.reglas.ReglaTemperaturaAlta;
 import modelo.sensores.SensorTemperatura;
-
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
-
 import Servicios.UsuarioService;
-
-
 
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 	
@@ -38,13 +29,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	public void init(){
 	withTransaction(() ->{
 		try {
-			if((UsuarioService.obtenerUsuario("wanchope",SHA256Builder.generarHash256("cabezon")) == null
-				&& UsuarioService.obtenerUsuario("dario",SHA256Builder.generarHash256("golazo")) == null
-				&& UsuarioService.obtenerUsuario("rafa",SHA256Builder.generarHash256("marquecito")) == null) ){
+			if((UsuarioService.obtenerUsuario("ricardo","centu") == null
+				&& UsuarioService.obtenerUsuario("felipe","malo") == null
+				&& UsuarioService.obtenerUsuario("jimmy","cerebro") == null) ){
 				
-			Cliente cliente1= new Cliente("Wanchope","Abila",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","wanchope","cabezon",0);
-			Cliente cliente2= new Cliente("Dario","Benedetto",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","dario","golazo",0);
-			Cliente cliente3= new Cliente("Rafael","Marquez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","rafa","marquecito",0);
+			Cliente cliente1= new Cliente("Ricardo","Centurion",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","ricardo","centu",0);
+			Cliente cliente2= new Cliente("Felipe","Melo",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","felipe","malo",0);
+			Cliente cliente3= new Cliente("Jimmy","Neutron",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","jimmy","cerebro",0);
 		
 			DispositivoInteligente aire = new DispositivoInteligente("aire",false,6d); 
 			DispositivoInteligente compu = new DispositivoInteligente("computadora",true,2d); 
@@ -109,13 +100,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if((UsuarioService.obtenerUsuario("root", SHA256Builder.generarHash256("root"))) == null){
+		if((UsuarioService.obtenerUsuario("root", "root")) == null){
 			Usuario root = new Usuario();
-			root.setContrasenia(SHA256Builder.generarHash256("root"));
+			root.setContrasenia("root");
 			root.setNombreUsuario("root");
+			root.setNombre("Carlos");
 			UsuarioService.persistir(root);
 		
 		}

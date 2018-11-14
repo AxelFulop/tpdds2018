@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import Servicios.DispositivoService;
+import Servicios.SHA256Builder;
 import Servicios.Session;
 import Servicios.UsuarioService;
 import modelo.Cliente;
@@ -20,10 +21,10 @@ public class testUsuarioService {
 	@Test
 	public void persistoUsuarioYLoObtengo(){
 	Cliente cliente3= new Cliente("lucas","rosol",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
-    cliente3.persistir();
+    UsuarioService.persistir(cliente3);
     Usuario user = UsuarioService.obtenerUsuario("luqui","asd");
     org.junit.Assert.assertEquals(user.getNombreUsuario(),"luqui");
-    org.junit.Assert.assertEquals(user.getContrasenia(),"asd");
+    org.junit.Assert.assertEquals(user.getContrasenia(),SHA256Builder.generarHash256("asd"));
 }
 	
 	@Test
@@ -33,11 +34,16 @@ public class testUsuarioService {
 		tv.persistir();
 		DispositivoEstandar aire = new DispositivoEstandar("aire",true,1d);
 		aire.persistir();
-		Cliente cliente= new Cliente("test","test",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","esaa","qwerty",0);
+		Cliente cliente = (Cliente) UsuarioService.obtenerUsuario("trertrer", "popopopo");
+		if(cliente == null) { 
+			cliente= new Cliente("test","test",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","trertrer", "popopopo",0);
+		}
 		cliente.agregarDispositivoEstandar(tv);
 		cliente.agregarDispositivoEstandar(aire);
-		cliente.persistir();
-		List<DispositivoEstandar> dispositivosEstandar = UsuarioService.obtenerDispositivosEstandar("esaa","qwerty");
+		UsuarioService.persistir(cliente);
+		
+		Cliente c = (Cliente)UsuarioService.obtenerUsuario("trertrer", "popopopo");
+		List<DispositivoEstandar> dispositivosEstandar = UsuarioService.obtenerDispositivosEstandarPorId(c.getId());
 		org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(0).getNombre(),dispositivosEstandar.get(0).getNombre());
 		org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(1).getNombre(),dispositivosEstandar.get(1).getNombre());	
 		UsuarioService.eliminar(cliente);
@@ -50,13 +56,18 @@ public class testUsuarioService {
 	public void testPersistoDispositivos() {
 		DispositivoEstandar tv = new DispositivoEstandar("tv", false,10d);
 		DispositivoInteligente aire = new DispositivoInteligente("aire", false,15d);
-		Cliente cliente = new Cliente("Antonio","Fondevila",TipoIdentificacion.DNI,"321",40539761,"Medrano 951","Perruna","loco",0);
+		tv.persistir();
+		aire.persistir();
+		Cliente cliente = (Cliente) UsuarioService.obtenerUsuario("esaaarecheto", "ahhtr55l");
+		if(cliente == null) { 
+			cliente= new Cliente("test","test",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","esaaarecheto","ahhtr55l",0);
+		}
 	    cliente.agregarDispositivoEstandar(tv);
 	    cliente.agregarDispositivoInteligente(aire);
-		cliente.persistir();
+		UsuarioService.persistir(cliente);
 		
-		Cliente c = (Cliente)UsuarioService.obtenerUsuario(cliente.getNombreUsuario(), cliente.getContrasena());
-		List<DispositivoInteligente> disp = UsuarioService.obtenerDispositivosInteligentes(cliente.getNombreUsuario(), cliente.getContrasena());
+		Cliente c = (Cliente)UsuarioService.obtenerUsuario("esaaarecheto","ahhtr55l");
+		List<DispositivoInteligente> disp = UsuarioService.obtenerDispositivosInteligentesPorId(c.getId());
 	    Assert.assertNotEquals(disp.get(0), null);
 	    
 	    UsuarioService.eliminar(c);
@@ -69,13 +80,18 @@ public class testUsuarioService {
 	public void testObtengoDispositivos() {
 		DispositivoEstandar tv = new DispositivoEstandar("tv", false,10d);
 		DispositivoInteligente aire = new DispositivoInteligente("aire", false,15d);
-		Cliente cliente = new Cliente("Antonio","Fondevila",TipoIdentificacion.DNI,"321",40539761,"Medrano 951","Perruna","loco",0);
-	    cliente.agregarDispositivoEstandar(tv);
+		tv.persistir();
+		aire.persistir();
+		Cliente cliente = (Cliente) UsuarioService.obtenerUsuario("Perrunatata","locoadddaa");
+		if(cliente == null) { 
+			cliente= new Cliente("test","test",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","Perrunatata","locoadddaa",0);
+		}	   
+		cliente.agregarDispositivoEstandar(tv);
 	    cliente.agregarDispositivoInteligente(aire);
-		cliente.persistir();
+		UsuarioService.persistir(cliente);
 		
-		Cliente c = (Cliente)UsuarioService.obtenerUsuario(cliente.getNombreUsuario(), cliente.getContrasena());
-		List<Dispositivo> disp = UsuarioService.obtenerDispositivos(cliente.getNombreUsuario(), cliente.getContrasena());
+		Cliente c = (Cliente)UsuarioService.obtenerUsuario("Perrunatata","locoadddaa");
+		List<Dispositivo> disp = UsuarioService.obtenerDispositivosPorId(c.getId());
 	    for(Dispositivo d:disp) {
 	    	Assert.assertNotEquals(d, null);
 	    }

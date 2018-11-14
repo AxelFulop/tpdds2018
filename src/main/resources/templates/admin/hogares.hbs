@@ -16,7 +16,6 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Apellido</th>
-        <th>Consumo total</th>
         <th>Acciones</th>
     </tr>
     </thead>
@@ -26,7 +25,6 @@
         <td>{{id}}</td>
         <td>{{nombre}}</td>
         <td>{{apellido}}</td>
-        <td>{{consumoTotal}}</td>
         <td>
             <button type="button" class="btn btn-primary" data-toggle="modal"
                     data-target="#reporte{{id}}">Generar reporte
@@ -51,8 +49,8 @@
                                     <label for="finPeriodo">Fin perido:</label>
                                     <input type="date" class="form-control" id="finPeriodo" name="finPeriodo">
                                 </div>
-                                <button type="submit" class="btn btn-default">Generar</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-success">Generar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             </form>
                         </div>
 
@@ -80,7 +78,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <p>{{consumo}} kwh</p>
+                    <p>{{consumo}}</p>
                 </div>
                 <form action="/hogares">
                     <input type="submit" class="btn btn-default" value="Cerrar"/>

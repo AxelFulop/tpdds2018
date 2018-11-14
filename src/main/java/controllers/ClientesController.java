@@ -120,10 +120,14 @@ public class ClientesController {
 		
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("inicio", req.queryParams("inicioPeriodo"));
-		viewModel.put("fin", req.queryParams("finPeriodo"));
-		viewModel.put("consumo", String.format("%.2f", consumo));
-		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
+		if(consumo < 0) {
+			return new ModelAndView(viewModel,"cliente/consultaConsumoClienteFailed.hbs");
+		}else {
+			viewModel.put("inicio", req.queryParams("inicioPeriodo"));
+			viewModel.put("fin", req.queryParams("finPeriodo"));
+			viewModel.put("consumo", String.format("%.2f", consumo));
+			return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
+		}
 	}
 	
 }

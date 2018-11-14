@@ -47,7 +47,7 @@ public class AdministradorController {
             List<Cliente> clientes = UsuarioService.obtenerHogares();
             viewModel.put("cliente", clientes);
             viewModel.put("name", admin.getNombre());
-            viewModel.put("id", admin.getId());
+            viewModel.put("id", req.cookie("userId"));//admin.getId());
             return new ModelAndView(viewModel, "admin/hogares.hbs");
         } catch (Exception e) {
             return new ModelAndView(null, "statusCodePages/404.hbs");
@@ -63,7 +63,7 @@ public class AdministradorController {
             viewModel.put("dispositivosInteligentes", dispositivosInteligentes);
             viewModel.put("dispositivosEstandars", dispositivosEstandars);
             viewModel.put("name", admin.getNombre());
-            viewModel.put("id", admin.getId());
+            viewModel.put("id", req.cookie("userId"));//admin.getId());
             return new ModelAndView(viewModel, "admin/dispositivos.hbs");
         } catch (Exception e) {
             return new ModelAndView(null, "statusCodePages/404.hbs");
@@ -101,7 +101,11 @@ public class AdministradorController {
 //            LocalDate fin = LocalDate.now();;
 //            LocalDate inicio = LocalDate.now().minusDays(Long.parseLong(dias));
             Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio,fin );
-            viewModel.put("consumo",consumo);
+            if(consumo == null || consumo <= 0) {
+            	viewModel.put("consumo","No tiene consumo");
+            }else {
+            	viewModel.put("consumo",consumo+" kw/h");
+            }         
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
             List<Cliente> clientes = UsuarioService.obtenerHogares();
             viewModel.put("cliente", clientes);

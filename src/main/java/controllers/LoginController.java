@@ -1,19 +1,11 @@
 package controllers;
 
-import java.io.EOFException;
-import java.util.HashMap;
-
-import com.github.jknack.handlebars.Handlebars;
-
 import Servicios.SHA256Builder;
 import Servicios.UsuarioService;
 import modelo.Usuario;
-import setup.ResponseError;
-import setup.Util;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Spark;
 
 public class LoginController {
 	
@@ -37,10 +29,10 @@ public class LoginController {
         String pass = request.queryParams("contrasenia");
         String password = SHA256Builder.generarHash256(pass);
         String passRoot = SHA256Builder.generarHash256("root");
-        Usuario user = UsuarioService.obtenerUsuario(username, password);
+        Usuario user = UsuarioService.obtenerUsuario(username, pass);
         //login succes
         try{
-       if (username.isEmpty() || password.isEmpty() || user == null) {
+       if (username.isEmpty() || pass.isEmpty() || user == null) {
     	   response.redirect("/loginFailed");
 			  
         }

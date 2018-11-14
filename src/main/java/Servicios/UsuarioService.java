@@ -69,7 +69,7 @@ import modelo.Usuario;
 	    try{
 	    Query query = Session.getSession().createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = :nomUsuario and u.contrasenia = :pass");
 	    query.setParameter("nomUsuario", username);
-	    query.setParameter("pass",password);
+	    query.setParameter("pass", SHA256Builder.generarHash256(password));
 	    query.setMaxResults(1);
 	    user = (Usuario) query.getSingleResult();
 	    }
@@ -79,29 +79,6 @@ import modelo.Usuario;
 	    return user;
 	    }
 		
-	    //por username y por password te trae muchos dispos (varios registros con mismos campos en la tabla)
-		public static List<DispositivoInteligente> obtenerDispositivosInteligentes(String username,String password)
-		{
-			Query query = Session.getSession().createQuery("SELECT c.dispositivosInteligentes FROM Cliente c WHERE c.nombreUsuario = :nomUsuario and c.contrasenia = :pass");
-		    query.setParameter("nomUsuario", username);
-		    query.setParameter("pass", password);
-		    List<DispositivoInteligente> dispInteligente =  query.getResultList();
-		    return dispInteligente;
-			
-		}
-		
-		
-		public static List<DispositivoEstandar> obtenerDispositivosEstandar(String username,String password)
-		{
-			Query query = Session.getSession().createQuery("SELECT c.dispositivosEstandares FROM Cliente c WHERE c.nombreUsuario = :nomUsuario and c.contrasenia = :pass");
-		    query.setParameter("nomUsuario", username);
-		    query.setParameter("pass", password);
-		    List<DispositivoEstandar> dispEstandar =  query.getResultList();
-		    return dispEstandar;
-			
-		}
-	
-		//ANDA
 		public static List<DispositivoInteligente> obtenerDispositivosInteligentesPorId(Long idCliente)
 		{
 			Query query = Session.getSession().createNativeQuery("select * from dispositivointeligente d where d.cliente_id = ?", DispositivoInteligente.class);
@@ -111,7 +88,6 @@ import modelo.Usuario;
 			
 		}
 		
-		//ANDA
 		public static List<DispositivoEstandar> obtenerDispositivosEstandarPorId(Long idCliente)
 		{
 			Query query = Session.getSession().createNativeQuery("select * from dispositivoestandar d where d.cliente_id = ?", DispositivoEstandar.class);
@@ -131,15 +107,6 @@ import modelo.Usuario;
 			return disp;
 		}
 		
-		public static List<Dispositivo> obtenerDispositivos(String username,String password){
-			List<Dispositivo> disp = new ArrayList<Dispositivo>();
-			List<DispositivoEstandar> dispE = UsuarioService.obtenerDispositivosEstandar(username, password);
-			List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentes(username, password);
-			
-			disp.addAll(dispE);
-			disp.addAll(dispI);
-			return disp;
-		}
 		//hogar = cliente
 		public static List<Cliente> obtenerHogares() {
 			List<Cliente> listaHogares = new ArrayList<Cliente>();
