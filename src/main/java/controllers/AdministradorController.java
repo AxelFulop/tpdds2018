@@ -92,28 +92,32 @@ public class AdministradorController {
     }
 
     public static ModelAndView generarReporteHogar(Request req, Response res) {
+    	HashMap<String, Object> viewModel = new HashMap<>();
+    	Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
+        List<Cliente> clientes = UsuarioService.obtenerHogares();
         try {
             LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
             LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));
 //            String dias = req.queryParams("dias");
             Cliente cliente = UsuarioService.obtenerClientePorId(Long.parseLong(req.params("id")));
-            HashMap<String, Object> viewModel = new HashMap<>();
 //            LocalDate fin = LocalDate.now();;
 //            LocalDate inicio = LocalDate.now().minusDays(Long.parseLong(dias));
             Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio,fin );
-            if(consumo == null || consumo <= 0) {
+            if(consumo <= 0) {
             	viewModel.put("consumo","No tiene consumo");
             }else {
             	viewModel.put("consumo",consumo+" kw/h");
-            }         
-            Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
-            List<Cliente> clientes = UsuarioService.obtenerHogares();
+            }                
             viewModel.put("cliente", clientes);
             viewModel.put("name", admin.getNombre());
-            viewModel.put("id", admin.getId());
+            viewModel.put("id", req.cookie("userId"));
             return new ModelAndView(viewModel, "admin/hogares.hbs");
-        } catch (Exception e) {
-            return new ModelAndView(null, "statusCodePages/404.hbs");
+        } catch (NullPointerException e) {
+        	viewModel.put("cliente", clientes);
+            viewModel.put("name", admin.getNombre());
+            viewModel.put("id", req.cookie("userId"));
+            viewModel.put("consumo","No tiene consumo");
+        	return new ModelAndView(viewModel, "admin/hogares.hbs");
         }
     }
     
