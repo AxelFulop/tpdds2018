@@ -50,6 +50,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			lampara.setConsumoMensual(7d);
 			microondas.setConsumoMensual(5d);
 			
+			est1.setHorasDeUsoDiarias(3);
+			est2.setHorasDeUsoDiarias(1);
+			est3.setHorasDeUsoDiarias(1);
+			
 			Restriccion restriccionAire = new Restriccion();
 			restriccionAire.setCotasAireAcondicionado();
 			aire.setRestriccion(restriccionAire);
