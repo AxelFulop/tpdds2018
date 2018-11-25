@@ -53,8 +53,3 @@ public class DispositivoService extends Model {
     }
 
 }
-	
-
-	
-
-

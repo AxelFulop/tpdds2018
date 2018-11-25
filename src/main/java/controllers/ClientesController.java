@@ -146,4 +146,28 @@ public class ClientesController {
 		return null;
 	}
 	
+	public static String getEstadoDispositivo(Request req, Response res) {
+		//Long idCliente = Long.valueOf( req.queryParams("idCliente") );
+		//Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
+		
+		res.status(200);
+		res.body("APAGADO");
+		return "";
+	}
+	
+	public static String getConsumoDispositivo(Request req, Response res) {
+		res.status(200);
+		res.body("20");
+		return "";
+	}
+	
+	public static String apagarDispositivo(Request req, Response res) {
+		res.status(200);
+		return "";
+	}
+	
+	public static String encenderDispositivo(Request req, Response res) {
+		res.status(200);
+		return "";
+	}
 }

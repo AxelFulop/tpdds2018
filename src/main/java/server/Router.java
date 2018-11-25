@@ -49,6 +49,11 @@ public class Router {
         Spark.get("/hogares/hogar/:id/reporte", AdministradorController::generarReporteHogar,engine);
         
         Spark.post("/sensor", ClientesController::registrarMedicion);
+        
+        Spark.get("/dispositivo/estado", ClientesController::getEstadoDispositivo);
+        Spark.get("/dispositivo/consumo", ClientesController::getConsumoDispositivo);
+        Spark.post("/dispositivo/encender", ClientesController::apagarDispositivo);
+        Spark.post("/dispositivo/apagar", ClientesController::encenderDispositivo);
 
     }
 
