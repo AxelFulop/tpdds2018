@@ -2,22 +2,16 @@ package controllers;
 
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
-
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
-import modelo.DispositivoEstandar;
 import modelo.DispositivoInteligente;
 import modelo.Optimizador;
 import modelo.Sensor;
-import modelo.TipoIdentificacion;
-import modelo.Usuario;
 import reportes.GeneradorReportes;
 import spark.ModelAndView;
 import spark.Request;
@@ -128,6 +122,28 @@ public class ClientesController {
 			viewModel.put("consumo", String.format("%.2f", consumo));
 			return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
 		}
+	}
+	
+	public static String registrarMedicion(Request req, Response res) {
+		Double medicion = Double.valueOf( req.queryParams("medicion") );
+		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
+		Cliente cliente = UsuarioService.obtenerClientePorId(idCliente);
+		System.out.println(medicion);
+		System.out.println(idCliente);
+		System.out.println(cliente);
+			
+		if(cliente == null) {
+			res.status(404);
+			return null;
+		}
+		
+		List<Sensor> sensores = UsuarioService.obtenerSensoresPorId(idCliente);
+		/*for(Sensor s: sensores) {
+			s.setMedicion(medicion);
+			s.tomarMedicion();
+		}*/
+		res.status(200);
+		return null;
 	}
 	
 }
