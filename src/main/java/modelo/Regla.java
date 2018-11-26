@@ -12,7 +12,7 @@ public abstract class Regla extends Model {
     private Long id;
     private String nombre;
 
-	@OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "regla_id")
+	@OneToOne(cascade = CascadeType.ALL) @JoinColumn(name = "actuador_id")
     public Actuador actuador;
 
     public Regla(){

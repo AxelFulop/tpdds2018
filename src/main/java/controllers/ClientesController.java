@@ -127,22 +127,19 @@ public class ClientesController {
 	public static String registrarMedicion(Request req, Response res) {
 		Double medicion = Double.valueOf( req.queryParams("medicion") );
 		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
-		Cliente cliente = UsuarioService.obtenerClientePorId(idCliente);
-		System.out.println(medicion);
-		System.out.println(idCliente);
-		System.out.println(cliente);
-			
-		if(cliente == null) {
-			res.status(404);
-			return null;
-		}
-		
+
 		List<Sensor> sensores = UsuarioService.obtenerSensoresPorId(idCliente);
-		/*for(Sensor s: sensores) {
-			s.setMedicion(medicion);
-			s.tomarMedicion();
-		}*/
-		res.status(200);
+		if(sensores != null || sensores.size() > 0) {
+			for(Sensor s: sensores) {
+				s.setMedicion(medicion);
+				s.tomarMedicion();
+				s.persistir();
+			}
+			res.status(200);
+		}
+		else {
+			res.status(404);
+		}
 		return null;
 	}
 	

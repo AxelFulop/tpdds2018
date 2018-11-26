@@ -3,6 +3,9 @@ package modelo.Actuadores;
 import modelo.Actuador;
 import modelo.DispositivoInteligente;
 import javax.persistence.Entity;
+
+import Servicios.Session;
+
 import java.util.List;
 
 @Entity
@@ -14,7 +17,15 @@ public class ActuadorEncenderAire extends Actuador {
 		super(dispositivos);
 	}
 	public void ejecutarAccion(DispositivoInteligente d) {
-		d.encender();
+		Session.getSession().find(DispositivoInteligente.class, d.getId());
+		try {
+			Session.beginTransaction();
+			d.encender();
+			Session.commitTransaction();
+		}catch(Exception e) {
+			e.printStackTrace();
+			Session.rollbackTransaction();
+		}
 	}
 
 }

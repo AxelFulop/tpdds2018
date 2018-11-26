@@ -2,27 +2,28 @@ package modelo.sensores;
 
 import modelo.Sensor;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 
 @Entity
 public class SensorTemperatura extends Sensor {
-	private double medicion = 24.5d;
+	private double ultimaMedicion = 24.5d;
 	
 	@Override
 	public void tomarMedicion() {
 		reglas.forEach(regla -> {
 			regla.getActuador().getDispositivos().forEach(dispositivoInteligente -> {
-				regla.llamarActuador(dispositivoInteligente,medicion);
+				regla.llamarActuador(dispositivoInteligente, ultimaMedicion);
 			});
 		});
 	}
 
 	public Double getMedicion() {
-		return medicion;
+		return ultimaMedicion;
 	}
 
 	public void setMedicion(Double medicion) {
-		this.medicion = medicion;
+		this.ultimaMedicion = medicion;
 	}	
 
 }
