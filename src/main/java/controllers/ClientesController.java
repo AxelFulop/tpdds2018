@@ -140,7 +140,7 @@ public class ClientesController {
 		else {
 			res.status(404);
 		}
-		return null;
+		return "";
 	}
 	
 	public static String getEstadoDispositivo(Request req, Response res) {

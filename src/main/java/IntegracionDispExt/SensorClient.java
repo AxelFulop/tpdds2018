@@ -28,7 +28,7 @@ public class SensorClient {
 				response = Unirest.post(serverUrl).queryString("medicion", medicion.toString())
 												  .queryString("idCliente", idCliente.toString())
 												  .asString();
-				//STATUS SIEMPRE DEVUELVE 200 AUNQUE SE HAYA REGISTRADO LA MEDICION....
+				
 				if (response.getStatus() == 200) {
 					System.out.println("Se ha registrado la medicion");
 				} 
