@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
+
+import com.google.gson.Gson;
+
+import Servicios.Session;
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
@@ -144,11 +148,22 @@ public class ClientesController {
 	}
 	
 	public static String getEstadoDispositivo(Request req, Response res) {
-		//Long idCliente = Long.valueOf( req.queryParams("idCliente") );
-		//Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
+		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
+		Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
 		
-		res.status(200);
-		res.body("APAGADO");
+		DispositivoInteligente disp = Session.getSession().find(DispositivoInteligente.class, idDispositivo);
+		Cliente cl = UsuarioService.obtenerClientePorId(idCliente);
+		
+		if(cl.tieneDispositivo(disp)) {
+			Gson gson = new Gson();
+			String jsonInString = gson.toJson(disp); 
+			res.status(200);
+			res.body(jsonInString);
+		}
+		else {
+			res.status(404);
+		}
+
 		return "";
 	}
 	
@@ -158,13 +173,39 @@ public class ClientesController {
 		return "";
 	}
 	
-	public static String apagarDispositivo(Request req, Response res) {
-		res.status(200);
+	public static String encenderDispositivo(Request req, Response res) {
+		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
+		Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
+		
+		DispositivoInteligente disp = Session.getSession().find(DispositivoInteligente.class, idDispositivo);
+		Cliente cl = UsuarioService.obtenerClientePorId(idCliente);
+		
+		if(cl.tieneDispositivo(disp)) {
+			disp.encender();
+			disp.persistir();
+			res.status(200);
+		}
+		else {
+			res.status(404);
+		}
 		return "";
 	}
 	
-	public static String encenderDispositivo(Request req, Response res) {
-		res.status(200);
+	public static String apagarDispositivo(Request req, Response res) {
+		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
+		Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
+		
+		DispositivoInteligente disp = Session.getSession().find(DispositivoInteligente.class, idDispositivo);
+		Cliente cl = UsuarioService.obtenerClientePorId(idCliente);
+		
+		if(cl.tieneDispositivo(disp)) {
+			disp.apagar();
+			disp.persistir();
+			res.status(200);
+		}
+		else {
+			res.status(404);
+		}
 		return "";
 	}
 }

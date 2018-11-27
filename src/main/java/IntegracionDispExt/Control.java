@@ -1,8 +1,15 @@
 package IntegracionDispExt;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+
+import modelo.DispositivoInteligente;
+
 import java.util.Scanner;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class Control {
 	private static long idCliente = 2l;
@@ -23,14 +30,17 @@ public class Control {
 
 			if (split[0].equals("salir")) {
 				break;
-			} else if ( split[0].equals("estado") && split[1] != null) {
+			} else if ( split[0].equals("estado") && split[1] != "") {
 				HttpResponse<String> response;
 				try {
 					response = Unirest.post(serverUrl + "/dispositivo/estado").queryString("idDispositivo",split[1])
 													                          .queryString("idCliente", String.valueOf(idCliente))
 													                          .asString();
 					if (response.getStatus() == 200) {
-						System.out.println("Estado: "+ response.getBody());
+						//JSONParser jsonParser = new JSONParser();
+		        		//JSONObject jsonObject = (JSONObject) jsonParser.parse(response.getBody().toString());	        		
+		        		//String estado = (String) jsonObject.get("consumo");
+						System.out.println("Estado: "+ response.getBody().toString());
 					} else {
 						System.out.println(response.getStatus() + "-" + response.getStatusText());
 					}
@@ -39,12 +49,11 @@ public class Control {
 					ex.printStackTrace();
 				}
 			} else if( split[0].equals("consumo") && split[1] != null){
-				HttpResponse<String> response;
+				HttpResponse<JsonNode> response;
 				try {              
 					response = Unirest.get(serverUrl+"/dispositivo/consumo").queryString("idDispositivo",split[1])
-							  						 						.queryString("comando", split[0])
 							  						 						.queryString("idCliente", String.valueOf(idCliente))
-							  						 						.asString();
+							  						 						.asJson();
 					if (response.getStatus() == 200) {					
 						System.out.println("Consumo: "+ response.getBody());
 					} else {
@@ -58,7 +67,6 @@ public class Control {
 				HttpResponse<String> response;
 				try {              
 					response = Unirest.post(serverUrl+"/dispositivo/apagar").queryString("idDispositivo",split[1])
-							  						 						.queryString("comando", split[0])
 							  						 						.queryString("idCliente", String.valueOf(idCliente))
 							  						 						.asString();
 					if (response.getStatus() == 200) {					
@@ -74,7 +82,6 @@ public class Control {
 				HttpResponse<String> response;
 				try {              
 					response = Unirest.post(serverUrl+"/dispositivo/encender").queryString("idDispositivo",split[1])
-							  						 						  .queryString("comando", split[0])
 							  						 						  .queryString("idCliente", String.valueOf(idCliente))
 							  						 						  .asString();
 					if (response.getStatus() == 200) {					
