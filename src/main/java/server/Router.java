@@ -54,7 +54,8 @@ public class Router {
         Spark.get("/dispositivo/consumo", ClientesController::getConsumoDispositivo);
         Spark.post("/dispositivo/encender", ClientesController::encenderDispositivo);
         Spark.post("/dispositivo/apagar", ClientesController::apagarDispositivo);
-
+        Spark.get("/dispositivosInteligentes", ClientesController::getDispositivosInteligentes);
+        
     }
 
 }

@@ -218,4 +218,20 @@ public class ClientesController {
 		}
 		return "";
 	}
+	
+	public static String getDispositivosInteligentes(Request req, Response res) {
+		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
+		List<DispositivoInteligente> disp = UsuarioService.obtenerDispositivosInteligentesPorId(idCliente);
+		try {
+			Gson gson = new Gson(); 
+			String jsonDispositivos = gson.toJson(disp);
+			res.status(200);
+			return jsonDispositivos;
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.status(404);
+			return "";
+		}	
+	}
+	
 }
