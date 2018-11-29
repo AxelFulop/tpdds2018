@@ -255,10 +255,10 @@ public class Cliente extends Usuario {
         return (List<Cliente>) Session.getSession().createQuery("SELECT e FROM Cliente e").getResultList();
     }
     
-    public boolean tieneDispositivo(Dispositivo d) {
-    	boolean retorno = this.dispositivosEstandares.contains(d);
+    public boolean tieneDispositivo(Dispositivo disp) {
+    	boolean retorno = this.dispositivosEstandares.stream().anyMatch(d -> d.getId() == disp.getId());
     	if(!retorno) {
-    		retorno = this.dispositivosInteligentes.contains(d);
+    		retorno = this.dispositivosInteligentes.stream().anyMatch(d -> d.getId() == disp.getId());
     	}
     	return retorno;
     }

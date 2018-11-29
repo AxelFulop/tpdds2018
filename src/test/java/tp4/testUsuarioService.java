@@ -45,7 +45,9 @@ public class testUsuarioService {
 		Cliente c = (Cliente)UsuarioService.obtenerUsuario("trertrer", "popopopo");
 		List<DispositivoEstandar> dispositivosEstandar = UsuarioService.obtenerDispositivosEstandarPorId(c.getId());
 		org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(0).getNombre(),dispositivosEstandar.get(0).getNombre());
-		org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(1).getNombre(),dispositivosEstandar.get(1).getNombre());	
+		org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(1).getNombre(),dispositivosEstandar.get(1).getNombre());
+		org.junit.Assert.assertTrue(cliente.tieneDispositivo(dispositivosEstandar.get(0)));
+		org.junit.Assert.assertTrue(cliente.tieneDispositivo(dispositivosEstandar.get(1)));
 		UsuarioService.eliminar(cliente);
 		for(DispositivoEstandar d:dispositivosEstandar) {
 	    	DispositivoService.eliminar(d);
