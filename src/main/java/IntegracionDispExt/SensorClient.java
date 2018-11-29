@@ -12,7 +12,7 @@ public class SensorClient {
 	public static void main(String[] args) {
 		scanner1 = new Scanner(System.in);
 		scanner2 = new Scanner(System.in);
-		String serverUrl = "http://localhost:8080/sensor"; //dsp del despliegue a la nube se cambia
+		String serverUrl = "https://gentle-sands-84990.herokuapp.com"; //dsp del despliegue a la nube se cambia
 
 		System.out.println("== START SENSOR ==");
 

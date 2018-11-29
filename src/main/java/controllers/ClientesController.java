@@ -69,7 +69,7 @@ public class ClientesController {
 	public static ModelAndView  mostrarSimplexFailed(Request req, Response res){
 		Cliente cliente = obtenerCliente(req, res);	
 		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("id", cliente.getId());
+		viewModel.put("idCliente", cliente.getId());
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexClienteFailed.hbs");
 	}
 	
@@ -91,8 +91,6 @@ public class ClientesController {
 		
 			HashMap<String, Object> viewModel = new HashMap<>();
 			viewModel.put("valoresOptimizados", listaDuplas);
-			Long idCliente = Long.valueOf( req.queryParams("idCliente") );
-			viewModel.put("idCliente",idCliente);
 			return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 		}catch(NoFeasibleSolutionException e) {
 			res.redirect("/clientes/"+ cliente.getId() +"/optimizadorFailed");
