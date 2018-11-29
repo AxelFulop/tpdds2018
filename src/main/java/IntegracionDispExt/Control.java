@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Control {
 	private static long idCliente = 2l;
 	private static Scanner scanner;
-	private static String serverUrl = "http://localhost:8080";
+	private static String serverUrl = "https://gentle-sands-84990.herokuapp.com";
 
 	public static void main(String[] args) {
 		scanner = new Scanner(System.in);
