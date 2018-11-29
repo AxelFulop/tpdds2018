@@ -1,0 +1,116 @@
+{{#partial "adminBody"}}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<table class="table table-striped">
+
+
+    <h4 class="modal-title">Disposistivos inteligentes</h4>
+
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalDispositivoInteligente">Nuevo
+        dispositivo inteligente
+    </button>
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Consumo</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each dispositivosInteligentes}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{nombre}}</td>
+        <td>{{consumoMensual}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <h4 class="modal-title">Disposistivos Estandar</h4>
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalDispositivoEstandar">Nuevo
+        dispositivo estandar
+    </button>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Hora de uso diarias</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each dispositivosEstandars}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{nombre}}</td>
+        <td>{{horasDeUsoDiarias}}</td>
+
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalDispositivoInteligente" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nuevo dispositivo inteligente</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/dispositivos/dispositivoInteligente" method="post">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Consumo mensual:</label>
+                        <input type="number" class="form-control" name="consumoMensual">
+                    </div>
+                    <button type="submit" class="btn btn-success">Crear</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="myModalDispositivoEstandar" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Nuevo dispositivo estadar</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/dispositivos/dispositivoEstandar" method="post">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" name="nombre">
+                    </div>
+                    <button type="submit" class="btn btn-success">Crear</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{{/partial
+}}
+{{>adminDash.hbs}}

@@ -1,0 +1,70 @@
+<html>
+<head>
+<form method="POST">
+	<title>Optimizador</title>
+    <link rel="stylesheet" type="text/css" href="/css/consumoCliente.css">
+    	<link rel="stylesheet" type="text/css" href="/css/main.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<style>
+	
+	table, td, th {
+    		border: 1px solid black;
+		}
+		
+	table{
+    	margin-right: 20px;
+	}
+	
+	
+	
+	.menu.menu{
+	display:block
+	}
+	
+	.logout.logout{
+	display:block
+	}
+	
+	h4{
+		padding-top: 20px;
+	}
+	
+	h2{
+		padding-top: 25px;
+		text-shadow: 3px 2px red;
+	}
+	</style>
+
+</head>
+
+<body>
+		<h2>No hay una solucion factible</h2>
+		<h4>Ingrese el limite mensual </h4>
+        <input type="number" style="width:25%;" placeholder="Limite" class="form-control" name="limiteMensual">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" formaction="/clientes/{{id}}/optimizador">
+              <span class="glyphicon glyphicon-search">
+              </span> Aceptar
+            </button>
+          </span>
+
+      
+	<table class="table table-dark">
+    <tr>
+      <th scope="col" class="align-top">Dispositivo</th>
+      <th id="consRec"scope="col" class="align-top">Consumo recomendado</th>
+    </tr>
+     </thead>
+  		<tbody>
+  	{{#each valoresOptimizados}}
+    	<tr>
+      		<td>{{nombreDispositivo}}</td>
+      		<td>{{valorOptimizado}}</td>
+    	</tr>
+    {{/each}}
+  	</tbody>
+</table>
+
+</body>
+</html>
+{{>layout.hbs}}

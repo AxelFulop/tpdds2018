@@ -1,0 +1,85 @@
+			  [
+				  {
+				  "nombre":"Juan",
+				  "apellido":"Perez",
+				  "identificacion":{
+				  	"tipoIdentificacion": DNI,
+				  	"numeroIdentificacion": 123 
+				  },
+				  "telefono": 48262937,
+				  "domicilio": "Medrano 951",
+				  "nombreUsuario":"juanATR",
+				  "contrasena": "qwerty",
+				  "puntos": 10,
+				  "categoria":{
+				  	"nombre":"r1",
+				  	"limiteInferior":0,
+				  	"limiteSuperior":150,
+				  	"cargoFijo":18.76,
+				  	"cargoVariable":0.644				  
+				  },
+				  "dispositivosInteligentes":[
+								  {
+								  "nombre":"aire",
+								  "estado": ENCENDIDO,
+								  "restriccion":{
+								  	"cotaInferior":90,
+								  	"cotaSuperior":360
+								  	},
+								  "kwh":1.613								  
+								  },
+								  {
+								  "nombre":"heladera",
+								  "estado": ENCENDIDO,
+								  "kwh":0.09								  
+								  }
+								 ],
+				  "consumoTotal": 200,
+				  "ubicacion":{
+				  	"x":10,
+				  	"y":7
+				  }
+					},
+					
+					{
+				  "nombre":"Antonio",
+				  "apellido":"Mascherano",
+				  "identificacion":{
+				  	"tipoIdentificacion": DNI,
+				  	"numeroIdentificacion": 40433999
+				  },
+				  "telefono": 45673908,
+				  "domicilio": "calleFalsa 123",
+				  "nombreUsuario":"hoyTeConvertisEnHeroe",
+				  "contrasena": "perro",
+				  "puntos": 30,
+				  "categoria":{
+				  	"nombre":"r2",
+				  	"limiteInferior":150,
+				  	"limiteSuperior":325,
+				  	"cargoFijo":35.32,
+				  	"cargoVariable":0.644				  
+				  },
+				  "dispositivosInteligentes":[
+								  {
+								  "nombre":"aire",
+								  "estado": ENCENDIDO,
+								  "restriccion":{
+								  	"cotaInferior":90,
+								  	"cotaSuperior":360
+								  	},
+								  "kwh":1.013								  
+								  },
+								  {"nombre":"heladera",
+								  "estado": ENCENDIDO,
+								  "kwh":0.075								  
+								  }
+								 ],
+				  "consumoTotal": 100,
+				  "ubicacion":{
+				  	"x":5,
+				  	"y":8
+				  }
+					}
+				]
+

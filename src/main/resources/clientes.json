@@ -1,0 +1,75 @@
+		 [
+			   {
+				  "nombre":"Juan",
+				  "apellido":"Perez",
+				  "nombreUsuario":"juanATR",
+				  "contrasenia": "qwerty",
+				  "identificacion":{
+				  	"tipo":DNI,
+				  	"numero": 123
+				  },
+				  "telefono": 48262937,
+				  "domicilio": "Medrano 951",
+				  "puntos": 30,
+				  "categoria":{
+				  	"nombre":"r1",
+				  	"limiteInferior":0,
+				  	"limiteSuperior":150,
+				  	"cargoFijo":18.76,
+				  	"cargoVariable":0.644				  
+				  },
+				  "dispositivosEstandares":[
+								  {
+								  "nombre":"tele",
+								  "kwh":2,
+								  "horasDeUsoDiarias": 10
+								  },
+								  {"nombre":"ipod",
+								  "kwh":10,
+								  "horasDeUsoDiarias": 5								  
+								  }
+								 ],
+				  "consumoTotal": 200,
+				  "ubicacion":{
+				  	"x":10,
+				  	"y":7
+				  }
+				},
+					
+				{
+				  "nombre":"Antonio",
+				  "apellido":"Mascherano",
+				  "identificacion":{
+				  	"tipo":DNI,
+				  	"numero": 40433999 
+				  },
+				  "telefono": 45673908,
+				  "domicilio": "calleFalsa 123",
+				  "nombreUsuario":"hoyTeConvertisEnHeroe",
+				  "contrasenia": "perro",
+				  "puntos": 30,
+				  "categoria":{
+				  	"nombre":"r2",
+				  	"limiteInferior":150,
+				  	"limiteSuperior":325,
+				  	"cargoFijo":35.32,
+				  	"cargoVariable":0.644				  
+				  },
+				  "dispositivosEstandares":[
+								  {
+								  "nombre":"tele",
+								  "kwh":2,
+								  "horasDeUsoDiarias": 3								
+								  },
+								  {"nombre":"ipod",
+								  "kwh":10,
+								  "horasDeUsoDiarias": 6								  
+								  }
+								 ],
+				  "consumoTotal": 100,
+				  "ubicacion":{
+				  	"x":5,
+				  	"y":8
+				  }
+				}
+			]

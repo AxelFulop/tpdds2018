@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>modelo.Actuador</class>
+        <class>modelo.Administrador</class>
+        <class>modelo.CategoriaResidencial</class>
+        <class>modelo.Cliente</class>
+        <class>modelo.Dispositivo</class>
+        <class>modelo.DispositivoEstandar</class>
+        <class>modelo.DispositivoInteligente</class>
+        <class>modelo.Estado</class>
+        <class>modelo.Fabricante</class>
+        <class>modelo.Identificacion</class>
+        <class>modelo.Regla</class>
+        <class>modelo.Restriccion</class>
+        <class>modelo.Sensor</class>
+        <class>modelo.Transformador</class>
+        <class>modelo.Usuario</class>
+        <class>modelo.ZonaGeografica</class>
+
+        <class>modelo.sensores.SensorOptimizador</class>
+        <class>modelo.sensores.SensorTemperatura</class>
+        <class>modelo.reglas.ReglaTemperaturaAlta</class>
+        <class>modelo.reglas.ReglaOptimizadorConsumoAlto</class>
+        <class>modelo.Actuadores.ActuadorOprtimizadorAhorroEnergia</class>
+        <class>modelo.Actuadores.ActuadorEncenderAire</class>
+
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class"/>
+
+
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/tpdds2018?serverTimezone=UTC"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="qmsroot"/> <!-- qmsroot -->
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
