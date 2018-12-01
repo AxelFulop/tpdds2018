@@ -133,7 +133,7 @@ public class ClientesController {
 		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
 
 		List<Sensor> sensores = UsuarioService.obtenerSensoresPorId(idCliente);
-		if(sensores != null || sensores.size() > 0) {
+		if( sensores != null ) {
 			for(Sensor s: sensores) {
 				s.setMedicion(medicion);
 				s.tomarMedicion();
