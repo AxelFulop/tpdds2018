@@ -12,7 +12,7 @@ public class SensorClient {
 	public static void main(String[] args) {
 		scanner1 = new Scanner(System.in);
 		scanner2 = new Scanner(System.in);
-		String serverUrl = "https://gentle-sands-84990.herokuapp.com"; //dsp del despliegue a la nube se cambia
+		String serverUrl = "https://gentle-sands-84990.herokuapp.com"; 
 
 		System.out.println("== START SENSOR ==");
 
@@ -23,6 +23,7 @@ public class SensorClient {
 			System.out.print("Ingresar ID del cliente: ");
 			Long idCliente = scanner2.nextLong();
 
+			if(!medicion.isNaN()) {
 			HttpResponse<String> response;
 			try {
 				response = Unirest.post(serverUrl).queryString("medicion", medicion.toString())
@@ -38,6 +39,7 @@ public class SensorClient {
 
 			} catch (Exception ex) {
 				ex.printStackTrace();
+			}
 			}
 			
 		}

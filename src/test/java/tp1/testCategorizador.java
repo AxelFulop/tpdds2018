@@ -27,6 +27,6 @@ public class testCategorizador {
 			Categorizador cat = new Categorizador();
 			cat.recategorizar(clienteHarcodeado);
 			Assert.assertEquals(clienteHarcodeado.getCategoria().getNombre(),"r1"); 
-		} //HAY ERROR EN ESTE TEST, expected r1
+		} 
 		
 }

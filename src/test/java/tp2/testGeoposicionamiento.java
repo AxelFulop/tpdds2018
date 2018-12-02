@@ -35,10 +35,6 @@ public class testGeoposicionamiento {
     Transformador transformadorCaballito = new Transformador();
     Transformador transformadorColegiales = new Transformador();
 
-    /*
-    List<Transformador> listaTransformadores1 = new ArrayList<Transformador>();
-    List<Transformador> listaTransformadores2 = new ArrayList<Transformador>(); */
-
     ZonaGeografica zona1 = new ZonaGeografica();
     ZonaGeografica zona2 = new ZonaGeografica();
 
