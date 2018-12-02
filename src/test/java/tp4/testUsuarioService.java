@@ -93,10 +93,11 @@ public class testUsuarioService {
 	    cliente.agregarDispositivoInteligente(aire);
 		UsuarioService.persistir(cliente);
 		
-		Cliente c = (Cliente)UsuarioService.obtenerUsuario("Perrunatata","locoadddaa");
-		List<Dispositivo> disp = UsuarioService.obtenerDispositivosPorId(c.getId());
+		Cliente c = UsuarioService.obtenerClientePorId(cliente.getId());
+		Long idC = c.getId();
+		List<Dispositivo> disp = UsuarioService.obtenerDispositivosPorId(idC);
 	    for(Dispositivo d:disp) {
-	    	Assert.assertNotEquals(d, null);
+	    	Assert.assertNotNull(d);
 	    }
 	    
 	    
@@ -118,6 +119,36 @@ public class testUsuarioService {
 	public void testObtenerClientePorID() {
 		Usuario cliente = UsuarioService.obtenerUsuarioPorId(Long.valueOf("1"));
 	    Assert.assertEquals(cliente.getId(), Long.valueOf("1"));
+	}
+	
+	@Test
+	public void testObtengoDispositivoInteligente() {
+		DispositivoEstandar tv = new DispositivoEstandar("tv", false,10d);
+		DispositivoInteligente aire = new DispositivoInteligente("aire", false,15d);
+		tv.persistir();
+		aire.persistir();
+		Cliente cliente = (Cliente) UsuarioService.obtenerUsuario("Perrunatata","locoadddaa");
+		if(cliente == null) { 
+			cliente= new Cliente("test","test",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","Perrunatata","locoadddaa",0);
+		}	   
+		cliente.agregarDispositivoEstandar(tv);
+	    cliente.agregarDispositivoInteligente(aire);
+		UsuarioService.persistir(cliente);
+		
+		Cliente c = UsuarioService.obtenerClientePorId(cliente.getId());
+		
+		DispositivoInteligente tv1 = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(c.getId(), tv.getId());
+		DispositivoInteligente aire1 = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(c.getId(), aire.getId());
+		DispositivoInteligente nulo = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(c.getId(), 65l);
+	
+	    Assert.assertNull(tv1);
+	    Assert.assertNotNull(aire1);
+	    Assert.assertNull(nulo);
+	    
+	    
+	    aire.eliminar();
+	    tv.eliminar();
+	    UsuarioService.eliminar(cliente);
 	}
 	
 }

@@ -2,6 +2,7 @@ package Servicios;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -84,8 +85,10 @@ import modelo.Usuario;
 			Query query = Session.getSession().createQuery("FROM Cliente c WHERE c.id=?");
 		    query.setParameter(1, idCliente);
 		    Cliente c = (Cliente) query.getSingleResult();
-		    return c.getDispositivosInteligentes();
-			
+		    if(c != null)
+		    	return c.getDispositivosInteligentes();
+		    else
+		    	return null;
 		}
 		
 		public static List<DispositivoEstandar> obtenerDispositivosEstandarPorId(Long idCliente)
@@ -93,8 +96,10 @@ import modelo.Usuario;
 			Query query = Session.getSession().createQuery("FROM Cliente c WHERE c.id=?");
 		    query.setParameter(1, idCliente);
 		    Cliente c = (Cliente) query.getSingleResult();
-		    return c.getDispositivosEstandares();
-					
+		    if(c != null)
+		    	return c.getDispositivosEstandares();
+		    else
+		    	return null;
 		}
 		
 		public static List<Dispositivo> obtenerDispositivosPorId(Long idCliente){
@@ -124,6 +129,23 @@ import modelo.Usuario;
 			query.setParameter(1, idCliente);
 			return (List<Sensor>) query.getResultList();*/
 		}
+		
+		public static DispositivoInteligente obtenerDispositivoInteligenteDelClientePorId(Long idCliente, Long idDisp){
+			List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(idCliente);
+			if(dispI != null) {
+				List<DispositivoInteligente> dispFilter = dispI.stream().filter(d -> d.getId() == idDisp).collect(Collectors.toList());
+				if(dispFilter.size() > 0) {
+					return dispFilter.get(0);
+				}
+				else {
+					return null;
+				}
+					
+			}
+			else
+				return null;
+		}
+		
 }
 	
 

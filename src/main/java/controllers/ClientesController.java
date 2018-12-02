@@ -151,10 +151,9 @@ public class ClientesController {
 		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
 		Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
 		
-		DispositivoInteligente disp = Session.getSession().find(DispositivoInteligente.class, idDispositivo);
-		Cliente cl = UsuarioService.obtenerClientePorId(idCliente);
+		DispositivoInteligente disp = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(idCliente, idDispositivo);
 		
-		if(cl.tieneDispositivo(disp)) {
+		if( disp != null ) {
 		    res.header("estado", disp.getEstado().toString());
 			res.status(200);		
 		}
@@ -169,10 +168,9 @@ public class ClientesController {
 		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
 		Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
 		
-		DispositivoInteligente disp = Session.getSession().find(DispositivoInteligente.class, idDispositivo);
-		Cliente cl = UsuarioService.obtenerClientePorId(idCliente);
+		DispositivoInteligente disp = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(idCliente, idDispositivo);
 		
-		if(cl.tieneDispositivo(disp)) {
+		if( disp != null ) {
 		    res.header("consumo", disp.getConsumoMensual().toString());
 			res.status(200);	
 		}
@@ -187,10 +185,9 @@ public class ClientesController {
 		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
 		Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
 		
-		DispositivoInteligente disp = Session.getSession().find(DispositivoInteligente.class, idDispositivo);
-		Cliente cl = UsuarioService.obtenerClientePorId(idCliente);
+		DispositivoInteligente disp = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(idCliente, idDispositivo);
 		
-		if(cl.tieneDispositivo(disp)) {
+		if( disp != null ) {
 			disp.encender();
 			disp.persistir();
 			res.status(200);
@@ -205,10 +202,9 @@ public class ClientesController {
 		Long idCliente = Long.valueOf( req.queryParams("idCliente") );
 		Long idDispositivo = Long.valueOf( req.queryParams("idDispositivo") );
 		
-		DispositivoInteligente disp = Session.getSession().find(DispositivoInteligente.class, idDispositivo);
-		Cliente cl = UsuarioService.obtenerClientePorId(idCliente);
+		DispositivoInteligente disp = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(idCliente, idDispositivo);
 		
-		if(cl.tieneDispositivo(disp)) {
+		if(disp != null) {
 			disp.apagar();
 			disp.persistir();
 			res.status(200);
