@@ -37,11 +37,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		try {
 			
 			if((UsuarioService.obtenerUsuario("ricardo","centu") == null
-				&& UsuarioService.obtenerUsuario("lio","eldiez") == null
+				&& UsuarioService.obtenerUsuario("felipe","malo") == null
 				&& UsuarioService.obtenerUsuario("jimmy","cerebro") == null) ){
 				
 			Cliente cliente1= new Cliente("Ricardo","Centurion",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","ricardo","centu",0);
-			Cliente cliente2= new Cliente("Lionel","Messi",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","lio","eldiez",0);
+			Cliente cliente2= new Cliente("Lionel","Messi",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","felipe","malo",0);
 			Cliente cliente3= new Cliente("Jimmy","Neutron",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","jimmy","cerebro",0);
 		
 			DispositivoInteligente aire = new DispositivoInteligente("aire",false,6d); 
