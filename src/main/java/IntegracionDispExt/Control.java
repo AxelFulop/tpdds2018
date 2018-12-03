@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Control {
-	private static long idCliente = 1l; //1, 2 ó 3 
+	private static long idCliente = 1l; //1 (Ricardo), 2 (Felipe) ó 3 (Jimmy)
 	private static Scanner scanner;
 	private static String serverUrl = "http://localhost:8080";//"https://gentle-sands-84990.herokuapp.com";
 
