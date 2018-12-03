@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
-
 import com.google.gson.Gson;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 
-import Servicios.Session;
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
@@ -193,6 +193,15 @@ public class ClientesController {
 		if( disp != null ) {
 			disp.encender();
 			disp.persistir();
+			/*try {
+				HttpResponse<String> response;	
+				response = Unirest.post("http://localhost:8081/cliente/dispositivo").queryString("accion", "encender")
+						  													  .queryString("idCliente", idCliente.toString())
+						  													  .queryString("idDispositivo", idDispositivo.toString())
+						                                                      .asString();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}*/
 			res.status(200);
 		}
 		else {
@@ -209,7 +218,16 @@ public class ClientesController {
 		
 		if(disp != null) {
 			disp.apagar();
-			disp.persistir();
+			disp.persistir();		
+			/*try {
+			HttpResponse<String> response;	
+			response = Unirest.post("http://localhost:8081/cliente/dispositivo").queryString("accion", "apagar")
+					  													  .queryString("idCliente", idCliente.toString())
+					  													  .queryString("idDispositivo", idDispositivo.toString())
+					                                                      .asString();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}*/
 			res.status(200);
 		}
 		else {
