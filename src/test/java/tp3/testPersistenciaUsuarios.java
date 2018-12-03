@@ -35,30 +35,7 @@ public class testPersistenciaUsuarios {
 		cliente.setUbicacion(nuevaUbicacion);
 		cliente.actualizar();
 		org.junit.Assert.assertEquals(Cliente.obtenerTodos().get(cantidadClientes).getUbicacion().getX(),nuevaUbicacion.getX());
-	/*
-	}
-	@Test
-	public void creoAdminYloPersistoYLoElimino() {
-		int cantidaAdmin = Administrador.obtenerTodos().size();
-		Administrador administrador= new Administrador("Juan","Perez","Juan","Perez",TipoIdentificacion.DNI,"123");
-		administrador.persistir();
-		org.junit.Assert.assertEquals(cantidaAdmin+1,administrador.obtenerTodos().size());
-		administrador.eliminar();
-		org.junit.Assert.assertEquals(cantidaAdmin,administrador.obtenerTodos().size());
+		cliente.eliminar();
 	}
 
-	@Test
-	public void modificoAdminYLoGuardo() {
-		int cantidaAdmin = Administrador.obtenerTodos().size();
-		Administrador administrador= new Administrador("Juan","Perez","Juan","Perez",TipoIdentificacion.DNI,"123");
-		administrador.persistir();
-		administrador.setNombre("modificado");
-		administrador.actualizar();
-		org.junit.Assert.assertEquals(administrador.obtenerTodos().get(cantidaAdmin).getNombre(),"modificado");
-		administrador.eliminar();
-		org.junit.Assert.assertEquals(cantidaAdmin,Administrador.obtenerTodos().size());
-
-	}*/
-
-}
 }
