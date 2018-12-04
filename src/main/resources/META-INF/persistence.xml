@@ -35,11 +35,11 @@
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
 
-
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://wz5qhjpjhe33vtis:bs35c5xxz5t2zpff@nuskkyrsgmn5rw8c.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/bp4y18cwj8coyzt3?useSSL=false"/>
             <property name="hibernate.connection.username" value="wz5qhjpjhe33vtis"/>
             <property name="hibernate.connection.password" value="bs35c5xxz5t2zpff"/>
+            
 
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

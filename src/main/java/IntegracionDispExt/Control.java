@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Control {
-	private static long idCliente = 3l; //1 (Ricardo) ó 3 (Jimmy)
+	private static long idCliente = 1l; //1 (Ricardo) ó 3 (Jimmy)
 	private static Scanner scanner;
 	private static String serverUrl = "https://gentle-sands-84990.herokuapp.com";
 	private static HashMap<String, DispositivoInteligente> mapaDispositivos = new HashMap<String, DispositivoInteligente>();
