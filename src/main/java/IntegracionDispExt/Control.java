@@ -13,20 +13,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Control {
-	private static long idCliente = 1l; //1 (Ricardo), 2 (Felipe) ó 3 (Jimmy)
+	private static long idCliente = 1l; //1 (Ricardo) ó 3 (Jimmy)
 	private static Scanner scanner;
-	private static String serverUrl = "http://localhost:8080";//"https://gentle-sands-84990.herokuapp.com";
+	private static String serverUrl = "https://gentle-sands-84990.herokuapp.com";
+	private static HashMap<String, DispositivoInteligente> mapaDispositivos = new HashMap<String, DispositivoInteligente>();
+	private static List<DispositivoInteligente> dispositivos;
 
 	public static void main(String[] args) {
 		scanner = new Scanner(System.in);
 
 		System.out.println("== START CONTROL ==");
 		
-		List<DispositivoInteligente> dispositivos = obtenerDispositivosInteligentes();
-		HashMap<String, Long> mapaDispositivos = new HashMap<String, Long>();
-		for(DispositivoInteligente d:dispositivos) {
-			mapaDispositivos.put(d.getNombre(), d.getId());
-		}
+		actualizarMapa();
 
 		while (true) {
 			System.out.print("Ingresar comando: ");
@@ -38,43 +36,29 @@ public class Control {
 			if (split[0].equals("salir")) {
 				break;
 			} else if ( split[0].equals("estado") && (split[1] != "" || split[1] != null )) {
-				HttpResponse<JsonNode> response;
+				HttpResponse<String> response;
 				try {
-					response = Unirest.get(serverUrl + "/dispositivo/estado").queryString("idDispositivo",mapaDispositivos.get(split[1]).toString())
-													                         .queryString("idCliente", String.valueOf(idCliente))
-													                         .asJson();
-					if (response.getStatus() == 200) {
-						System.out.println("Estado: " + response.getHeaders().getFirst("estado"));
-					} else {
-						System.out.println(response.getStatus() + "-" + response.getStatusText());
-					}
-
+					DispositivoInteligente d = mapaDispositivos.get(split[1]);
+					System.out.println("Estado: "+d.getEstado().toString());
 				} catch (Exception ex) {
 					System.out.println("Dispositivo no reconocido");
 				}
 			} else if( split[0].equals("consumo") && (split[1] != "" || split[1] != null )){
-				HttpResponse<JsonNode> response;
-				try {              
-					response = Unirest.get(serverUrl+"/dispositivo/consumo").queryString("idDispositivo",mapaDispositivos.get(split[1]).toString())
-							  						 						.queryString("idCliente", String.valueOf(idCliente))
-							  						 						.asJson();
-					if (response.getStatus() == 200) {					
-						System.out.println("Consumo: "+ response.getHeaders().getFirst("consumo") +" kwh");
-					} else {
-						System.out.println(response.getStatus() + "-" + response.getStatusText());
-					}
-
+				try {
+				DispositivoInteligente d = mapaDispositivos.get(split[1]);
+				System.out.println("Consumo: "+d.getConsumoMensual().toString());
 				} catch (Exception ex) {
 					System.out.println("Dispositivo no reconocido");
 				}
 			} else if( split[0].equals("apagar") && (split[1] != "" || split[1] != null )){
 				HttpResponse<String> response;
 				try {              
-					response = Unirest.post(serverUrl+"/dispositivo/apagar").queryString("idDispositivo",mapaDispositivos.get(split[1]).toString())
+					response = Unirest.post(serverUrl+"/dispositivo/apagar").queryString("idDispositivo",mapaDispositivos.get(split[1]).getId().toString())
 							  						 						.queryString("idCliente", String.valueOf(idCliente))
 							  						 						.asString();
 					if (response.getStatus() == 200) {					
 						System.out.println("Dispositivo apagado");
+						actualizarMapa();
 					} else {
 						System.out.println(response.getStatus() + "-" + response.getStatusText());
 					}
@@ -85,11 +69,12 @@ public class Control {
 			} else if( split[0].equals("encender") && (split[1] != "" || split[1] != null )){
 				HttpResponse<String> response;
 				try {              
-					response = Unirest.post(serverUrl+"/dispositivo/encender").queryString("idDispositivo",mapaDispositivos.get(split[1]).toString())
+					response = Unirest.post(serverUrl+"/dispositivo/encender").queryString("idDispositivo",mapaDispositivos.get(split[1]).getId().toString())
 							  						 						  .queryString("idCliente", String.valueOf(idCliente))
 							  						 						  .asString();
 					if (response.getStatus() == 200) {					
 						System.out.println("Dispositivo encendido");
+						actualizarMapa();
 					} else {
 						System.out.println(response.getStatus() + "-" + response.getStatusText());
 					}
@@ -128,5 +113,13 @@ public class Control {
 			ex.printStackTrace();
 		}
 		return dispositivos;
+	}
+	
+	public static void actualizarMapa() {
+		dispositivos = obtenerDispositivosInteligentes();
+		mapaDispositivos.clear();
+		for(DispositivoInteligente d:dispositivos) {
+			mapaDispositivos.put(d.getNombre(), d);
+		}
 	}
 }

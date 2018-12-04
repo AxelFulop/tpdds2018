@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
 import com.google.gson.Gson;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
-
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
@@ -24,23 +21,31 @@ import spark.Response;
 public class ClientesController {
 	
 	private static Cliente obtenerCliente(Request req, Response res) {
-		Long idCliente = Long.parseLong(req.params("id"));	
+		Long idCliente = Long.parseLong(req.cookie("userId"));	
 		Cliente cliente = UsuarioService.obtenerClientePorId(idCliente);
 		return cliente;
 	}
 	
 	public static ModelAndView home(Request req, Response res){	
-		Cliente cliente = UsuarioService.obtenerClientePorId( Long.valueOf(req.cookie("userId")) );
+		try {
+		Cliente cliente = obtenerCliente(req,res);
 	
 		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("nombre", cliente.getNombre());
-		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("id",cliente.getId());
+		if(cliente != null) {
+			viewModel.put("nombre", cliente.getNombre());
+			viewModel.put("apellido",cliente.getApellido());
+			viewModel.put("id",req.cookie("userId"));
+		}
 		return new ModelAndView(viewModel,"home/homeCliente.hbs");
+		}
+		catch(Exception e) {
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
 	}
 
 	
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
+		try {
 		Cliente cliente = obtenerCliente(req, res);
 		List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(cliente.getId());
 		List<Sensor> sensores = UsuarioService.obtenerSensoresPorId(cliente.getId());
@@ -50,7 +55,7 @@ public class ClientesController {
 		viewModel.put("apellido",cliente.getApellido());
 	    viewModel.put("consumoUltimoMes",String.format("%.2f", GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) ));
 		viewModel.put("dispositivosI", dispI);
-		viewModel.put("id", cliente.getId());
+		viewModel.put("id", req.cookie("userId"));
 		if(sensores.size() == 0) {
 			viewModel.put("ultimaMedicion", null );
 		}else {
@@ -58,30 +63,41 @@ public class ClientesController {
 		}
 
 		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
+		}catch(Exception e) {
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
 	}
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
+		try {
 		Cliente cliente = obtenerCliente(req, res);	
 		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("id", cliente.getId());
+		viewModel.put("id", req.cookie("userId"));
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
+		}catch(Exception e) {
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
 	}
 	
 	public static ModelAndView  mostrarSimplexFailed(Request req, Response res){
+		try {
 		Cliente cliente = obtenerCliente(req, res);	
 		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("id", cliente.getId());
+		viewModel.put("id", req.cookie("userId"));
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexClienteFailed.hbs");
+		}catch(Exception e) {
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
 	}
 	
 	public static ModelAndView postSimplex(Request req, Response res) {
+		try {
 		Cliente cliente = obtenerCliente(req, res);	
 		List<Dispositivo> dispositivos = UsuarioService.obtenerDispositivosPorId(cliente.getId());
         
 		Double limiteMensual = Double.valueOf( req.queryParams("limiteMensual") );
 		Optimizador optimizador = new Optimizador();
 		List<Dispositivo> dispositivosOptimizables = optimizador.obtenerDispositivosOptimizables(dispositivos);
-		try {
 			List<Double> valoresOptimizados = optimizador.optimizar(dispositivos, limiteMensual);
 		
 			List<DuplaDispositivoValorOptimizado> listaDuplas = new ArrayList<DuplaDispositivoValorOptimizado>();
@@ -94,20 +110,28 @@ public class ClientesController {
 			viewModel.put("valoresOptimizados", listaDuplas);
 			viewModel.put("id", cliente.getId());
 			return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
-		}catch(NoFeasibleSolutionException e) {
-			res.redirect("/clientes/"+ cliente.getId() +"/optimizadorFailed");
+		}
+		catch(NoFeasibleSolutionException e) {
+			res.redirect("/clientes/"+ req.cookie("userId") +"/optimizadorFailed");
 			return null;
+		}
+		catch(Exception e) {
+			return new ModelAndView(null, "statusCodePages/404.hbs");
 		}
 	}
 	
 	public static ModelAndView  getConsumo(Request req, Response res){
+		try {
 		Cliente cliente = obtenerCliente(req, res);
 		
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("id", cliente.getId());
+		viewModel.put("id", req.cookie("userId"));
 		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
+		}catch(Exception e) {
+			return new ModelAndView(null, "statusCodePages/404.hbs");
+		}
 	}
 	
 	public static ModelAndView  postConsumo(Request req, Response res){

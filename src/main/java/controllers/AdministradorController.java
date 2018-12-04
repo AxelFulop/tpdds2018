@@ -104,7 +104,7 @@ public class AdministradorController {
 //            LocalDate inicio = LocalDate.now().minusDays(Long.parseLong(dias));
             Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio,fin );
             if(consumo <= 0) {
-            	viewModel.put("consumo","La fecha inicial no puede ser mayor que la final");
+            	viewModel.put("consumo","No tiene consumo");
             }else {
             	viewModel.put("consumo",consumo+" kw/h");
             }                

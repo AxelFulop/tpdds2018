@@ -36,13 +36,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	withTransaction(() ->{
 		try {
 			
-			if((UsuarioService.obtenerUsuario("ricardo","centu") == null
-				&& UsuarioService.obtenerUsuario("felipe","malo") == null
-				&& UsuarioService.obtenerUsuario("jimmy","cerebro") == null) ){
+			if((UsuarioService.obtenerUsuario("lionel","eldiez") == null
+				&& UsuarioService.obtenerUsuario("fuerte","apache") == null
+				&& UsuarioService.obtenerUsuario("el","loco") == null) ){
 				
-			Cliente cliente1= new Cliente("Ricardo","Centurion",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","ricardo","centu",0);
-			Cliente cliente2= new Cliente("Felipe","Melo",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","felipe","malo",0);
-			Cliente cliente3= new Cliente("Jimmy","Neutron",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","jimmy","cerebro",0);
+			Cliente cliente1= new Cliente("Lionel","Messi",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","lionel","eldiez",0);
+			Cliente cliente2= new Cliente("Carlitos","Tevez",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","fuerte","apache",0);
+			Cliente cliente3= new Cliente("Marcelo","Bielsa",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","el","loco",0);
 		
 			DispositivoInteligente aire = new DispositivoInteligente("aire",false,6d); 
 			DispositivoInteligente compu = new DispositivoInteligente("computadora",true,2d); 
