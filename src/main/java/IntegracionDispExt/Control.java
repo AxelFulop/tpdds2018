@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Control {
-	private static long idCliente = 1l; //1 (Ricardo) ó 3 (Jimmy)
+	private static long idCliente = 3l; 
 	private static Scanner scanner;
 	private static String serverUrl = "https://gentle-sands-84990.herokuapp.com";
 	private static HashMap<String, DispositivoInteligente> mapaDispositivos = new HashMap<String, DispositivoInteligente>();
@@ -25,7 +25,7 @@ public class Control {
 		System.out.println("== START CONTROL ==");
 		
 		actualizarMapa();
-
+		
 		while (true) {
 			System.out.print("Ingresar comando: ");
 			String selection = scanner.nextLine();

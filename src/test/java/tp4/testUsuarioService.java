@@ -117,4 +117,24 @@ public class testUsuarioService {
 	    cliente.eliminar();
 	}
 	
+	@Test
+	public void testObtengoDispositivoInt() {
+		DispositivoInteligente aire = new DispositivoInteligente("aireAcond", false,15d);
+		aire.persistir();
+		Cliente cliente = (Cliente) UsuarioService.obtenerUsuario("Perrunatata","locoadddaa");
+		if(cliente == null) { 
+			cliente= new Cliente("test","test",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","Perrunatata","locoadddaa",0);
+		}	   
+	    cliente.agregarDispositivoInteligente(aire);
+		UsuarioService.persistir(cliente);
+		
+		Cliente c = UsuarioService.obtenerClientePorId(cliente.getId());
+		DispositivoInteligente d = UsuarioService.obtenerDispositivoInteligenteDelClientePorId(c.getId(), aire.getId());
+		
+	    Assert.assertNotNull(d);
+	         
+	    aire.eliminar();
+	    c.eliminar();
+	}
+	
 }

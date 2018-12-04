@@ -8,6 +8,7 @@ public class SensorClient {
 
 	private static Scanner scanner2;
 	private static Scanner scanner1;
+	private static Long idCliente = 3l;
 
 	public static void main(String[] args) {
 		scanner1 = new Scanner(System.in);
@@ -20,8 +21,6 @@ public class SensorClient {
 
 			System.out.print("Ingresar medicion: ");
 			Double medicion = scanner1.nextDouble();
-			System.out.print("Ingresar ID del cliente: ");
-			Long idCliente = scanner2.nextLong();
 
 			if(!medicion.isNaN()) {
 			HttpResponse<String> response;
