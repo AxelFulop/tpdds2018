@@ -37,35 +37,35 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		try {
 			
 			if((UsuarioService.obtenerUsuario("ricardo","centu") == null
-				&& UsuarioService.obtenerUsuario("lio","eldiez") == null
+				&& UsuarioService.obtenerUsuario("felipe","malo") == null
 				&& UsuarioService.obtenerUsuario("jimmy","cerebro") == null) ){
 				
 			Cliente cliente1= new Cliente("Ricardo","Centurion",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","ricardo","centu",0);
-			Cliente cliente2= new Cliente("Lionel","Messi",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","lio","eldiez",0);
+			Cliente cliente2= new Cliente("Felipe","Melo",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","felipe","malo",0);
 			Cliente cliente3= new Cliente("Jimmy","Neutron",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","jimmy","cerebro",0);
 		
 			DispositivoInteligente aire = new DispositivoInteligente("aire",false,6d); 
 			DispositivoInteligente compu = new DispositivoInteligente("computadora",true,2d); 
-			DispositivoInteligente lampara = new DispositivoInteligente("lampara",true,4d);
+			DispositivoInteligente aire1 = new DispositivoInteligente("aire",true,4d);
 			DispositivoInteligente microondas = new DispositivoInteligente("microondas",true,4d);
 			DispositivoInteligente tele = new DispositivoInteligente("television",true,5d);
-			DispositivoInteligente heladera = new DispositivoInteligente("heladera",false,8d);
+			DispositivoInteligente aire2 = new DispositivoInteligente("aire",false,8d);
 			DispositivoEstandar est1 = new DispositivoEstandar("parlante", false, 5d);
 			DispositivoEstandar est2 = new DispositivoEstandar("batidor", true, 3d);
 			DispositivoEstandar est3 = new DispositivoEstandar("licuadora", true, 3d);
 			
 			aire.apagar();
-			compu.apagar();
-			lampara.apagar();
+			aire1.apagar();
+			aire2.apagar();
 			
-			aire.setConsumoMensual(10d);
+			aire.setConsumoMensual(5d);
 			compu.setConsumoMensual(13d);
-			lampara.setConsumoMensual(7d);
-			microondas.setConsumoMensual(5d);
-			heladera.setConsumoMensual(15d);
-			tele.setConsumoMensual(8d);
+			aire1.setConsumoMensual(4d);
+			microondas.setConsumoMensual(2d);
+			aire2.setConsumoMensual(15d);
+			tele.setConsumoMensual(6d);
 			
-			est1.setHorasDeUsoDiarias(3);
+			est1.setHorasDeUsoDiarias(2);
 			est2.setHorasDeUsoDiarias(1);
 			est3.setHorasDeUsoDiarias(1);
 			
@@ -77,7 +77,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			compu.setRestriccion(restriccionCompu);//
 			Restriccion restriccionLampara = new Restriccion();
 			restriccionLampara.setCotasLampara();
-			lampara.setRestriccion(restriccionLampara);//
+			aire1.setRestriccion(restriccionLampara);//
 			Restriccion restriccionMicroondas = new Restriccion();
 			restriccionMicroondas.setCotasLampara();
 			microondas.setRestriccion(restriccionMicroondas);//
@@ -86,7 +86,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			tele.setRestriccion(restriccionTele);//
 			Restriccion restriccionHeladera = new Restriccion();
 			restriccionHeladera.setCotasPlancha();
-			heladera.setRestriccion(restriccionHeladera);//
+			aire2.setRestriccion(restriccionHeladera);//
 			
 			est1.setRestriccion(restriccionCompu);
 			est2.setRestriccion(restriccionAire);
@@ -98,9 +98,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			
 			aire.persistir();
 			compu.persistir();
-			lampara.persistir();
+			aire1.persistir();
 			microondas.persistir();
-			heladera.persistir();
+			aire2.persistir();
 			tele.persistir();
 			est1.persistir();
 			est2.persistir();
@@ -111,8 +111,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			cliente1.agregarDispositivoInteligente(tele);
 			cliente2.agregarDispositivoInteligente(compu);
 			cliente2.agregarDispositivoEstandar(est2);
-			cliente2.agregarDispositivoInteligente(heladera);
-			cliente3.agregarDispositivoInteligente(lampara);
+			cliente2.agregarDispositivoInteligente(aire2);
+			cliente3.agregarDispositivoInteligente(aire1);
 			cliente3.agregarDispositivoInteligente(microondas);
 			cliente3.agregarDispositivoEstandar(est3);
 			

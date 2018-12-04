@@ -4,7 +4,6 @@ import controllers.AdministradorController;
 import controllers.ClientesController;
 import controllers.HomeController;
 import controllers.LoginController;
-import controllers.MapaController;
 import setup.BooleanHelper;
 import setup.HandlebarsTemplateEngineBuilder;
 import spark.Spark;
@@ -39,7 +38,6 @@ public class Router {
 
         Spark.get("/administrador/:id", AdministradorController::home, engine);
 
-        Spark.get("/mapa",MapaController::home,engine);
         Spark.get("/hogares",AdministradorController::obtenerHogares,engine);
         Spark.get("/dispositivos", AdministradorController::obtenerDispositivos,engine);
 

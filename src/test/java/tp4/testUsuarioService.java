@@ -22,12 +22,13 @@ public class testUsuarioService {
 	
 	@Test
 	public void persistoUsuarioYLoObtengo(){
-	Cliente cliente3= new Cliente("lucas","rosol",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
-    UsuarioService.persistir(cliente3);
+	Cliente cliente= new Cliente("lucas","rosol",TipoIdentificacion.DNI,"123",48262937,"Medrano 951","luqui","asd",0);
+    UsuarioService.persistir(cliente);
     Usuario user = UsuarioService.obtenerUsuario("luqui","asd");
     org.junit.Assert.assertEquals(user.getNombreUsuario(),"luqui");
     org.junit.Assert.assertEquals(user.getContrasenia(),SHA256Builder.generarHash256("asd"));
-}
+    cliente.eliminar();
+	}
 	
 	@Test
 	public void testObtenerDispositivosEstandar()
@@ -46,15 +47,13 @@ public class testUsuarioService {
 		
 		Cliente c = (Cliente)UsuarioService.obtenerUsuario("trertrer", "popopopo");
 		List<DispositivoEstandar> dispositivosEstandar = UsuarioService.obtenerDispositivosEstandarPorId(c.getId());
-		//org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(0).getNombre(),dispositivosEstandar.get(0).getNombre());
-		//org.junit.Assert.assertEquals(cliente.getDispositivosEstandares().get(1).getNombre(),dispositivosEstandar.get(1).getNombre());
 		org.junit.Assert.assertTrue(cliente.tieneDispositivo(dispositivosEstandar.get(0)));
 		org.junit.Assert.assertTrue(cliente.tieneDispositivo(dispositivosEstandar.get(1)));
 		
 		for(DispositivoEstandar d:dispositivosEstandar) {
 	    	d.eliminar();
 	    }
-		UsuarioService.eliminar(cliente);
+		cliente.eliminar();
 	}
 	
 	@Test
@@ -78,7 +77,7 @@ public class testUsuarioService {
 	    for(DispositivoInteligente d:disp) {
 	    	d.eliminar();
 	    }
-	    UsuarioService.eliminar(c);
+	    c.eliminar();
 	}
 	
 	@Test
@@ -106,21 +105,16 @@ public class testUsuarioService {
 	    for(Dispositivo d:disp) {
 	    	d.eliminar();
 	    }
-	    UsuarioService.eliminar(c);
+	    c.eliminar();
 	}
 	
 	@Test
 	public void testObtenerHogares() {
 		Cliente cliente = new Cliente("Antonio","Fondevila",TipoIdentificacion.DNI,"321",40539761,"Medrano 951","Toni","loco",0);
-	    cliente.persistir();
+		UsuarioService.persistir(cliente);
 	    List<Cliente> clientes = UsuarioService.obtenerHogares();
 	    Assert.assertTrue(clientes.contains(cliente));
-	}
-	
-	@Test
-	public void testObtenerClientePorID() {
-		Usuario cliente = UsuarioService.obtenerUsuarioPorId(Long.valueOf("1"));
-	    Assert.assertEquals(cliente.getId(), Long.valueOf("1"));
+	    cliente.eliminar();
 	}
 	
 }

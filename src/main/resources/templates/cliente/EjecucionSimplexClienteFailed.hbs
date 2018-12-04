@@ -38,9 +38,15 @@
 </head>
 
 <body>
-       <meta http-equiv="Refresh" content="2;url=https://gentle-sands-84990.herokuapp.com/clientes/{{idCliente}}/optimizador">
 		<h2>No hay una solucion factible</h2>
-
+		<h4>Ingrese el limite mensual </h4>
+        <input type="number" style="width:25%;" placeholder="Limite" class="form-control" name="limiteMensual">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" formaction="/clientes/{{id}}/optimizador">
+              <span class="glyphicon glyphicon-search">
+              </span> Aceptar
+            </button>
+          </span>
       
 	<table class="table table-dark">
     <tr>

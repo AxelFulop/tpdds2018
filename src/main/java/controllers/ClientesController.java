@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
-
 import com.google.gson.Gson;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
 
-import Servicios.Session;
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
@@ -50,6 +50,7 @@ public class ClientesController {
 		viewModel.put("apellido",cliente.getApellido());
 	    viewModel.put("consumoUltimoMes",String.format("%.2f", GeneradorReportes.getReportePorHogar(cliente, LocalDate.now().minusMonths(1), LocalDate.now()) ));
 		viewModel.put("dispositivosI", dispI);
+		viewModel.put("id", cliente.getId());
 		if(sensores.size() == 0) {
 			viewModel.put("ultimaMedicion", null );
 		}else {
@@ -69,7 +70,7 @@ public class ClientesController {
 	public static ModelAndView  mostrarSimplexFailed(Request req, Response res){
 		Cliente cliente = obtenerCliente(req, res);	
 		HashMap<String, Object> viewModel = new HashMap<>();
-		viewModel.put("idCliente", cliente.getId());
+		viewModel.put("id", cliente.getId());
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexClienteFailed.hbs");
 	}
 	
@@ -91,6 +92,7 @@ public class ClientesController {
 		
 			HashMap<String, Object> viewModel = new HashMap<>();
 			viewModel.put("valoresOptimizados", listaDuplas);
+			viewModel.put("id", cliente.getId());
 			return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
 		}catch(NoFeasibleSolutionException e) {
 			res.redirect("/clientes/"+ cliente.getId() +"/optimizadorFailed");
@@ -104,7 +106,7 @@ public class ClientesController {
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
-		viewModel.put("idCliente", cliente.getId());
+		viewModel.put("id", cliente.getId());
 		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
 	}
 	
@@ -118,6 +120,7 @@ public class ClientesController {
 		
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
+		viewModel.put("id", cliente.getId());
 		if(consumo < 0) {
 			return new ModelAndView(viewModel,"cliente/consultaConsumoClienteFailed.hbs");
 		}else {
@@ -190,6 +193,15 @@ public class ClientesController {
 		if( disp != null ) {
 			disp.encender();
 			disp.persistir();
+			/*try {
+				HttpResponse<String> response;	
+				response = Unirest.post("http://localhost:8081/cliente/dispositivo").queryString("accion", "encender")
+						  													  .queryString("idCliente", idCliente.toString())
+						  													  .queryString("idDispositivo", idDispositivo.toString())
+						                                                      .asString();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}*/
 			res.status(200);
 		}
 		else {
@@ -206,7 +218,16 @@ public class ClientesController {
 		
 		if(disp != null) {
 			disp.apagar();
-			disp.persistir();
+			disp.persistir();		
+			/*try {
+			HttpResponse<String> response;	
+			response = Unirest.post("http://localhost:8081/cliente/dispositivo").queryString("accion", "apagar")
+					  													  .queryString("idCliente", idCliente.toString())
+					  													  .queryString("idDispositivo", idDispositivo.toString())
+					                                                      .asString();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}*/
 			res.status(200);
 		}
 		else {

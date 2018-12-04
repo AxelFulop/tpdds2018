@@ -3,6 +3,7 @@ package reportes;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import Servicios.UsuarioService;
@@ -30,14 +31,23 @@ public class GeneradorReportes {
         }
         return consumo;
 	}
-	
-	public static Double getReportePromedioPorDispositivo(Cliente c) {
+	/*
+	public static Double getReportePorDispositivo(Cliente c) {
 		Double consumoTotal = 0d;
 		for(Dispositivo d:c.getDispositivos()) {
 			consumoTotal += d.getConsumoMensual();
 		}
       
         return consumoTotal/c.cantidadDeDispositivos();
+	} */
+	
+	public static HashMap<Dispositivo,Double> getReportePorDispositivo(Cliente c) {
+		HashMap<Dispositivo,Double> mapa = new HashMap<Dispositivo,Double>();
+		for(Dispositivo d:c.getDispositivos()) {
+			mapa.put(d, d.getConsumoMensual());
+		}
+      
+        return mapa;
 	}
 	
 	
