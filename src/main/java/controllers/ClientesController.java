@@ -26,24 +26,8 @@ public class ClientesController {
 		return cliente;
 	}
 	
-	public static ModelAndView home(Request req, Response res){	
-		try {
-		Cliente cliente = obtenerCliente(req,res);
-	
-		HashMap<String, Object> viewModel = new HashMap<>();
-		if(cliente != null) {
-			viewModel.put("nombre", cliente.getNombre());
-			viewModel.put("apellido",cliente.getApellido());
-			viewModel.put("id",req.cookie("userId"));
-		}
-		return new ModelAndView(viewModel,"home/homeCliente.hbs");
-		}
-		catch(Exception e) {
-			return new ModelAndView(null, "statusCodePages/404.hbs");
-		}
-	}
 
-	
+
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
 		try {
 		Cliente cliente = obtenerCliente(req, res);

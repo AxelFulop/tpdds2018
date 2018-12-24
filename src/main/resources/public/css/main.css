@@ -10,19 +10,13 @@ li {
     float: left;
 }
 
-.menu{
-display: none;
-}
-s
-.login{
-visibility: block;
-display: block;
-}
-
-.logout{
+.navbar-fixed-top{
 display: none;
 }
 
+.topnav-right {
+  float: right;
+}
 
 .active {
 background-color: #4CAF50;
@@ -36,7 +30,7 @@ li a {
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
+
 li a:hover {
 background-image: linear-gradient(to bottom right, white, GreenYellow);
 }

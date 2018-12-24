@@ -47,7 +47,7 @@ public class LoginController {
        {
        response.status(200);
        response.cookie("userId",user.getId().toString());
-       response.redirect("/clientes/"+ user.getId());
+       response.redirect("/clientes/"+ user.getId() + "/hogar");
        }
         } 
         catch (Exception e) {
@@ -60,7 +60,7 @@ public class LoginController {
     public String logout() throws Exception{
                 response.status(200);
                 response.removeCookie("userId");
-                response.redirect("/login");
+                response.redirect("/");
                 return null;
     }
 

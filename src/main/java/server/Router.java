@@ -2,7 +2,6 @@ package server;
 
 import controllers.AdministradorController;
 import controllers.ClientesController;
-import controllers.HomeController;
 import controllers.LoginController;
 import setup.BooleanHelper;
 import setup.HandlebarsTemplateEngineBuilder;
@@ -19,16 +18,12 @@ public class Router {
                 .build();
 
         Spark.staticFileLocation("/public");
-
-
-        Spark.get("/", HomeController::home, engine);
-
+        
         Spark.get("/loginFailed", LoginController::loginfailed, engine);
-        Spark.get("/login", LoginController::show, engine);
+        Spark.get("/", LoginController::show, engine);
         Spark.post("/login", (req, res) -> new LoginController(req, res).login());
         Spark.get("/logout", (req, res) -> new LoginController(req, res).logout());
 
-        Spark.get("/clientes/:id", ClientesController::home, engine);
         Spark.get("/clientes/:id/hogar", ClientesController::mostrarEstadoHogar, engine);
         Spark.get("/clientes/:id/optimizador", ClientesController::mostrarSimplex, engine);
         Spark.get("/clientes/:id/optimizadorFailed", ClientesController::mostrarSimplexFailed, engine);

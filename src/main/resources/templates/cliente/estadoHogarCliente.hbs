@@ -1,48 +1,13 @@
 <html>
 <head>
 	<title>Estado del Hogar</title>
-	<link rel="stylesheet" href="/css/homeCliente.css"> 
-    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <style>
-		table, td, th {
-    		border: 1px solid black;
-		}
-
-		table {
-    		border-collapse: collapse;
-    		width: 50%;
-    		background-color: Azure ;
-    		margin-left:20px;
-    		margin-top:30px;
-    		right: 50%;
-		}
-
-		th {
-    		height: 40px;
-		}
-		
-		.colIzquierda{
-			width:50%;
-		}
-		
-		.menu.menu{
-		display:block;
-		}
-		
-		.dispIntelig{
-			background-color: Bisque;
-		}
-		
-		h3{
-			background-color: Black;
-			margin-right: 66%;
-		}
-		</style>
+     <link rel="stylesheet" type="text/css" href="/css/hogar.css">
+      <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
 <body>
-	<h3 style = "margin-top:50px"><span style="color:OldLace" class="border">Consumo del ultimo mes:  {{consumoUltimoMes}} kw/h</span></h3>
+	<h3><span style="color:OldLace" class="border">Consumo del ultimo mes:  {{consumoUltimoMes}} kw/h</span></h3>
 	{{#if ultimaMedicion}}
 		<h3><span style="color:OldLace" class="border">Ultima medicion:  {{ultimaMedicion}} grados</span></h3>
 	{{else}}
