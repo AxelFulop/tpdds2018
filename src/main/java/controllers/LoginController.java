@@ -40,6 +40,11 @@ public class LoginController {
         {
         response.status(200);
         response.cookie("userId",user.getId().toString());
+        response.cookie("userName",username);
+        response.cookie("password",password);
+        request.session().attribute("username", username);
+        request.session().attribute("password",password);
+        
        	response.redirect("/administrador/"+ user.getId());
 
         }
@@ -47,6 +52,10 @@ public class LoginController {
        {
        response.status(200);
        response.cookie("userId",user.getId().toString());
+       response.cookie("userName",username);
+       response.cookie("password",password);
+       request.session().attribute("username", username);
+       request.session().attribute("password",password);
        response.redirect("/clientes/"+ user.getId() + "/hogar");
        }
         } 
@@ -60,6 +69,10 @@ public class LoginController {
     public String logout() throws Exception{
                 response.status(200);
                 response.removeCookie("userId");
+                response.removeCookie("username");
+                response.removeCookie("password");
+                request.session().removeAttribute("username");
+                request.session().removeAttribute("password");
                 response.redirect("/");
                 return null;
     }

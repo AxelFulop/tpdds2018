@@ -1,33 +1,49 @@
 <html>
 <head>
 	<title>Estado del Hogar</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+     <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/consumoCliente.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
      <link rel="stylesheet" type="text/css" href="/css/hogar.css">
       <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
 <body>
-	<h3><span style="color:OldLace" class="border">Consumo del ultimo mes:  {{consumoUltimoMes}} kw/h</span></h3>
-	{{#if ultimaMedicion}}
-		<h3><span style="color:OldLace" class="border">Ultima medicion:  {{ultimaMedicion}} grados</span></h3>
-	{{else}}
-		<h3><span style="color:OldLace" class="border">Ultima medicion:  No tiene sensores</span></h3>
-	{{/if}}
-<table style ="width:1310px;">
-<thead class="black white-text">
+
+<table class="table table-dark">
     <tr>
-    <tr>
-      <th scope="col" class="colIzquierda">Nombre del dispositivo</th>
-      <th scope="col">Estado</th>
+    <thead>
+      <th scope="col" class="align-top">Dispositivo</th>
+      <th scope="col" class="align-top">Estado</th>
+      <th scope="col"class="align-top">Consumo ultimo mes</th>
+      <th scope="col"class="align-top">Ultima Medicion</th>
     </tr>
-  </thead>
-  <tbody>		
-			{{#each dispositivosI}}
-			<tr class="dispIntelig">
-      			<th scope="row" class="colIzquierda">{{nombre}}</th>
-      			<td>{{estado}}</td>
-    		</tr>
-		{{/each}}
+     </thead>
+  	<tbody>
+    <tr class="dispIntelig">
+    {{#if ultimaMedicion}}
+    {{#each dispositivosI}}
+      <td>{{nombre}}</td>
+      <td>{{estado}}</td>
+      <td>{{consumoUltimoMes}}</td>
+      <td>{{ultimaMedicion}}</td>
+       </tr>
+      {{/each}}
+      {{else}}
+      {{#each dispositivosI}}
+      <td>{{nombre}}</td>
+      <td>{{estado}}</td>
+      <td>{{consumoUltimoMes}}</td>
+      <td>No tiene sensores</td>
+      {{/each}}
+      {{/if}}
+    </tr>
   </tbody>
 </table>
 </body>
