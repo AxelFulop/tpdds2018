@@ -1,40 +1,35 @@
-.active{
-	display: block;
-}
-.navbar-fixed-top.navbar-fixed-top {
-		display:block;
+table
+{
+width: 30%;
+float: none;
+border-radius: 5px;
+padding:auto;
+margin-right:15px;
+margin-left:15px;
+margin-top:40px;
 }
 
-table, td, th {
-    		border: 1px solid black;
-		}
+.combo{
+margin-top:80px;
+margin-left:15px;
+padding:auto;
+}
 
-table {
-    		border-collapse: collapse;
-    		width: 50%;
-    		background-color: Azure ;
-    		margin-left:20px;
-    		margin-top:30px;
-    		right: 50%;
+td{
+    vertical-align: bottom;
 }
 
 th {
-    		height: 40px;
-		}
-		
-		.colIzquierda{
-			width:50%;
+text-align: center;
+}
+
+.navbar-fixed-top.navbar-fixed-top {
+display:block;
+}
+
+table, td, th {
+border: 1px solid black;
 }
 
 
 
-	
-	#consRec{
-		width: 60%;
-	}
-	
-	
-	h4{
-		padding-top: 50px;
-	}
-	

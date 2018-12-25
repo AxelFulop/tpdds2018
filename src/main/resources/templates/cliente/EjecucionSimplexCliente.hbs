@@ -3,27 +3,31 @@
 <form method="POST">
 	<title>Optimizador</title>
     <link rel="stylesheet" type="text/css" href="/css/simplex.css">
-    	<link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	
 
 </head>
 
 <body>
+
+        <div class ="combo">
 		<h4>Ingrese el limite mensual </h4>
-        <input type="number"required style="width:25%;" placeholder="Limite" class="form-control" name="limiteMensual">
-        
+		<div class="col-xs-2">
+        <input type="number"required" placeholder="Limite" class="form-control" width="25" name="limiteMensual">
+        </div>
           <span class="input-group-btn">
             <button class="btn btn-primary">
               <span class="glyphicon glyphicon-search">
               </span> Aceptar
             </button>
           </span>
+          </div>
 
       
-	<table class="table table-dark" style ="width:1320px;">
+	<table class="table table-dark">
     <tr>
-      <th scope="col" class="align-top">Dispositivo</th>
+      <th scope="col" class="align-top col-xs-3">Dispositivo</th>
       <th id="consRec"scope="col" class="align-top">Consumo recomendado</th>
     </tr>
      </thead>

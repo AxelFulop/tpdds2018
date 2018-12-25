@@ -31,6 +31,7 @@ public class LoginController {
         String passRoot = SHA256Builder.generarHash256("root");
         Usuario user = UsuarioService.obtenerUsuario(username, pass);
         //login succes
+        //pepe
         try{
        if (username.isEmpty() || pass.isEmpty() || user == null) {
     	   response.redirect("/loginFailed");

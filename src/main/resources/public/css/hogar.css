@@ -1,13 +1,18 @@
 table, td, th {
-    		border: 1px solid black;
+    		border: 1.5px solid white;
 		}
 
-table{
-border-radius: 5px;
-width: 300;
+table
+{
+width: 100%;
 float: none;
-margin-top:60px;
-margin-left:20px
+border-radius: 5px;
+}
+
+
+.tabla{
+padding: 30px;
+margin: auto;
 }
 
 
@@ -21,13 +26,6 @@ margin-left:20px
 .top-buffer { margin-top: 60px;}
 
 
-table{
-border-radius: 5px;
-width: 300;
-float: none;
-margin-top:60px;
-margin-left:20px
-}
 
 
 .form-control-clear {

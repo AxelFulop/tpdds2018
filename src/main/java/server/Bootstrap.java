@@ -66,8 +66,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			tele.setConsumoMensual(6d);
 			
 			est1.setHorasDeUsoDiarias(2);
-			est2.setHorasDeUsoDiarias(1);
-			est3.setHorasDeUsoDiarias(1);
+			est2.setHorasDeUsoDiarias(3);
+			est3.setHorasDeUsoDiarias(4);
 			
 			Restriccion restriccionAire = new Restriccion();
 			restriccionAire.setCotasAireAcondicionado();

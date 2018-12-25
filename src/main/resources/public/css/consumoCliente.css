@@ -1,11 +1,21 @@
-table{
-border-radius: 5px;
-width: 300;
+table, td, th {
+    		border: 1.5px solid white;
+		}
+
+table
+{
+width: 100%;
 float: none;
-margin-top:60px;
-margin-left:20px
+border-radius: 5px;
+padding:40;
+margin:auto;
+margin-top: 40px;
 }
 
+
+#boton{
+top: 20;
+}
 
 .form-control-clear {
   z-index: 10;
