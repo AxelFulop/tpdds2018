@@ -24,12 +24,17 @@ public class GeneradorReportes {
 	}
 
 	public static Double getReportePorHogar(Cliente cliente, LocalDate inicio, LocalDate fin) { // hogar = cliente
-		float cantHoras = GeneradorReportes.diferenciaEnHoras(inicio, fin); 
-		Double consumo = 0d;  
-        for(Dispositivo d:cliente.getDispositivos()) {
-        		consumo += d.getConsumoMensual()*cantHoras / 720; // 720 hs tiene un mes
-        }
-        return consumo;
+		try {
+			float cantHoras = GeneradorReportes.diferenciaEnHoras(inicio, fin);
+			Double consumo = 0d;
+			for (Dispositivo d : cliente.getDispositivos()) {
+				consumo += d.getConsumoMensual() * cantHoras / 720; // 720 hs tiene un mes
+			}
+			return consumo;
+		}catch (Exception e)
+		{
+			return 0d;
+		}
 	}
 	/*
 	public static Double getReportePorDispositivo(Cliente c) {

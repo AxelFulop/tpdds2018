@@ -39,7 +39,7 @@ public class Router {
         Spark.post("/dispositivos/dispositivoInteligente", (req, res) -> new AdministradorController(req,res).crearDispositivoInteligente());
         Spark.post("/dispositivos/dispositivoEstandar", (req, res) -> new AdministradorController(req,res).crearDispositivoEstandar());
 
-        Spark.get("/hogares/hogar/:id/reporte", AdministradorController::generarReporteHogar,engine);
+        Spark.get("/hogares/reportes", AdministradorController::generarReporteHogar,engine);
         
         Spark.post("/sensor", ClientesController::registrarMedicion);
         

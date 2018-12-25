@@ -9,6 +9,38 @@
     <script src="js/hogares.js"></script>
 
 </head>
+<button type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#reporte">Generar reportes
+</button>
+<!-- Modal -->
+<div class="modal fade" id="reporte" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reportes</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/hogares/reportes" method="get">
+                    <div class="form-group">
+                        <label for="inicioPeriodo">Inicio perido:</label>
+                        <input required type="date" class="form-control" id="inicioPeriodo" name="inicioPeriodo">
+                    </div>
+                    <div class="form-group">
+                        <label for="finPeriodo">Fin perido:</label>
+                        <input required type="date" class="form-control" id="finPeriodo" name="finPeriodo">
+                    </div>
+                    <button type="submit" class="btn btn-success">Generar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
 <table class="table table-striped">
     <thead>
@@ -16,7 +48,7 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Apellido</th>
-        <th>Acciones</th>
+        <th>Consumo</th>
     </tr>
     </thead>
     <tbody>
@@ -25,71 +57,17 @@
         <td>{{id}}</td>
         <td>{{nombre}}</td>
         <td>{{apellido}}</td>
-        <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-                    data-target="#reporte{{id}}">Generar reporte
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="reporte{{id}}" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Reportes</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/hogares/hogar/{{id}}/reporte" method="get">
-                                <div class="form-group">
-                                    <label for="inicioPeriodo">Inicio perido:</label>
-                                    <input type="date" class="form-control" id="inicioPeriodo" name="inicioPeriodo">
-                                </div>
-                                <div class="form-group">
-                                    <label for="finPeriodo">Fin perido:</label>
-                                    <input type="date" class="form-control" id="finPeriodo" name="finPeriodo">
-                                </div>
-                                <button type="submit" class="btn btn-success">Generar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            </form>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </td>
+        {{#unless consumoTotal}}
+        <td>0</td>
+        {{/unless}}
+        {{#if consumoTotal}}
+        <td>{{consumoTotal}}</td>
+        {{/if}}
     </tr>
     {{/each}}
     </tbody>
 </table>
-{{#if consumo}}
-<div class="modal show" id="modalConsumo" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <form action="/hogares">
-                    <input class="close" type="submit" value="&times;"/>
-                </form>
-                <h4 class="modal-title">Consumo</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <p>{{consumo}}</p>
-                </div>
-                <form action="/hogares">
-                    <input type="submit" class="btn btn-default" value="Cerrar"/>
-                </form>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-{{/if}}
 {{/partial}}
 
 {{>adminDash.hbs}}

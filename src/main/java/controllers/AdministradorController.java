@@ -98,16 +98,10 @@ public class AdministradorController {
         try {
             LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
             LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));
-//            String dias = req.queryParams("dias");
-            Cliente cliente = UsuarioService.obtenerClientePorId(Long.parseLong(req.params("id")));
-//            LocalDate fin = LocalDate.now();;
-//            LocalDate inicio = LocalDate.now().minusDays(Long.parseLong(dias));
-            Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio,fin );
-            if(consumo <= 0) {
-            	viewModel.put("consumo","No tiene consumo");
-            }else {
-            	viewModel.put("consumo",consumo+" kw/h");
-            }                
+
+            clientes.forEach(c ->{
+               c.setConsumoTotal(GeneradorReportes.getReportePorHogar(c, inicio,fin ));
+            });
             viewModel.put("cliente", clientes);
             viewModel.put("name", admin.getNombre());
             viewModel.put("id", req.cookie("userId"));
