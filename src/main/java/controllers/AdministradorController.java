@@ -83,8 +83,16 @@ public class AdministradorController {
     }
     public String crearDispositivoEstandar() {
         String nombre = request.queryParams("nombre");
+        int horasDeUsoDiarias = Integer.parseInt(request.queryParams("horasDeUsoDiarias"));
         DispositivoEstandar dispositivo = new DispositivoEstandar();
         dispositivo.setNombre(nombre);
+        dispositivo.setHorasDeUsoDiarias(horasDeUsoDiarias);
+        dispositivo.setBajoConsumo(false);
+        String consumo = request.queryParams("bajoConsumo");
+        if(consumo!=null)
+        {
+            dispositivo.setBajoConsumo(true);
+        }
         DispositivoService.persistir(dispositivo);
         response.status(200);
         response.redirect("/dispositivos");
