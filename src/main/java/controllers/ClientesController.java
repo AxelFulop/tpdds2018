@@ -5,8 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.apache.commons.math3.optim.linear.NoFeasibleSolutionException;
+
 import com.google.gson.Gson;
+
+import Servicios.Token;
 import Servicios.UsuarioService;
 import modelo.Cliente;
 import modelo.Dispositivo;
@@ -30,6 +34,8 @@ public class ClientesController {
 
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
 		try {
+			if (Token.isAuth(req.cookie("token"),req.params("id")))
+            {	
 		Cliente cliente = obtenerCliente(req, res);
 		List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(cliente.getId());
 		List<Sensor> sensores = UsuarioService.obtenerSensoresPorId(cliente.getId());
@@ -41,27 +47,35 @@ public class ClientesController {
 		viewModel.put("dispositivosI", dispI);
 		viewModel.put("id", req.cookie("userId"));
 		if(sensores.size() == 0) {
-			viewModel.put("ultimaMedicion", null );
+		viewModel.put("ultimaMedicion", null );
 		}else {
 			viewModel.put("ultimaMedicion", sensores.get(sensores.size()-1).getMedicion() );
 		}
-
-		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");
-		}catch(Exception e) {
-			return new ModelAndView(null, "statusCodePages/404.hbs");
-		}
-	}
+		return new ModelAndView(viewModel,"cliente/estadoHogarCliente.hbs");}
+		else
+			 return new ModelAndView(null, "statusCodePages/404.hbs");
+       } catch (Exception e) {
+           return new ModelAndView(null, "statusCodePages/404.hbs");
+       }
+   }
+		
+	
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
 		try {
+			if (Token.isAuth(req.cookie("token"),req.params("id")))
+            {	
 		Cliente cliente = obtenerCliente(req, res);	
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("id", req.cookie("userId"));
 		return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
-		}catch(Exception e) {
-			return new ModelAndView(null, "statusCodePages/404.hbs");
 		}
-	}
+		else
+			 return new ModelAndView(null, "statusCodePages/404.hbs");
+        } catch (Exception e) {
+            return new ModelAndView(null, "statusCodePages/404.hbs");
+        }
+    }
 	
 	public static ModelAndView  mostrarSimplexFailed(Request req, Response res){
 		try {
@@ -76,6 +90,8 @@ public class ClientesController {
 	
 	public static ModelAndView postSimplex(Request req, Response res) {
 		try {
+			if (Token.isAuth(req.cookie("token"),req.params("id")))
+            {	
 		Cliente cliente = obtenerCliente(req, res);	
 		List<Dispositivo> dispositivos = UsuarioService.obtenerDispositivosPorId(cliente.getId());
         
@@ -94,7 +110,9 @@ public class ClientesController {
 			viewModel.put("valoresOptimizados", listaDuplas);
 			viewModel.put("id", cliente.getId());
 			return new ModelAndView(viewModel,"cliente/EjecucionSimplexCliente.hbs");
-		}
+            }
+			else
+				 return new ModelAndView(null, "statusCodePages/404.hbs");}	
 		catch(NoFeasibleSolutionException e) {
 			res.redirect("/clientes/"+ req.cookie("userId") +"/optimizadorFailed");
 			return null;
@@ -104,23 +122,29 @@ public class ClientesController {
 		}
 	}
 	
+
+	
 	public static ModelAndView  getConsumo(Request req, Response res){
 		try {
 		Cliente cliente = obtenerCliente(req, res);
-		
+		if (Token.isAuth(req.cookie("token"),req.params("id")))
+        {	
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
 		viewModel.put("apellido",cliente.getApellido());
 		viewModel.put("id", req.cookie("userId"));
-		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
-		}catch(Exception e) {
+		return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");}
+		else
+			return new ModelAndView(null, "statusCodePages/404.hbs");}
+			catch(Exception e) {
 			return new ModelAndView(null, "statusCodePages/404.hbs");
 		}
 	}
 	
 	public static ModelAndView  postConsumo(Request req, Response res){
 		Cliente cliente = obtenerCliente(req, res);
-		
+		if (Token.isAuth(req.cookie("token"),req.params("id")))
+        {	
 		LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
 		LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));
 		Double consumo = GeneradorReportes.getReportePorHogar(cliente, inicio, fin);
@@ -136,8 +160,10 @@ public class ClientesController {
 			viewModel.put("fin", req.queryParams("finPeriodo"));
 			viewModel.put("consumo", String.format("%.2f", consumo));
 			return new ModelAndView(viewModel,"cliente/consultaConsumoCliente.hbs");
-		}
-	}
+		}}
+		else
+			return new ModelAndView(null, "statusCodePages/404.hbs");}
+	
 	
 	public static String registrarMedicion(Request req, Response res) {
 		Double medicion = Double.valueOf( req.queryParams("medicion") );

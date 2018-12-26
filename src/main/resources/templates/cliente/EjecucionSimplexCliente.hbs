@@ -14,7 +14,7 @@
         <div class ="combo">
 		<h4>Ingrese el limite mensual </h4>
 		<div class="col-xs-2">
-        <input type="number"required" placeholder="Limite" class="form-control" width="25" name="limiteMensual">
+        <input type="number"required" placeholder="Limite" class="form-control" name="limiteMensual">
         </div>
           <span class="input-group-btn">
             <button class="btn btn-primary">
@@ -23,11 +23,11 @@
             </button>
           </span>
           </div>
-
-      
+    
+   <div class="col-xs-12">
 	<table class="table table-dark">
     <tr>
-      <th scope="col" class="align-top col-xs-3">Dispositivo</th>
+      <th scope="col" class="align-top">Dispositivo</th>
       <th id="consRec"scope="col" class="align-top">Consumo recomendado</th>
     </tr>
      </thead>
@@ -40,6 +40,7 @@
     {{/each}}
   	</tbody>
 </table>
+</div>
 
 </body>
 </html>

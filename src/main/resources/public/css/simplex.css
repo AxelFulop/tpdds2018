@@ -4,14 +4,16 @@ width: 30%;
 float: none;
 border-radius: 5px;
 padding:auto;
-margin-right:15px;
-margin-left:15px;
 margin-top:40px;
 }
 
+.tablita > table
+{
+margin-right:55px;
+}
 .combo{
 margin-top:80px;
-margin-left:15px;
+margin-left:20px;
 padding:auto;
 }
 
