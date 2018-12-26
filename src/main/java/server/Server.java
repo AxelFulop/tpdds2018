@@ -1,5 +1,8 @@
 package server;
 
+import jobs.SensorJob;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import spark.Spark;
 import spark.debug.DebugScreen;
 
@@ -8,8 +11,28 @@ import spark.debug.DebugScreen;
 			Bootstrap.main(null);
 			Spark.port(getHerokuAssignedPort());
 			DebugScreen.enableDebugScreen();
-			Router.configure(); 	
-		}
+			Router.configure();
+
+			try {
+				// specify the job' s details..
+				JobDetail job = JobBuilder.newJob(SensorJob.class)
+						.withIdentity("sensorJob")
+						.build();
+				 //specify the running period of the job
+				Trigger trigger = TriggerBuilder.newTrigger()
+						.withSchedule(SimpleScheduleBuilder.simpleSchedule()
+										.withIntervalInSeconds(120)
+										.repeatForever())
+						.build();
+
+				SchedulerFactory schFactory = new StdSchedulerFactory();
+				Scheduler sch = schFactory.getScheduler();
+				sch.start();
+				sch.scheduleJob(job, trigger);
+			} catch (SchedulerException e) {
+				e.printStackTrace();
+			}
+	}
 		
 		static int getHerokuAssignedPort() {
 			ProcessBuilder processBuilder = new ProcessBuilder();

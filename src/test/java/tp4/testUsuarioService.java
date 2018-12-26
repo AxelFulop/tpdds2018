@@ -136,5 +136,9 @@ public class testUsuarioService {
 	    aire.eliminar();
 	    c.eliminar();
 	}
-	
+	@Test
+	public void obtenerInteligentes()
+	{
+		List<DispositivoInteligente> dispositivosInteligentes = DispositivoInteligente.obtenerInteligentes();
+	}
 }

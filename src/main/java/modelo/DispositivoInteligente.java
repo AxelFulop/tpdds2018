@@ -1,6 +1,9 @@
 package modelo;
 
+import Servicios.Session;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class DispositivoInteligente extends Dispositivo {
@@ -89,6 +92,10 @@ private Double consumoMensual;
 				+ ", consumoMensual=" + consumoMensual + "]";
 	}
 
+
+	public static List<DispositivoInteligente> obtenerInteligentes() {
+		return Session.getSession().createQuery("SELECT e FROM DispositivoInteligente e").getResultList();
+	}
 	
 
 }
