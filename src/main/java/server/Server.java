@@ -21,7 +21,7 @@ import spark.debug.DebugScreen;
 				 //specify the running period of the job
 				Trigger trigger = TriggerBuilder.newTrigger()
 						.withSchedule(SimpleScheduleBuilder.simpleSchedule()
-										.withIntervalInSeconds(120)
+										.withIntervalInSeconds(30)
 										.repeatForever())
 						.build();
 

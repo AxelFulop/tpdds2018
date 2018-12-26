@@ -17,7 +17,7 @@ public class SensorOptimizador extends Sensor {
 		reglas.forEach(regla -> {
 				List<Dispositivo> dispositivos = new ArrayList<Dispositivo>();
 				dispositivos.addAll(regla.getActuador().getDispositivos());
-				Map<Dispositivo,Double> mapaConsumo = optimizador.dispositivosYConsumoRecomendado(dispositivos,200D); //mapa de dispositivos/consumoOptimo
+				Map<Dispositivo,Double> mapaConsumo = optimizador.dispositivosYConsumoRecomendado(dispositivos,20000D); //mapa de dispositivos/consumoOptimo
 			regla.getActuador().getDispositivos().forEach(d -> {
 					regla.llamarActuador(d,mapaConsumo.get(d));
 				});
