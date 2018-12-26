@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import Servicios.DispositivoService;
+import Servicios.Token;
 import Servicios.UsuarioService;
 import modelo.*;
 import reportes.GeneradorReportes;
@@ -26,15 +27,16 @@ public class AdministradorController {
 
     public static ModelAndView home(Request req, Response res) {
         try {
-
+            if (Token.isAuth(req.cookie("token"),req.params("id")))
+            {
             HashMap<String, Object> viewModel = new HashMap<>();
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
-            if (admin != null) {
                 viewModel.put("name", admin.getNombre());
                 viewModel.put("id", admin.getId());
                 viewModel.put("saludo", "hola");
-            }
-            return new ModelAndView(viewModel, "adminDash.hbs");
+                return new ModelAndView(viewModel, "adminDash.hbs");
+            }else
+                return new ModelAndView(null, "statusCodePages/404.hbs");
         } catch (Exception e) {
             return new ModelAndView(null, "statusCodePages/404.hbs");
         }
@@ -42,13 +44,18 @@ public class AdministradorController {
 
     public static ModelAndView obtenerHogares(Request req, Response res) {
         try {
+            if (Token.isAuth(req.cookie("token"),req.params("id")))
+            {
             HashMap<String, Object> viewModel = new HashMap<>();
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
-            List<Cliente> clientes = UsuarioService.obtenerHogares();
-            viewModel.put("cliente", clientes);
-            viewModel.put("name", admin.getNombre());
-            viewModel.put("id", req.cookie("userId"));//admin.getId());
-            return new ModelAndView(viewModel, "admin/hogares.hbs");
+                List<Cliente> clientes = UsuarioService.obtenerHogares();
+                viewModel.put("cliente", clientes);
+                viewModel.put("name", admin.getNombre());
+                viewModel.put("id", admin.getId());
+                return new ModelAndView(viewModel, "admin/hogares.hbs");
+            }
+            else
+                return new ModelAndView(null, "statusCodePages/404.hbs");
         } catch (Exception e) {
             return new ModelAndView(null, "statusCodePages/404.hbs");
         }
@@ -56,15 +63,20 @@ public class AdministradorController {
 
     public static ModelAndView obtenerDispositivos(Request req, Response res) {
         try {
-            HashMap<String, Object> viewModel = new HashMap<>();
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
-            List<DispositivoInteligente> dispositivosInteligentes = DispositivoService.obtenerTodosDispositivosInteligentes();
-            List<DispositivoEstandar> dispositivosEstandars = DispositivoService.obtenerTodosDispositivosEstandars();
-            viewModel.put("dispositivosInteligentes", dispositivosInteligentes);
-            viewModel.put("dispositivosEstandars", dispositivosEstandars);
-            viewModel.put("name", admin.getNombre());
-            viewModel.put("id", req.cookie("userId"));//admin.getId());
-            return new ModelAndView(viewModel, "admin/dispositivos.hbs");
+            if (Token.isAuth(req.cookie("token"),req.params("id")))
+            {
+                HashMap<String, Object> viewModel = new HashMap<>();
+                List<DispositivoInteligente> dispositivosInteligentes = DispositivoService.obtenerTodosDispositivosInteligentes();
+                List<DispositivoEstandar> dispositivosEstandars = DispositivoService.obtenerTodosDispositivosEstandars();
+                viewModel.put("dispositivosInteligentes", dispositivosInteligentes);
+                viewModel.put("dispositivosEstandars", dispositivosEstandars);
+                viewModel.put("name", admin.getNombre());
+                viewModel.put("id", admin.getId());
+                return new ModelAndView(viewModel, "admin/dispositivos.hbs");
+            }else
+                return new ModelAndView(null, "statusCodePages/404.hbs");
+
         } catch (Exception e) {
             return new ModelAndView(null, "statusCodePages/404.hbs");
         }
@@ -78,7 +90,7 @@ public class AdministradorController {
         dispositivo.setConsumoMensual(consumo);
         DispositivoService.persistir(dispositivo);
         response.status(200);
-        response.redirect("/dispositivos");
+        response.redirect("/administrador/"+request.cookie("userId")+"/dispositivos");
         return null;
     }
     public String crearDispositivoEstandar() {
@@ -95,7 +107,7 @@ public class AdministradorController {
         }
         DispositivoService.persistir(dispositivo);
         response.status(200);
-        response.redirect("/dispositivos");
+        response.redirect("/administrador/"+request.cookie("userId")+"/dispositivos");
         return null;
     }
 
@@ -112,12 +124,12 @@ public class AdministradorController {
             });
             viewModel.put("cliente", clientes);
             viewModel.put("name", admin.getNombre());
-            viewModel.put("id", req.cookie("userId"));
+            viewModel.put("id", admin.getId());
             return new ModelAndView(viewModel, "admin/hogares.hbs");
         } catch (NullPointerException e) {
         	viewModel.put("cliente", clientes);
             viewModel.put("name", admin.getNombre());
-            viewModel.put("id", req.cookie("userId"));
+            viewModel.put("id", admin.getId());
             viewModel.put("consumo","No tiene consumo");
         	return new ModelAndView(viewModel, "admin/hogares.hbs");
         }

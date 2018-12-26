@@ -33,13 +33,13 @@ public class Router {
 
         Spark.get("/administrador/:id", AdministradorController::home, engine);
 
-        Spark.get("/hogares",AdministradorController::obtenerHogares,engine);
-        Spark.get("/dispositivos", AdministradorController::obtenerDispositivos,engine);
+        Spark.get("/administrador/:id/hogares",AdministradorController::obtenerHogares,engine);
+        Spark.get("/administrador/:id/dispositivos", AdministradorController::obtenerDispositivos,engine);
 
-        Spark.post("/dispositivos/dispositivoInteligente", (req, res) -> new AdministradorController(req,res).crearDispositivoInteligente());
-        Spark.post("/dispositivos/dispositivoEstandar", (req, res) -> new AdministradorController(req,res).crearDispositivoEstandar());
+        Spark.post("/administrador/:id/dispositivos/dispositivoInteligente", (req, res) -> new AdministradorController(req,res).crearDispositivoInteligente());
+        Spark.post("/administrador/:id/dispositivos/dispositivoEstandar", (req, res) -> new AdministradorController(req,res).crearDispositivoEstandar());
 
-        Spark.get("/hogares/reportes", AdministradorController::generarReporteHogar,engine);
+        Spark.get("/administrador/:id/hogares/reportes", AdministradorController::generarReporteHogar,engine);
         
         Spark.post("/sensor", ClientesController::registrarMedicion);
         
