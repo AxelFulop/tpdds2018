@@ -34,7 +34,7 @@ public class ClientesController {
 
 	public static ModelAndView  mostrarEstadoHogar(Request req, Response res){
 		try {
-			if (Token.isAuth(req.cookie("token"),req.params("id")))
+			if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
             {	
 		Cliente cliente = obtenerCliente(req, res);
 		List<DispositivoInteligente> dispI = UsuarioService.obtenerDispositivosInteligentesPorId(cliente.getId());
@@ -63,7 +63,7 @@ public class ClientesController {
 	
 	public static ModelAndView  mostrarSimplex(Request req, Response res){
 		try {
-			if (Token.isAuth(req.cookie("token"),req.params("id")))
+			if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
             {	
 		Cliente cliente = obtenerCliente(req, res);	
 		HashMap<String, Object> viewModel = new HashMap<>();
@@ -90,7 +90,7 @@ public class ClientesController {
 	
 	public static ModelAndView postSimplex(Request req, Response res) {
 		try {
-			if (Token.isAuth(req.cookie("token"),req.params("id")))
+			if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
             {	
 		Cliente cliente = obtenerCliente(req, res);	
 		List<Dispositivo> dispositivos = UsuarioService.obtenerDispositivosPorId(cliente.getId());
@@ -127,7 +127,7 @@ public class ClientesController {
 	public static ModelAndView  getConsumo(Request req, Response res){
 		try {
 		Cliente cliente = obtenerCliente(req, res);
-		if (Token.isAuth(req.cookie("token"),req.params("id")))
+			if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
         {	
 		HashMap<String, Object> viewModel = new HashMap<>();
 		viewModel.put("nombre", cliente.getNombre());
@@ -143,7 +143,7 @@ public class ClientesController {
 	
 	public static ModelAndView  postConsumo(Request req, Response res){
 		Cliente cliente = obtenerCliente(req, res);
-		if (Token.isAuth(req.cookie("token"),req.params("id")))
+		if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
         {	
 		LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
 		LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));

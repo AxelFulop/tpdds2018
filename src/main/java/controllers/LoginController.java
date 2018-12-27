@@ -45,6 +45,7 @@ public class LoginController {
                 response.cookie("password", password);
                 response.cookie("token", SHA256Builder.generarHash256(user.getId().toString()));
                 Token.addToken(SHA256Builder.generarHash256(user.getId().toString()));
+                response.cookie("order",String.valueOf(Token.tokenOrder(SHA256Builder.generarHash256(user.getId().toString()))));
                 request.session().attribute("username", username);
                 request.session().attribute("password", password);
 
@@ -58,6 +59,7 @@ public class LoginController {
                 response.cookie("password", password);
                 response.cookie("token", SHA256Builder.generarHash256(user.getId().toString()));
                 Token.addToken(SHA256Builder.generarHash256(user.getId().toString()));
+                response.cookie("order",String.valueOf(Token.tokenOrder(SHA256Builder.generarHash256(user.getId().toString()))));
                 request.session().attribute("username", username);
                 request.session().attribute("password", password);
                 response.redirect("/clientes/" + user.getId() + "/hogar");

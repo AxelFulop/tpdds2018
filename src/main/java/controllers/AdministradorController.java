@@ -27,7 +27,7 @@ public class AdministradorController {
 
     public static ModelAndView home(Request req, Response res) {
         try {
-            if (Token.isAuth(req.cookie("token"),req.params("id")))
+            if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
             {
             HashMap<String, Object> viewModel = new HashMap<>();
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
@@ -44,7 +44,7 @@ public class AdministradorController {
 
     public static ModelAndView obtenerHogares(Request req, Response res) {
         try {
-            if (Token.isAuth(req.cookie("token"),req.params("id")))
+            if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
             {
             HashMap<String, Object> viewModel = new HashMap<>();
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
@@ -64,7 +64,7 @@ public class AdministradorController {
     public static ModelAndView obtenerDispositivos(Request req, Response res) {
         try {
             Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
-            if (Token.isAuth(req.cookie("token"),req.params("id")))
+            if (Token.isAuth(req.cookie("token"),req.params("id"),Integer.parseInt(req.cookie("order"))))
             {
                 HashMap<String, Object> viewModel = new HashMap<>();
                 List<DispositivoInteligente> dispositivosInteligentes = DispositivoService.obtenerTodosDispositivosInteligentes();
@@ -94,47 +94,54 @@ public class AdministradorController {
         return null;
     }
     public String crearDispositivoEstandar() {
-        String nombre = request.queryParams("nombre");
-        int horasDeUsoDiarias = Integer.parseInt(request.queryParams("horasDeUsoDiarias"));
-        DispositivoEstandar dispositivo = new DispositivoEstandar();
-        dispositivo.setNombre(nombre);
-        dispositivo.setHorasDeUsoDiarias(horasDeUsoDiarias);
-        dispositivo.setBajoConsumo(false);
-        String consumo = request.queryParams("bajoConsumo");
-        if(consumo!=null)
-        {
-            dispositivo.setBajoConsumo(true);
-        }
-        DispositivoService.persistir(dispositivo);
-        response.status(200);
-        response.redirect("/administrador/"+request.cookie("userId")+"/dispositivos");
-        return null;
+
+            String nombre = request.queryParams("nombre");
+            int horasDeUsoDiarias = Integer.parseInt(request.queryParams("horasDeUsoDiarias"));
+            DispositivoEstandar dispositivo = new DispositivoEstandar();
+            dispositivo.setNombre(nombre);
+            dispositivo.setHorasDeUsoDiarias(horasDeUsoDiarias);
+            dispositivo.setBajoConsumo(false);
+            String consumo = request.queryParams("bajoConsumo");
+            if (consumo != null) {
+                dispositivo.setBajoConsumo(true);
+            }
+            DispositivoService.persistir(dispositivo);
+            response.status(200);
+            response.redirect("/administrador/" + request.cookie("userId") + "/dispositivos");
+            return null;
     }
 
     public static ModelAndView generarReporteHogar(Request req, Response res) {
+
     	HashMap<String, Object> viewModel = new HashMap<>();
     	Usuario admin = UsuarioService.obtenerUsuarioPorId(Long.parseLong(req.cookie("userId")));
         List<Cliente> clientes = UsuarioService.obtenerHogares();
         try {
-            LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
-            LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));
+            if (Token.isAuth(req.cookie("token"), req.params("id"), Integer.parseInt(req.cookie("order")))) {
+                LocalDate inicio = LocalDate.parse(req.queryParams("inicioPeriodo"));
+                LocalDate fin = LocalDate.parse(req.queryParams("finPeriodo"));
 
-            clientes.forEach(c ->{
-               c.setConsumoTotal(GeneradorReportes.getReportePorHogar(c, inicio,fin ));
-            });
-            viewModel.put("cliente", clientes);
-            viewModel.put("name", admin.getNombre());
-            viewModel.put("id", admin.getId());
-            return new ModelAndView(viewModel, "admin/hogares.hbs");
-        } catch (NullPointerException e) {
-        	viewModel.put("cliente", clientes);
-            viewModel.put("name", admin.getNombre());
-            viewModel.put("id", admin.getId());
-            viewModel.put("consumo","No tiene consumo");
-        	return new ModelAndView(viewModel, "admin/hogares.hbs");
-        }
+                clientes.forEach(c -> {
+                    c.setConsumoTotal(GeneradorReportes.getReportePorHogar(c, inicio, fin));
+                });
+                viewModel.put("cliente", clientes);
+                viewModel.put("name", admin.getNombre());
+                viewModel.put("id", admin.getId());
+                return new ModelAndView(viewModel, "admin/hogares.hbs");
+            }else
+                return new ModelAndView(null, "statusCodePages/404.hbs");
+        } catch(NullPointerException e){
+                viewModel.put("cliente", clientes);
+                viewModel.put("name", admin.getNombre());
+                viewModel.put("id", admin.getId());
+                viewModel.put("consumo", "No tiene consumo");
+                return new ModelAndView(viewModel, "admin/hogares.hbs");
+            }catch(Exception e)
+            {
+                return new ModelAndView(null, "statusCodePages/404.hbs");
+            }
+
     }
-    
 
 }
 

@@ -15,9 +15,14 @@ public class Token {
         tokens.remove(token);
     }
 
-    public static Boolean isAuth(String token,String id) {
-        if (tokens.indexOf(token) >= 0 && SHA256Builder.generarHash256(id).equals(token))
+    public static Boolean isAuth(String token,String id, int order) {
+        if (tokens.indexOf(token) >= 0 && SHA256Builder.generarHash256(id).equals(token) && tokens.indexOf(token)==order)
             return true;
         return false;
+    }
+
+    public static int tokenOrder(String token)
+    {
+        return tokens.indexOf(token);
     }
 }
