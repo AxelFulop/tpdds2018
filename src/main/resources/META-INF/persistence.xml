@@ -39,14 +39,20 @@
             <property name="hibernate.connection.url" value="jdbc:mysql://pf0me8zwcb6ivb7b:lvqztk67h8q6gk24@nuskkyrsgmn5rw8c.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dfabdmfxgku5w1ly?useSSL=false"/>
             <property name="hibernate.connection.username" value="pf0me8zwcb6ivb7b"/>
             <property name="hibernate.connection.password" value="lvqztk67h8q6gk24"/>
-            
 
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="use_sql_comments" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-        </properties>
+            <!-- <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+           <property name="hibernate.connection.url" value="jdbc:mysql://localhost/tpdds2018?serverTimezone=UTC"/>
+           <property name="hibernate.connection.username" value="root"/>
+           <property name="hibernate.connection.password" value="qmsroot"/>-->
 
-    </persistence-unit>
+
+
+           <property name="hibernate.show_sql" value="true"/>
+           <property name="hibernate.format_sql" value="true"/>
+           <property name="use_sql_comments" value="true"/>
+           <property name="hibernate.hbm2ddl.auto" value="update"/>
+       </properties>
+
+   </persistence-unit>
 
 </persistence>
