@@ -12,7 +12,6 @@ import spark.debug.DebugScreen;
 			Spark.port(getHerokuAssignedPort());
 			DebugScreen.enableDebugScreen();
 			Router.configure();
-
 			try {
 				// specify the job' s details..
 				JobDetail job = JobBuilder.newJob(SensorJob.class)
